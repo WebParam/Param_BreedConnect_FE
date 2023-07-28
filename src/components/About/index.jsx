@@ -453,7 +453,7 @@ export default function About() {
                 <button
                   onClick={prev}
                   type="button"
-                  className="w-[48px] h-[48px] rounded-full overflow-hidden flex justify-center items-center border border-qyellow text-qyellow focus:bg-qyellow focus:text-white"
+                  className="w-[48px] h-[48px]  overflow-hidden flex justify-center items-center border border-qyellow text-qyellow focus:bg-qyellow focus:text-white"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -473,7 +473,7 @@ export default function About() {
                 <button
                   onClick={next}
                   type="button"
-                  className="w-[48px] h-[48px] rounded-full overflow-hidden flex justify-center items-center border border-qyellow text-qyellow focus:bg-qyellow focus:text-white"
+                  className="w-[48px] h-[48px]  overflow-hidden flex justify-center items-center border border-qyellow text-qyellow focus:bg-qyellow focus:text-white"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

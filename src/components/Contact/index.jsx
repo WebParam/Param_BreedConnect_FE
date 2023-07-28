@@ -27,7 +27,7 @@ export default function Contact() {
               </p>
 
               <div className="xl:flex xl:space-x-[30px] mb-[30px]">
-                <div className="xl:w-1/2 w-full  h-[196px] flex flex-col item justify-center bg-[#FFEAE5] p-5">
+                <div className="xl:w-1/2 custom-phone w-full  h-[196px] flex flex-col item justify-center bg-[#FFEAE5] p-5">
                   <div className="flex justify-center mb-3 ">
                     <svg
                       width="44"

@@ -1,13 +1,15 @@
 import { useState } from "react";
 import Compair from "../../Helpers/icons/Compair";
 import ThinLove from "../../Helpers/icons/ThinLove";
+import { getByDisplayValue } from "@testing-library/react";
 
 export default function Drawer({ className, open, action }) {
   const [tab, setTab] = useState("category");
   return (
     <>
       <div
-        className={`drawer-wrapper w-full  h-full relative  ${className || ""}`}
+      style={{display:"none"}}
+         className={`drawer-wrapper w-full  h-full relative  ${className || ""}`}
       >
         {open && (
           <div
