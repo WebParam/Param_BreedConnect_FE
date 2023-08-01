@@ -1,6 +1,12 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Routers from "./Routers";
+import Switch from 'react-ios-switch'
+import React from "react";
+//import Advanced from './components/Advanced'
+
+
+
 
 function App() {
   const location = useLocation();

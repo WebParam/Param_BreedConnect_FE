@@ -980,6 +980,7 @@ export default function Navbar({ className }) {
                         <span>Contact</span>
                       </span>
                     </Link>
+
                   </li>
                 </ul>
               </div>

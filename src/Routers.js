@@ -26,6 +26,7 @@ import Wishlist from "./components/Wishlist";
 import HomeThree from "./components/HomeThree";
 import HomeFour from "./components/HomeFour";
 import HomeFive from "./components/HomeFive";
+import Tinder from "./components/Tinder";
 
 export default function Routers() {
   return (
@@ -56,6 +57,7 @@ export default function Routers() {
       <Route exact path="/become-saller" element={<BecomeSaller />} />
       <Route exact path="/privacy-policy" element={<PrivacyPolicy />} />
       <Route exact path="/terms-condition" element={<TermsCondition />} />
+      <Route exact path="/tinder" element={<Tinder/>} />
       <Route exact path="*" element={<FourZeroFour />} />
     </Routes>
   );

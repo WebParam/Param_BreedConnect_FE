@@ -25,9 +25,8 @@ export default function Navbar({ className }) {
 
   return (
     <div
-      className={`nav-widget-wrapper w-full bg-qh2-green h-[60px] relative z-30  ${
-        className || ""
-      }`}
+      className={`nav-widget-wrapper w-full bg-qh2-green h-[60px] relative z-30  ${className || ""
+        }`}
     >
       <div className="container-x mx-auto h-full">
         <div className="w-full h-full relative">
@@ -981,6 +980,7 @@ export default function Navbar({ className }) {
                       </span>
                     </Link>
                   </li>
+
                 </ul>
               </div>
             </div>

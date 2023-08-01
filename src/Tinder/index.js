@@ -5,7 +5,7 @@ import Switch from 'react-ios-switch'
 import Advanced from './examples/Advanced'
 import Simple from './examples/Simple'
 
-function App () {
+function Index () {
   const [showAdvanced, setShowAdvanced] = useState(true)
 
   return (
@@ -13,9 +13,10 @@ function App () {
       {showAdvanced ? <Advanced /> : <Simple />}
       <div className='row'>
         <p style={{ color: '#fff' }}>Show advanced example</p> <Switch checked={showAdvanced} onChange={setShowAdvanced} />
+        
       </div>
     </div>
   )
 }
 
-export default App
+export default Index

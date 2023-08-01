@@ -49,17 +49,20 @@ export default function About() {
     slider.current.slickNext();
   };
   return (
+    
     <Layout childrenClasses="pt-0 pb-0">
       <div className="about-page-wrapper w-full">
         <div className="title-area w-full">
           <PageTitle
-            title="About Us"
+            title="About-us"
             breadcrumb={[
               { name: "home", path: "/" },
-              { name: "About us", path: "/about" },
+              { name: "About-us", path: "/about" },
             ]}
           />
         </div>
+
+
 
         <div className="aboutus-wrapper w-full">
           <div className="container-x mx-auto">
@@ -695,7 +698,7 @@ export default function About() {
               </div>
             </div>
           </div>
-        </div>
+        </div> 
 
         <div className="blog-post-wrapper w-full mb-[30px]">
           <div className="container-x mx-auto">
