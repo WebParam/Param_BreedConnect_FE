@@ -1,5 +1,7 @@
 import React, { useState, useMemo, useRef } from 'react'
 import TinderCard from 'react-tinder-card'
+import 'style.css';
+
 
 const db = [
   {
@@ -77,7 +79,7 @@ function Advanced () {
   }
 
   return (
-    <div>
+    <div className='tinder-bod'>
       <link
         href='https://fonts.googleapis.com/css?family=Damion&display=swap'
         rel='stylesheet'

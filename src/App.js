@@ -4,6 +4,8 @@ import Routers from "./Routers";
 import Switch from 'react-ios-switch'
 import React from "react";
 //import Advanced from './components/Advanced'
+import './custom.css';
+
 
 
 

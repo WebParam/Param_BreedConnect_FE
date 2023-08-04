@@ -1,13 +1,38 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InputCom from "../../Helpers/InputCom";
 import Layout from "../../Partials/Layout";
 import Thumbnail from "./Thumbnail";
 
 export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [disabled , setDisable] = useState(true)
+  const [formData, setFormData] = useState({});
+
+ 
+
+  const handleSubmit = (event) => {
+  
+    debugger;
+    console.log(email)
+    setFormData({
+      emails : email,
+      passwords : password
+    })
+
+    console.log("Form data:", formData);
+
+    event.preventDefault();
+
+    // You can perform other actions here, such as submitting the form data to a server.
+  };
+
   const [checked, setValue] = useState(false);
   const rememberMe = () => {
     setValue(!checked);
   };
+
+  
   return (
     <Layout childrenClasses="pt-0 pb-0">
       <div className="login-page-wrapper w-full py-10">
@@ -42,6 +67,8 @@ export default function Login() {
                       name="email"
                       type="email"
                       inputClasses="h-[50px]"
+                      inputHandler={(e) => setEmail(e.target.value)}
+
                     />
                   </div>
                   <div className="input-item mb-5">
@@ -51,6 +78,8 @@ export default function Login() {
                       name="password"
                       type="password"
                       inputClasses="h-[50px]"
+                      inputHandler={(e) => setPassword(e.target.value)}
+
                     />
                   </div>
                   <div className="forgot-password-area flex justify-between items-center mb-7">
@@ -92,6 +121,9 @@ export default function Login() {
                   <div className="signin-area mb-3.5">
                     <div className="flex justify-center">
                       <button
+
+                        disabled={disabled}
+                        onClick={handleSubmit}
                         type="button"
                         className="black-btn mb-6 text-sm text-white w-full h-[50px] font-semibold flex justify-center bg-purple items-center"
                       >
