@@ -1,7 +1,7 @@
 import Facebook from "../../../Helpers/icons/Facebook";
 import Instagram from "../../../Helpers/icons/Instagram";
 import Youtube from "../../../Helpers/icons/Youtube";
-
+import Logo from "../../../../media/logo.svg"
 export default function Footer({type}) {
 
     return (
@@ -15,16 +15,18 @@ export default function Footer({type}) {
                                 <img
                                     width="152"
                                     height="36"
-                                    src={`${process.env.PUBLIC_URL}/assets/images/logo-3.svg`}
+                                    // src={`${process.env.PUBLIC_URL}/assets/images/logo-3.svg`}
+                                    src={Logo}
                                     alt="logo"
                                 />
                             </a>
                         ):(
                             <a href="/">
                                 <img
-                                    width="152"
-                                    height="36"
-                                    src={`${process.env.PUBLIC_URL}/assets/images/logo.svg`}
+                                    width="200"
+                                    height="50"
+                                    // src={`${process.env.PUBLIC_URL}/assets/images/logo.svg`}
+                                    src={Logo}
                                     alt="logo"
                                 />
                             </a>

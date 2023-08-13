@@ -1,46 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
   font-family: "Inter";
-  src: url("/public/assets/fonts/Inter-Black.ttf");
+  src: url("/src/media/fonts/Fredoka-Medium.ttf");
   font-weight: 900;
 }
 @font-face {
   font-family: "Inter";
-  src: url("/public/assets/fonts/Inter-Bold.ttf");
+  src: url("/src/media/fonts/Fredoka-Bold.ttf");
   font-weight: 700;
 }
 @font-face {
   font-family: "Inter";
-  src: url("/public/assets/fonts/Inter-ExtraBold.ttf");
+  src: url("/src/media/fonts/Fredoka_Expanded-Bold.ttf");
   font-weight: 800;
 }
 @font-face {
   font-family: "Inter";
-  src: url("/public/assets/fonts/Inter-ExtraLight.ttf");
+  src: url("/src/media/fonts/Fredoka-Light.ttf");
   font-weight: 200;
 }
 @font-face {
   font-family: "Inter";
-  src: url("/public/assets/fonts/Inter-Light.ttf");
+  src: url("/src/media/fonts/Fredoka-Light.ttf");
   font-weight: 300;
 }
 @font-face {
   font-family: "Inter";
-  src: url("/public/assets/fonts/Inter-Medium.ttf");
+  src: url("/src/media/fonts/Fredoka-Medium.ttf");
   font-weight: 500;
 }
 @font-face {
   font-family: "Inter";
-  src: url("/public/assets/fonts/Inter-Regular.ttf");
+  src: url("/src/media/fonts/Fredoka-Medium.ttf");
   font-weight: 400;
 }
 @font-face {
   font-family: "Inter";
-  src: url("/public/assets/fonts/Inter-SemiBold.ttf");
+  src: url("/src/media/fonts/Fredoka_Expanded-SemiBold.ttf");
   font-weight: 600;
 }
 @font-face {
   font-family: "Inter";
-  src: url("/public/assets/fonts/Inter-Thin.ttf");
+  src: url("/src/media/fonts/Fredoka-Light.ttf");
   font-weight: 100;
 }
 
@@ -57,7 +61,7 @@
   padding: 0;
 }
 html {
-  font-family: "Inter", sans-serif;
+  font-family: "Inter";
   background-color: #f8f8f8;
 }
 body {

@@ -5,3 +5,34 @@
 .custom-phone{
     background-color: #d3efff !important;
 }
+
+.text-blue{
+    color:rgb(137 207 240);
+}
+
+.mainHeader{
+    text-align: center;
+    margin-bottom: 3%;
+}
+
+.background-banner{
+    height:100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.text-white {
+    color: white;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

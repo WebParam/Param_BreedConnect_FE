@@ -4,6 +4,7 @@ import AllProductPage from "./components/AllProductPage";
 import Login from "./components/Auth/Login/index";
 import Profile from "./components/Auth/Profile";
 import Signup from "./components/Auth/Signup";
+import SignupBreeder from "./components/Auth/SignupBreeder";
 import BecomeSaller from "./components/BecomeSaller";
 import Blogs from "./components/Blogs";
 import Blog from "./components/Blogs/Blog.jsx";
@@ -27,11 +28,11 @@ import HomeThree from "./components/HomeThree";
 import HomeFour from "./components/HomeFour";
 import HomeFive from "./components/HomeFive";
 import Tinder from "./components/Tinder";
-
+import Landing from "./components/Landing"
 export default function Routers() {
   return (
     <Routes>
-      <Route exact path="/" element={<Home />} />
+      <Route exact path="/" element={<Landing />} />
       <Route exact path="/home-two" element={<HomeTwo />} />
       <Route exact path="/home-three" element={<HomeThree />} />
       <Route exact path="/home-four" element={<HomeFour />} />
@@ -53,6 +54,7 @@ export default function Routers() {
       <Route exact path="/faq" element={<Faq />} />
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/signup" element={<Signup />} />
+      <Route exact path="/signupbreeder" element={<SignupBreeder />} />
       <Route exact path="/profile" element={<Profile />} />
       <Route exact path="/become-saller" element={<BecomeSaller />} />
       <Route exact path="/privacy-policy" element={<PrivacyPolicy />} />
