@@ -41,7 +41,23 @@ p{
     margin: 20px auto;
     margin-top: -3em;
     justify-content: space-between;
+    /* padding-left: 10%;
+    padding-right: 10%; */
   }
+
+  @media screen and (max-width: 768px) {
+    /* Adjust the number of columns for mobile view */
+    .grid-container {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 20px auto;
+      margin-top: -4em;
+      justify-content: space-between;
+      padding-left: 0%;
+      padding-right: 0%;
+    }
+  }    
   
   .grid-item {
     flex-basis: calc(40% - 10px);

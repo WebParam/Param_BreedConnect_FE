@@ -41,7 +41,7 @@ export default function Landing() {
 
   return (
     <LandingPageLayout childrenClasses="pt-0 pb-0">
-      <div className="login-page-wrapper w-full py-10 background-banner" style={{ backgroundImage: `url(${Image})` }}>
+      <div className="login-page-wrapper w-full py-10 background-banner" style={{ backgroundImage: `url(${Image})`, fontFamily: "Inter" }}>
         <LandingTopBar />
         <h1 className="text-[34px] font-bold leading-[74px] text-white mainHeader headerSection1">
              <strong>Lorem Ipsum</strong>
