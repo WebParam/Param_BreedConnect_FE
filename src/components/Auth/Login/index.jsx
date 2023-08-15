@@ -1,30 +1,78 @@
 import { useEffect, useState } from "react";
 import InputCom from "../../Helpers/InputCom";
-import Layout from "../../Partials/Layout";
+import LoginLayout from "../../Partials/LoginLayout";
 import Thumbnail from "./Thumbnail";
-
+import { GoogleLogin, useGoogleLogin, googleLogout} from '@react-oauth/google';
+import axios from 'axios';
+import { LoginGoogle } from "../../../api/endpoints";
+import { LoginSuccess } from "../../../services/loginService";
+import { POST } from "../../../api/client";
+import Logo from "../../../media/logo.png"
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [disabled , setDisable] = useState(true)
   const [formData, setFormData] = useState({});
 
- 
+  const [ user, setUser ] = useState([]);
+    const [ profile, setProfile ] = useState([]);
 
-  const handleSubmit = (event) => {
-  
-    //debugger;
-    console.log(email)
-    setFormData({
-      emails : email,
-      password  : password
-    })
+    const login = useGoogleLogin({
+        onSuccess: (codeResponse) => CompleteGoogleLogin(codeResponse),
+        onError: (error) => console.log('Login Failed:', error)
+    });
 
-    console.log("Form data:", formData);
 
-    event.preventDefault();
+    const CompleteGoogleLogin=(codeResponse)=>{
+      setUser(codeResponse);
+      if (codeResponse.access_token) {
+        axios
+            .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${codeResponse.access_token}`, {
+                headers: {
+                    Authorization: `Bearer ${codeResponse.access_token}`,
+                    Accept: 'application/json'
+                }
+            })
+            .then(async (res) => {
+             
+              if(res.data){
 
-    // You can perform other actions here, such as submitting the form data to a server.
+                const response = await LoginGoogle(res.data);
+              
+                if(response!=null && response.status ==200){
+                  LoginSuccess(response);
+                }else{
+                  LoginError();
+                }
+              }
+                setProfile(res.data);
+            })
+            .catch((err) => console.log(err));
+    }
+    }
+
+
+  // log out function to log the user out of google and set the profile array to null
+  const logOut = () => {
+      googleLogout();
+      setProfile(null);
+  };
+
+
+
+  const handleSubmit = async () => {
+  debugger;
+    const payload ={
+      email:email,
+      secret:password
+    }
+
+    const response = await POST(payload);
+    if(response!=null && response.status ==200){
+      LoginSuccess(response);
+    }else{
+      LoginError();
+    }
   };
 
   const [checked, setValue] = useState(false);
@@ -32,16 +80,30 @@ export default function Login() {
     setValue(!checked);
   };
 
-  
+ const LoginError=()=>{
+  alert("Login failed")
+ }
+
   return (
-    <Layout childrenClasses="pt-0 pb-0">
+    <LoginLayout childrenClasses="pt-0 pb-0">
       <div className="login-page-wrapper w-full py-10">
+      <div className="my-5">
+        <img
+            style={{textAlign:"center", margin:"0 auto"}}
+            width="20%"
+            height=""
+            // src={`${process.env.PUBLIC_URL}/assets/images/logo-3.svg`}
+            src={Logo}
+            alt="logo"
+        />
+        </div>
+
         <div className="container-x mx-auto">
           <div className="lg:flex items-center relative">
-            <div className="lg:w-[572px] w-full h-[783px] bg-white flex flex-col justify-center sm:p-10 p-5 border border-[#E0E0E0]">
+            <div className="lg:w-[572px] w-full bg-white flex flex-col sm:px-10 sm:py-8 p-5 ">
               <div className="w-full">
                 <div className="title-area flex flex-col justify-center items-center relative text-center mb-7">
-                  <h1 className="text-[34px] font-bold leading-[74px] text-qblack">
+                  <h1 className="text-blue text-[34px] font-bold leading-[74px]">
                     Log In
                   </h1>
                   <div className="shape -mt-6">
@@ -62,22 +124,30 @@ export default function Login() {
                 <div className="input-area">
                   <div className="input-item mb-5">
                     <InputCom
+                     inputStyle={{padding:"15px"}}
+                     inputContainerStyle={{borderRadius:"20px"}}
                       placeholder="example@quomodosoft.com"
                       label="Email Address*"
                       name="email"
                       type="email"
                       inputClasses="h-[50px]"
+                      required={true}
+                      value={email}
                       inputHandler={(e) => setEmail(e.target.value)}
 
                     />
                   </div>
                   <div className="input-item mb-5">
                     <InputCom
+                     inputStyle={{padding:"15px"}}
+                     inputContainerStyle={{borderRadius:"20px"}}
                       placeholder="● ● ● ● ● ●"
                       label="Password*"
                       name="password"
                       type="password"
+                      value={password}
                       inputClasses="h-[50px]"
+                      required={true}
                       inputHandler={(e) => setPassword(e.target.value)}
 
                     />
@@ -123,15 +193,25 @@ export default function Login() {
                       <button
 
                         // disabled={disabled}
-                        onClick={handleSubmit}
+                        onClick={()=>handleSubmit()}
                         type="button"
                         className="black-btn mb-6 text-sm text-white w-full h-[50px] font-semibold flex justify-center bg-purple items-center"
                       >
                         <span>Log In</span>
                       </button>
                     </div>
-                    <a
-                      href="#"
+                    {/* <GoogleLogin
+                          onSuccess={credentialResponse => {
+                            console.log("resp",credentialResponse);
+                          }}
+                          onError={() => {
+                            console.log('Login Failed');
+                          }}
+                        /> */}
+
+                {/* <button onClick={() => login()}>Sign in with Google 🚀 </button> */}
+                <a
+                     onClick={() => login()}
                       className="w-full border border-qgray-border h-[50px] flex space-x-3  justify-center bg-[#FAFAFA] items-center"
                     >
                       <svg
@@ -186,9 +266,13 @@ export default function Login() {
                   </div>
                   <div className="signup-area flex justify-center">
                     <p className="text-base text-qgraytwo font-normal">
-                      Dont’t have an aceount ?
+                      Dont’t have an account ?
+                      <br/><br/>
+                      <a href="/signupbreeder" className="ml-2 text-qblack">
+                        Sign up as a <span style={{color:"rgb(137 207 240)"}}>breeder</span>
+                      </a><br/>
                       <a href="/signup" className="ml-2 text-qblack">
-                        Sign up free
+                        Sign up as a <span style={{color:"rgb(137 207 240)"}}>customer</span>
                       </a>
                     </p>
                   </div>
@@ -206,6 +290,6 @@ export default function Login() {
           </div>
         </div>
       </div>
-    </Layout>
+    </LoginLayout>
   );
 }

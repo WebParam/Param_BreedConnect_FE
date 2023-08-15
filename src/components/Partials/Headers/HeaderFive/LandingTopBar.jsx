@@ -30,7 +30,7 @@ export default function LandingTopBar({ className }) {
                </li>
                 <li style={{marginTop:"7%"}}>
                   <Link to="/">
-                    <span className="text-xs leading-6 text-white font-500">
+                    <span className="text-xs leading-6 text-white font-500"  style={{fontFamily: "Inter"}}>
                       Account
                     </span>
                   </Link>

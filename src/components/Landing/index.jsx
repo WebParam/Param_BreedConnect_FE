@@ -38,10 +38,10 @@ export default function Landing() {
 
   return (
     <LandingPageLayout childrenClasses="pt-0 pb-0">
-      <div className="login-page-wrapper w-full py-10 background-banner" style={{ backgroundImage: `url(${Image})` }}>
+      <div className="login-page-wrapper w-full py-10 background-banner" style={{ backgroundImage: `url(${Image})`, fontFamily: "Inter" }}>
         <LandingTopBar />
-        <h1 className="text-[34px] font-bold leading-[74px] text-white mainHeader headerSection">
-             <strong>Lorem Ipsum</strong>
+        <h1 style={{fontFamily: "Inter", fontSize:"40px", fontWeight:"800"}} className="font-bold leading-[74px] text-white mainHeader headerSection">
+             Lorem Ipsum
            <div style={{ marginLeft:"45%"}}>  
                 <Link to="/login">
                     <div className="w-[121px] h-10">
