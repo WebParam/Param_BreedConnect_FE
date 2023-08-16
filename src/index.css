@@ -64,7 +64,8 @@ html {
   font-family: "Fredoka";
   background-color: #f8f8f8;
 }
-body {
+body p{
+  font-family: 'Quicksand';
   margin: 0;
   padding: 0;
   box-sizing: border-box;

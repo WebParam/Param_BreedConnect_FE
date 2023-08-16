@@ -101,6 +101,7 @@ export default function Landing() {
               <div className="breeders-content">
               <div className="grid-container">
               <div className="grid-item">
+                <div className="breeder">Hi, Im Jane Doe</div>
                 <div className="headerSection">
                   <p>Lorem ipsum</p>
                 </div>
