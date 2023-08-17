@@ -88,7 +88,7 @@ export default function Landing() {
                 </div>
               </div>
             
-              <div style={{padding:"10%", width:"100%", background:`url(${Rectangle})`}}>
+              <div style={{padding:"10%", width:"100%", background:`url(${Rectangle})`, backgroundRepeat:"repeat-x"}}>
               {/* <div className="section">
                 <img src={Rectangle} alt="PNG Image" />
                 </div> */}
