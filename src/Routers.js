@@ -29,6 +29,7 @@ import HomeFour from "./components/HomeFour";
 import HomeFive from "./components/HomeFive";
 import Tinder from "./components/Tinder";
 import Landing from "./components/Landing"
+import Questionnaires from "./components/Questionnaires/questionnaires";
 export default function Routers() {
   return (
     <Routes>
@@ -60,6 +61,7 @@ export default function Routers() {
       <Route exact path="/privacy-policy" element={<PrivacyPolicy />} />
       <Route exact path="/terms-condition" element={<TermsCondition />} />
       <Route exact path="/tinder" element={<Tinder/>} />
+      <Route exact path="/questionnaires" element={<Questionnaires/>} />
       <Route exact path="*" element={<FourZeroFour />} />
     </Routes>
   );
