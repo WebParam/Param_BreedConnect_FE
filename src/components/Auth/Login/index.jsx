@@ -8,6 +8,7 @@ import { LoginGoogle } from "../../../api/endpoints";
 import { LoginSuccess } from "../../../services/loginService";
 import { POST } from "../../../api/client";
 import Logo from "../../../media/logo.png"
+import './index.css'
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

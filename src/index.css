@@ -61,10 +61,11 @@
   padding: 0;
 }
 html {
-  font-family: "Inter";
+  font-family: "Fredoka";
   background-color: #f8f8f8;
 }
-body {
+body p{
+  font-family: 'Quicksand';
   margin: 0;
   padding: 0;
   box-sizing: border-box;
