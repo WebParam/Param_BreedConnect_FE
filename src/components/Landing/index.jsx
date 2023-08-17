@@ -100,11 +100,7 @@ export default function Landing() {
               <div className="grid-item">
                 <div className="breeder">Hi, Im Jane Doe</div>
                 <div className="headerSection">
-                <div className="title-area flex flex-col justify-center items-center relative text-center mb-7">
-                  <h1 className="text-[4em] font-bold leading-[74px] text-blue">
-                    Register
-                  </h1>
-                  </div>
+                
                 </div>
                 <div className="section">
                   Browse through various<span className="innerText"> Breeder Profiles</span>
