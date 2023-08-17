@@ -87,16 +87,13 @@ export default function Landing() {
                 <img src={Breeders} alt="PNG Image" />
                 </div>
               </div>
-              <div className="grid-item">
-              <div className="section">
+              <div style={{padding:"10%", width:"100%", background:`url(${Rectangle})`}}>
+              {/* <div className="section">
                 <img src={Rectangle} alt="PNG Image" />
-                </div>
+                </div> */}
               </div>
-              <div className="grid-item">
-                <div className="section">
-                </div>
-              </div>
-              <div className="breeders"><center>Meet some of our breeders</center></div>
+           
+              <div className="breeders my-10"><center>Meet some of our breeders</center></div>
          
               <div className="breeders-content">
               <div className="grid-container">

@@ -89,25 +89,19 @@ export default function Login() {
     <LoginLayout childrenClasses="pt-0 pb-0">
       <div className="login-page-wrapper w-full py-10">
       <div className="my-5">
-        <img
+        {/* <img
             style={{textAlign:"center", margin:"0 auto"}}
             width="20%"
             height=""
             // src={`${process.env.PUBLIC_URL}/assets/images/logo-3.svg`}
             src={Logo}
             alt="logo"
-        />
-        </div>
-
-        <div className="container-x mx-auto">
-          <div className="lg:flex items-center relative">
-            <div className="lg:w-[572px] w-full bg-white flex flex-col sm:px-10 sm:py-8 p-5 ">
-              <div className="w-full">
-                <div className="title-area flex flex-col justify-center items-center relative text-center mb-7">
-                  <h1 className="text-blue text-[34px] font-bold leading-[74px]">
+        /> */}
+          <div className="title-area flex flex-col justify-center items-center relative text-center mb-7">
+                  <h1 className="text-blue text-[4em] font-bold leading-[74px]">
                     Log In
                   </h1>
-                  <div className="shape -mt-6">
+                  <div className="shape">
                     <svg
                       width="172"
                       height="29"
@@ -122,6 +116,13 @@ export default function Login() {
                     </svg>
                   </div>
                 </div>
+        </div>
+
+        <div className="container-x mx-auto">
+          <div className="lg:flex items-center relative">
+            <div className="lg:w-[572px] w-full bg-white flex flex-col sm:px-10 sm:py-8 p-5 ">
+              <div className="w-full">
+              
                 <div className="input-area">
                   <div className="input-item mb-5">
                     <InputCom
