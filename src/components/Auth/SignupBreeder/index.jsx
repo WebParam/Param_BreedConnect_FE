@@ -7,6 +7,7 @@ import { POST } from "../../../api/client";
 import {RegisterBreeder} from "../../../api/endpoints";
 import CustomInputVal from "../../Helpers/CustomInputVal";
 import Logo from "../../../media/logo.png"
+import axios from "axios";
 export default function SignupBreeder() {
   const [name, setName] = useState("");
   const [lname, setlName] = useState("");
@@ -30,7 +31,7 @@ export default function SignupBreeder() {
     setValue(!checked);
   };
 
-  const  registerUser = async()=>{
+  const  registerUser = async(event)=>{
     const payload ={
       username: email,
       secret: secret,
@@ -44,9 +45,23 @@ export default function SignupBreeder() {
       postcode:postcode,
       city:city
     }
-    
-    const response = await RegisterBreeder(payload);
-    console.log("response", response);
+    axios
+    .post(
+      "https://localhost:7061/user/register/breeder",
+      payload
+    )
+    .then((response) => {
+      console.log("response", response);
+      alert("Succefully registered")
+    })
+    .catch((error) => 
+      alert("error...")
+  )
+
+ // const response = await RegisterCustomer(payload);
+
+//   console.log("response", response);
+event.preventDefault()
   }
   
 
