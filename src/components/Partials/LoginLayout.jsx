@@ -3,7 +3,8 @@ import DiscountBanner from "../Home/DiscountBanner";
 import Drawer from "../Mobile/Drawer";
 import Footer from "./Footers/Footer";
 import Header from "./Headers/HeaderOne";
-
+import "../../index.css";
+import "../../custom.css";
 export default function Layout({ children, childrenClasses }) {
   const [drawer, setDrawer] = useState(false);
   return (
@@ -15,7 +16,7 @@ export default function Layout({ children, childrenClasses }) {
           {children && children}
         </div>
         {/* <DiscountBanner /> */}
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </>
   );
