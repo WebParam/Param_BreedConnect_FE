@@ -43,8 +43,8 @@ export default function Landing() {
     <LandingPageLayout childrenClasses="pt-0 pb-0">
       <div className="login-page-wrapper w-full py-10 background-banner" style={{ backgroundImage: `url(${Image})`, fontFamily: "Inter" }}>
         <LandingTopBar />
-        <h1 className="text-[34px] font-bold leading-[74px] text-white mainHeader headerSection1">
-             <strong>Lorem Ipsum</strong>
+        <h1 className="text-[34px] font-bold leading-[74px] text-white mainHeader headerSection1"  style={{fontFamily: 'Inter'}}>
+            Lorem Ipsum
            <div>  
                 <Link to="/login">
                     <div className="">
@@ -72,6 +72,11 @@ export default function Landing() {
                 </div>
               </div>
               <div className="grid-item">
+                <div className="section">
+                <img src={Breeders} alt="PNG Image" />
+                </div>
+              </div>
+              <div className="grid-item">
               <div className="headerSection">
                   <p>Lorem ipsum</p>
                 </div>
@@ -82,28 +87,21 @@ export default function Landing() {
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
                 </div>
               </div>
-              <div className="grid-item">
-                <div className="section">
-                <img src={Breeders} alt="PNG Image" />
-                </div>
-              </div>
-              <div className="grid-item">
-              <div className="section">
+            
+              <div style={{padding:"10%", width:"100%", background:`url(${Rectangle})`, backgroundRepeat:"repeat-x"}}>
+              {/* <div className="section">
                 <img src={Rectangle} alt="PNG Image" />
-                </div>
+                </div> */}
               </div>
-              <div className="grid-item">
-                <div className="section">
-                </div>
-              </div>
-              <div className="breeders"><center>Meet some of our breeders</center></div>
+           
+              <div className="breeders my-10"><center>Meet some of our breeders</center></div>
          
               <div className="breeders-content">
               <div className="grid-container">
               <div className="grid-item">
                 <div className="breeder">Hi, Im Jane Doe</div>
                 <div className="headerSection">
-                  <p>Lorem ipsum</p>
+                
                 </div>
                 <div className="section">
                   Browse through various<span className="innerText"> Breeder Profiles</span>

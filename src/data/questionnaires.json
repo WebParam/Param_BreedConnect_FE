@@ -1,0 +1,154 @@
+[{
+    "order": 1,
+    "name": "Breeder",
+    "description": "What breed(s) do you breed?",
+    "options": [{
+            "name": "Pure breed",
+            "value": "Pure_breed"
+        },
+        {
+            "name": "Affenpinscher",
+            "value": "Affenpinscher"
+        },
+        {
+            "name": "Afghan Hound",
+            "value": "Afghan_Hound"
+        },
+        {
+            "name": "Airedale Terrier",
+            "value": "Airedale_Terrier"
+        },
+        {
+            "name": "Akbash",
+            "value": "Akbash"
+        }
+    ]
+},
+{
+    "order": 2,
+    "name": "Breeder",
+    "description": "On average, how many litters do your female breeding dogs have before they retire?",
+    "options": [{
+            "name": "5-7",
+            "value": "5-7"
+        },
+        {
+            "name": "3-4",
+            "value": "3-4"
+        },
+        {
+            "name": "2",
+            "value": "2"
+        },
+        {
+            "name": "1",
+            "value": "1"
+        }
+    ]
+
+},
+{
+    "order": 3,
+    "name": "Breeder",
+    "description": "how old are your female Affenpinschers when you start breeding them?",
+    "options": [{
+            "name": "Under 12 months",
+            "value": "Under_12_months"
+        },
+        {
+            "name": "12 - 17 months",
+            "value": "12 - 17 months"
+        },
+        {
+            "name": "18 - 24 months",
+            "value": "18 - 24 months"
+        },
+        {
+            "name": "24+ months",
+            "value": "24+ months"
+        }
+    ]
+},
+{
+    "order": 4,
+    "name": "Breeder",
+    "description": "how old are you female Affenpinschers when they retire?",
+    "options": [{
+            "name": "3",
+            "value": "3"
+        },
+        {
+            "name": "5",
+            "value": "5"
+        },
+        {
+            "name": "7",
+            "value": "7"
+        },
+        {
+            "name": "8",
+            "value": "8"
+        }
+    ]
+},
+{
+    "order": 5,
+    "name": "Breeder",
+    "description": "Do your b reeding dogs receive a general wellness exam at least once a year?",
+    "options": [{
+            "name": "Yes",
+            "value": "yes"
+        },
+        {
+            "name": "No",
+            "value": "no"
+        }
+    ]
+},
+{
+    "order": 6,
+    "name": "Breeder",
+    "description": "Where do your breeding dogs live?",
+    "options": [{
+            "name": "My Home",
+            "value": "My home"
+        },
+        {
+            "name": "Kennel",
+            "value": "kennel"
+        },
+        {
+            "name": "Attachment to home (e.g garage, basement)",
+            "value": "Attachment to home (e.g garage, basement)"
+        },
+        {
+            "name": "Guardian Home",
+            "value": "guardian home "
+        }
+    ]
+},
+{
+    "order": 7,
+    "name": "Breeder",
+    "description": "What size is each dogs crate/pen?",
+    "options": [{
+            "name": "Length",
+            "value": "length"
+        },
+        {
+            "name": "Width",
+            "value": "width"
+        }
+    ]
+},
+{
+    "order": 8,
+    "name": "Breeder",
+    "description": "You almost there just one last step",
+    "options": [{
+        "name": "attachment",
+        "value": "attachment"
+    }]
+}
+
+]

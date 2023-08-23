@@ -9,6 +9,10 @@ import { LoginSuccess } from "../../../services/loginService";
 import { POST } from "../../../api/client";
 import Logo from "../../../media/logo.png"
 import './index.css'
+import { toast } from 'react-toastify';
+import {LoginEmail} from "../../../api/endpoints";
+
+
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,6 +30,17 @@ export default function Login() {
 
     const CompleteGoogleLogin=(codeResponse)=>{
       setUser(codeResponse);
+      const _id = toast.loading("Logging in..", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+
       if (codeResponse.access_token) {
         axios
             .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${codeResponse.access_token}`, {
@@ -41,9 +56,21 @@ export default function Login() {
                 const response = await LoginGoogle(res.data);
               
                 if(response!=null && response.status ==200){
+                  toast.update(_id, {
+                    autoClose:2000,
+                    render: `Welcome back ${response.data.firstname}`,
+                    type: "success",
+                    isLoading: false,
+                  });
                   LoginSuccess(response);
                 }else{
-                  LoginError();
+                toast.update(_id, {
+                    autoClose:2000,
+                    render: "Unable to login via Google",
+                    type: "error",
+                    isLoading: false,
+                    
+                  });
                 }
               }
                 setProfile(res.data);
@@ -62,17 +89,39 @@ export default function Login() {
 
 
   const handleSubmit = async () => {
-  debugger;
+    const _id = toast.loading("Logging in..", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
+
     const payload ={
       email:email,
       secret:password
     }
 
-    const response = await POST(payload);
+    const response = await LoginEmail(email, password);
     if(response!=null && response.status ==200){
-      LoginSuccess(response);
+      toast.update(_id, {
+        autoClose:2000,
+        render: `Welcome back ${response.data.firstname}`,
+        type: "success",
+        isLoading: false,
+      });
     }else{
-      LoginError();
+      toast.update(_id, {
+        autoClose:2000,
+        render: "Incorrect email/password",
+        type: "error",
+        isLoading: false,
+        
+      });
     }
   };
 
@@ -81,16 +130,20 @@ export default function Login() {
     setValue(!checked);
   };
 
- const LoginError=()=>{
-  alert("Login failed")
- }
-
   return (
     <LoginLayout childrenClasses="pt-0 pb-0">
       <div className="login-page-wrapper w-full py-10">
       <div className="my-5">
-      <div className="title-area flex flex-col justify-center items-center relative text-center mb-7">
-                  <h1 className="text-blue text-[34px] font-bold leading-[74px]" style={{ fontSize:"4em", fontFamily: "Inter !important;" }}>
+        {/* <img
+            style={{textAlign:"center", margin:"0 auto"}}
+            width="20%"
+            height=""
+            // src={`${process.env.PUBLIC_URL}/assets/images/logo-3.svg`}
+            src={Logo}
+            alt="logo"
+        /> */}
+          <div className="title-area flex flex-col justify-center items-center relative text-center mb-7">
+                  <h1 className="text-blue text-[4em] font-bold leading-[74px]">
                     Log In
                   </h1>
                   <div className="shape">
@@ -114,7 +167,7 @@ export default function Login() {
           <div className="lg:flex items-center relative">
             <div className="lg:w-[572px] w-full bg-white flex flex-col sm:px-10 sm:py-8 p-5 ">
               <div className="w-full">
-               
+              
                 <div className="input-area">
                   <div className="input-item mb-5">
                     <InputCom

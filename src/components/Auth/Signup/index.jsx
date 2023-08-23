@@ -8,6 +8,8 @@ import { RegisterCustomer } from "../../../api/endpoints";
 import CustomInputVal from "../../Helpers/CustomInputVal";
 import Logo from "../../../media/logo.png"
 import axios from "axios";
+import { toast } from 'react-toastify';
+
 export default function Signup() {
   const [name, setName] = useState("");
   const [lname, setlName] = useState("");
@@ -26,12 +28,19 @@ export default function Signup() {
     setValue(!checked);
   };
 
+  const  registerUser = async()=>{
+    const _id = toast.loading("Registering user..", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
 
-
-  const registerUser = async (event) => {
- 
-
-    const payload = {
+    const payload ={
       username: email,
       secret: secret,
       firstname: name,
@@ -40,50 +49,37 @@ export default function Signup() {
       secret: secret,
       cellphone: phone
     }
+    debugger;
+    const response = await RegisterCustomer(payload);
+    if(response.status ==200){
+      toast.update(_id, {
+        render: "Successfully registered new user. Please login.",
+        type: "success",
+        isLoading: false,
+      });
+    }else{
+      toast.update(_id, {
+        render: response.response.data,
+        type: "error",
+        isLoading: false,
+        
+      });
+    }
 
-    axios
-      .post(
-        "https://localhost:7061/user/register/customer",
-        payload
-      )
-      .then((response) => {
-        console.log("response", response);
-        alert("Succefully registered")
-      })
-      .catch((error) => 
-    console.log(error)
-    )
+    console.log("response", response);
 
-   // const response = await RegisterCustomer(payload);
-
- //   console.log("response", response);
- event.preventDefault()
   }
 
 
   return (
     <LoginLayout childrenClasses="pt-0 pb-0">
       <div className="login-page-wrapper w-full py-10">
-        <div className="my-5">
-          <img
-            style={{ textAlign: "center", margin: "0 auto" }}
-            width="20%"
-            height=""
-            // src={`${process.env.PUBLIC_URL}/assets/images/logo-3.svg`}
-            src={Logo}
-            alt="logo"
-          />
-        </div>
-
-        <div className="container-x mx-auto">
-          <div className="lg:flex items-center relative">
-            <div className="lg:w-[572px] w-full bg-white flex flex-col sm:px-10 sm:py-8 p-5 ">
-              <div className="w-full">
-                <div className="title-area flex flex-col justify-center items-center relative text-center mb-7">
-                  <h1 className="text-[34px] font-bold leading-[74px] text-blue">
+      <div className="my-5">
+      <div className="title-area flex flex-col justify-center items-center relative text-center mb-7">
+                  <h1 className="text-[4em] font-bold leading-[74px] text-blue">
                     Register
                   </h1>
-                  <div className="shape -mt-6">
+                  <div className="shape">
                     <svg
                       width="172"
                       height="29"
@@ -98,6 +94,21 @@ export default function Signup() {
                     </svg>
                   </div>
                 </div>
+        {/* <img
+            style={{textAlign:"center", margin:"0 auto"}}
+            width="20%"
+            height=""
+            // src={`${process.env.PUBLIC_URL}/assets/images/logo-3.svg`}
+            src={Logo}
+            alt="logo"
+        /> */}
+        </div>
+
+        <div className="container-x mx-auto">
+          <div className="lg:flex items-center relative">
+            <div className="lg:w-[572px] w-full bg-white flex flex-col sm:px-10 sm:py-8 p-5 ">
+              <div className="w-full">
+            
                 {/* <form > */}
                 <div className="input-area">
                   <div className="flex sm:flex-row flex-col space-y-5 sm:space-y-0 sm:space-x-5 mb-5">
