@@ -30,6 +30,7 @@ import HomeFive from "./components/HomeFive";
 import Tinder from "./components/Tinder";
 import Landing from "./components/Landing"
 import BreederDashboard from "./components/Dashboard";
+import BreederProfile from "./components/Dashboard/profile";
 import Questionnaires from "./components/Questionnaires/questionnaires";
 export default function Routers() {
   return (
@@ -38,7 +39,8 @@ export default function Routers() {
       <Route exact path="/breeder-dash" element={<BreederDashboard />} />
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/signup" element={<Signup />} />
-      <Route exact path="/signupbreeder" element={<SignupBreeder />} />
+      <Route exact path="/signupbreeder" element={<SignupBreeder />} /> 
+      <Route exact path="/breeder-profile" element={<BreederProfile />} />
       {/* <Route exact path="/home-two" element={<HomeTwo />} />
       <Route exact path="/home-three" element={<HomeThree />} />
       <Route exact path="/home-four" element={<HomeFour />} />
