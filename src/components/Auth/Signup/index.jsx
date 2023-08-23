@@ -7,6 +7,8 @@ import { POST } from "../../../api/client";
 import {RegisterCustomer} from "../../../api/endpoints";
 import CustomInputVal from "../../Helpers/CustomInputVal";
 import Logo from "../../../media/logo.png"
+import { toast } from 'react-toastify';
+
 export default function Signup() {
   const [name, setName] = useState("");
   const [lname, setlName] = useState("");
@@ -26,6 +28,17 @@ export default function Signup() {
   };
 
   const  registerUser = async()=>{
+    const _id = toast.loading("Registering user..", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
     const payload ={
       username: email,
       secret: secret,
@@ -37,8 +50,23 @@ export default function Signup() {
     }
     debugger;
     const response = await RegisterCustomer(payload);
+    if(response.status ==200){
+      toast.update(_id, {
+        render: "Successfully registered new user. Please login.",
+        type: "success",
+        isLoading: false,
+      });
+    }else{
+      toast.update(_id, {
+        render: response.response.data,
+        type: "error",
+        isLoading: false,
+        
+      });
+    }
 
     console.log("response", response);
+
   }
   
 
