@@ -1,0 +1,6 @@
+:host{
+    .css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+        max-height: calc(100% - 64px);
+        max-width: 200px !important;
+    }  
+}
