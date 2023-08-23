@@ -57,7 +57,7 @@ export default function Landing() {
             <div className="grid-container">
               <div className="grid-item">
                 <div className="headerSection">
-                  <p>Lorem ipsum</p>
+                  <p className="headingPar">Lorem ipsum</p>
                 </div>
                 <div className="section">
                   Browse through various<span className="innerText"> Breeder Profiles</span>
@@ -78,7 +78,7 @@ export default function Landing() {
               </div>
               <div className="grid-item">
               <div className="headerSection">
-                  <p>Lorem ipsum</p>
+              <p className="headingPar">Lorem ipsum</p>
                 </div>
                 <div className="section">
                 Creating a <span className="innerText">safe environment</span> for breeders
