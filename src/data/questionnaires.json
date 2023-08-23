@@ -2,6 +2,8 @@
     "order": 1,
     "name": "Breeder",
     "description": "What breed(s) do you breed?",
+    "type":"checkbox",
+    "image":"",
     "options": [{
             "name": "Pure breed",
             "value": "Pure_breed"
@@ -28,6 +30,8 @@
     "order": 2,
     "name": "Breeder",
     "description": "On average, how many litters do your female breeding dogs have before they retire?",
+    "type":"dropdown",
+    "image":"",
     "options": [{
             "name": "5-7",
             "value": "5-7"
@@ -51,6 +55,8 @@
     "order": 3,
     "name": "Breeder",
     "description": "how old are your female Affenpinschers when you start breeding them?",
+    "type":"dropdown",
+    "image":"",
     "options": [{
             "name": "Under 12 months",
             "value": "Under_12_months"
@@ -73,6 +79,8 @@
     "order": 4,
     "name": "Breeder",
     "description": "how old are you female Affenpinschers when they retire?",
+    "type":"dropdown",
+    "image":"",
     "options": [{
             "name": "3",
             "value": "3"
@@ -94,7 +102,9 @@
 {
     "order": 5,
     "name": "Breeder",
-    "description": "Do your b reeding dogs receive a general wellness exam at least once a year?",
+    "description": "Do your breeding dogs receive a general wellness exam at least once a year?",
+    "image":"puppy",
+    "type":"select",
     "options": [{
             "name": "Yes",
             "value": "yes"
@@ -109,6 +119,8 @@
     "order": 6,
     "name": "Breeder",
     "description": "Where do your breeding dogs live?",
+    "type":"checkbox",
+    "image":"",
     "options": [{
             "name": "My Home",
             "value": "My home"
@@ -131,6 +143,8 @@
     "order": 7,
     "name": "Breeder",
     "description": "What size is each dogs crate/pen?",
+    "type":"input",
+    "image":"",
     "options": [{
             "name": "Length",
             "value": "length"
@@ -145,6 +159,8 @@
     "order": 8,
     "name": "Breeder",
     "description": "You almost there just one last step",
+    "type":"attachment",
+    "image":"",
     "options": [{
         "name": "attachment",
         "value": "attachment"
