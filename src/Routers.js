@@ -29,12 +29,17 @@ import HomeFour from "./components/HomeFour";
 import HomeFive from "./components/HomeFive";
 import Tinder from "./components/Tinder";
 import Landing from "./components/Landing"
+import BreederDashboard from "./components/Dashboard";
 import Questionnaires from "./components/Questionnaires/questionnaires";
 export default function Routers() {
   return (
     <Routes>
       <Route exact path="/" element={<Landing />} />
-      <Route exact path="/home-two" element={<HomeTwo />} />
+      <Route exact path="/breeder-dash" element={<BreederDashboard />} />
+      <Route exact path="/login" element={<Login />} />
+      <Route exact path="/signup" element={<Signup />} />
+      <Route exact path="/signupbreeder" element={<SignupBreeder />} />
+      {/* <Route exact path="/home-two" element={<HomeTwo />} />
       <Route exact path="/home-three" element={<HomeThree />} />
       <Route exact path="/home-four" element={<HomeFour />} />
       <Route exact path="/home-five" element={<HomeFive />} />
@@ -61,6 +66,7 @@ export default function Routers() {
       <Route exact path="/privacy-policy" element={<PrivacyPolicy />} />
       <Route exact path="/terms-condition" element={<TermsCondition />} />
       <Route exact path="/tinder" element={<Tinder/>} />
+      <Route exact path="*" element={<FourZeroFour />} /> */}
       <Route exact path="/questionnaires" element={<Questionnaires/>} />
       <Route exact path="*" element={<FourZeroFour />} />
     </Routes>

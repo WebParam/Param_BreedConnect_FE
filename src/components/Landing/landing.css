@@ -57,6 +57,15 @@ p{
       padding-left: 0%;
       padding-right: 0%;
     }
+
+    .background-banner{
+    
+    font-family: Inter;
+    padding-bottom: 28%!important;
+    background-position: center;
+    margin-bottom: 32% !important;
+    background-size: cover !important;
+    }
   }    
   
   .grid-item {

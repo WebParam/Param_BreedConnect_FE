@@ -1,13 +1,18 @@
-import { LoginSuccess } from "../services/loginService";
+import { LoginSuccess, RegisterSuccess } from "../services/loginService";
 import { POST } from "./client";
 
 //users
 export const LoginEmail = async (email,password)=>{
+  debugger;
     const loginResult = await POST(`user/login`, 
     {
-        email:email,
-        password:password
+        id:email,
+        secret:password
     });
+
+    if(loginResult!=null && loginResult.status == 200){
+      LoginSuccess(loginResult);
+    }
   return loginResult;
 }
 
@@ -16,9 +21,10 @@ export const RegisterCustomer = async (payload )=>{
     payload);
 
     if(registerResult!=null && registerResult.status==200){
-      LoginSuccess(registerResult);
+      RegisterSuccess(registerResult);
+      return registerResult;
     }else{
-      alert("register failed")
+     return registerResult;
     }
   return registerResult;
 }
@@ -30,7 +36,7 @@ export const RegisterBreeder = async (
   payload);
 
   if(registerResult!=null && registerResult.status==200){
-    LoginSuccess(registerResult);
+    RegisterSuccess(registerResult);
   }else{
     alert("register failed")
   }

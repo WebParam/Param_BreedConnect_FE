@@ -9,6 +9,10 @@ import { LoginSuccess } from "../../../services/loginService";
 import { POST } from "../../../api/client";
 import Logo from "../../../media/logo.png"
 import './index.css'
+import { toast } from 'react-toastify';
+import {LoginEmail} from "../../../api/endpoints";
+
+
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,6 +30,17 @@ export default function Login() {
 
     const CompleteGoogleLogin=(codeResponse)=>{
       setUser(codeResponse);
+      const _id = toast.loading("Logging in..", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+
       if (codeResponse.access_token) {
         axios
             .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${codeResponse.access_token}`, {
@@ -41,9 +56,21 @@ export default function Login() {
                 const response = await LoginGoogle(res.data);
               
                 if(response!=null && response.status ==200){
+                  toast.update(_id, {
+                    autoClose:2000,
+                    render: `Welcome back ${response.data.firstname}`,
+                    type: "success",
+                    isLoading: false,
+                  });
                   LoginSuccess(response);
                 }else{
-                  LoginError();
+                toast.update(_id, {
+                    autoClose:2000,
+                    render: "Unable to login via Google",
+                    type: "error",
+                    isLoading: false,
+                    
+                  });
                 }
               }
                 setProfile(res.data);
@@ -62,17 +89,39 @@ export default function Login() {
 
 
   const handleSubmit = async () => {
-  debugger;
+    const _id = toast.loading("Logging in..", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
+
     const payload ={
       email:email,
       secret:password
     }
 
-    const response = await POST(payload);
+    const response = await LoginEmail(email, password);
     if(response!=null && response.status ==200){
-      LoginSuccess(response);
+      toast.update(_id, {
+        autoClose:2000,
+        render: `Welcome back ${response.data.firstname}`,
+        type: "success",
+        isLoading: false,
+      });
     }else{
-      LoginError();
+      toast.update(_id, {
+        autoClose:2000,
+        render: "Incorrect email/password",
+        type: "error",
+        isLoading: false,
+        
+      });
     }
   };
 
@@ -80,10 +129,6 @@ export default function Login() {
   const rememberMe = () => {
     setValue(!checked);
   };
-
- const LoginError=()=>{
-  alert("Login failed")
- }
 
   return (
     <LoginLayout childrenClasses="pt-0 pb-0">
@@ -197,6 +242,7 @@ export default function Login() {
                         // disabled={disabled}
                         onClick={()=>handleSubmit()}
                         type="button"
+                        style={{fontWeight:"400"}}
                         className="black-btn mb-6 text-sm text-white w-full h-[50px] font-semibold flex justify-center bg-purple items-center"
                       >
                         <span>Log In</span>
