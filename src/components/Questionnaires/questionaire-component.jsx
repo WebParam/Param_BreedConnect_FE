@@ -49,8 +49,8 @@ export default function QuestionnaireComponent() {
         setSelectedOption(event.target.value);
     };
 
-    const handleOpen = (title, content) => {
-        setModalContent(content);
+    const handleOpen = (e) => {
+        e.preventDefault();
         setOpen(true);
       };
     
@@ -71,18 +71,17 @@ export default function QuestionnaireComponent() {
                 }
                 <div >
                     {/* <center><button onClick={handleClick} className="btn-create">{start}</button></center> */}
-                    <center><Button
+                    <center>
+                    <button
+                    className="btn-create"
                         variant="contained"
                         color="primary"
-                        onClick={() =>
-                        handleOpen(
-                            'Dynamic Modal Title',
-                            <p>This is the dynamic content of the modal.</p>
-                        )
+                        onClick={(e) =>
+                        handleOpen(e)
                         }
                     >
-                        {start}
-                    </Button>
+                       <span style={{fontSize: "28px", fontWeight: "700", color:"white"}} className="sherah-breadcrumb__title">START</span> 
+                    </button>
                     </center>
                     <PopupModal
                         open={open}

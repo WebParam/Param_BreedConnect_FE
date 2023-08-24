@@ -6,6 +6,9 @@ import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import './popup.css';
+
+import Logo from "../../media/logo.png"
+
 import { FormControl, InputLabel, Select, MenuItem, TextField, Checkbox, FormControlLabel } from '@mui/material';
 
 const PopupModal = ({ open, handleClose, modalTitle, modalContent, ind, btnLabel }) => {
@@ -126,7 +129,13 @@ const PopupModal = ({ open, handleClose, modalTitle, modalContent, ind, btnLabel
     return (
         <div style={{ width: "70%", height: "200px" }}>
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>{modalTitle}</DialogTitle>
+                <DialogTitle style={{fontFamily:"Inter"}}><img  style={{maxWidth:"40%", float:"left"}}src={Logo}/>  
+                    <DialogActions style={{float:"right"}}>
+                        <Button  onClick={handleClose} style={{fontFamily:"Inter"}}>
+                            Save and exit
+                        </Button>
+                    </DialogActions> 
+                </DialogTitle>
                 <DialogContent>
                     {
                         index === null ? <div className="question-section">Completed</div> :
@@ -233,11 +242,7 @@ const PopupModal = ({ open, handleClose, modalTitle, modalContent, ind, btnLabel
 
                     }
                 </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose} color="primary">
-                        Close
-                    </Button>
-                </DialogActions>
+               
             </Dialog>
         </div>
     );

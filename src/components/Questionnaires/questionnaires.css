@@ -15,7 +15,7 @@ h1,h2{
     width: 290px;
     padding: 0px;
     height: 75px;
-    font-family: "Quicksand";
+    /* font-family: "Quicksand"; */
     background-color: #89CFF0 !important;
     border-radius: 45px;
     color: black;
