@@ -6,11 +6,10 @@ import questionnaires from "../../data/questionnaires.json"
 import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import Button from '@mui/material/Button';
 import PopupModal from '../popupModal/index';
-import QuestionnaireComponent from "./questionaire-component"
 
 
 
-export default function Questionnaires() {
+export default function QuestionnaireComponent() {
     const [open, setOpen] = useState(false);
     const [modalContent, setModalContent] = useState(null);
     const [questions, setQuestions] = useState(questionnaires);
@@ -61,8 +60,40 @@ export default function Questionnaires() {
       };
 
     return (
-        <Layout childrenClasses="pt-0 pb-0">
-           <QuestionnaireComponent/>
-        </Layout>
+
+            <div className="questionnaire-container">
+                {
+                    index === null ? <div className="header-section">{mainText}</div> : ''
+                }
+                {
+                    index === null ? <div className="question-section">Please complete this questionnaire to get started</div> : ""
+
+                }
+                <div >
+                    {/* <center><button onClick={handleClick} className="btn-create">{start}</button></center> */}
+                    <center><Button
+                        variant="contained"
+                        color="primary"
+                        onClick={() =>
+                        handleOpen(
+                            'Dynamic Modal Title',
+                            <p>This is the dynamic content of the modal.</p>
+                        )
+                        }
+                    >
+                        {start}
+                    </Button>
+                    </center>
+                    <PopupModal
+                        open={open}
+                        handleClose={handleClose}
+                        modalTitle="Breeder Questionnaire"
+                        modalContent={questions}
+                        ind={0}
+                        btnLabel={start}
+                    />
+                    
+                </div>
+            </div>
     );
 }

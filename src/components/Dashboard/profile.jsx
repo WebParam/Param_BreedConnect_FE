@@ -1,5 +1,5 @@
 import DashboardLayout from "../Partials/DashboardLayout";
-
+import QuestionnaireComponent from "../Questionnaires/questionaire-component"
 export default function BreederProfile() {
 
 
@@ -7,6 +7,7 @@ export default function BreederProfile() {
    <>
 <DashboardLayout>
 <>
+
 <div className="container">
         <div className="row">	
           <div className="col-12">
@@ -28,7 +29,14 @@ export default function BreederProfile() {
                       <div className="sherah-psidebar sherah-default-bg">
                         {/* Features Tab List */}
                         <div className="list-group sherah-psidebar__list" id="list-tab" role="tablist">
-                          <a className="list-group-item active" data-bs-toggle="list" href="#id1" role="tab"><span className="sherah-psidebar__icon"><svg xmlns="http://www.w3.org/2000/svg" width="15.137" height="18.151" viewBox="0 0 15.137 18.151">
+                        <a className="list-group-item active" data-bs-toggle="list" href="#id1" role="tab"><span className="sherah-psidebar__icon"><svg xmlns="http://www.w3.org/2000/svg" width="15.137" height="18.151" viewBox="0 0 15.137 18.151">
+                                <g id="Icon" transform="translate(-127.285 -217.094)">
+                                  <path id="Path_170" data-name="Path 170" d="M142.35,419.766a7.862,7.862,0,0,0-.848-2.97,3.353,3.353,0,0,0-2.566-1.817,1.5,1.5,0,0,0-1.176.242c-.2.152-.422.281-.637.415a4.018,4.018,0,0,1-4.074.264c-.428-.2-.8-.5-1.205-.738a1.126,1.126,0,0,0-.59-.214,3.558,3.558,0,0,0-1.664.413,3.71,3.71,0,0,0-1.65,1.987,9.533,9.533,0,0,0-.618,4.357,2.808,2.808,0,0,0,1.984,2.447c.232.072.471.12.707.18h9.607c.008-.027.03-.03.054-.032a2.906,2.906,0,0,0,2.747-2.994A11.6,11.6,0,0,0,142.35,419.766Zm-2.985,3.494c-1.506.018-3.012,0-4.518,0v0h-4.323a2.435,2.435,0,0,1-1.276-.3,1.763,1.763,0,0,1-.892-1.556,9.141,9.141,0,0,1,.523-3.565,3.452,3.452,0,0,1,.766-1.219,2.21,2.21,0,0,1,1.5-.617c.071,0,.12.044.175.077.425.253.818.557,1.269.768a5.066,5.066,0,0,0,5.088-.319c.246-.152.488-.31.73-.467a.357.357,0,0,1,.233-.053,2.3,2.3,0,0,1,1.95,1.33,6.775,6.775,0,0,1,.691,2.433,10.99,10.99,0,0,1,.074,1.45A1.888,1.888,0,0,1,139.365,423.26Z" transform="translate(0 -189.086)" />
+                                  <path id="Path_171" data-name="Path 171" d="M201.205,217.094a4.372,4.372,0,1,0,4.358,4.377A4.363,4.363,0,0,0,201.205,217.094Zm0,7.68a3.308,3.308,0,1,1,3.3-3.314A3.3,3.3,0,0,1,201.2,224.775Z" transform="translate(-66.452 0)" />
+                                </g>
+                              </svg>
+                            </span><span className="sherah-psidebar__title">Questionnaire</span></a>
+                          <a className="list-group-item " data-bs-toggle="list" href="#id1" role="tab"><span className="sherah-psidebar__icon"><svg xmlns="http://www.w3.org/2000/svg" width="15.137" height="18.151" viewBox="0 0 15.137 18.151">
                                 <g id="Icon" transform="translate(-127.285 -217.094)">
                                   <path id="Path_170" data-name="Path 170" d="M142.35,419.766a7.862,7.862,0,0,0-.848-2.97,3.353,3.353,0,0,0-2.566-1.817,1.5,1.5,0,0,0-1.176.242c-.2.152-.422.281-.637.415a4.018,4.018,0,0,1-4.074.264c-.428-.2-.8-.5-1.205-.738a1.126,1.126,0,0,0-.59-.214,3.558,3.558,0,0,0-1.664.413,3.71,3.71,0,0,0-1.65,1.987,9.533,9.533,0,0,0-.618,4.357,2.808,2.808,0,0,0,1.984,2.447c.232.072.471.12.707.18h9.607c.008-.027.03-.03.054-.032a2.906,2.906,0,0,0,2.747-2.994A11.6,11.6,0,0,0,142.35,419.766Zm-2.985,3.494c-1.506.018-3.012,0-4.518,0v0h-4.323a2.435,2.435,0,0,1-1.276-.3,1.763,1.763,0,0,1-.892-1.556,9.141,9.141,0,0,1,.523-3.565,3.452,3.452,0,0,1,.766-1.219,2.21,2.21,0,0,1,1.5-.617c.071,0,.12.044.175.077.425.253.818.557,1.269.768a5.066,5.066,0,0,0,5.088-.319c.246-.152.488-.31.73-.467a.357.357,0,0,1,.233-.053,2.3,2.3,0,0,1,1.95,1.33,6.775,6.775,0,0,1,.691,2.433,10.99,10.99,0,0,1,.074,1.45A1.888,1.888,0,0,1,139.365,423.26Z" transform="translate(0 -189.086)" />
                                   <path id="Path_171" data-name="Path 171" d="M201.205,217.094a4.372,4.372,0,1,0,4.358,4.377A4.363,4.363,0,0,0,201.205,217.094Zm0,7.68a3.308,3.308,0,1,1,3.3-3.314A3.3,3.3,0,0,1,201.2,224.775Z" transform="translate(-66.452 0)" />
@@ -81,6 +89,7 @@ export default function BreederProfile() {
                         <div className="sherah-ptabs__inner">
                           <div className="tab-content" id="nav-tabContent">
                             {/*  Features Single Tab */}
+                            
                             <div className="tab-pane fade show active" id="id1" role="tabpanel">
                               <form action="#">
                                 <div className="row">
@@ -89,7 +98,8 @@ export default function BreederProfile() {
                                       <div className="sherah-ptabs__form-main">
                                         <div className="sherah__item-group sherah-default-bg sherah-border">
                                           {/*Profile Cover Info */}
-                                          <div className="sherah-profile-cover sherah-offset-bg sherah-dflex">
+                                          <QuestionnaireComponent/>
+                                          {/* <div className="sherah-profile-cover sherah-offset-bg sherah-dflex">
                                             <div className="sherah-profile-cover__img">
                                               <img src="img/profile-thumb.png" alt="#" />
                                             </div>
@@ -105,9 +115,9 @@ export default function BreederProfile() {
                                                     </svg></a></li>
                                               </ul>
                                             </div>
-                                          </div>
+                                          </div> */}
                                           {/* End Profile Cover Info */}
-                                          <div className="sherah-profile-info__v2 mg-top-30">
+                                          {/* <div className="sherah-profile-info__v2 mg-top-30">
                                             <h3 className="sherah-profile-info__heading mg-btm-30">Personal Information</h3>
                                             <ul className="sherah-profile-info__list sherah-dflex-column">
                                               <li className="sherah-dflex">
@@ -147,7 +157,7 @@ export default function BreederProfile() {
                                                 <p className="sherah-profile-info__text">English</p>
                                               </li>
                                             </ul>
-                                          </div>
+                                          </div> */}
                                         </div>
                                       </div>
                                     </div>
