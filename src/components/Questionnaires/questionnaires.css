@@ -15,7 +15,7 @@ h1,h2{
     width: 290px;
     padding: 0px;
     height: 75px;
-    font-family: "Quicksand";
+    /* font-family: "Quicksand"; */
     background-color: #89CFF0 !important;
     border-radius: 45px;
     color: black;
@@ -31,6 +31,8 @@ h1,h2{
 .questionnaire-container {
     height: 600px;
     margin: 1em;
+    max-width: 80%;
+    margin: 0 auto;
 }
 .css-1nrlq1o-MuiFormControl-root {
     min-width: 299px !important;
