@@ -66,6 +66,27 @@ const PopupModal = ({ open, handleClose, modalTitle, modalContent, ind, btnLabel
         console.log(selectedFiles);
     };
 
+    const saveSelection = (value, question) => {
+        const existingAnswerIndex = questionaires.findIndex((obj) => obj.question === question);
+        if (existingAnswerIndex !== -1) {
+            const updatedOptions = [...questionaires];
+            updatedOptions[existingAnswerIndex] = {
+                order: "0",
+                question: question,
+                response: value,
+                type: "Text"
+            };
+            setQuestionnaires(updatedOptions);
+        } else {
+            setQuestionnaires((prevArray) => [...prevArray, {
+                order: "0",
+                question: question,
+                response: value,
+                type: "Text"
+            }]);
+    }
+}
+
 
 
     const handleSelectChange = (event, question) => {
@@ -175,10 +196,10 @@ const PopupModal = ({ open, handleClose, modalTitle, modalContent, ind, btnLabel
                                                 modalContent[index]?.type === "select" ?
                                                     <div>
                                                         <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
-                                                            <Button variant="contained" color="primary">
+                                                            <Button variant="contained" color="primary" onClick={() => saveSelection(modalContent[index]?.options[0].value, modalContent[index]?.question)}>
                                                                 {modalContent[index]?.options[0].name}
                                                             </Button>
-                                                            <Button variant="contained" color="secondary">
+                                                            <Button variant="contained" color="secondary" onClick={() => saveSelection(modalContent[index]?.options[1].value, modalContent[index]?.question)}>
                                                                 {modalContent[index]?.options[1].name}
                                                             </Button>
                                                         </div>
