@@ -62,7 +62,9 @@ export default function Questionnaires() {
 
     return (
         <Layout childrenClasses="pt-0 pb-0">
-           <QuestionnaireComponent/>
+            <div style={{width:"80%", margin:"0 auto"}}>
+                <QuestionnaireComponent/>
+            </div>
         </Layout>
     );
 }

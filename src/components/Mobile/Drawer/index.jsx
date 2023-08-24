@@ -165,7 +165,7 @@ export default function Drawer({ className, open, action }) {
                             />
                           </svg>
                         </span>
-                        <span className="text-sm font-400">
+                        <span className="font-400">
                           Mobile & Laptops
                         </span>
                       </div>
@@ -250,7 +250,7 @@ export default function Drawer({ className, open, action }) {
                             />
                           </svg>
                         </span>
-                        <span className="text-sm font-400">
+                        <span className=" font-400">
                           Gaming Entertainment
                         </span>
                       </div>
@@ -331,7 +331,7 @@ export default function Drawer({ className, open, action }) {
                             />
                           </svg>
                         </span>
-                        <span className="text-sm font-400">Image & Video</span>
+                        <span className=" font-400">Image & Video</span>
                       </div>
                       <div>
                         <span>
@@ -402,7 +402,7 @@ export default function Drawer({ className, open, action }) {
                             />
                           </svg>
                         </span>
-                        <span className="text-sm font-400">Vehicles</span>
+                        <span className=" font-400">Vehicles</span>
                       </div>
                       <div>
                         <span>
@@ -493,7 +493,7 @@ export default function Drawer({ className, open, action }) {
                             />
                           </svg>
                         </span>
-                        <span className="text-sm font-400">Furnitures</span>
+                        <span className=" font-400">Furnitures</span>
                       </div>
                       <div>
                         <span>
@@ -546,7 +546,7 @@ export default function Drawer({ className, open, action }) {
                             />
                           </svg>
                         </span>
-                        <span className="text-sm font-400">Sport </span>
+                        <span className=" font-400">Sport </span>
                       </div>
                       <div>
                         <span>
@@ -617,7 +617,7 @@ export default function Drawer({ className, open, action }) {
                             />
                           </svg>
                         </span>
-                        <span className="text-sm font-400">Food & Drinks</span>
+                        <span className=" font-400">Food & Drinks</span>
                       </div>
                       <div>
                         <span>
@@ -680,7 +680,7 @@ export default function Drawer({ className, open, action }) {
                             />
                           </svg>
                         </span>
-                        <span className="text-sm font-400">
+                        <span className=" font-400">
                           Fashion Accessories
                         </span>
                       </div>
@@ -735,7 +735,7 @@ export default function Drawer({ className, open, action }) {
                             />
                           </svg>
                         </span>
-                        <span className="text-sm font-400">
+                        <span className=" font-400">
                           Toilet & Sanitation
                         </span>
                       </div>
@@ -800,7 +800,7 @@ export default function Drawer({ className, open, action }) {
                             />
                           </svg>
                         </span>
-                        <span className="text-sm font-400">Makeup Corner</span>
+                        <span className=" font-400">Makeup Corner</span>
                       </div>
                       <div>
                         <span>
@@ -853,7 +853,7 @@ export default function Drawer({ className, open, action }) {
                             />
                           </svg>
                         </span>
-                        <span className="text-sm font-400">Baby Items</span>
+                        <span className=" font-400">Baby Items</span>
                       </div>
                       <div>
                         <span>
@@ -895,7 +895,7 @@ export default function Drawer({ className, open, action }) {
                   <a href="/">
                     <div className=" flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                       <div className="flex items-center space-x-6">
-                        <span className="text-sm font-400">Home</span>
+                        <span className=" font-400">Home</span>
                       </div>
                       <div>
                         <span>
@@ -932,7 +932,7 @@ export default function Drawer({ className, open, action }) {
                       <a href="/home-two">
                         <div className=" flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                           <div className="flex items-center space-x-6">
-                            <span className="text-sm font-400">Home Two</span>
+                            <span className=" font-400">Home Two</span>
                           </div>
                           <div>
                             <span>
@@ -969,7 +969,7 @@ export default function Drawer({ className, open, action }) {
                       <a href="/home-three">
                         <div className=" flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                           <div className="flex items-center space-x-6">
-                            <span className="text-sm font-400">Home Three</span>
+                            <span className=" font-400">Home Three</span>
                           </div>
                           <div>
                             <span>
@@ -1006,7 +1006,7 @@ export default function Drawer({ className, open, action }) {
                       <a href="/home-four">
                         <div className=" flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                           <div className="flex items-center space-x-6">
-                            <span className="text-sm font-400">Home Four</span>
+                            <span className=" font-400">Home Four</span>
                           </div>
                           <div>
                             <span>
@@ -1045,7 +1045,7 @@ export default function Drawer({ className, open, action }) {
                   <a href="/shops/shop">
                     <div className="flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                       <div className="flex items-center space-x-6">
-                        <span className="text-sm font-400">Shop</span>
+                        <span className=" font-400">Shop</span>
                       </div>
                       <div>
                         <span>
@@ -1082,7 +1082,7 @@ export default function Drawer({ className, open, action }) {
                   <a href="#">
                     <div className=" flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                       <div className="flex items-center space-x-6">
-                        <span className="text-sm font-400">Pages</span>
+                        <span className=" font-400">Pages</span>
                       </div>
                       <div>
                         <span>
@@ -1119,7 +1119,7 @@ export default function Drawer({ className, open, action }) {
                       <a href="/privacy-policy">
                         <div className=" flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                           <div className="flex items-center space-x-6">
-                            <span className="text-sm font-400">
+                            <span className=" font-400">
                               Privacy Policy
                             </span>
                           </div>
@@ -1158,7 +1158,7 @@ export default function Drawer({ className, open, action }) {
                       <a href="/faq">
                         <div className=" flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                           <div className="flex items-center space-x-6">
-                            <span className="text-sm font-400">FAQ</span>
+                            <span className=" font-400">FAQ</span>
                           </div>
                           <div>
                             <span>
@@ -1195,7 +1195,7 @@ export default function Drawer({ className, open, action }) {
                       <a href="/terms-condition">
                         <div className=" flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                           <div className="flex items-center space-x-6">
-                            <span className="text-sm font-400">
+                            <span className=" font-400">
                               Terms and Conditions
                             </span>
                           </div>
@@ -1237,7 +1237,7 @@ export default function Drawer({ className, open, action }) {
                   <a href="/about">
                     <div className="flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                       <div className="flex items-center space-x-6">
-                        <span className="text-sm font-400">About</span>
+                        <span className=" font-400">About</span>
                       </div>
                       <div>
                         <span>
@@ -1274,7 +1274,7 @@ export default function Drawer({ className, open, action }) {
                   <a href="/Blogs">
                     <div className="flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                       <div className="flex items-center space-x-6">
-                        <span className="text-sm font-400">Blogs</span>
+                        <span className=" font-400">Blogs</span>
                       </div>
                       <div>
                         <span>
@@ -1311,7 +1311,7 @@ export default function Drawer({ className, open, action }) {
                   <a href="/contact">
                     <div className="flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                       <div className="flex items-center space-x-6">
-                        <span className="text-sm font-400">Contact</span>
+                        <span className=" font-400">Contact</span>
                       </div>
                       <div>
                         <span>

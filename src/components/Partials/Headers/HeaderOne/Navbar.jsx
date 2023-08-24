@@ -53,7 +53,7 @@ export default function Navbar({ className, type }) {
                         <rect y="4" width="10" height="1" />
                       </svg>
                     </span>
-                    <span className="text-sm font-600 text-qblacktext">
+                    <span className="text-sm  text-qblacktext">
                       All Categories
                     </span>
                   </div>
@@ -740,7 +740,7 @@ export default function Navbar({ className, type }) {
                 <ul className="nav-wrapper flex xl:space-x-10 space-x-5">
                   <li className="relative">
                     <span
-                      className={`flex items-center text-sm font-600 cursor-pointer ${type === 3 ? "text-white" : "text-qblacktext"
+                      className={`flex items-center text-sm  cursor-pointer ${type === 3 ? "text-white" : "text-qblacktext"
                         }`}
                     >
                       <span>Homepage</span>
@@ -828,7 +828,7 @@ export default function Navbar({ className, type }) {
                   </li>
                   <li>
                     <span
-                      className={`flex items-center text-sm font-600 cursor-pointer ${type === 3 ? "text-white" : "text-qblacktext"
+                      className={`flex items-center text-sm  cursor-pointer ${type === 3 ? "text-white" : "text-qblacktext"
                         }`}
                     >
                       <span>Shop</span>
@@ -1050,7 +1050,7 @@ export default function Navbar({ className, type }) {
                   </li>
                   <li className="relative">
                     <span
-                      className={`flex items-center text-sm font-600 cursor-pointer ${type === 3 ? "text-white" : "text-qblacktext"
+                      className={`flex items-center text-sm  cursor-pointer ${type === 3 ? "text-white" : "text-qblacktext"
                         }`}
                     >
                       <span>Pages</span>
@@ -1139,7 +1139,7 @@ export default function Navbar({ className, type }) {
                   <li>
                     <Link to="/about">
                       <span
-                        className={`flex items-center text-sm font-600 cursor-pointer ${type === 3 ? "text-white" : "text-qblacktext"
+                        className={`flex items-center text-sm  cursor-pointer ${type === 3 ? "text-white" : "text-qblacktext"
                           }`}
                       >
                         <span>About</span>
@@ -1149,7 +1149,7 @@ export default function Navbar({ className, type }) {
                   <li>
                     <Link to="/blogs">
                       <span
-                        className={`flex items-center text-sm font-600 cursor-pointer ${type === 3 ? "text-white" : "text-qblacktext"
+                        className={`flex items-center text-sm  cursor-pointer ${type === 3 ? "text-white" : "text-qblacktext"
                           }`}
                       >
                         <span>Blog</span>
@@ -1159,7 +1159,7 @@ export default function Navbar({ className, type }) {
                   <li>
                     <Link to="/contact">
                       <span
-                        className={`flex items-center text-sm font-600 cursor-pointer ${type === 3 ? "text-white" : "text-qblacktext"
+                        className={`flex items-center text-sm  cursor-pointer ${type === 3 ? "text-white" : "text-qblacktext"
                           }`}
                       >
                         <span>Contact</span>
@@ -1169,7 +1169,7 @@ export default function Navbar({ className, type }) {
                   <li>
                     <Link to="/tinder">
                       <span
-                        className={`flex items-center text-sm font-600 cursor-pointer ${type === 3 ? "text-white" : "text-qblacktext"
+                        className={`flex items-center text-sm  cursor-pointer ${type === 3 ? "text-white" : "text-qblacktext"
                           }`}
                       >
                         <span>Tinder</span>
@@ -1183,7 +1183,7 @@ export default function Navbar({ className, type }) {
               <Link to="/become-saller">
                 <div className="black-btn w-[161px] h-[40px] flex justify-center items-center cursor-pointer">
                   <div className="flex space-x-2 items-center">
-                    <span className="text-sm font-600">Become a Seller</span>
+                    <span className="text-sm ">Become a Seller</span>
                     <span>
                       <svg
                         className="fill-current"

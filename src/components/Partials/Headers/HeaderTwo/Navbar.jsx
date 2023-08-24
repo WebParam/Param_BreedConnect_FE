@@ -53,7 +53,7 @@ export default function Navbar({ className }) {
                         <rect y="4" width="10" height="1" />
                       </svg>
                     </span>
-                    <span className="text-sm font-600 text-qblacktext">
+                    <span className="text-sm  text-qblacktext">
                       All Categories
                     </span>
                   </div>
@@ -685,7 +685,7 @@ export default function Navbar({ className }) {
                 <ul className="nav-wrapper flex xl:space-x-10 space-x-5">
                   <li className="relative">
                     <Link to="/">
-                      <span className="flex items-center text-sm text-white font-600 cursor-pointer ">
+                      <span className="flex items-center text-sm text-white  cursor-pointer ">
                         <span>Homepage</span>
                         <span className="ml-1.5 ">
                           <Arrow className="fill-current" />
@@ -705,7 +705,7 @@ export default function Navbar({ className }) {
                               <ul className="flex flex-col space-y-2">
                                 <li>
                                   <a href="/">
-                                    <span className="text-qgray text-sm font-400 border-b border-transparent hover:text-qyellow hover:border-qyellow">
+                                    <span className="text-qgray zzz font-400 border-b border-transparent hover:text-qyellow hover:border-qyellow">
                                       Home One
                                     </span>
                                   </a>
@@ -746,7 +746,7 @@ export default function Navbar({ className }) {
                     </div>
                   </li>
                   <li>
-                    <span className="flex items-center text-sm text-white font-600 cursor-pointer ">
+                    <span className="flex items-center text-sm text-white  cursor-pointer ">
                       <span>Shop</span>
                       <span className="ml-1.5 ">
                         <Arrow className="fill-current" />
@@ -900,7 +900,7 @@ export default function Navbar({ className }) {
                     </div>
                   </li>
                   <li className="relative">
-                    <span className="flex items-center text-sm text-white font-600 cursor-pointer ">
+                    <span className="flex items-center text-sm text-white  cursor-pointer ">
                       <span>Pages</span>
                       <span className="ml-1.5 ">
                         <Arrow className="fill-current" />
@@ -961,21 +961,21 @@ export default function Navbar({ className }) {
                   </li>
                   <li>
                     <Link to="/about">
-                      <span className="flex items-center text-sm text-white font-600 cursor-pointer ">
+                      <span className="flex items-center text-sm text-white  cursor-pointer ">
                         <span>About</span>
                       </span>
                     </Link>
                   </li>
                   <li>
                     <Link to="/blogs">
-                      <span className="flex items-center text-sm text-white font-600 cursor-pointer ">
+                      <span className="flex items-center text-sm text-white  cursor-pointer ">
                         <span>Blog</span>
                       </span>
                     </Link>
                   </li>
                   <li>
                     <Link to="/contact">
-                      <span className="flex items-center text-sm text-white font-600 cursor-pointer ">
+                      <span className="flex items-center text-sm text-white  cursor-pointer ">
                         <span>Contact</span>
                       </span>
                     </Link>
@@ -988,7 +988,7 @@ export default function Navbar({ className }) {
               <Link to="/become-saller">
                 <div className="yellow-btn flex justify-center items-center cursor-pointer">
                   <div className="flex space-x-2 items-center">
-                    <span className="text-sm font-600">Become a Seller</span>
+                    <span className="text-sm ">Become a Seller</span>
                     <span>
                       <svg
                         width="6"

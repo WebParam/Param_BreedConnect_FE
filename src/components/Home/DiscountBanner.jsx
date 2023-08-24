@@ -67,7 +67,7 @@ export default function DiscountBanner({ className,type }) {
                     <p className="text-black text-[15px] font-700 tracking-wide mb-1">
                       Free Shipping
                     </p>
-                    <p className="text-sm text-qgray">
+                    <p className=" text-qgray">
                       When ordering over $100
                     </p>
                   </div>
@@ -104,7 +104,7 @@ export default function DiscountBanner({ className,type }) {
                     <p className="text-black text-[15px] font-700 tracking-wide mb-1">
                       Free Return
                     </p>
-                    <p className="text-sm text-qgray">
+                    <p className=" text-qgray">
                       Get Return within 30 days
                     </p>
                   </div>
@@ -149,7 +149,7 @@ export default function DiscountBanner({ className,type }) {
                     <p className="text-black text-[15px] font-700 tracking-wide mb-1">
                       Secure Payment
                     </p>
-                    <p className="text-sm text-qgray">
+                    <p className=" text-qgray">
                       100% Secure Online Payment
                     </p>
                   </div>
@@ -205,7 +205,7 @@ export default function DiscountBanner({ className,type }) {
                     <p className="text-black text-[15px] font-700 tracking-wide mb-1">
                       Best Quality
                     </p>
-                    <p className="text-sm text-qgray">
+                    <p className=" text-qgray">
                       Original Product Guarenteed
                     </p>
                   </div>
@@ -220,7 +220,7 @@ export default function DiscountBanner({ className,type }) {
                 Get <span className="mx-1 text-qyellow">20%</span> Off Discount
                 Coupon
               </h1>
-              <p className="text-center sm:text-[18px] text-sm font-400">
+              <p className="text-center sm:text-[18px]  font-400">
                 by Subscribe our Newsletter
               </p>
             </div>
@@ -256,13 +256,13 @@ export default function DiscountBanner({ className,type }) {
                 <input
                     type="email"
                     name="email"
-                    className="w-full h-full focus:outline-none text-sm placeholder:text-xs placeholder:text-qblack text-qblack font-400 tracking-wider"
+                    className="w-full h-full focus:outline-none  placeholder:text-xs placeholder:text-qblack text-qblack font-400 tracking-wider"
                     placeholder="EMAIL ADDRESS"
                 />
               </div>
               <button
                   type="button"
-                  className="sm:w-[158px] w-[80px]  h-full bg-qyellow text-sm font-600"
+                  className="sm:w-[158px] w-[80px]  h-full bg-qyellow  font-600"
               >
                 Get the Coupon
               </button>
