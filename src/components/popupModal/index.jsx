@@ -9,12 +9,41 @@ import './popup.css';
 import { FormControl, InputLabel, Select, MenuItem, TextField, Checkbox, FormControlLabel } from '@mui/material';
 
 const PopupModal = ({ open, handleClose, modalTitle, modalContent, ind, btnLabel }) => {
-    console.log("questions on modal", modalContent, ind, btnLabel)
 
     const [selectedOption, setSelectedOption] = useState();
     const [index, setIndex] = useState(ind);
     const [start, setStart] = useState('Next');
     const [isDragging, setIsDragging] = useState(false);
+    let [questionaires, setQuestionnaires] = useState([])
+    const [checkedItems, setCheckedItems] = useState({});
+
+    const handleChange = (event,question) => {
+        console.log("checked", event, question);
+        setCheckedItems({
+            ...checkedItems,
+            [event.target.name]: event.target.checked,
+        });
+        const existingAnswerIndex = questionaires.findIndex((obj) => obj.question === question);
+        if (existingAnswerIndex !== -1) {
+            const updatedOptions = [...questionaires];
+            updatedOptions[existingAnswerIndex] = {
+                order: "0",
+                question: question,
+                response: event.target.name,
+                type: "MSCQ"
+            };
+            setQuestionnaires(updatedOptions);
+        } else {
+            setQuestionnaires((prevArray) => [...prevArray, {
+                order: "0",
+                question: question,
+                response: event.target.name,
+                type: "MSCQ"
+            }]);
+            console.log("profile", questionaires)
+        }
+      
+    };
 
     const handleDragOver = (e) => {
         e.preventDefault();
@@ -30,23 +59,60 @@ const PopupModal = ({ open, handleClose, modalTitle, modalContent, ind, btnLabel
         setIsDragging(false);
 
         const droppedFiles = e.dataTransfer.files;
-        // Handle the dropped files, e.g., upload or process them
         console.log(droppedFiles);
     };
     const handleFileInput = (e) => {
         const selectedFiles = e.target.files;
-        // Handle the selected files, e.g., upload or process them
         console.log(selectedFiles);
-      };
-    
+    };
+
+    const saveSelection = (value, question) => {
+        const existingAnswerIndex = questionaires.findIndex((obj) => obj.question === question);
+        if (existingAnswerIndex !== -1) {
+            const updatedOptions = [...questionaires];
+            updatedOptions[existingAnswerIndex] = {
+                order: "0",
+                question: question,
+                response: value,
+                type: "Text"
+            };
+            setQuestionnaires(updatedOptions);
+        } else {
+            setQuestionnaires((prevArray) => [...prevArray, {
+                order: "0",
+                question: question,
+                response: value,
+                type: "Text"
+            }]);
+    }
+}
 
 
-    const handleSelectChange = (event) => {
+
+    const handleSelectChange = (event, question) => {
         setSelectedOption(event.target.value);
+        const existingAnswerIndex = questionaires.findIndex((obj) => obj.question === question);
+        if (existingAnswerIndex !== -1) {
+            const updatedOptions = [...questionaires];
+            updatedOptions[existingAnswerIndex] = {
+                order: "0",
+                question: question,
+                response: event.target.value,
+                type: "text"
+            };
+            setQuestionnaires(updatedOptions);
+        } else {
+            setQuestionnaires((prevArray) => [...prevArray, {
+                order: "0",
+                question: question,
+                response: event.target.value,
+                type: "text"
+            }]);
+            console.log("profile", questionaires)
+        }
     };
 
     const handleClick = () => {
-        console.log("track", index, modalContent.length - 1)
         if (index === modalContent?.length - 1) {
             setStart("Finish")
             setIndex(null);
@@ -66,7 +132,7 @@ const PopupModal = ({ open, handleClose, modalTitle, modalContent, ind, btnLabel
                         index === null ? <div className="question-section">Completed</div> :
                             <div className="question-section">
                                 <div>
-                                    {modalContent[index]?.description}
+                                    {modalContent[index]?.question}
                                 </div>
                                 <div>
                                     {
@@ -78,7 +144,8 @@ const PopupModal = ({ open, handleClose, modalTitle, modalContent, ind, btnLabel
                                                     labelId="dropdown-label"
                                                     label="Select an option"
                                                     value={selectedOption}
-                                                    onChange={handleSelectChange}
+                                                    name={modalContent[index]?.question}
+                                                    onChange={(event) => handleSelectChange(event, modalContent[index]?.question)}
                                                 >
                                                     {modalContent[index]?.options.map((option) => (
                                                         <MenuItem key={option?.value} value={option?.value}>
@@ -92,9 +159,9 @@ const PopupModal = ({ open, handleClose, modalTitle, modalContent, ind, btnLabel
                                             <div>
 
                                                 <FormControl variant="outlined">
-                                                    {modalContent[index]?.options.map((field, i) => (
+                                                    {modalContent[index]?.options.map((field) => (
                                                         <TextField
-                                                            key={field.i}
+                                                            key={field.value}
                                                             label={field.name}
                                                             variant="outlined"
                                                             fullWidth
@@ -108,14 +175,14 @@ const PopupModal = ({ open, handleClose, modalTitle, modalContent, ind, btnLabel
 
                                                 <div>
                                                     <FormControl variant="outlined">
-                                                        {modalContent[index]?.options.map((checkbox, i) => (
+                                                        {modalContent[index]?.options.map((checkbox) => (
                                                             <FormControlLabel
-                                                                key={checkbox.id}
+                                                                key={checkbox.value}
                                                                 control={
                                                                     <Checkbox
-                                                                        //checked={checkedItems[checkbox.id] || false}
-                                                                        //onChange={handleChange}
-                                                                        name={checkbox.id}
+                                                                        checked={checkedItems[checkbox.value] || false}
+                                                                        onChange={(e) => handleChange(e, modalContent[index]?.question)}
+                                                                        name={checkbox.value}
                                                                     />
                                                                 }
                                                                 label={checkbox.name}
@@ -129,10 +196,10 @@ const PopupModal = ({ open, handleClose, modalTitle, modalContent, ind, btnLabel
                                                 modalContent[index]?.type === "select" ?
                                                     <div>
                                                         <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
-                                                            <Button variant="contained" color="primary">
+                                                            <Button variant="contained" color="primary" onClick={() => saveSelection(modalContent[index]?.options[0].value, modalContent[index]?.question)}>
                                                                 {modalContent[index]?.options[0].name}
                                                             </Button>
-                                                            <Button variant="contained" color="secondary">
+                                                            <Button variant="contained" color="secondary" onClick={() => saveSelection(modalContent[index]?.options[1].value, modalContent[index]?.question)}>
                                                                 {modalContent[index]?.options[1].name}
                                                             </Button>
                                                         </div>
@@ -142,16 +209,16 @@ const PopupModal = ({ open, handleClose, modalTitle, modalContent, ind, btnLabel
                                                         onDragOver={handleDragOver}
                                                         onDragLeave={handleDragLeave}
                                                         onDrop={handleDrop}
-                                                        
+
                                                     >
                                                         <input
                                                             type="file"
                                                             accept="image/*"
                                                             onChange={handleFileInput}
                                                             multiple
-                                                            
+
                                                         ></input>
-                                                       
+
                                                     </div>
 
                                     }
@@ -175,5 +242,7 @@ const PopupModal = ({ open, handleClose, modalTitle, modalContent, ind, btnLabel
         </div>
     );
 };
+
+
 
 export default PopupModal;
