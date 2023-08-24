@@ -1,9 +1,21 @@
 import { LoginSuccess, RegisterSuccess } from "../services/loginService";
 import { POST } from "./client";
 
+
+//questionnaires
+export const completeQuestionnaires = async (profile)=>{
+  console.log("profile to save", profile, JSON.stringify(profile))
+  const profileResult = await POST(`profile`, profile);
+
+  if(profileResult!=null && profileResult.status == 200){
+    console.log("Successfully saved");
+    //LoginSuccess(loginResult);
+  }
+return profileResult;
+}
+
 //users
 export const LoginEmail = async (email,password)=>{
-  debugger;
     const loginResult = await POST(`user/login`, 
     {
         id:email,

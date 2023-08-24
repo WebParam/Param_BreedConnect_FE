@@ -7,6 +7,10 @@ import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import './popup.css';
 import { FormControl, InputLabel, Select, MenuItem, TextField, Checkbox, FormControlLabel } from '@mui/material';
+import { completeQuestionnaires } from "../../../src/api/endpoints";
+import axios from 'axios';
+import { toast } from 'react-toastify';
+
 
 const PopupModal = ({ open, handleClose, modalTitle, modalContent, ind, btnLabel }) => {
 
@@ -27,18 +31,18 @@ const PopupModal = ({ open, handleClose, modalTitle, modalContent, ind, btnLabel
         if (existingAnswerIndex !== -1) {
             const updatedOptions = [...questionaires];
             updatedOptions[existingAnswerIndex] = {
-                order: "0",
+                order: 0,
                 question: question,
                 response: event.target.name,
-                type: "MSCQ"
+                type: 3
             };
             setQuestionnaires(updatedOptions);
         } else {
             setQuestionnaires((prevArray) => [...prevArray, {
-                order: "0",
+                order: 0,
                 question: question,
                 response: event.target.name,
-                type: "MSCQ"
+                type: 3
             }]);
             console.log("profile", questionaires)
         }
@@ -71,18 +75,18 @@ const PopupModal = ({ open, handleClose, modalTitle, modalContent, ind, btnLabel
         if (existingAnswerIndex !== -1) {
             const updatedOptions = [...questionaires];
             updatedOptions[existingAnswerIndex] = {
-                order: "0",
+                order: 0,
                 question: question,
                 response: value,
-                type: "Text"
+                type: 0
             };
             setQuestionnaires(updatedOptions);
         } else {
             setQuestionnaires((prevArray) => [...prevArray, {
-                order: "0",
+                order: 0,
                 question: question,
                 response: value,
-                type: "Text"
+                type: 0
             }]);
     }
 }
@@ -95,27 +99,58 @@ const PopupModal = ({ open, handleClose, modalTitle, modalContent, ind, btnLabel
         if (existingAnswerIndex !== -1) {
             const updatedOptions = [...questionaires];
             updatedOptions[existingAnswerIndex] = {
-                order: "0",
+                order: 0,
                 question: question,
                 response: event.target.value,
-                type: "text"
+                type: 0
             };
             setQuestionnaires(updatedOptions);
         } else {
             setQuestionnaires((prevArray) => [...prevArray, {
-                order: "0",
+                order: 0,
                 question: question,
                 response: event.target.value,
-                type: "text"
+                type: 0
             }]);
             console.log("profile", questionaires)
         }
     };
 
-    const handleClick = () => {
+    const handleClick = async () => {
+        const _id = toast.loading("Logging in..", {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         if (index === modalContent?.length - 1) {
-            setStart("Finish")
+            setStart("Finish");
             setIndex(null);
+            const userProfile = {
+                userId:"64df521d7d17ef88d6964e30",
+                questionaires,
+            }
+            const response = await completeQuestionnaires(userProfile);
+            if(response!=null && response.status ==200){
+            toast.update(_id, {
+                autoClose:2000,
+                render: `Profile Saved Successfully`,
+                type: "success",
+                isLoading: false,
+            });
+            }else{
+            toast.update(_id, {
+                autoClose:2000,
+                render: "Failed to save profile",
+                type: "error",
+                isLoading: false,
+                
+            });
+            }
 
         } else {
             setIndex(index + 1)
