@@ -3,6 +3,7 @@
     "name": "Breeder",
     "question": "What breed(s) do you breed?",
     "type":"checkbox",
+    "questionType": 3,
     "image":"",
     "options": [{
             "name": "Pure breed",
@@ -31,6 +32,7 @@
     "name": "Breeder",
     "question": "On average, how many litters do your female breeding dogs have before they retire?",
     "type":"dropdown",
+    "questionType": 2,
     "image":"",
     "options": [{
             "name": "5-7",
@@ -56,6 +58,7 @@
     "name": "Breeder",
     "question": "how old are your female Affenpinschers when you start breeding them?",
     "type":"dropdown",
+    "questionType": 2,
     "image":"",
     "options": [{
             "name": "Under 12 months",
@@ -80,6 +83,7 @@
     "name": "Breeder",
     "question": "how old are you female Affenpinschers when they retire?",
     "type":"dropdown",
+    "questionType": 2,
     "image":"",
     "options": [{
             "name": "3",
@@ -105,6 +109,7 @@
     "question": "Do your breeding dogs receive a general wellness exam at least once a year?",
     "image":"puppy",
     "type":"select",
+    "questionType": 0,
     "options": [{
             "name": "Yes",
             "value": "yes"
@@ -120,6 +125,7 @@
     "name": "Breeder",
     "question": "Where do your breeding dogs live?",
     "type":"checkbox",
+    "questionType": 2,
     "image":"",
     "options": [{
             "name": "My Home",
@@ -144,6 +150,7 @@
     "name": "Breeder",
     "question": "What size is each dogs crate/pen?",
     "type":"input",
+    "questionType": 0,
     "image":"",
     "options": [{
             "name": "Length",
@@ -160,6 +167,7 @@
     "name": "Breeder",
     "question": "You almost there just one last step",
     "type":"attachment",
+    "questionType": 1,
     "image":"",
     "options": [{
         "name": "attachment",

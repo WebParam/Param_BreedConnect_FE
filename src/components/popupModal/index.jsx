@@ -30,22 +30,22 @@ const PopupModal = ({ open, handleClose, modalTitle, modalContent, ind, btnLabel
             ...checkedItems,
             [event.target.name]: event.target.checked,
         });
-        const existingAnswerIndex = questionaires.findIndex((obj) => obj.question === question);
+        const existingAnswerIndex = questionaires.findIndex((obj) => obj.question === question.question);
         if (existingAnswerIndex !== -1) {
             const updatedOptions = [...questionaires];
             updatedOptions[existingAnswerIndex] = {
                 order: 0,
-                question: question,
+                question: question.question,
                 response:  `${updatedOptions[existingAnswerIndex].response +','+ event.target.name}`,
-                type: 3
+                type: question.questionType
             };
             setQuestionnaires(updatedOptions);
         } else {
             setQuestionnaires((prevArray) => [...prevArray, {
                 order: 0,
-                question: question,
+                question: question.question,
                 response: event.target.name,
-                type: 3
+                type: question.questionType
             }]);
             console.log("profile", questionaires)
         }
@@ -74,22 +74,22 @@ const PopupModal = ({ open, handleClose, modalTitle, modalContent, ind, btnLabel
     };
 
     const saveSelection = (value, question) => {
-        const existingAnswerIndex = questionaires.findIndex((obj) => obj.question === question);
+        const existingAnswerIndex = questionaires.findIndex((obj) => obj.question === question.question);
         if (existingAnswerIndex !== -1) {
             const updatedOptions = [...questionaires];
             updatedOptions[existingAnswerIndex] = {
                 order: 0,
-                question: question,
+                question: question.question,
                 response: value,
-                type: 0
+                type: question.questionType
             };
             setQuestionnaires(updatedOptions);
         } else {
             setQuestionnaires((prevArray) => [...prevArray, {
                 order: 0,
-                question: question,
+                question: question.question,
                 response: value,
-                type: 0
+                type: question.questionType
             }]);
     }
 }
@@ -103,17 +103,17 @@ const PopupModal = ({ open, handleClose, modalTitle, modalContent, ind, btnLabel
             const updatedOptions = [...questionaires];
             updatedOptions[existingAnswerIndex] = {
                 order: 0,
-                question: question,
+                question: question.question,
                 response: event.target.value,
-                type: 0
+                type: question.questionType
             };
             setQuestionnaires(updatedOptions);
         } else {
             setQuestionnaires((prevArray) => [...prevArray, {
                 order: 0,
-                question: question,
+                question: question.question,
                 response: event.target.value,
-                type: 0
+                type: question.questionType
             }]);
             console.log("profile", questionaires)
         }
@@ -189,7 +189,7 @@ const PopupModal = ({ open, handleClose, modalTitle, modalContent, ind, btnLabel
                                                     label="Select an option"
                                                     value={selectedOption}
                                                     name={modalContent[index]?.question}
-                                                    onChange={(event) => handleSelectChange(event, modalContent[index]?.question)}
+                                                    onChange={(event) => handleSelectChange(event, modalContent[index])}
                                                 >
                                                     {modalContent[index]?.options.map((option) => (
                                                         <MenuItem key={option?.value} value={option?.value}>
@@ -225,7 +225,7 @@ const PopupModal = ({ open, handleClose, modalTitle, modalContent, ind, btnLabel
                                                                 control={
                                                                     <Checkbox
                                                                         checked={checkedItems[checkbox.value] || false}
-                                                                        onChange={(e) => handleChange(e, modalContent[index]?.question)}
+                                                                        onChange={(e) => handleChange(e, modalContent[index])}
                                                                         name={checkbox.value}
                                                                     />
                                                                 }
@@ -240,10 +240,10 @@ const PopupModal = ({ open, handleClose, modalTitle, modalContent, ind, btnLabel
                                                 modalContent[index]?.type === "select" ?
                                                     <div>
                                                         <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
-                                                            <Button variant="contained" color="primary" onClick={() => saveSelection(modalContent[index]?.options[0].value, modalContent[index]?.question)}>
+                                                            <Button variant="contained" color="primary" onClick={() => saveSelection(modalContent[index]?.options[0].value, modalContent[index])}>
                                                                 {modalContent[index]?.options[0].name}
                                                             </Button>
-                                                            <Button variant="contained" color="secondary" onClick={() => saveSelection(modalContent[index]?.options[1].value, modalContent[index]?.question)}>
+                                                            <Button variant="contained" color="secondary" onClick={() => saveSelection(modalContent[index]?.options[1].value, modalContent[index])}>
                                                                 {modalContent[index]?.options[1].name}
                                                             </Button>
                                                         </div>
