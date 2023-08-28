@@ -36,7 +36,7 @@ const PopupModal = ({ open, handleClose, modalTitle, modalContent, ind, btnLabel
             updatedOptions[existingAnswerIndex] = {
                 order: 0,
                 question: question,
-                response: event.target.name,
+                response:  `${updatedOptions[existingAnswerIndex].response +','+ event.target.name}`,
                 type: 3
             };
             setQuestionnaires(updatedOptions);
