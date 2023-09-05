@@ -14,6 +14,18 @@ export const completeQuestionnaires = async (profile)=>{
 return profileResult;
 }
 
+export const uploadProduct = async (payload)=>{
+  console.log("product to save", payload)
+  const productRes = await POST(`product/create`, payload);
+
+  if(productRes!=null && productRes.status == 200){
+    console.log("Successfully saved");
+    //LoginSuccess(loginResult);
+  }
+return productRes;
+}
+
+
 //users
 export const LoginEmail = async (email,password)=>{
     const loginResult = await POST(`user/login`, 

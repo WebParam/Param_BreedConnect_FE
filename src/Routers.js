@@ -31,6 +31,9 @@ import Tinder from "./components/Tinder";
 import Landing from "./components/Landing"
 import BreederDashboard from "./components/Dashboard";
 import BreederProfile from "./components/Dashboard/profile";
+import AddProduct from "./components/Dashboard/add-product";
+
+import AddProductS1 from "./components/Dashboard/AddProduct/add-product-s1";
 import Questionnaires from "./components/Questionnaires/questionnaires";
 export default function Routers() {
   return (
@@ -70,6 +73,8 @@ export default function Routers() {
       <Route exact path="/tinder" element={<Tinder/>} />
       <Route exact path="*" element={<FourZeroFour />} /> */}
       <Route exact path="/questionnaires" element={<Questionnaires/>} />
+      <Route exact path="/add-product" element={<AddProduct/>} />
+      <Route exact path="/add-product-s1" element={<AddProductS1/>} />
       <Route exact path="*" element={<FourZeroFour />} />
     </Routes>
   );
