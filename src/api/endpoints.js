@@ -14,6 +14,18 @@ export const completeQuestionnaires = async (profile)=>{
 return profileResult;
 }
 
+//attachment
+export const getAttachmentS3URL = async (file)=>{
+  console.log("file to save", file)
+  const fileResult = await POST(`user/addDocument`, file);
+
+  if(fileResult !=null && fileResult.status == 200){
+    console.log("Successfully saved", fileResult);
+    //LoginSuccess(loginResult);
+  }
+return fileResult;
+}
+
 //users
 export const LoginEmail = async (email,password)=>{
     const loginResult = await POST(`user/login`, 

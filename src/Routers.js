@@ -63,14 +63,16 @@ export default function Routers() {
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/signup" element={<Signup />} />
       <Route exact path="/signupbreeder" element={<SignupBreeder />} />
-      <Route exact path="/profile" element={<Profile />} />
+      <Route exact path="/profile" element={<Profile />} 
       <Route exact path="/become-saller" element={<BecomeSaller />} />
       <Route exact path="/privacy-policy" element={<PrivacyPolicy />} />
       <Route exact path="/terms-condition" element={<TermsCondition />} />
-      <Route exact path="/tinder" element={<Tinder/>} />
+     
       <Route exact path="*" element={<FourZeroFour />} /> */}
       <Route exact path="/questionnaires" element={<Questionnaires/>} />
-      <Route exact path="*" element={<FourZeroFour />} />
+      <Route exact path="/profile" element={<Profile />}  />
+      <Route exact path="*" element={<FourZeroFour /> }/>
+      <Route exact path="/tinder" element={<Tinder/>}  />
     </Routes>
   );
 }

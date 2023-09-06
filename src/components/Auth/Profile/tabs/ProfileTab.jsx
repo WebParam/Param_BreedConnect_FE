@@ -3,6 +3,7 @@ import InputCom from "../../../Helpers/InputCom";
 
 export default function ProfileTab() {
   const [profileImg, setprofileImg] = useState(null);
+  const [profileInfo, setProfileInfo] = useState({});
   const profileImgInput = useRef(null);
   const browseprofileImg = () => {
     profileImgInput.current.click();
