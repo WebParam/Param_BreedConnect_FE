@@ -27,14 +27,26 @@ export default function Profile() {
   const [switchDashboard, setSwitchDashboard] = useState(false);
   const location = useLocation();
   const getHashContent = location.hash.split("#");
-  const [active, setActive] = useState("dashboard");
+  const [active, setActive] = useState("profile");
   useEffect(() => {
     setActive(
       getHashContent && getHashContent.length > 1
         ? getHashContent[1]
-        : "dashboard"
+        : "profile"
     );
   }, [getHashContent]);
+
+
+  function ProfileHeader() {
+    return (
+      <div className="profile-header">
+        <img src="profile-cover.jpg" alt="Cover" className="cover-photo" />
+        <img src="profile-picture.jpg" alt="Profile" className="profile-picture" />
+      </div>
+    );
+  }
+
+
   return (
     <Layout childrenClasses="pt-0 pb-0">
       <div className="profile-page-wrapper w-full">
@@ -82,14 +94,79 @@ export default function Profile() {
                             <IcoPeople />
                           </span>
                           <span className=" font-normal text-base">
-                            Parsonal Info
+                            Profile
                           </span>
                         </div>
                       </Link>
                     </div>
 
                     <div className="item group">
-                      <Link to="/profile#payment">
+                      <Link to="/profile#messages">
+                        <div className="flex space-x-3 items-center text-qgray hover:text-qblack">
+                          <span>
+                          
+                          </span>
+                          <span className=" font-normal text-base">
+                            Messages
+                          </span>
+                        </div>
+                      </Link>
+                    </div>
+
+                    <div className="item group">
+                      <Link to="/profile#orders">
+                        <div className="flex space-x-3 items-center text-qgray hover:text-qblack">
+                          <span>
+                          
+                          </span>
+                          <span className=" font-normal text-base">
+                            Orders
+                          </span>
+                        </div>
+                      </Link>
+                    </div>
+
+                    <div className="item group">
+                      <Link to="/profile#products">
+                        <div className="flex space-x-3 items-center text-qgray hover:text-qblack">
+                          <span>
+                          
+                          </span>
+                          <span className=" font-normal text-base">
+                            Products
+                          </span>
+                        </div>
+                      </Link>
+                    </div>
+
+                    <div className="item group">
+                      <Link to="/profile#tinder">
+                        <div className="flex space-x-3 items-center text-qgray hover:text-qblack">
+                          <span>
+                          
+                          </span>
+                          <span className=" font-normal text-base">
+                            Swipes
+                          </span>
+                        </div>
+                      </Link>
+                    </div>
+
+                    <div className="item group">
+                      <Link to="/profile#settings">
+                        <div className="flex space-x-3 items-center text-qgray hover:text-qblack">
+                          <span>
+                          
+                          </span>
+                          <span className=" font-normal text-base">
+                            Settings
+                          </span>
+                        </div>
+                      </Link>
+                    </div>
+
+                    {/* <div className="item group"> */}
+                      {/* <Link to="/profile#payment">
                         <div className="flex space-x-3 items-center text-qgray hover:text-qblack">
                           <span>
                             <IcoPayment />
@@ -169,7 +246,7 @@ export default function Profile() {
                           </span>
                         </div>
                       </Link>
-                    </div>
+                    </div> */}
                     <div className="item group">
                       <Link to="/profile#profile">
                         <div className="flex space-x-3 items-center text-qgray hover:text-qblack">
@@ -192,7 +269,7 @@ export default function Profile() {
                       <>
                         <ProfileTab />
                       </>
-                    ) : active === "payment" ? (
+                    ) : active === "messages" ? (
                       <>
                         <Payment />
                       </>
