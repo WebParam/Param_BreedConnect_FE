@@ -35,6 +35,7 @@ function MessageList({  }) {
         <div key={index} className="message-bubble">
           <div className="client-info">
             {/* <img src={message.client.avatar} alt={message.sender} className="client-avatar" /> */}
+            <img src={`${process.env.PUBLIC_URL}/assets/images/default.png`}className="client-avatar" /> 
             <div className="client-name">{message.content}</div>
           </div>
           <Message text={message.text} isReceived={message.isReceived} />

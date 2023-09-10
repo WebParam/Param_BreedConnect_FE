@@ -3,6 +3,7 @@ import InputCom from "../../../Helpers/InputCom";
 import Tabs from '../tabs/ProfileTabs';
 import MessageList from "./MessagesList";
 import './stylesheets/Profile.css'
+import RecentOrders from "./RecentOrders";
 
 import CoverProfile from '../../../../media/cover.png';
 
@@ -158,7 +159,14 @@ export default function ProfileTab() {
             <p className="text-sm text-qgraytwo mb-5 ">
               <MessageList  nessages={messages}/>
             </p>
-        
+      </div>
+      <div className="update-logo w-full mb-9">
+            <h1 className="text-xl tracking-wide font-bold text-qblack flex items-center mb-2">
+              Orders
+            </h1>
+            <p className="text-sm text-qgraytwo mb-5 ">
+              <RecentOrders/>
+            </p>
       </div>
   </div>
  </div>

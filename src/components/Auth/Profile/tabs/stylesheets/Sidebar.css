@@ -1,0 +1,46 @@
+.recent-orders {
+    padding: 00px;
+  }
+  
+  .order-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin: 6px 3px;
+  }
+  .breeder-profile{
+    max-width: 40px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .customer-name {
+    font-weight: 500;
+    font-size: 13px;
+  }
+  
+  .order-date {
+    color: #666;
+  }
+  
+  .order-status {
+    font-weight: 400;
+    background-color: rgba(255, 179, 54, 0.24);
+    color: #FFB336; 
+    margin: 3px 6px;
+    border-radius: 8px;
+    padding: 8px;
+  }
+
+  .order-details{
+    padding: 4px;
+  }
