@@ -23,6 +23,30 @@ export default function ProfileTab() {
     }
   };
 
+
+  const messages = [
+    {
+        "sender": "Alice",
+        "content": "Hello, how are you?",
+        "timestamp": "2023-09-09 10:00:00"
+    },
+    {
+        "sender": "Bob",
+        "content": "I'm doing well, thanks! How about you?",
+        "timestamp": "2023-09-09 10:05:00"
+    },
+    {
+        "sender": "Alice",
+        "content": "I'm good too. What have you been up to?",
+        "timestamp": "2023-09-09 10:10:00"
+    },
+    {
+        "sender": "Bob",
+        "content": "Just working on a project. How about we meet later for coffee?",
+        "timestamp": "2023-09-09 10:15:00"
+    },
+]
+
  
 
 
@@ -132,7 +156,7 @@ export default function ProfileTab() {
               Messages
             </h1>
             <p className="text-sm text-qgraytwo mb-5 ">
-              <MessageList/>
+              <MessageList  nessages={messages}/>
             </p>
         
       </div>
