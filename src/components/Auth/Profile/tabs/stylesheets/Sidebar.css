@@ -26,6 +26,10 @@
   .customer-name {
     font-weight: 500;
     font-size: 13px;
+    position: absolute;
+    vertical-align: middle;
+    left: 4em;
+    bottom: 1px;
   }
   
   .order-date {
