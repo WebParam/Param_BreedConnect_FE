@@ -148,9 +148,6 @@ export default function ProductsTab() {
             <span>Newest</span>
           </a>
         </div>
-        <a href="#" className="sherah-btn sherah-gbcolor">
-          Upload Product
-        </a>
       </div>
     </div>
     <div className="tab-content" id="nav-tabContent">
