@@ -50,21 +50,6 @@ export default function Customers() {
                             Dashboard
                           </span>
                         </div>
-              
-                <div className="switch-dashboard flex space-x-3 items-center">
-                  <p className="text-qgray text-base">Switch Dashboard</p>
-                  <button
-                    onClick={() => setSwitchDashboard(!switchDashboard)}
-                    type="button"
-                    className="w-[73px] h-[31px] border border-[#D9D9D9] rounded-full relative "
-                  >
-                    <div
-                      className={`w-[23px] h-[23px] bg-qblack rounded-full absolute top-[3px] transition-all duration-300 ease-in-out ${
-                        switchDashboard ? "left-[44px]" : "left-[4px]"
-                      }`}
-                    ></div>
-                  </button>
-                </div>
               </div>
               <div className="profile-wrapper w-full mt-8 flex space-x-10">
                 <div className="w-[140px] min-h-[600px] border-r border-[rgba(0, 0, 0, 0.1)]">
