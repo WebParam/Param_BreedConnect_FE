@@ -32,6 +32,7 @@ import Landing from "./components/Landing"
 import BreederDashboard from "./components/Dashboard";
 import BreederProfile from "./components/Dashboard/profile";
 import Questionnaires from "./components/Questionnaires/questionnaires";
+import Customers from './components/Customer'
 export default function Routers() {
   return (
     <Routes>
@@ -45,7 +46,7 @@ export default function Routers() {
       <Route exact path="/home-three" element={<HomeThree />} />
       <Route exact path="/home-four" element={<HomeFour />} />
       <Route exact path="/home-five" element={<HomeFive />} />
-      <Route exact path="/all-products" element={<AllProductPage />} />
+      // <Route exact path="/all-products" element={<AllProductPage />} />
       <Route exact path="/single-product" element={<SingleProductPage />} />
       <Route exact path="/cart" element={<CardPage />} />
       <Route exact path="/checkout" element={<CheakoutPage />} />
@@ -69,10 +70,13 @@ export default function Routers() {
       <Route exact path="/terms-condition" element={<TermsCondition />} />
      
       <Route exact path="*" element={<FourZeroFour />} /> */}
+      <Route exact path="/all-products" element={<AllProductPage />} />
       <Route exact path="/questionnaires" element={<Questionnaires/>} />
       <Route exact path="/profile" element={<Profile />}  />
       <Route exact path="*" element={<FourZeroFour /> }/>
       <Route exact path="/tinder" element={<Tinder/>}  />
+      <Route exact path="/customer" element={<Customers/>}  />
+      
     </Routes>
   );
 }

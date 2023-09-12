@@ -273,7 +273,7 @@ export default function Profile() {
                       <>
                         <Payment />
                       </>
-                    ) : active === "order" ? (
+                    ) : active === "orders" ? (
                       <>
                         <OrderTab />
                       </>

@@ -1,0 +1,18 @@
+html, body{
+    font-family: Quicksand !important;
+}
+.orders{
+    font-family: Quicksand;
+}
+.status{
+    font-weight: 400;
+    background-color: rgba(255, 179, 54, 0.24);
+    color: #FFB336; 
+    margin: 3px 6px;
+    border-radius: 8px;
+    padding: 8px;
+    &.completed{
+        background-color: #DDF4F0;
+        color: #09AD95;
+    }
+}

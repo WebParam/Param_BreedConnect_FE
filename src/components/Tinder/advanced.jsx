@@ -1,38 +1,42 @@
 import React, { useState, useMemo, useRef } from 'react'
 import TinderCard from 'react-tinder-card'
 
-const db = [
+const breads = [
   {
-    name: 'Richard Hendricks',
-    url: './img/richard.jpg'
+    name: 'Type 1',
+    url: './assets/images/d1.jpg'
   },
   {
-    name: 'Erlich Bachman',
-    url: './img/erlich.jpg'
+    name: 'Type 2',
+    url: './assets/images/d2.jpg'
   },
   {
-    name: 'Monica Hall',
-    url: './img/monica.jpg'
+    name: 'Type 3',
+    url: './assets/images/d3.jpg'
   },
   {
-    name: 'Jared Dunn',
-    url: './img/jared.jpg'
+    name: 'Type 4',
+    url: './assets/images/d4.jpg'
   },
   {
-    name: 'Dinesh Chugtai',
-    url: './img/dinesh.jpg'
+    name: 'Type 5',
+    url: './assets/images/d5.jpg'
+  },
+  {
+    name: 'Type 6',
+    url: './assets/images/d6.jpg'
   }
 ]
 
 function Advanced() {
-  const [currentIndex, setCurrentIndex] = useState(db.length - 1)
+  const [currentIndex, setCurrentIndex] = useState(breads.length - 1)
   const [lastDirection, setLastDirection] = useState()
   // used for outOfFrame closure
   const currentIndexRef = useRef(currentIndex)
 
   const childRefs = useMemo(
     () =>
-      Array(db.length)
+      Array(breads.length)
         .fill(0)
         .map((i) => React.createRef()),
     []
@@ -43,7 +47,7 @@ function Advanced() {
     currentIndexRef.current = val
   }
 
-  const canGoBack = currentIndex < db.length - 1
+  const canGoBack = currentIndex < breads.length - 1
 
   const canSwipe = currentIndex >= 0
 
@@ -63,7 +67,7 @@ function Advanced() {
   }
 
   const swipe = async (dir) => {
-    if (canSwipe && currentIndex < db.length) {
+    if (canSwipe && currentIndex < breads.length) {
       await childRefs[currentIndex].current.swipe(dir) // Swipe the card!
     }
   }
@@ -78,17 +82,8 @@ function Advanced() {
 
   return (
     <div>
-      <link
-        href='https://fonts.googleapis.com/css?family=Damion&display=swap'
-        rel='stylesheet'
-      />
-      <link
-        href='https://fonts.googleapis.com/css?family=Alatsi&display=swap'
-        rel='stylesheet'
-      />
-      <h1>React Tinder Card</h1>
       <div className='cardContainer'>
-        {db.map((character, index) => (
+        {breads.map((character, index) => (
           <TinderCard
             ref={childRefs[index]}
             className='swipe'
@@ -97,7 +92,7 @@ function Advanced() {
             onCardLeftScreen={() => outOfFrame(character.name, index)}
           >
             <div
-              style={{ backgroundImage: 'url(' + character.url + ')' }}
+              style={{ backgroundImage: 'url('+ character.url +')' }}
               className='card'
             >
               <h3>{character.name}</h3>
