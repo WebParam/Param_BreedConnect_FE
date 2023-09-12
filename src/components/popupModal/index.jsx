@@ -10,7 +10,7 @@ import './popup.css';
 import Logo from "../../media/logo.png"
 
 import { FormControl, InputLabel, Select, MenuItem, TextField, Checkbox, FormControlLabel } from '@mui/material';
-import { completeQuestionnaires,getAttachmentS3URL } from "../../../src/api/endpoints";
+import { completeQuestionnaires } from "../../../src/api/endpoints";
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
@@ -129,8 +129,8 @@ const PopupModal = ({ open, handleClose, modalTitle, modalContent, ind, btnLabel
     
           
           try {
-            const fileResponse = await getAttachmentS3URL(formData);
-            console.log('File uploaded successfully', fileResponse.data);
+           // const fileResponse = await getAttachmentS3URL(formData);
+           // console.log('File uploaded successfully', fileResponse.data);
             // Handle success
           } catch (error) {
             console.error('Error uploading file', error);
