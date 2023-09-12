@@ -190,23 +190,23 @@ const PopupModal = ({ open, handleClose, modalTitle, modalContent, ind, btnLabel
                 userId:"64df521d7d17ef88d6964e30",
                 questionaires,
             }
-            // const response = await completeQuestionnaires(userProfile);
-            // if(response!=null && response.status ==200){
-            // toast.update(_id, {
-            //     autoClose:2000,
-            //     render: `Profile Saved Successfully`,
-            //     type: "success",
-            //     isLoading: false,
-            // });
-            // }else{
-            // toast.update(_id, {
-            //     autoClose:2000,
-            //     render: "Failed to save profile",
-            //     type: "error",
-            //     isLoading: false,
+            const response = await completeQuestionnaires(userProfile);
+            if(response!=null && response.status ==200){
+            toast.update(_id, {
+                autoClose:2000,
+                render: `Profile Saved Successfully`,
+                type: "success",
+                isLoading: false,
+            });
+            }else{
+            toast.update(_id, {
+                autoClose:2000,
+                render: "Failed to save profile",
+                type: "error",
+                isLoading: false,
                 
-            // });
-            // }
+            });
+            }
 
         } else {
             setIndex(index + 1)
