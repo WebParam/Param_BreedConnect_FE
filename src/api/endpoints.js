@@ -14,17 +14,17 @@ export const completeQuestionnaires = async (profile)=>{
 return profileResult;
 }
 
-//attachment
-export const getAttachmentS3URL = async (file)=>{
-  console.log("file to save", file)
-  const fileResult = await POST(`user/addDocument`, file);
+export const uploadProduct = async (payload)=>{
+  console.log("product to save", payload)
+  const productRes = await POST(`product/create`, payload);
 
-  if(fileResult !=null && fileResult.status == 200){
-    console.log("Successfully saved", fileResult);
+  if(productRes!=null && productRes.status == 200){
+    console.log("Successfully saved");
     //LoginSuccess(loginResult);
   }
-return fileResult;
+return productRes;
 }
+
 
 //users
 export const LoginEmail = async (email,password)=>{

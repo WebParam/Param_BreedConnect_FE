@@ -31,6 +31,9 @@ import Tinder from "./components/Tinder";
 import Landing from "./components/Landing"
 import BreederDashboard from "./components/Dashboard";
 import BreederProfile from "./components/Dashboard/profile";
+import AddProduct from "./components/Dashboard/add-product";
+
+import AddProductS1 from "./components/Dashboard/AddProduct/add-product-s1";
 import Questionnaires from "./components/Questionnaires/questionnaires";
 import Customers from './components/Customer'
 export default function Routers() {
