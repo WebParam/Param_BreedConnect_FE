@@ -21,3 +21,12 @@ html, body{
     font-size: 14px;
     color: black;
 }
+.product-picture{
+    height: 30px;
+    width: 30px;
+    border-radius: 25px;
+}
+.customer{
+    height: 50px;
+    width: 50px;
+}
