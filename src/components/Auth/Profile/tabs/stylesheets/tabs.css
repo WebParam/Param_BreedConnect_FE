@@ -16,3 +16,8 @@ html, body{
         color: #09AD95;
     }
 }
+.table-header{
+    font-weight: 700;
+    font-size: 14px;
+    color: black;
+}
