@@ -27,7 +27,7 @@ return productRes;
 
 export const updateProduct = async (payload)=>{
   console.log("product to save", payload)
-  const productRes = await PUT(`product/update`, payload);
+  const productRes = await POST(`product/update`, payload);
 
   if(productRes!=null && productRes.status == 200){
     console.log("Successfully saved");

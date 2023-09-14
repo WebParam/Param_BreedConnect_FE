@@ -1,20 +1,39 @@
 import React, { useEffect, useState } from "react";
 import DashboardLayout from "../../Partials/DashboardLayout";
 import { Link, useLocation } from "react-router-dom";
-import { getProduct, uploadProduct } from "../../../api/endpoints";
+import { getProduct, updateProduct, uploadProduct } from "../../../api/endpoints";
 import { ToastContainer, toast } from 'react-toastify';
-import Cookies from 'universal-cookie';
 
-const cookies = new Cookies();
 
-export default function AddProduct() {
+export default function EditProduct() {
   
 
 
 
+  const [categoryEroor, setCategoryEroor] = useState(false);
+  const [animalEroor , setAnimalEroor] = useState(false);
+  
+  const [nameEroor, setNameEroor] = useState(false);
+  const [breedEroor, setBreedEroor] = useState(false);
+  const [dateOfBirthEroor , setDateOfBirthEroor] = useState(false);
+  const [sexEroor, setSexEroor] = useState(false);
+  const [colorMarkingsEroor , setColorMarkingsEroor] = useState(false);
+  
+  const [healthRecordsEroor , setHealthRecordsEroor] = useState(false);
+  const [geneticTestsEroor, setGeneticTestsEroor]= useState(false);
+  
+  
+  const [filesEroor , setFilesEroor] = useState(false)
+  const [videosEroor , setVideosEroor] = useState(false);
+  
+  const [availabilityEroor , setAvailabilityEroor] = useState(false);
+  const [priceEroor , setPriceEroor] = useState(false)
+  const [locationEroor , setLocationEroor] = useState(false)
 
 
-const [category, setCategory] = useState(0);
+
+
+const [category, setCategory] = useState("");
 const [animal , setAnimal] = useState(0);
 
 const [name, setName] = useState("");
@@ -47,7 +66,6 @@ const [active, setActive] = useState("dashboard");
 
 
 
-
 useEffect(() => {
   setActive(
     getHashContent && getHashContent.length > 1
@@ -68,7 +86,7 @@ function AddImage(event){
 }
 
 function AddVideo(event){
-  debugger;
+
   const video = event.target.files[0];
   const videoBlob = new Blob([video], { type: video.type });
   const videoUrl = window.URL.createObjectURL(videoBlob);
@@ -93,8 +111,24 @@ function moveToStep(stepNumber){
       setDisableInputs(false)
       if(name && sex && breed && colorMarkings && dateOfBirth && animal){
         setStep(stepNumber);
+    }else if (!name){
+      setNameEroor(true)
+
+    }else if (!sex){
+      setNameEroor(true)
     }
-  }else if(category == 1){
+    else if (!breed){
+      setNameEroor(true)
+    }
+    else if (!colorMarkings){
+      setNameEroor(true)
+    }
+    else if (!dateOfBirth){
+      setNameEroor(true)
+    }else if (!animal){
+      setNameEroor(true)
+    }
+  }else if(category == 2){
    
     if(name && sex > 0 && animal > 0){
       setStep(stepNumber);
@@ -128,6 +162,7 @@ function moveToStep(stepNumber){
 
 async function upload(event){
 
+  event.preventDefault();
   const _id = toast.loading("saving...", {
     position: "top-center",
     autoClose: 2000,
@@ -168,7 +203,7 @@ async function upload(event){
       isLoading: false,
     });
 
-    console.log(response);
+    console.log("payload",response);
   }else{
     toast.update(_id, {
       autoClose:2000,
@@ -178,8 +213,8 @@ async function upload(event){
       
     });
   }
-
 }
+
   return (
    <>
 <DashboardLayout>
@@ -195,13 +230,13 @@ async function upload(event){
           <div className="row">
             <div className="col-12">
               <div className="sherah-breadcrumb mg-top-30">
-                <h2 className="sherah-breadcrumb__title">Upload Product</h2>
+                <h2 className="sherah-breadcrumb__title">Update Product</h2>
                 <ul className="sherah-breadcrumb__list">
                   <li>
                     <a href="#">Home</a>
                   </li>
                   <li className="active">
-                    <a href="profile-info.html">Upload Product</a>
+                    <a href="profile-info.html">Update Product</a>
                   </li>
                 </ul>
               </div>
@@ -223,32 +258,32 @@ async function upload(event){
                                   <label className="sherah-wc__form-label">
                                     Category*
                                   </label>
-                                  <select
+                                  <select value={category} 
                                
-                                    onChange={(e)=>{
-                                      
-                                     {
-                                      if(e.target.value == "1"){
-                                        setName("")
-                                        setSex(0)
-                                        setAnimal(0)
-                                        setBreed(0)
-                                        setDisableInputs(false)
-                                      }else{
-                                        setName("")
-                                        setSex(0)
-                                        setAnimal(0)
-                                        setBreed(0)
-                                        setDisableInputs(true)
-                                      }
-                                      setCategory(e.target.value)}}}
-                                    className="form-group__input"
-                                    aria-label="Default select example"
-                                  >
-                                    <option >Select category</option>
-                                    <option value={1}>Animal</option>
-                                    <option  value={2}>Sperm</option>
-                                  </select>
+                               onChange={(e)=>{
+                                 
+                                {
+                                 if(e.target.value == "1"){
+                                   setName("")
+                                   setSex(0)
+                                   setAnimal(0)
+                                   setBreed(0)
+                                   setDisableInputs(false)
+                                 }else{
+                                   setName("")
+                                   setSex(0)
+                                   setAnimal(0)
+                                   setBreed(0)
+                                   setDisableInputs(true)
+                                 }
+                                 setCategory(e.target.value)}}}
+                               className="form-group__input"
+                               aria-label="Default select example"
+                             >
+                               <option >Select category</option>
+                               <option value={1}>Animal</option>
+                               <option  value={2}>Sperm</option>
+                             </select>
                                 </div>
                               </div>
                           <div className="col-6">
@@ -257,13 +292,13 @@ async function upload(event){
                                 <label className="sherah-wc__form-label">
                                   Animal*
                                 </label>
-                                <select
+                                <select value={animal}
                                   onChange={(e)=>{setAnimal(e.target.value)}}
                                   className="form-group__input"
                                   aria-label="Default select example"
                                 >
                                   <option >Select animal</option>
-                                  <option  value={0}>Dog</option>
+                                  <option  value={1}>Dog</option>
                                   {/* <option value={2}>Sperm</option> */}
                                 </select>
                               </div>
@@ -287,13 +322,13 @@ async function upload(event){
                                   <label className="sherah-wc__form-label">
                                     Breed*
                                   </label>
-                                  <select disabled={disableInputs}
+                                  <select value={breed} disabled={disableInputs}
                                     onChange={(e)=>{setBreed(e.target.value)}}
                                     className="form-group__input"
                                     aria-label="Default select example"
                                   >
                                     <option >Select breed..</option>
-                                    <option value="Dog">Dog</option>
+                                    <option value={1}>Dog</option>
                                 
                                   </select>
                                 </div>
@@ -304,7 +339,7 @@ async function upload(event){
                                   <label className="sherah-wc__form-label">
                                     Date of birth*
                                   </label>
-                                  <input  disabled={disableInputs} type="date" 
+                                  <input value={dateOfBirth} disabled={disableInputs} type="date" 
                                 
                                   onChange={(e)=>{setDateOfBirth(e.target.value)}}/>
                                 </div>
@@ -316,14 +351,14 @@ async function upload(event){
                                   <label className="sherah-wc__form-label">
                                     Sex*
                                   </label>
-                                  <select
+                                  <select value={sex}
                                     onChange={(e)=>{setSex(e.target.value)}}
                                     className="form-group__input"
                                     aria-label="Default select example"
                                   >
                                     <option >Select sex..</option>
-                                    <option value="Male">Male</option>
-                                    <option  value="Female">Female</option>
+                                    <option value={1}>Male</option>
+                                    <option  value={2}>Female</option>
                                 
                                   </select>
                                 </div>
@@ -468,7 +503,7 @@ async function upload(event){
                                       }} className="image-upload-group__single image-upload-group__single--upload">
                                         <input
                                           onChange={(e)=>{
-                                            debugger;
+                                        
                                             AddImage(e)}}
                                           type="file"
                                           className="btn-check"
@@ -552,7 +587,7 @@ async function upload(event){
                                           }} 
                                           className="image-upload-group__single image-upload-group__single--upload">
                                         <input
-                                          onChange={(e)=>{  debugger; AddVideo(e)}}
+                                          onChange={(e)=>{  AddVideo(e)}}
                                           type="file"
                                           className="btn-check"
                                           name="vid"

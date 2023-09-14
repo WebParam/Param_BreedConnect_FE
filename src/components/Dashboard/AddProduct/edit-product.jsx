@@ -13,7 +13,7 @@ export default function EditProduct() {
   const [id, setId] = useState(cookies.get('productId'));
 
 
-
+ 
 
 
 
@@ -112,9 +112,10 @@ function moveToStep(stepNumber){
 
   if(step == 3){
     if(files.length > 0){
-      setStep(stepNumber);
 
     }
+    setStep(stepNumber);
+
   }
 
   if(step == 4){
@@ -129,6 +130,7 @@ function moveToStep(stepNumber){
 
 
 async function upload(event){
+  event.preventDefault()
 
   const _id = toast.loading("saving...", {
     position: "top-center",
@@ -159,9 +161,9 @@ async function upload(event){
   payload.append("files[]", files[i]);
 }
 
+console.log("Payload: " + payload)
 
-
-  const response = await  updateProduct(myResponse);
+  const response = await  updateProduct(payload);
   console.log("my response",myResponse);
   if(response!=null && response.status ==200){
     toast.update(_id, {
@@ -206,7 +208,7 @@ useEffect(() => {
         setAnimal(response.animal)
         setPrice(response.price)
         setSex(response.sex)
-       setFiles(response.images)
+     //  setFiles(response.images)
         setLocation(response.location)
         setDateOfBirth(response.dateOfBirth)
         setColorMarkings(response.colorMarkings)
@@ -214,13 +216,9 @@ useEffect(() => {
         setHealthRecords(response.healthRecords)
         setGeneticTests(response.geneticTests)
         setBreed(response.breed)
-        setVideos(response.videos)
-      //  setFiles(response.images)
-        // const updatedFiles = [...files, response.images[0]];
-        // setFiles(updatedFiles);
-        // const updatedPreviews = [...preview, response.images];
-        // setPreview(updatedPreviews);
-        // console.log(preview)
+      //  setVideos(response.videos)
+  
+    
         toast.dismiss(_id);
       } else {
         toast.update(_id, {
