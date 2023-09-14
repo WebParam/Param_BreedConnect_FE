@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "react-input-range/lib/css/index.css";
 import productDatas from "../../data/products.json";
 import BreadcrumbCom from "../BreadcrumbCom";
@@ -6,7 +6,8 @@ import ProductCardStyleOne from "../Helpers/Cards/ProductCardStyleOne";
 import DataIteration from "../Helpers/DataIteration";
 import Layout from "../Partials/Layout";
 import ProductsFilter from "./ProductsFilter";
-
+import { getAllProducts } from "../../api/endpoints";
+import { ToastContainer, toast } from 'react-toastify';
 export default function AllProductPage() {
   const [filters, setFilter] = useState({
     mobileLaptop: false,
@@ -36,6 +37,8 @@ export default function AllProductPage() {
     sizeFit: false,
   });
 
+  const [products, setProducts]  =useState()
+
   const checkboxHandler = (e) => {
     const { name } = e.target;
     setFilter((prevState) => ({
@@ -51,11 +54,55 @@ export default function AllProductPage() {
   };
   const [filterToggle, setToggle] = useState(false);
 
-  const { products } = productDatas;
+ // const { products } = productDatas;
+
+
+  
+  useEffect(() => {
+  
+    getAllProduct()
+  }, [])
+  
+
+
+  async function getAllProduct(event){
+
+    const _id = toast.loading("Please wait...", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  
+   
+  
+  
+    const response = await  getAllProducts();
+    if(response!=null && response.status ==200){
+      setProducts(response.data)
+      console.log(response.data)
+      toast.dismiss(_id)
+    }else{
+      toast.update(_id, {
+        autoClose:2000,
+        render: "Error loading products",
+        type: "error",
+        isLoading: false,
+        
+      });
+    }
+  
+  }
+
 
   return (
     <>
       <Layout>
+      <ToastContainer />
         <div className="products-page-wrapper w-full">
           <div className="container-x mx-auto">
             <BreadcrumbCom />
@@ -131,7 +178,7 @@ export default function AllProductPage() {
                   </button>
                 </div>
                 <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1  xl:gap-[30px] gap-5 mb-[40px]">
-                  <DataIteration datas={products} startLength={0} endLength={6}>
+                  <DataIteration datas={products} >
                     {({ datas }) => (
                       <div data-aos="fade-up" key={datas.id}>
                         <ProductCardStyleOne datas={datas} />
@@ -150,7 +197,7 @@ export default function AllProductPage() {
                 <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5 mb-[40px]">
                   <DataIteration
                     datas={products}
-                    startLength={6}
+                    startLength={0}
                     endLength={15}
                   >
                     {({ datas }) => (

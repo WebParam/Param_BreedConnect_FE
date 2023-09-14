@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from "react";
 import DashboardLayout from "../../Partials/DashboardLayout";
 import { Link, useLocation } from "react-router-dom";
-import { getProduct, uploadProduct } from "../../../api/endpoints";
+import { getProduct, updateProduct, uploadProduct } from "../../../api/endpoints";
 import { ToastContainer, toast } from 'react-toastify';
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
 
-export default function AddProduct() {
+export default function EditProduct() {
   
 
+  const [id, setId] = useState(cookies.get('productId'));
 
 
 
 
-const [category, setCategory] = useState(0);
+
+
+const [category, setCategory] = useState("");
 const [animal , setAnimal] = useState(0);
 
 const [name, setName] = useState("");
@@ -44,8 +47,7 @@ const getHashContent = _location.hash.split("#");
 const [step, setStep] = useState(1);
 const [switchDashboard, setSwitchDashboard] = useState(false);
 const [active, setActive] = useState("dashboard");
-
-
+const [myResponse, setMyResponse] = useState();
 
 
 useEffect(() => {
@@ -68,7 +70,7 @@ function AddImage(event){
 }
 
 function AddVideo(event){
-  debugger;
+
   const video = event.target.files[0];
   const videoBlob = new Blob([video], { type: video.type });
   const videoUrl = window.URL.createObjectURL(videoBlob);
@@ -94,7 +96,7 @@ function moveToStep(stepNumber){
       if(name && sex && breed && colorMarkings && dateOfBirth && animal){
         setStep(stepNumber);
     }
-  }else if(category == 1){
+  }else if(category == 2){
    
     if(name && sex > 0 && animal > 0){
       setStep(stepNumber);
@@ -159,16 +161,17 @@ async function upload(event){
 
 
 
-  const response = await  uploadProduct(payload);
+  const response = await  updateProduct(myResponse);
+  console.log("my response",myResponse);
   if(response!=null && response.status ==200){
     toast.update(_id, {
       autoClose:2000,
-      render: `successfully uploaded product`,
+      render: `successfully updated product`,
       type: "success",
       isLoading: false,
     });
 
-    console.log(response);
+    console.log("payload",response);
   }else{
     toast.update(_id, {
       autoClose:2000,
@@ -180,6 +183,70 @@ async function upload(event){
   }
 
 }
+
+useEffect(() => {
+  async function fetchData() {
+    const _id = toast.loading("Please wait...", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
+    try {
+      const response = await getProduct(id); // Pass the id to getProduct
+      if (response != null || response.status === 200) {
+        setMyResponse(response);
+        setCategory(response.category)
+        setName(response.name)
+        setAnimal(response.animal)
+        setPrice(response.price)
+        setSex(response.sex)
+       setFiles(response.images)
+        setLocation(response.location)
+        setDateOfBirth(response.dateOfBirth)
+        setColorMarkings(response.colorMarkings)
+        setVideos(response.videos)
+        setHealthRecords(response.healthRecords)
+        setGeneticTests(response.geneticTests)
+        setBreed(response.breed)
+        setVideos(response.videos)
+      //  setFiles(response.images)
+        // const updatedFiles = [...files, response.images[0]];
+        // setFiles(updatedFiles);
+        // const updatedPreviews = [...preview, response.images];
+        // setPreview(updatedPreviews);
+        // console.log(preview)
+        toast.dismiss(_id);
+      } else {
+        toast.update(_id, {
+          autoClose: 2000,
+          render: "Error loading product",
+          type: "error",
+          isLoading: false,
+        });
+      }
+    } catch (error) {
+      console.error("Error fetching product:", error);
+      toast.update(_id, {
+        autoClose: 2000,
+        render: "Error loading product",
+        type: "error",
+        isLoading: false,
+      });
+    }
+  }
+
+  if (id) {
+    fetchData();
+  }
+}, [id]); // Run when id changes
+
+
   return (
    <>
 <DashboardLayout>
@@ -195,13 +262,13 @@ async function upload(event){
           <div className="row">
             <div className="col-12">
               <div className="sherah-breadcrumb mg-top-30">
-                <h2 className="sherah-breadcrumb__title">Upload Product</h2>
+                <h2 className="sherah-breadcrumb__title">Update Product</h2>
                 <ul className="sherah-breadcrumb__list">
                   <li>
                     <a href="#">Home</a>
                   </li>
                   <li className="active">
-                    <a href="profile-info.html">Upload Product</a>
+                    <a href="profile-info.html">Update Product</a>
                   </li>
                 </ul>
               </div>
@@ -223,32 +290,32 @@ async function upload(event){
                                   <label className="sherah-wc__form-label">
                                     Category*
                                   </label>
-                                  <select
+                                  <select value={category} 
                                
-                                    onChange={(e)=>{
-                                      
-                                     {
-                                      if(e.target.value == "1"){
-                                        setName("")
-                                        setSex(0)
-                                        setAnimal(0)
-                                        setBreed(0)
-                                        setDisableInputs(false)
-                                      }else{
-                                        setName("")
-                                        setSex(0)
-                                        setAnimal(0)
-                                        setBreed(0)
-                                        setDisableInputs(true)
-                                      }
-                                      setCategory(e.target.value)}}}
-                                    className="form-group__input"
-                                    aria-label="Default select example"
-                                  >
-                                    <option >Select category</option>
-                                    <option value={1}>Animal</option>
-                                    <option  value={2}>Sperm</option>
-                                  </select>
+                               onChange={(e)=>{
+                                 
+                                {
+                                 if(e.target.value == "1"){
+                                   setName("")
+                                   setSex(0)
+                                   setAnimal(0)
+                                   setBreed(0)
+                                   setDisableInputs(false)
+                                 }else{
+                                   setName("")
+                                   setSex(0)
+                                   setAnimal(0)
+                                   setBreed(0)
+                                   setDisableInputs(true)
+                                 }
+                                 setCategory(e.target.value)}}}
+                               className="form-group__input"
+                               aria-label="Default select example"
+                             >
+                               <option >Select category</option>
+                               <option value={1}>Animal</option>
+                               <option  value={2}>Sperm</option>
+                             </select>
                                 </div>
                               </div>
                           <div className="col-6">
@@ -257,13 +324,13 @@ async function upload(event){
                                 <label className="sherah-wc__form-label">
                                   Animal*
                                 </label>
-                                <select
+                                <select value={animal}
                                   onChange={(e)=>{setAnimal(e.target.value)}}
                                   className="form-group__input"
                                   aria-label="Default select example"
                                 >
                                   <option >Select animal</option>
-                                  <option  value={0}>Dog</option>
+                                  <option  value={1}>Dog</option>
                                   {/* <option value={2}>Sperm</option> */}
                                 </select>
                               </div>
@@ -287,13 +354,13 @@ async function upload(event){
                                   <label className="sherah-wc__form-label">
                                     Breed*
                                   </label>
-                                  <select disabled={disableInputs}
+                                  <select value={breed} disabled={disableInputs}
                                     onChange={(e)=>{setBreed(e.target.value)}}
                                     className="form-group__input"
                                     aria-label="Default select example"
                                   >
                                     <option >Select breed..</option>
-                                    <option value="Dog">Dog</option>
+                                    <option value={1}>Dog</option>
                                 
                                   </select>
                                 </div>
@@ -304,7 +371,7 @@ async function upload(event){
                                   <label className="sherah-wc__form-label">
                                     Date of birth*
                                   </label>
-                                  <input  disabled={disableInputs} type="date" 
+                                  <input value={dateOfBirth} disabled={disableInputs} type="date" 
                                 
                                   onChange={(e)=>{setDateOfBirth(e.target.value)}}/>
                                 </div>
@@ -316,14 +383,14 @@ async function upload(event){
                                   <label className="sherah-wc__form-label">
                                     Sex*
                                   </label>
-                                  <select
+                                  <select value={sex}
                                     onChange={(e)=>{setSex(e.target.value)}}
                                     className="form-group__input"
                                     aria-label="Default select example"
                                   >
                                     <option >Select sex..</option>
-                                    <option value="Male">Male</option>
-                                    <option  value="Female">Female</option>
+                                    <option value={1}>Male</option>
+                                    <option  value={2}>Female</option>
                                 
                                   </select>
                                 </div>
@@ -468,7 +535,7 @@ async function upload(event){
                                       }} className="image-upload-group__single image-upload-group__single--upload">
                                         <input
                                           onChange={(e)=>{
-                                            debugger;
+                                        
                                             AddImage(e)}}
                                           type="file"
                                           className="btn-check"
@@ -552,7 +619,7 @@ async function upload(event){
                                           }} 
                                           className="image-upload-group__single image-upload-group__single--upload">
                                         <input
-                                          onChange={(e)=>{  debugger; AddVideo(e)}}
+                                          onChange={(e)=>{  AddVideo(e)}}
                                           type="file"
                                           className="btn-check"
                                           name="vid"

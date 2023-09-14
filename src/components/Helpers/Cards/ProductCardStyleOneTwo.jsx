@@ -4,6 +4,17 @@ import QuickViewIco from "../icons/QuickViewIco";
 import ThinLove from "../icons/ThinLove";
 
 export default function ProductCardStyleOneTwo({ datas }) {
+
+
+
+
+
+
+
+
+
+
+  
   return (
     <div
       className="product-card-style-one-two w-full h-full bg-white relative group overflow-hidden"

@@ -2,21 +2,34 @@ import Compair from "../icons/Compair";
 import QuickViewIco from "../icons/QuickViewIco";
 import Star from "../icons/Star";
 import ThinLove from "../icons/ThinLove";
+import Cookies from 'universal-cookie';
 
 export default function ProductCardStyleOne({ datas,type }) {
   const available =
     (datas.cam_product_sale /
       (datas.cam_product_available + datas.cam_product_sale)) *
     100;
+
+ const handleClick = (id) => {
+      const cookies = new Cookies();
+
+      // Set a cookie
+      cookies.set('productId', id );
+      window.location.href="/edit-product"
+    };
+
+ 
+  
+
   return (
-    <div
+    <div 
       className="product-card-one w-full h-full bg-white relative group overflow-hidden"
       style={{ boxShadow: "0px 15px 64px 0px rgba(0, 0, 0, 0.05)" }}
     >
-      <div
+      <div  onClick={() => handleClick(datas.id)}
         className="product-card-img w-full h-[300px]"
         style={{
-          background: `url(${process.env.PUBLIC_URL}/assets/images/${datas.image}) no-repeat center`,
+          background: `url(${datas.images[0].url}) no-repeat center`,
         }}
       >
         {/* product available progress */}
@@ -85,7 +98,7 @@ export default function ProductCardStyleOne({ datas,type }) {
         </div>
         <a href="/single-product">
           <p className="title mb-2 text-[15px] font-600 text-qblack leading-[24px] line-clamp-2 hover:text-blue-600">
-            {datas.title}
+            {datas.name}
           </p>
         </a>
         <p className="price">
@@ -93,7 +106,7 @@ export default function ProductCardStyleOne({ datas,type }) {
             {datas.price}
           </span>
           <span className="offer-price text-qred font-600 text-[18px] ml-2">
-            {datas.offer_price}
+            {datas.price}
           </span>
         </p>
       </div>
