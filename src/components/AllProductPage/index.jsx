@@ -194,7 +194,7 @@ export default function AllProductPage() {
                     className="w-full h-full object-contain"
                   />
                 </div>
-                <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5 mb-[40px]">
+                {/* <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5 mb-[40px]">
                   <DataIteration
                     datas={products}
                     startLength={0}
@@ -206,7 +206,7 @@ export default function AllProductPage() {
                       </div>
                     )}
                   </DataIteration>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
