@@ -8,7 +8,7 @@ const header =  {
     }
   
 // const origin = "https://localhost:7061";
-const origin = "https://7913-41-113-181-84.ngrok-free.app"
+const origin = "https://cb84-154-0-14-142.ngrok-free.app"
 
 export async function GET(endPoint) {
   try {

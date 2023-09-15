@@ -8,9 +8,9 @@ import { ToastContainer, toast } from 'react-toastify';
 export default function EditProduct() {
   
 
+  const [categoryEroor , setCategoryEroor] = useState(false);
+  
 
-
-  const [categoryEroor, setCategoryEroor] = useState(false);
   const [animalEroor , setAnimalEroor] = useState(false);
   
   const [nameEroor, setNameEroor] = useState(false);
@@ -21,10 +21,6 @@ export default function EditProduct() {
   
   const [healthRecordsEroor , setHealthRecordsEroor] = useState(false);
   const [geneticTestsEroor, setGeneticTestsEroor]= useState(false);
-  
-  
-  const [filesEroor , setFilesEroor] = useState(false)
-  const [videosEroor , setVideosEroor] = useState(false);
   
   const [availabilityEroor , setAvailabilityEroor] = useState(false);
   const [priceEroor , setPriceEroor] = useState(false)
@@ -105,47 +101,101 @@ function RemoveImage(index){
 
 
 function moveToStep(stepNumber){
+
   if(step == 1){
+    
     if(category == 1){
-   
+      setCategoryEroor(false)
       setDisableInputs(false)
-      if(name && sex && breed && colorMarkings && dateOfBirth && animal){
+      if(name != "" && sex > 0 && breed > 0 && colorMarkings != "" && dateOfBirth != "" && animal > 0){
+        setCategoryEroor(false)
+        setNameEroor(false)
+        setBreedEroor(false)
+        setColorMarkingsEroor(false)
+        setDateOfBirthEroor(false)
+        setAnimalEroor(false)
+        setSexEroor(false)
         setStep(stepNumber);
-    }else if (!name){
+  
+    } else{if (!name){
       setNameEroor(true)
 
-    }else if (!sex){
-      setNameEroor(true)
+    }if (!sex){
+      setSexEroor(true)
     }
-    else if (!breed){
-      setNameEroor(true)
+    if (!breed){
+      setBreedEroor(true)
     }
-    else if (!colorMarkings){
-      setNameEroor(true)
+    if (!colorMarkings){
+      setColorMarkingsEroor(true)
     }
-    else if (!dateOfBirth){
-      setNameEroor(true)
-    }else if (!animal){
-      setNameEroor(true)
-    }
+    if (!dateOfBirth){
+      setDateOfBirthEroor(true)
+    }if (!animal){
+      setAnimalEroor(true)
+    }}
   }else if(category == 2){
-   
+ 
+    setCategoryEroor(false)
     if(name && sex > 0 && animal > 0){
+        
+      setNameEroor(false)
+        
+      setAnimalEroor(false)
+      setSexEroor(false)
       setStep(stepNumber);
+  }else{
+    if(!name){
+      setNameEroor(true)
+    }
+    if(!sex){
+      setSexEroor(true)
+    }
+    if(!animal){
+      setAnimalEroor(true)
+    }
   }
+
+  }else{
+    setCategoryEroor(true)
   }
-  }
+}
 
   if(step == 2){
     if(healthRecords && geneticTests){
       setStep(stepNumber);
+    }else{
+      if(!healthRecords){
+        setHealthRecordsEroor(true)
+      }
+      if(!geneticTests){
+        setGeneticTestsEroor(true)
+      }
     }
+
   }
 
   if(step == 3){
     if(files.length > 0){
       setStep(stepNumber);
-
+    }else{
+      const _id = toast.loading("", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      toast.update(_id, {
+        autoClose:2000,
+        render: "select at least one file",
+        type: "error",
+        isLoading: false,
+        
+      });
     }
   }
 
@@ -154,6 +204,16 @@ function moveToStep(stepNumber){
       setDisableUploadBtn(false)
       setStep(stepNumber);
 
+    }else{
+      if(availability.length == 0){
+        setAvailabilityEroor(true)
+      }
+      if(!price.length == 0){
+        setPriceEroor(true)
+      }
+      if(!location){
+        setLocationEroor(true)
+      }
     }
   }
 }
@@ -162,7 +222,7 @@ function moveToStep(stepNumber){
 
 async function upload(event){
 
-  event.preventDefault();
+if(availability.length > 0 && price.length > 0 && location !== "" ){
   const _id = toast.loading("saving...", {
     position: "top-center",
     autoClose: 2000,
@@ -213,7 +273,22 @@ async function upload(event){
       
     });
   }
+}else{
+  if(availability.length == 0){
+setAvailabilityEroor(true)
+  }
+  if(price.length == 0){
+      setPriceEroor(true)
+  }
+
+  if(location !== ""){
+    setLocationEroor(true)
+  }
 }
+ 
+}
+
+
 
   return (
    <>
@@ -256,31 +331,42 @@ async function upload(event){
                               
                                 <div className="form-group">
                                   <label className="sherah-wc__form-label">
-                                    Category*
+                                    Category* <span style = {{marginLeft:"3px", fontWeight:"500px", color:"red"}}>{categoryEroor && "select category"}</span>
                                   </label>
                                   <select value={category} 
                                
                                onChange={(e)=>{
-                                 
+                                setCategoryEroor(false)
+                                setNameEroor(false)
+                                setBreedEroor(false)
+                                setColorMarkingsEroor(false)
+                                setDateOfBirthEroor(false)
+                                setAnimalEroor(false)
+                                setSexEroor(false)
+                                setDateOfBirthEroor(false)
+                                setColorMarkingsEroor(false)
                                 {
-                                 if(e.target.value == "1"){
+                                 if(e.target.value == 1){
+                                  setCategoryEroor(false)
                                    setName("")
                                    setSex(0)
                                    setAnimal(0)
                                    setBreed(0)
                                    setDisableInputs(false)
-                                 }else{
+                                 }else if (e.target.value == 2){
+                                  setCategoryEroor(false)
                                    setName("")
                                    setSex(0)
                                    setAnimal(0)
                                    setBreed(0)
+                                   setDateOfBirth("")
                                    setDisableInputs(true)
                                  }
                                  setCategory(e.target.value)}}}
                                className="form-group__input"
                                aria-label="Default select example"
                              >
-                               <option >Select category</option>
+                               <option value ={0} >Select category</option>
                                <option value={1}>Animal</option>
                                <option  value={2}>Sperm</option>
                              </select>
@@ -290,14 +376,22 @@ async function upload(event){
                               
                               <div className="form-group">
                                 <label className="sherah-wc__form-label">
-                                  Animal*
+                                  Animal* <span style = {{marginLeft:"3px", fontWeight:"500px", color:"red"}}>{animalEroor && "select animal"}</span>
                                 </label>
                                 <select value={animal}
-                                  onChange={(e)=>{setAnimal(e.target.value)}}
+                                  onChange={(e)=>{setAnimal(e.target.value)
+                                    if(e.target.value == 0){
+                                      setAnimalEroor(true)
+                                    }else{
+                                      setAnimalEroor(false)
+
+                                    }
+                                
+                                  }}
                                   className="form-group__input"
                                   aria-label="Default select example"
                                 >
-                                  <option >Select animal</option>
+                                  <option value={0}>Select animal</option>
                                   <option  value={1}>Dog</option>
                                   {/* <option value={2}>Sperm</option> */}
                                 </select>
@@ -306,11 +400,18 @@ async function upload(event){
                               <div className="col-6">
                               <div className="form-group">
                                   <label className="sherah-wc__form-label">
-                                    Name*
+                                    Name* <span style = {{marginLeft:"3px", fontWeight:"500px", color:"red"}}>{nameEroor && "select name"}</span>
                                   </label>
                                   <input  type="text" 
                                   value={name}
-                                  onChange={ (e)=>{  setName(e?.target?.value); }
+                                  onChange={ (e)=>{  {setName(e?.target?.value)
+                                    if(e.target.value == ""){
+                                      setNameEroor(true)
+                                    }else{
+                                      setNameEroor(false)
+
+                                    }
+                                  } }
                                 }
                                   
                                   />
@@ -320,14 +421,20 @@ async function upload(event){
                               <div className="col-lg-6 col-md-6 col-12">
                                 <div className="form-group">
                                   <label className="sherah-wc__form-label">
-                                    Breed*
+                                    Breed* <span style = {{marginLeft:"3px", fontWeight:"500px", color:"red"}}>{breedEroor && "select breed"}</span>
                                   </label>
                                   <select value={breed} disabled={disableInputs}
-                                    onChange={(e)=>{setBreed(e.target.value)}}
+                                    onChange={(e)=>{setBreed(e.target.value)
+                                      if(e.target.value == 0){
+                                        setBreedEroor(true)
+                                      }else{
+                                        setBreedEroor(false)
+                                      }
+                                    }}
                                     className="form-group__input"
                                     aria-label="Default select example"
                                   >
-                                    <option >Select breed..</option>
+                                    <option value ={0}>Select breed..</option>
                                     <option value={1}>Dog</option>
                                 
                                   </select>
@@ -337,11 +444,19 @@ async function upload(event){
                               <div className="col-6">
                               <div className="form-group">
                                   <label className="sherah-wc__form-label">
-                                    Date of birth*
+                                    Date of birth* <span style = {{marginLeft:"3px", fontWeight:"500px", color:"red"}}>{dateOfBirthEroor && "select date"}</span>
                                   </label>
                                   <input value={dateOfBirth} disabled={disableInputs} type="date" 
                                 
-                                  onChange={(e)=>{setDateOfBirth(e.target.value)}}/>
+                                  onChange={(e)=>{setDateOfBirth(e.target.value)
+                                    if(e.target.value == ""){
+                                      setDateOfBirthEroor(true)
+
+                                    }else{
+                                      setDateOfBirthEroor(false)
+                                    }
+                              
+                                  }}/>
                                 </div>
                               </div>
                               
@@ -349,14 +464,20 @@ async function upload(event){
                               <div className="col-lg-6 col-md-6 col-12">
                                 <div className="form-group">
                                   <label className="sherah-wc__form-label">
-                                    Sex*
+                                    Sex* <span style = {{marginLeft:"3px", fontWeight:"500px", color:"red"}}>{sexEroor && "select sex"}</span>
                                   </label>
                                   <select value={sex}
-                                    onChange={(e)=>{setSex(e.target.value)}}
+                                    onChange={(e)=>{setSex(e.target.value)
+                                      if(e.target.value == 0){
+                                        setSexEroor(true)
+                                      }else{
+                                        setSexEroor(false)
+                                      }
+                                    }}
                                     className="form-group__input"
                                     aria-label="Default select example"
                                   >
-                                    <option >Select sex..</option>
+                                    <option value={0}>Select sex..</option>
                                     <option value={1}>Male</option>
                                     <option  value={2}>Female</option>
                                 
@@ -366,10 +487,14 @@ async function upload(event){
                             
                               <div className="col-12">
                                 <div className="form-group">
-                                  <label className="sherah-wc__form-label">Color / Markings</label>
+                                  <label className="sherah-wc__form-label">Color / Markings <span style = {{marginLeft:"3px", fontWeight:"500px", color:"red"}}>{colorMarkingsEroor && "select Color / Markings "}</span> </label>
                                   <div className="form-group__input">
                                     <textarea  disabled={disableInputs}
-                                      onChange={(e)=>{setColorMarkings(e.target.value)}}
+                                      onChange={(e)=>{setColorMarkings(e.target.value)
+                                        if(e.target.value == ""){
+                                          setColorMarkingsEroor(false)
+                                        }
+                                      }}
                                       className="sherah-wc__form-input"
                                       placeholder="Enter color / markings"
                                       type="text"
@@ -413,10 +538,16 @@ async function upload(event){
                   
                                 <div className="col-12">
                                   <div className="form-group">
-                                    <label className="sherah-wc__form-label">Health records</label>
+                                    <label className="sherah-wc__form-label">Health records <span style = {{marginLeft:"3px", fontWeight:"500px", color:"red"}}>{healthRecordsEroor && "enter Health records "}</span></label>
                                     <div className="form-group__input">
                                       <textarea
-                                        onChange={(e)=>{setHealthRecords(e.target.value)}}
+                                        onChange={(e)=>{setHealthRecords(e.target.value)
+                                          if(e.target.value == ""){
+                                            setHealthRecordsEroor(true);
+                                          }else{
+                                            setHealthRecordsEroor(false);
+                                          }
+                                        }}
                                         className="sherah-wc__form-input"
                                         placeholder="Enter color / markings"
                                         type="text"
@@ -429,10 +560,17 @@ async function upload(event){
                                 </div>
                                 <div className="col-12">
                                   <div className="form-group">
-                                    <label className="sherah-wc__form-label">Have genetic tests been conducted on the product? If yes, please share the results</label>
+                                    <label className="sherah-wc__form-label">Have genetic tests been conducted on the product? If yes, please share the results <span style = {{marginLeft:"3px", fontWeight:"500px", color:"red"}}>{geneticTestsEroor && "enter genetic tests "}</span></label>
                                     <div className="form-group__input">
                                       <textarea
-                                        onChange={(e)=>{setGeneticTests(e.target.value)}}
+                                        onChange={(e)=>{setGeneticTests(e.target.value)
+                                        
+                                        if(e.target.value == ""){
+                                          setGeneticTestsEroor(true);
+                                        }else{
+                                          setGeneticTestsEroor(false);
+                                        }
+                                        }}
                                         className="sherah-wc__form-input"
                                         placeholder="Enter color / markings"
                                         type="text"
@@ -679,10 +817,17 @@ async function upload(event){
                                 
                                   <div className="form-group">
                                     <label className="sherah-wc__form-label">
-                                      Availability status
+                                      Availability status <span style = {{marginLeft:"3px", fontWeight:"500px", color:"red"}}>{availabilityEroor && "enter valid availabilty "}</span>
                                     </label>
                                     <div className="switch-dashboard flex space-x-3 items-center">
-                                    <input type="number"  value={availability} onChange={(e)=>{setAvailability(e.target.value)}} />
+                                    <input type="number"  value={availability} onChange={(e)=>{setAvailability(e.target.value)
+                                    
+                                    if(e.target.value > 0){
+                                      setAvailabilityEroor(false)
+                                    }else{
+                                      setAvailabilityEroor(true)
+                                    }
+                                    }} />
                                       </div>
 
                                   </div>
@@ -691,17 +836,31 @@ async function upload(event){
                                 
                                 <div className="form-group">
                                   <label className="sherah-wc__form-label">
-                                    Pricing*
+                                    Pricing* <span style = {{marginLeft:"3px", fontWeight:"500px", color:"red"}}>{priceEroor && "enter valid price"}</span>
                                   </label>
-                                  <input   onChange={(e)=>{setPrice(e.target.value)}} value={price} type="number"/>
+                                  <input   onChange={(e)=>{setPrice(e.target.value)   
+                                  
+                                  if(e.target.value > 0){
+                                    setPriceEroor(false)
+                                  }else{
+                                    setPriceEroor(true)
+                                  }
+                                  }} value={price} type="number"/>
                                 </div>
                               </div>
                                 <div className="col-12">
                                 <div className="form-group">
                                     <label className="sherah-wc__form-label">
-                                      Location*
+                                      Location* <span style = {{marginLeft:"3px", fontWeight:"500px", color:"red"}}>{locationEroor && "enter location"}</span>
                                     </label>
-                                    <input   onChange={(e)=>{setLocation(e.target.value)}} 
+                                    <input   onChange={(e)=>{setLocation(e.target.value)
+                                    
+                                    if(location == ""){
+                                      setLocationEroor(true)
+                                    }else{
+                                      setLocationEroor(false)
+                                    }
+                                  }} 
                                     value={location} type="text"/>
                                   </div>
                                 </div>
@@ -717,7 +876,8 @@ async function upload(event){
                         onClick={(e)=>{ setStep(3); e.preventDefault();}}
                         className="sherah-btn sherah-btn__third">Back</button>
                           <button 
-                          onClick={(e)=>{upload()}}
+                          onClick={(e)=>{upload()
+                             e.preventDefault()}}
                             type="submit"
                             className="sherah-btn sherah-btn__primary"
                           >
