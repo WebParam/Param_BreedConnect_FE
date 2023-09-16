@@ -77,7 +77,7 @@ function moveToStep(stepNumber){
 }
 
 function upload(){
-
+debugger;
  const payload = new FormData();
  payload.append("category", category)
  payload.append("animal", animal)
