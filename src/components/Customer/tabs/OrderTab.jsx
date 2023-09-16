@@ -1,6 +1,6 @@
 import React from "react";
 import './stylesheets/tabs.css'
-import InputCom from "../../../Helpers/InputCom";
+import InputCom from "../../Helpers/InputCom";
 
 export default function OrderTab() {
   return (

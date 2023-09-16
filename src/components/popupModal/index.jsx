@@ -23,6 +23,7 @@ const PopupModal = ({ open, handleClose, modalTitle, modalContent, ind, btnLabel
     const [isDragging, setIsDragging] = useState(false);
     let [questionaires, setQuestionnaires] = useState([])
     const [checkedItems, setCheckedItems] = useState({});
+    const [selectedFiles, setSelectedFiles] = useState(null);
 
     const handleChange = (event,question) => {
         console.log("checked", event, question);
@@ -68,9 +69,11 @@ const PopupModal = ({ open, handleClose, modalTitle, modalContent, ind, btnLabel
         const droppedFiles = e.dataTransfer.files;
         console.log(droppedFiles);
     };
-    const handleFileInput = (e) => {
-        const selectedFiles = e.target.files;
-        console.log(selectedFiles);
+    const handleFileInput = async (e) => {
+        e.preventDefault();
+        setSelectedFiles(e.target.files[0]);
+
+  
     };
 
     const saveSelection = (value, question) => {
@@ -119,6 +122,23 @@ const PopupModal = ({ open, handleClose, modalTitle, modalContent, ind, btnLabel
         }
     };
 
+    const handleFileUpload = async () => {
+        if (selectedFiles) {
+          const formData = new FormData();
+          formData.append('file', selectedFiles);
+    
+          
+          try {
+           // const fileResponse = await getAttachmentS3URL(formData);
+           // console.log('File uploaded successfully', fileResponse.data);
+            // Handle success
+          } catch (error) {
+            console.error('Error uploading file', error);
+            // Handle error
+          }
+        }
+      };
+
     const handleClick = async () => {
         const _id = toast.loading("Logging in..", {
             position: "top-center",
@@ -133,6 +153,39 @@ const PopupModal = ({ open, handleClose, modalTitle, modalContent, ind, btnLabel
         if (index === modalContent?.length - 1) {
             setStart("Finish");
             setIndex(null);
+            //console.log("file to send", selectedFiles)
+           
+            const filePayload = {
+                userid: "64df521d7d17ef88d6964e30", 
+                name: "mase", 
+                documentType: 1,
+            }
+
+            
+           
+
+            console.log("file payload", filePayload)
+
+            // const fileResponse = await getAttachmentS3URL(filePayload);
+            // if(fileResponse!=null && fileResponse.status ==200){
+            //     console.log("file res", fileResponse)
+            // toast.update(_id, {
+            //     autoClose:2000,
+            //     render: "File Saved Successfully",
+            //     type: "success",
+            //     isLoading: false,
+            // });
+            // }else{
+            // toast.update(_id, {
+            //     autoClose:2000,
+            //     render: "Failed to save file",
+            //     type: "error",
+            //     isLoading: false,
+                
+            // });
+            // }
+
+
             const userProfile = {
                 userId:"64df521d7d17ef88d6964e30",
                 questionaires,
@@ -257,11 +310,12 @@ const PopupModal = ({ open, handleClose, modalTitle, modalContent, ind, btnLabel
                                                     >
                                                         <input
                                                             type="file"
-                                                            accept="image/*"
+                                                            accept="*/*"
                                                             onChange={handleFileInput}
                                                             multiple
 
                                                         ></input>
+                                                        <button onClick={handleFileUpload}>Upload</button>
 
                                                     </div>
 

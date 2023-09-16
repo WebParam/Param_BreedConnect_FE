@@ -37,6 +37,7 @@ import AddProductS1 from "./components/Dashboard/AddProduct/add-product-s1";
 import Questionnaires from "./components/Questionnaires/questionnaires";
 import ViewProductList from "./components/Dashboard/ViewProduct/view-product";
 import EditProduct from "./components/Dashboard/AddProduct/edit-product";
+import Customers from './components/Customer'
 export default function Routers() {
   return (
     <Routes>
@@ -46,7 +47,7 @@ export default function Routers() {
       <Route exact path="/signup" element={<Signup />} />
       <Route exact path="/signupbreeder" element={<SignupBreeder />} /> 
       <Route exact path="/breeder-profile" element={<BreederProfile />} />
-      <Route exact path="/all-products" element={<AllProductPage />} />
+      {/* <Route exact path="/all-products" element={<AllProductPage />} /> */}
       <Route exact path="/profile" element={<Profile />} />
       <Route exact path="/view-product-list" element={<ViewProductList />} />
       {/* <Route exact path="/home-two" element={<HomeTwo />} />
@@ -54,6 +55,7 @@ export default function Routers() {
       <Route exact path="/home-four" element={<HomeFour />} />
       <Route exact path="/home-five" element={<HomeFive />} />
     
+      // <Route exact path="/all-products" element={<AllProductPage />} />
       <Route exact path="/single-product" element={<SingleProductPage />} />
       <Route exact path="/cart" element={<CardPage />} />
       <Route exact path="/checkout" element={<CheakoutPage />} />
@@ -71,18 +73,25 @@ export default function Routers() {
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/signup" element={<Signup />} />
       <Route exact path="/signupbreeder" element={<SignupBreeder />} />
-      <Route exact path="/profile" element={<Profile />} />
+      <Route exact path="/profile" element={<Profile />} 
       <Route exact path="/become-saller" element={<BecomeSaller />} />
       <Route exact path="/privacy-policy" element={<PrivacyPolicy />} />
       <Route exact path="/terms-condition" element={<TermsCondition />} />
-      <Route exact path="/tinder" element={<Tinder/>} />
+     
       <Route exact path="*" element={<FourZeroFour />} /> */}
       <Route exact path="/tinder" element={<Tinder/>} />
       <Route exact path="/questionnaires" element={<Questionnaires/>} />
       <Route exact path="/add-product" element={<AddProduct/>} />
       <Route exact path="/add-product-s1" element={<AddProductS1/>} />
-      <Route exact path="/edit-product" element={<EditProduct/>} />
+      <Route exact path="/edit-product/:id" element={<EditProduct/>} />
       <Route exact path="*" element={<FourZeroFour />} />
+      <Route exact path="/all-products" element={<AllProductPage />} />
+      <Route exact path="/questionnaires" element={<Questionnaires/>} />
+      <Route exact path="/profile" element={<Profile />}  />
+      {/* <Route exact path="*" element={<FourZeroFour /> }/>
+      <Route exact path="/tinder" element={<Tinder/>}  /> */}
+      <Route exact path="/customer" element={<Customers/>}  />
+      
     </Routes>
   );
 }

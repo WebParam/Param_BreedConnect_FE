@@ -1,5 +1,5 @@
 import { LoginSuccess, RegisterSuccess } from "../services/loginService";
-import { GET, POST, PUT } from "./client";
+import { POST, GET } from "./client";
 
 
 //questionnaires
@@ -85,6 +85,24 @@ export const getAllProducts = async () => {
 };
 
 
+export const getBreederProducts = async (breederId) => {
+  try {
+    const getAllProductsResult = await GET(`products/breeder/${breederId}`);
+
+    if (getAllProductsResult != null && getAllProductsResult.status === 200) {
+      return getAllProductsResult; 
+    } else {
+     
+      console.error('Error: Unable to fetch products');
+      return null; // Return null or another appropriate value
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    return null; // Return null or another appropriate value
+  }
+};
+
+
 
 export const getProduct = async (productId) => {
   try {
@@ -117,6 +135,52 @@ export const RegisterBreeder = async (
 
 return registerResult;
 }
+
+
+export const AllProducts = async () => {
+  const productsResult = await GET('products')
+
+  if(productsResult!=null && productsResult.status==200){
+    return productsResult
+  }else{
+    alert("failed to fetch products")
+  }
+
+//return productsResult;
+}
+
+export const GetRequest = async () => {
+  const productsResult = await GET('products')
+
+  if(productsResult!=null && productsResult.status==200){
+    return productsResult
+  }else{
+    alert("failed to fetch products")
+  }
+
+//return productsResult;
+}
+
+export const RequestToPurchase = async (product) => {
+  console.log("product", product)
+  const payload = {
+    breederId: "64e7cccba2772a81945bf086",
+    customerId: "64e7cccba2772a819454f086",
+    productId: product.id,
+    status: 0
+  }
+  const requestResult = await POST(`purchaserequest/create`,payload)
+
+  if(requestResult!=null && requestResult.status==200){
+    alert("Requested Successfully")
+    return requestResult
+  }else{
+    alert("failed to request to purchase")
+  }
+
+//return productsResult;
+}
+
 
 
 export const LoginGoogle = async (
