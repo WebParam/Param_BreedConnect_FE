@@ -11,11 +11,11 @@ export default function ProductCardStyleOne({ datas,type }) {
     100;
 
  const handleClick = (id) => {
-      const cookies = new Cookies();
+      // const cookies = new Cookies();
 
       // Set a cookie
-      cookies.set('productId', id );
-      window.location.href="/edit-product"
+      // cookies.set('productId', id );
+      window.location.href=`/edit-product/${id}`
     };
 
  

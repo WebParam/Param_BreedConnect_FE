@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DashboardLayout from "../../Partials/DashboardLayout";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation,useParams } from "react-router-dom";
 import { getProduct, updateProduct, uploadProduct } from "../../../api/endpoints";
 import { ToastContainer, toast } from 'react-toastify';
 import Cookies from "universal-cookie";
@@ -8,7 +8,7 @@ import Cookies from "universal-cookie";
 export default function EditProduct() {
   
   const cookies = new Cookies();
-  const id = cookies.get("productId");
+  // const id = cookies.get("productId");
 
   const [categoryEroor , setCategoryEroor] = useState(false);
   
@@ -62,9 +62,11 @@ const [step, setStep] = useState(1);
 const [switchDashboard, setSwitchDashboard] = useState(false);
 const [active, setActive] = useState("dashboard");
 
-
+const { id } = useParams();
 
 useEffect(() => {
+  
+
   setActive(
     getHashContent && getHashContent.length > 1
       ? getHashContent[1]
