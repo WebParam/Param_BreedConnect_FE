@@ -2,12 +2,13 @@
 import axios from "axios"
 
 const header =  {
-      // "Authorization": `Anonymous`,
+     //  "Authorization": `Anonymous`,
       "Access-Control-Allow-Origin": "*",
+      "ngrok-skip-browser-warning": "69420",
     }
-
-const origin = "https://localhost:7061";
-
+  
+// const origin = "https://localhost:7061";
+const origin = "https://cb84-154-0-14-142.ngrok-free.app"
 
 export async function GET(endPoint) {
   try {

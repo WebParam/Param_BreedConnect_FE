@@ -3,10 +3,12 @@ import DashboardLayout from "../../Partials/DashboardLayout";
 import { Link, useLocation } from "react-router-dom";
 import { getProduct, updateProduct, uploadProduct } from "../../../api/endpoints";
 import { ToastContainer, toast } from 'react-toastify';
-
+import Cookies from "universal-cookie";
 
 export default function EditProduct() {
   
+  const cookies = new Cookies();
+  const id = cookies.get("productId");
 
   const [categoryEroor , setCategoryEroor] = useState(false);
   
@@ -254,7 +256,7 @@ if(availability.length > 0 && price.length > 0 && location !== "" ){
 
 
 
-  const response = await  uploadProduct(payload);
+  const response = await  updateProduct(payload);
   if(response!=null && response.status ==200){
     toast.update(_id, {
       autoClose:2000,
@@ -288,6 +290,65 @@ setAvailabilityEroor(true)
  
 }
 
+
+useEffect(() => {
+  async function fetchData() {
+    const _id = toast.loading("Please wait...", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
+    try {
+      const response = await getProduct(id); 
+      console.log(response)// Pass the id to getProduct
+      if (response != null || response.status === 200) {
+        
+        setCategory(response.category)
+        setName(response.name)
+        setAnimal(response.animal)
+        setPrice(response.price)
+        setSex(response.sex)
+        setFiles(response.images)
+        setLocation(response.location)
+        setDateOfBirth(response.dateOfBirth)
+        setColorMarkings(response.colorMarkings)
+        setVideos(response.videos)
+        setHealthRecords(response.healthRecords)
+        setGeneticTests(response.geneticTests)
+        setBreed(response.breed)
+        setVideos(response.videos)
+  
+    
+        toast.dismiss(_id);
+      } else {
+        toast.update(_id, {
+          autoClose: 2000,
+          render: "Error loading product",
+          type: "error",
+          isLoading: false,
+        });
+      }
+    } catch (error) {
+      console.error("Error fetching product:", error);
+      toast.update(_id, {
+        autoClose: 2000,
+        render: "Error loading product",
+        type: "error",
+        isLoading: false,
+      });
+    }
+  }
+
+  if (id) {
+    fetchData();
+  }
+}, [id]); // Run when id changes
 
 
   return (

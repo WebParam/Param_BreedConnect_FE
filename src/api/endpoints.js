@@ -1,5 +1,5 @@
 import { LoginSuccess, RegisterSuccess } from "../services/loginService";
-import { POST } from "./client";
+import { GET, POST, PUT } from "./client";
 
 
 //questionnaires
@@ -17,6 +17,20 @@ return profileResult;
 export const uploadProduct = async (payload)=>{
   console.log("product to save", payload)
   const productRes = await POST(`product/create`, payload);
+
+  if(productRes!=null && productRes.status == 200){
+    console.log("Successfully saved");
+    //LoginSuccess(loginResult);
+  }
+return productRes;
+}
+
+export const updateProduct = async (payload)=>{
+
+  
+  console.log("product to update", payload)
+
+  const productRes = await POST(`product/update`, payload);
 
   if(productRes!=null && productRes.status == 200){
     console.log("Successfully saved");
@@ -52,6 +66,42 @@ export const RegisterCustomer = async (payload )=>{
     }
   return registerResult;
 }
+
+export const getAllProducts = async () => {
+  try {
+    const getAllProductsResult = await GET(`products`);
+
+    if (getAllProductsResult != null && getAllProductsResult.status === 200) {
+      return getAllProductsResult; 
+    } else {
+     
+      console.error('Error: Unable to fetch products');
+      return null; // Return null or another appropriate value
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    return null; // Return null or another appropriate value
+  }
+};
+
+
+
+export const getProduct = async (productId) => {
+  try {
+    const getProductsResult = await GET(`product/${productId}`);
+
+    if (getProductsResult != null && getProductsResult.status === 200) {
+      return getProductsResult.data; // Return the data instead of the entire response
+    } else {
+      console.error('Error: Unable to fetch product');
+      return null; // Return null or another appropriate value
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    return null; // Return null or another appropriate value
+  }
+};
+
 
 export const RegisterBreeder = async (
   payload
