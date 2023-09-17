@@ -17,6 +17,7 @@ import ReviewTab from "./tabs/ReviewTab";
 import SupportTab from "./tabs/SupportTab";
 import WishlistTab from "./tabs/WishlistTab";
 import SwipesTab from "./tabs/SwipesTab";
+import Cookies from "universal-cookie";
 
 export default function Profile() {
   const [switchDashboard, setSwitchDashboard] = useState(false);
@@ -31,7 +32,13 @@ export default function Profile() {
     );
   }, [getHashContent]);
 
+  const cookies = new Cookies();
 
+function logout(){
+
+cookies.remove("bc-user");
+window.location.href="/"
+}
 
   return (
     <Layout childrenClasses="pt-0 pb-0">
@@ -138,7 +145,7 @@ export default function Profile() {
 
                     
                     <div className="item group">
-                      <Link to="/profile#profile">
+                      <a onClick={()=>{logout()}}>
                         <div className="flex space-x-3 items-center text-qgray hover:text-qblack">
                           <span>
                             <IcoLogout />
@@ -147,7 +154,7 @@ export default function Profile() {
                             Logoout
                           </span>
                         </div>
-                      </Link>
+                      </a>
                     </div>
                   </div>
                 </div>

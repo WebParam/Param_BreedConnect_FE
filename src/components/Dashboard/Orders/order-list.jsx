@@ -13,19 +13,20 @@ const [productRequests, setProductRequests] = useState([]);
 
 
 useEffect(()=>{
-  GetProductByBreeder();
+  GetPurchaseRequestsByBreeder();
 }, [])
 
-async function GetProductByBreeder(){
-  var id="admin"
-  const response = await  getBreederPurchaseRequests(id);
+async function GetPurchaseRequestsByBreeder(){
+  const response = await  getBreederPurchaseRequests();
   debugger;
+const res = response.data.map(x=>x.data);
 
-  setProductRequests(response?.data??[]);
+  setProductRequests(res);
 
 
 }
 
+console.log("Current req", productRequests)
 
 
   return (
@@ -77,25 +78,25 @@ async function GetProductByBreeder(){
                           <td className="sherah-table__column-1 sherah-table__data-1">
                             <div className="sherah-language-form__input">
                               <input className="sherah-language-form__check" id="checkbox" name="checkbox" type="checkbox" />
-                              <p className="crany-table__product--number"><a href="#" className="sherah-color1">#Kz025418</a></p>
+                              <p className="crany-table__product--number"><a href="#" className="sherah-color1">{x.id}</a></p>
                             </div>
                           </td>
                           <td className="sherah-table__column-2 sherah-table__data-2">
                             <div className="sherah-table__product-content">
-                              <p className="sherah-table__product-desc">Mendorcart</p>
+                              <p className="sherah-table__product-desc">{x.customer.firstname} {x.customer.lastname}</p>
                             </div>
                           </td>
                           <td className="sherah-table__column-3 sherah-table__data-3">
-                            <p className="sherah-table__product-desc">Mar 24, 2022 <span className="sherah-table__time">04:26 PM</span></p>
+                            <p className="sherah-table__product-desc">{x.date} <span className="sherah-table__time">04:26 PM</span></p>
                           </td>
                           <td className="sherah-table__column-4 sherah-table__data-4">
                             <div className="sherah-table__product-content">
-                              <div className="sherah-table__status sherah-color2 sherah-color2__bg--opactity">Paid</div>
+                              <div className="sherah-table__status sherah-color2 sherah-color2__bg--opactity">{x.status}</div>
                             </div>
                           </td>
                           <td className="sherah-table__column-5 sherah-table__data-5">
                             <div className="sherah-table__product-content">
-                              <p className="sherah-table__product-desc">$11250</p>
+                              <p className="sherah-table__product-desc">R{x.product.price}</p>
                             </div>
                           </td>
                           <td className="sherah-table__column-8 sherah-table__data-8">

@@ -22,7 +22,7 @@ export default function Login() {
   const navigate = useNavigate();
   const [ user, setUser ] = useState([]);
     const [ profile, setProfile ] = useState([]);
-
+    const cookies = new Cookies();
     const login = useGoogleLogin({
         onSuccess: (codeResponse) => CompleteGoogleLogin(codeResponse),
         onError: (error) => console.log('Login Failed:', error)
@@ -87,7 +87,7 @@ export default function Login() {
       setProfile(null);
   };
 
-  const cookies = new Cookies();
+
 
 
   const handleSubmit = async () => {

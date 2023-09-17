@@ -6,7 +6,7 @@ import ProductCardStyleOne from "../../Helpers/Cards/ProductCardStyleOne";
 import DataIteration from "../../Helpers/DataIteration";
 import Layout from "../../Partials/Layout";
 import ProductsFilter from "./ProductsFilter";
-import { getAllProducts } from "../../../api/endpoints";
+import { getAllProductsByCustomer } from "../../../api/endpoints";
 import { ToastContainer, toast } from 'react-toastify';
 export default function AllProductPage() {
   const [filters, setFilter] = useState({
@@ -81,7 +81,7 @@ export default function AllProductPage() {
    
   
   
-    const response = await  getAllProducts();
+    const response = await  getAllProductsByCustomer();
     if(response!=null && response.status ==200){
       setProducts(response.data)
       console.log(response.data)

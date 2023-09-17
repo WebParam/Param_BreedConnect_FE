@@ -10,9 +10,16 @@ import "../../jquery-ui.css"
 import "../../reset.css"
 import "../../style.css"
 // import "../../style.css"
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
 const currentUrl = window.location.href;
 console.log("re", currentUrl.includes("orders#!"))
+function logout(){
+
+  cookies.remove("bc-user");
+  window.location.href="/"
+  }
 
 export default function DashboardLayout({ children, childrenClasses }) {
  
@@ -415,7 +422,7 @@ export default function DashboardLayout({ children, childrenClasses }) {
               
            
               <li>
-                <a className="collapsed" href="login.html">
+                <a className="collapsed" onClick={()=>logout()}>
                   <span className="menu-bar__text">
                     <span className="sherah-menu-icon sherah-svg-icon__v1">
                       <svg

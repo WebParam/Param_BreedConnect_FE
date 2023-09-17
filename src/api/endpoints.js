@@ -1,6 +1,6 @@
 import { LoginSuccess, RegisterSuccess } from "../services/loginService";
 import { POST, GET } from "./client";
-
+import Cookies from "universal-cookie";
 
 //questionnaires
 export const completeQuestionnaires = async (profile)=>{
@@ -85,9 +85,9 @@ export const getAllProducts = async () => {
 };
 
 
-export const getBreederProducts = async (breederId) => {
+export const getAllProductsByCustomer = async () => {
   try {
-    const getAllProductsResult = await GET(`products/breeder/${breederId}`);
+    const getAllProductsResult = await GET(`products/customer`);
 
     if (getAllProductsResult != null && getAllProductsResult.status === 200) {
       return getAllProductsResult; 
@@ -103,9 +103,27 @@ export const getBreederProducts = async (breederId) => {
 };
 
 
-export const getBreederPurchaseRequests = async (breederId) => {
+export const getBreederProducts = async (breederId) => {
   try {
-    const getAllProductsResult = await GET(`purchaserequests/breeder/${breederId}`);
+    const getAllProductsResult = await GET(`products/breeder/}`);
+
+    if (getAllProductsResult != null && getAllProductsResult.status === 200) {
+      return getAllProductsResult; 
+    } else {
+     
+      console.error('Error: Unable to fetch products');
+      return null; // Return null or another appropriate value
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    return null; // Return null or another appropriate value
+  }
+};
+
+
+export const getBreederPurchaseRequests = async () => {
+  try {
+    const getAllProductsResult = await GET(`purchaserequests/breeder/`);
 
     if (getAllProductsResult != null && getAllProductsResult.status === 200) {
       return getAllProductsResult; 
@@ -181,20 +199,11 @@ export const GetRequest = async () => {
 
 export const RequestToPurchase = async (product) => {
   console.log("product", product)
-  const payload = {
-    // breederId: "64e7cccba2772a81945bf086",
-    customerId: "64e7cccba2772a819454f086",
-    productId: product.id,
-    // status: 0
-  }
-  const requestResult = await POST(`purchaserequest/create`,payload)
+ 
+  const requestResult = await POST(`purchaserequest/create`,product)
 
-  if(requestResult!=null && requestResult.status==200){
-    alert("Requested Successfully")
     return requestResult
-  }else{
-    alert("failed to request to purchase")
-  }
+
 
 //return productsResult;
 }
