@@ -208,6 +208,29 @@ export const RequestToPurchase = async (product) => {
 //return productsResult;
 }
 
+export const AcceptRequestToPurchase = async (purchaseRequestId) => {
+  const payload={
+    PurchaseRequestId: purchaseRequestId
+  }
+  const requestResult = await POST(`purchaserequest/accept`,payload)
+
+    return requestResult
+
+
+//return productsResult;
+}
+
+export const RejectRequestToPurchase = async (purchaseRequestId) => {
+  const payload={
+    PurchaseRequestId: purchaseRequestId
+  }
+  const requestResult = await POST(`purchaserequest/reject`,payload)
+
+    return requestResult
+
+}
+
+
 
 
 export const LoginGoogle = async (
