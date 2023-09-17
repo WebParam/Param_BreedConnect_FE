@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import "react-input-range/lib/css/index.css";
-import productDatas from "../../data/products.json";
-import BreadcrumbCom from "../BreadcrumbCom";
-import ProductCardStyleOne from "../Helpers/Cards/ProductCardStyleOne";
-import DataIteration from "../Helpers/DataIteration";
-import Layout from "../Partials/Layout";
+import productDatas from "../../../data/products.json";
+import BreadcrumbCom from "../../BreadcrumbCom";
+import ProductCardStyleOne from "../../Helpers/Cards/ProductCardStyleOne";
+import DataIteration from "../../Helpers/DataIteration";
+import Layout from "../../Partials/Layout";
 import ProductsFilter from "./ProductsFilter";
-import { getAllProducts } from "../../api/endpoints";
+import { getAllProducts } from "../../../api/endpoints";
 import { ToastContainer, toast } from 'react-toastify';
 export default function AllProductPage() {
   const [filters, setFilter] = useState({

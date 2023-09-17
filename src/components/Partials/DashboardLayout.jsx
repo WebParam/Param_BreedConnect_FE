@@ -11,6 +11,8 @@ import "../../reset.css"
 import "../../style.css"
 // import "../../style.css"
 
+const currentUrl = window.location.href;
+console.log("re", currentUrl.includes("orders#!"))
 
 export default function DashboardLayout({ children, childrenClasses }) {
  
@@ -45,7 +47,8 @@ export default function DashboardLayout({ children, childrenClasses }) {
             <ul className="menu-bar__one sherah-dashboard-menu" id="sherahMenu">
               <li>
                 <a
-                  href="#!"
+                className={currentUrl.includes("breeder-dash")?"":"collapsed"}
+                  href="/breeder-dash"
                   data-bs-toggle="collapse"
                   data-bs-target="#menu-item_home"
                 >
@@ -89,79 +92,7 @@ export default function DashboardLayout({ children, childrenClasses }) {
                   </span>
                 </a>
               </li>
-              <li>
-                <a
-                  href="#!"
-                  className="collapsed"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#menu-item_vendors"
-                >
-                  <span className="menu-bar__text">
-                    <span className="sherah-menu-icon sherah-svg-icon__v1">
-                      <svg
-                        className="sherah-svg-icon"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="22.038"
-                        height="17.943"
-                        viewBox="0 0 22.038 17.943"
-                      >
-                        <g id="Icon" transform="translate(-325.516 -274.72)">
-                          <path
-                            id="Path_221"
-                            data-name="Path 221"
-                            d="M340.751,385.008c.034.446.08.824.088,1.2a.755.755,0,0,1-.86.88q-6.792.005-13.585,0c-.619,0-.88-.279-.878-.907a7.668,7.668,0,0,1,12.323-5.909c.071.054.145.1.241.172a5.8,5.8,0,0,1,2.906-1.574,5.524,5.524,0,0,1,6.566,5.177c.016.69-.23.954-.916.956-1.775,0-3.549,0-5.324,0Zm-1.467.59a6.1,6.1,0,0,0-6.281-5.43c-3.108.1-6.1,2.872-5.9,5.43Zm-.127-4.139c.349.615.686,1.16.97,1.731a.524.524,0,0,0,.55.351c1.649-.013,3.3-.006,4.947-.008.117,0,.234-.019.394-.034a4.053,4.053,0,0,0-6.861-2.042Z"
-                            transform="translate(0 -94.43)"
-                          />
-                          <path
-                            id="Path_222"
-                            data-name="Path 222"
-                            d="M363.308,278.9a4.192,4.192,0,1,1,4.144,4.208A4.177,4.177,0,0,1,363.308,278.9Zm1.472-.009a2.721,2.721,0,1,0,2.718-2.7A2.717,2.717,0,0,0,364.779,278.892Z"
-                            transform="translate(-34.322)"
-                          />
-                          <path
-                            id="Path_223"
-                            data-name="Path 223"
-                            d="M474.686,302.114a3.121,3.121,0,1,1-3.123,3.119A3.121,3.121,0,0,1,474.686,302.114Zm1.649,3.123a1.651,1.651,0,1,0-1.665,1.648A1.652,1.652,0,0,0,476.335,305.237Z"
-                            transform="translate(-132.638 -24.879)"
-                          />
-                        </g>
-                      </svg>
-                    </span>
-                    <span className="menu-bar__name">Vendors</span>
-                  </span>{" "}
-                  <span className="sherah__toggle" />
-                </a>
-                {/* Dropdown Menu */}
-                <div
-                  className="collapse sherah__dropdown"
-                  id="menu-item_vendors"
-                  data-bs-parent="#sherahMenu"
-                >
-                  <ul className="menu-bar__one-dropdown">
-                    <li>
-                      <a href="vendor.html">
-                        <span className="menu-bar__text">
-                          <span className="menu-bar__name">Vendor Grid</span>
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="vendor-list.html">
-                        <span className="menu-bar__text">
-                          <span className="menu-bar__name">Vendor List</span>
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="vendor-profile.html">
-                        <span className="menu-bar__text">
-                          <span className="menu-bar__name">Vendor Profile</span>
-                        </span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
+              
               <li>
                 <a
                   href="#!"
@@ -295,33 +226,11 @@ export default function DashboardLayout({ children, childrenClasses }) {
                   </ul>
                 </div>
               </li>
-              <li>
-                <a href="wishlist.html" className="collapsed">
-                  <span className="menu-bar__text">
-                    <span className="sherah-menu-icon sherah-svg-icon__v1">
-                      <svg
-                        className="sherah-svg-icon"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="22.259"
-                        height="19.146"
-                        viewBox="0 0 22.259 19.146"
-                      >
-                        <path
-                          id="Path_229"
-                          data-name="Path 229"
-                          d="M601.866,379.059c.384-.409.661-.738.973-1.031a6.035,6.035,0,0,1,8.378.092,5.886,5.886,0,0,1,.126,8.307c-2.912,2.961-5.887,5.861-8.839,8.783a.788.788,0,0,1-1.258.011c-2.964-2.933-5.954-5.841-8.872-8.819a5.875,5.875,0,0,1,.169-8.3,6.037,6.037,0,0,1,8.343-.082C601.208,378.318,601.493,378.66,601.866,379.059Zm.008,14.528c.112-.1.187-.168.257-.237q3.966-3.931,7.928-7.866a4.341,4.341,0,0,0,.055-6.23,4.455,4.455,0,0,0-6.287.011c-.38.365-.749.741-1.124,1.112-.676.669-.985.672-1.648.017-.41-.405-.806-.826-1.233-1.213a4.4,4.4,0,0,0-6.158,6.284c2.629,2.636,5.283,5.246,7.927,7.867C601.67,393.412,601.758,393.484,601.874,393.588Z"
-                          transform="translate(-590.738 -376.383)"
-                        />
-                      </svg>
-                    </span>
-                    <span className="menu-bar__name">Wishlist</span>
-                  </span>
-                </a>
-              </li>
+             
               <li>
                 <a
-                  href="#!"
-                  className="collapsed"
+                  href="/orders"
+                  className={currentUrl.includes("orders")?"":"collapsed"}
                   data-bs-toggle="collapse"
                   data-bs-target="#menu-item__orders"
                 >
@@ -426,45 +335,9 @@ export default function DashboardLayout({ children, childrenClasses }) {
                   </span>
                 </a>
               </li>
+            
               <li>
-                <a href="history.html" className="collapsed">
-                  <span className="menu-bar__text">
-                    <span className="sherah-menu-icon sherah-svg-icon__v1">
-                      <svg
-                        className="sherah-svg-icon"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="19.527"
-                        height="19.582"
-                        viewBox="0 0 19.527 19.582"
-                      >
-                        <g id="Icon" transform="translate(-115.401 35.25)">
-                          <path
-                            id="Path_1026"
-                            data-name="Path 1026"
-                            d="M133.432-15.668h-13.28c-.137-.024-.274-.048-.412-.071a5.177,5.177,0,0,1-4.285-4.372,5.176,5.176,0,0,1,2.84-5.353,5.455,5.455,0,0,1,1.7-.5V-26.2q0-3.631,0-7.263a1.665,1.665,0,0,1,.776-1.489,4.105,4.105,0,0,1,.717-.295h9.185a5.733,5.733,0,0,1,.452.369c1.18,1.172,2.353,2.351,3.533,3.523a.846.846,0,0,1,.267.645q-.008,3.918,0,7.835c0,1.815,0,3.631,0,5.446a1.68,1.68,0,0,1-1.056,1.627A3.581,3.581,0,0,1,133.432-15.668ZM129.949-34.1h-8.134a.591.591,0,0,0-.669.669q0,3.633,0,7.265v.2a5.282,5.282,0,0,1,2.534,1.006.59.59,0,0,0,.326.107q3.75.009,7.5,0c.064,0,.128,0,.191,0a.579.579,0,0,1,.546.541.579.579,0,0,1-.484.6,1.439,1.439,0,0,1-.229.008h-6.663a5.29,5.29,0,0,1,.841,2.295h.32q2.784,0,5.567,0a.591.591,0,0,1,.6.353.574.574,0,0,1-.583.8q-2.841,0-5.682,0h-.223a5.257,5.257,0,0,1-1.884,3.442h9.254c.485,0,.7-.213.7-.7q0-6.271,0-12.542v-.22H130.6a.585.585,0,0,1-.654-.646c0-.452,0-.9,0-1.357Zm-5.358,13.269a4.023,4.023,0,0,0-4.016-4.013,4.023,4.023,0,0,0-4.021,4.008,4.024,4.024,0,0,0,4.025,4.023A4.024,4.024,0,0,0,124.591-20.834Zm8.268-10.6-1.747-1.748v1.748Z"
-                            transform="translate(0 0)"
-                          />
-                          <path
-                            id="Path_1027"
-                            data-name="Path 1027"
-                            d="M262.772,101.242q2.084,0,4.168,0a.572.572,0,0,1,.572.789.554.554,0,0,1-.539.357c-.376,0-.752,0-1.128,0h-7.151a1.177,1.177,0,0,1-.247-.014.572.572,0,0,1,.138-1.132q1.941,0,3.881,0Z"
-                            transform="translate(-135.313 -129.532)"
-                          />
-                          <path
-                            id="Path_1028"
-                            data-name="Path 1028"
-                            d="M206.635,193.557c.317,0,.609,0,.9,0a.576.576,0,1,1,0,1.147q-.708,0-1.415,0a.58.58,0,0,1-.631-.63q0-1.09,0-2.181a.576.576,0,1,1,1.147-.006C206.636,192.435,206.635,192.983,206.635,193.557Z"
-                            transform="translate(-85.488 -214.962)"
-                          />
-                        </g>
-                      </svg>
-                    </span>
-                    <span className="menu-bar__name">History</span>
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a className="collapsed" href="profile-info.html">
+                <a  className={currentUrl.includes("breeder-profile")?"":"collapsed"} href="/breeder-profile">
                   <span className="menu-bar__text">
                     <span className="sherah-menu-icon sherah-svg-icon__v1">
                       <svg
@@ -492,7 +365,7 @@ export default function DashboardLayout({ children, childrenClasses }) {
                         </g>
                       </svg>
                     </span>
-                    <span className="menu-bar__name">Settings</span>
+                    <span className="menu-bar__name">Profile</span>
                   </span>
                 </a>
               </li>
@@ -539,117 +412,8 @@ export default function DashboardLayout({ children, childrenClasses }) {
                   </span>
                 </a>
               </li>
-              <li>
-                <a
-                  href="#!"
-                  className="collapsed"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#menu-item__9"
-                >
-                  <span className="menu-bar__text">
-                    <span className="sherah-menu-icon sherah-svg-icon__v1">
-                      <svg
-                        className="sherah-svg-icon"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="22.029"
-                        height="20.972"
-                        viewBox="0 0 22.029 20.972"
-                      >
-                        <g id="Icon" transform="translate(-451.809 -436.251)">
-                          <path
-                            id="Path_234"
-                            data-name="Path 234"
-                            d="M467.255,446.744q0,4.038,0,8.077c0,1.587-.776,2.4-2.294,2.4-2.7,0-5.39-.01-8.085.005a1.466,1.466,0,0,1-1.172-.506q-1.723-1.84-3.5-3.629a1.259,1.259,0,0,1-.381-.945c0-.907-.017-1.814-.017-2.722q0-5.4.007-10.8a2.082,2.082,0,0,1,2.28-2.37q5.44,0,10.881,0a2.076,2.076,0,0,1,2.278,2.369Q467.259,442.683,467.255,446.744Zm-10.039,9.007h7.751c.691,0,.864-.179.864-.893q0-8.119,0-16.237c0-.719-.169-.895-.859-.895H454.1c-.678,0-.846.167-.846.857q0,6.29,0,12.58c0,.144.014.288.024.474,1.017,0,2,0,2.988,0,.725,0,.953.234.955.981C457.218,453.641,457.217,454.665,457.217,455.75Zm-2.774-2.636,1.3,1.408v-1.408Z"
-                            transform="translate(0 0)"
-                          />
-                          <path
-                            id="Path_235"
-                            data-name="Path 235"
-                            d="M640.677,446.844c0,2.765.005,5.531,0,8.3a2.052,2.052,0,0,1-1.852,2.175.733.733,0,1,1-.177-1.452.635.635,0,0,0,.6-.721q0-8.3,0-16.592a.632.632,0,0,0-.6-.721.734.734,0,1,1,.174-1.454,2.054,2.054,0,0,1,1.853,2.174C640.682,441.313,640.677,444.079,640.677,446.844Z"
-                            transform="translate(-170.125 -0.109)"
-                          />
-                          <path
-                            id="Path_236"
-                            data-name="Path 236"
-                            d="M678.986,446.8c0,2.78.005,5.56,0,8.339a2.04,2.04,0,0,1-1.845,2.13.725.725,0,0,1-.862-.655.736.736,0,0,1,.689-.8c.464-.088.595-.253.6-.81q.006-2.876,0-5.753,0-5.262,0-10.524c0-.722-.044-.777-.728-.953a.744.744,0,0,1-.558-.791.712.712,0,0,1,.735-.66,2.033,2.033,0,0,1,1.97,2.1c.013,2.021,0,4.043,0,6.065Q678.986,445.64,678.986,446.8Z"
-                            transform="translate(-205.15 -0.063)"
-                          />
-                        </g>
-                      </svg>
-                    </span>
-                    <span className="menu-bar__name">Pages</span>
-                  </span>
-                  <span className="sherah__toggle" />
-                </a>
-                {/* Dropdown Menu */}
-                <div
-                  className="collapse sherah__dropdown"
-                  id="menu-item__9"
-                  data-bs-parent="#sherahMenu"
-                >
-                  <ul className="menu-bar__one-dropdown">
-                    <li>
-                      <a href="notifications.html">
-                        <span className="menu-bar__text">
-                          <span className="menu-bar__name">Notifications</span>
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="terms-conditions.html">
-                        <span className="menu-bar__text">
-                          <span className="menu-bar__name">
-                            Terms &amp; Conditions
-                          </span>
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="faq.html">
-                        <span className="menu-bar__text">
-                          <span className="menu-bar__name">Faqs</span>
-                        </span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li>
-                <a className="collapsed" href="languages.html">
-                  <span className="menu-bar__text">
-                    <span className="sherah-menu-icon sherah-svg-icon__v1">
-                      <svg
-                        className="sherah-svg-icon"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20.929"
-                        height="20.929"
-                        viewBox="0 0 20.929 20.929"
-                      >
-                        <g id="Icon" transform="translate(-466.296 -331.887)">
-                          <path
-                            id="Path_237"
-                            data-name="Path 237"
-                            d="M487.224,344.233q0,3.248,0,6.5a1.878,1.878,0,0,1-2.1,2.087q-4.739,0-9.477,0a1.868,1.868,0,0,1-2.1-1.806c-.075-.511-.157-1.024-.193-1.539-.021-.3-.131-.382-.424-.379-1.484.014-2.968.008-4.453.006a1.906,1.906,0,0,1-2.181-2.172q0-6.434,0-12.868a1.9,1.9,0,0,1,2.181-2.17q2.859,0,5.719,0a1.866,1.866,0,0,1,2.1,1.806,14.575,14.575,0,0,1,.182,1.457c.017.375.162.464.519.462q4.024-.021,8.048,0a3.22,3.22,0,0,1,1,.137,1.8,1.8,0,0,1,1.176,1.826C487.227,339.794,487.224,342.013,487.224,344.233Zm-11.569,7.355h9.506c.65,0,.835-.192.835-.863q0-6.514,0-13.028c0-.68-.182-.859-.88-.859q-3.982,0-7.964,0c-.144,0-.288.015-.425.023a.848.848,0,0,0-.011.127c.458,3.7.909,7.4,1.385,11.1a1.18,1.18,0,0,1-.306,1.037C477.09,349.907,476.409,350.715,475.655,351.587Zm1.163-3.721c-.012-.134-.016-.2-.024-.266q-.386-3.119-.772-6.237-.469-3.766-.945-7.532c-.072-.567-.261-.715-.835-.715q-2.9,0-5.8,0c-.75,0-.918.165-.918.9q0,6.453,0,12.906c0,.793.151.942.962.943h8.332Zm-.665,1.264h-1.607l.209,1.618Z"
-                          />
-                          <path
-                            id="Path_238"
-                            data-name="Path 238"
-                            d="M619.993,436.215c-.42.342-.828.68-1.241,1.009-.468.372-.808.391-1.068.07s-.159-.66.3-1.026c.381-.3.756-.617,1.09-.89-.411-.766-.816-1.484-1.184-2.22-.137-.274-.175-.555-.58-.611-.293-.041-.407-.342-.354-.647a.556.556,0,0,1,.563-.5c.462-.019.926-.008,1.389-.009h.449c.073-.5-.127-1.188.624-1.2.785-.014.59.687.652,1.2.561,0,1.1,0,1.646,0,.476,0,.749.19.769.549a.605.605,0,0,1-.6.684.369.369,0,0,0-.21.193c-.421.832-.833,1.669-1.284,2.579.322.263.738.608,1.16.945a.662.662,0,0,1,.308.738.605.605,0,0,1-.987.283C620.946,437,620.479,436.606,619.993,436.215Zm-.082-1.845h.17l.967-1.734h-2.1Z"
-                            transform="translate(-138.331 -90.271)"
-                          />
-                          <path
-                            id="Path_239"
-                            data-name="Path 239"
-                            d="M506.151,389.753c-.127.617-.247,1.215-.374,1.811-.1.47-.378.7-.743.628-.383-.076-.547-.407-.449-.9q.558-2.8,1.115-5.6c.148-.743.272-.837,1.04-.843,1.426-.012,1.361-.056,1.638,1.356.333,1.7.675,3.389,1.013,5.083.1.5-.058.825-.439.906s-.651-.156-.757-.659-.194-1.016-.318-1.517a.4.4,0,0,0-.272-.25C507.132,389.738,506.656,389.753,506.151,389.753Zm1.429-1.249c-.151-.77-.3-1.515-.449-2.258-.013-.062-.093-.109-.142-.163-.049.054-.129.1-.142.164-.154.743-.3,1.487-.448,2.257Z"
-                            transform="translate(-35.134 -48.626)"
-                          />
-                        </g>
-                      </svg>
-                    </span>
-                    <span className="menu-bar__name">Language</span>
-                  </span>
-                </a>
-              </li>
+              
+           
               <li>
                 <a className="collapsed" href="login.html">
                   <span className="menu-bar__text">
@@ -683,7 +447,7 @@ export default function DashboardLayout({ children, childrenClasses }) {
                         </g>
                       </svg>
                     </span>
-                    <span className="menu-bar__name">Login</span>
+                    <span className="menu-bar__name">Logout</span>
                   </span>
                 </a>
               </li>

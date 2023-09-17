@@ -1,6 +1,6 @@
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
-import Checkbox from "../Helpers/Checkbox";
+import Checkbox from "../../Helpers/Checkbox";
 
 export default function ProductsFilter({
   filters,

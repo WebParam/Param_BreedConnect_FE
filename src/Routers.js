@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import About from "./components/About";
-import AllProductPage from "./components/AllProductPage";
+import AllProductPage from "./components/Customer/AllProductPage";
 import Login from "./components/Auth/Login/index";
 import Profile from "./components/Auth/Profile";
 import Signup from "./components/Auth/Signup";
@@ -37,6 +37,7 @@ import AddProductS1 from "./components/Dashboard/AddProduct/add-product-s1";
 import Questionnaires from "./components/Questionnaires/questionnaires";
 import ViewProductList from "./components/Dashboard/ViewProduct/view-product";
 import EditProduct from "./components/Dashboard/AddProduct/edit-product";
+import OrderList from "./components/Dashboard/Orders/order-list";
 import Customers from './components/Customer'
 export default function Routers() {
   return (
@@ -91,6 +92,7 @@ export default function Routers() {
       {/* <Route exact path="*" element={<FourZeroFour /> }/>
       <Route exact path="/tinder" element={<Tinder/>}  /> */}
       <Route exact path="/customer" element={<Customers/>}  />
+      <Route exact path="/orders" element={<OrderList/>}  />
       
     </Routes>
   );

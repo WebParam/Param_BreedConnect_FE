@@ -11,14 +11,15 @@ import Logo from "../../../media/logo.png"
 import './index.css'
 import { toast } from 'react-toastify';
 import {LoginEmail} from "../../../api/endpoints";
-
+import { useNavigate  } from "react-router-dom";
+import Cookies from "universal-cookie";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [disabled , setDisable] = useState(true)
   const [formData, setFormData] = useState({});
-
+  const navigate = useNavigate();
   const [ user, setUser ] = useState([]);
     const [ profile, setProfile ] = useState([]);
 
@@ -86,6 +87,7 @@ export default function Login() {
       setProfile(null);
   };
 
+  const cookies = new Cookies();
 
 
   const handleSubmit = async () => {
@@ -114,6 +116,13 @@ export default function Login() {
         type: "success",
         isLoading: false,
       });
+      debugger;
+      cookies.set("bc-user", response.data,{path: '/', expires: new Date(Date.now()+2592000)});
+      if(response.data.isDeliveryPartner){
+        navigate('/breeder-dash')
+      }else{
+        navigate('/profile')
+      }
     }else{
       toast.update(_id, {
         autoClose:2000,

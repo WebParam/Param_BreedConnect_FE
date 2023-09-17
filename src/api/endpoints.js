@@ -103,6 +103,24 @@ export const getBreederProducts = async (breederId) => {
 };
 
 
+export const getBreederPurchaseRequests = async (breederId) => {
+  try {
+    const getAllProductsResult = await GET(`purchaserequests/breeder/${breederId}`);
+
+    if (getAllProductsResult != null && getAllProductsResult.status === 200) {
+      return getAllProductsResult; 
+    } else {
+     
+      console.error('Error: Unable to fetch products');
+      return null; // Return null or another appropriate value
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    return null; // Return null or another appropriate value
+  }
+};
+
+
 
 export const getProduct = async (productId) => {
   try {
@@ -164,10 +182,10 @@ export const GetRequest = async () => {
 export const RequestToPurchase = async (product) => {
   console.log("product", product)
   const payload = {
-    breederId: "64e7cccba2772a81945bf086",
+    // breederId: "64e7cccba2772a81945bf086",
     customerId: "64e7cccba2772a819454f086",
     productId: product.id,
-    status: 0
+    // status: 0
   }
   const requestResult = await POST(`purchaserequest/create`,payload)
 

@@ -3,19 +3,30 @@ import QuickViewIco from "../icons/QuickViewIco";
 import Star from "../icons/Star";
 import ThinLove from "../icons/ThinLove";
 import Cookies from 'universal-cookie';
-
+import { AllProducts, RequestToPurchase } from '../../../api/endpoints';
+import Cookies from "universal-cookie";
 export default function ProductCardStyleOne({ datas,type }) {
   const available =
     (datas.cam_product_sale /
       (datas.cam_product_available + datas.cam_product_sale)) *
     100;
 
- const handleClick = (id) => {
+    const cookies = new Cookies();
+    const user = JSON.parse(cookies.get("bc-user"));
+
+ const handleClick = async (id) => {
       // const cookies = new Cookies();
 
       // Set a cookie
       // cookies.set('productId', id );
-      window.location.href=`/edit-product/${id}`
+      // window.location.href=`/edit-product/${id}`
+      const payload = {
+       customerId:user.id,
+       productId: id,
+      
+      }
+      const response = await RequestToPurchase(payload);
+
     };
 
  
