@@ -10,6 +10,7 @@ import IcoOrders from './icons/IcoOrders';
 import Dashboard from "./tabs/Dashboard";
 import OrderTab from "./tabs/OrderTab";
 import ProductsTab from './tabs/ProductsTab';
+import SwipesTab from "./tabs/SwipesTab";
 
 
 export default function Customers() {
@@ -66,7 +67,18 @@ export default function Customers() {
                         </div>
                       </Link>
                     </div>
-
+                    <div className="item group">
+                      <Link to="/customer#swipes">
+                        <div className="flex space-x-3 items-center text-qgray hover:text-qblack">
+                          <span>
+                          <IcoOrders/>
+                          </span>
+                          <span className=" font-normal text-base">
+                            Swipes
+                          </span>
+                        </div>
+                      </Link>
+                    </div>
                     <div className="item group">
                       <Link to="/customer#orders">
                         <div className="flex space-x-3 items-center text-qgray hover:text-qblack">
@@ -102,6 +114,11 @@ export default function Customers() {
                     : active === "products" ? (
                       <>
                         <ProductsTab />
+                      </>
+                    )
+                    : active === "swipes" ? (
+                      <>
+                        <SwipesTab />
                       </>
                     )
                     : active === "orders" ? (
