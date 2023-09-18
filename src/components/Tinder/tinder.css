@@ -32,7 +32,16 @@
   .swipe {
     position: absolute;
   }
-  
+  .reload_img{
+    margin: 22px;
+    cursor: pointer;
+  }
+  .buttonText{
+    font-weight: 400;
+    line-height: 32.5px;
+    color: #263238 !important;
+    text-align: center;
+  }
   .cardContainer {
     /* width: 90vw;
     max-width: 260px; */
@@ -41,7 +50,22 @@
     height: 300px;
     margin: 3em;
   }
-  
+  .tinder-card-footer{
+    height: 33px;
+    background: #89CFF0;
+    font-weight: 400;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    top: 300px;
+  }
+  .card-add{
+    color: #263238;
+    text-align: center;
+    vertical-align: middle;
+    top: 5px;
+    font-weight: 700;
+  }
   .card {
     position: relative;
     background-color: #fff;
@@ -49,7 +73,9 @@
     max-width: 260px;
     height: 300px;
     box-shadow: 0px 0px 60px 0px rgba(0,0,0,0.30);
-    border-radius: 20px;
+    /* border-radius: 20px; */
+    border-radius: 0.25rem 0.25rem 0 0px;
+    border-bottom: 0px;
     background-size: cover;
     background-position: center;
   }
@@ -93,13 +119,15 @@
   }
   
   .buttons button {
+    width: 203px;
+    height: 74px;
     flex-shrink: 0;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 15px;
     border: none;
     color: #fff;
     font-size: 18px;
-    background-color: #9198e5;
+    background-color: #89CFF0;
     transition: 200ms;
     margin: 10px;
     font-weight: bolder;

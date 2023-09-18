@@ -185,6 +185,15 @@ export const AllProducts = async () => {
 //return productsResult;
 }
 
+export const GetCustomerProducts = async () => {
+  const productsResult = await GET('products/customer');
+  if(productsResult!=null && productsResult.status==200){
+    return productsResult
+  }else{
+    alert("failed to fetch products")
+  }
+}
+
 export const GetRequest = async () => {
   const productsResult = await GET('products')
 
