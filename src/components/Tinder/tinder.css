@@ -11,13 +11,13 @@
     align-items: center;
   }
   
-  .row {
+  /* .row {
     flex-direction: row !important;
   }
   
   .row>* {
     margin: 5px;
-  }
+  } */
   
   h1 {
     /* font-family: 'Damion', cursive; */

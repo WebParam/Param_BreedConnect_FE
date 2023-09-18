@@ -89,8 +89,8 @@ export default function Routers() {
       <Route exact path="/all-products" element={<AllProductPage />} />
       <Route exact path="/questionnaires" element={<Questionnaires/>} />
       <Route exact path="/profile" element={<Profile />}  />
-      {/* <Route exact path="*" element={<FourZeroFour /> }/>
-      <Route exact path="/tinder" element={<Tinder/>}  /> */}
+      {/* <Route exact path="*" element={<FourZeroFour /> }/>*/}
+      <Route exact path="/tinder" element={<Tinder/>}  /> 
       <Route exact path="/customer" element={<Customers/>}  />
       <Route exact path="/orders" element={<OrderList/>}  />
       

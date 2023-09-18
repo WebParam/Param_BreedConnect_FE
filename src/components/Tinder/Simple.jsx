@@ -1,31 +1,35 @@
 import React, { useState } from 'react'
 import TinderCard from 'react-tinder-card'
 
-const db = [
+const breads = [
   {
-    name: 'Richard Hendricks',
-    url: './img/richard.jpg'
+    name: 'Type 1',
+    url: './assets/images/d1.jpg'
   },
   {
-    name: 'Erlich Bachman',
-    url: './img/erlich.jpg'
+    name: 'Type 2',
+    url: './assets/images/d2.jpg'
   },
   {
-    name: 'Monica Hall',
-    url: './img/monica.jpg'
+    name: 'Type 3',
+    url: './assets/images/d3.jpg'
   },
   {
-    name: 'Jared Dunn',
-    url: './img/jared.jpg'
+    name: 'Type 4',
+    url: './assets/images/d4.jpg'
   },
   {
-    name: 'Dinesh Chugtai',
-    url: './img/dinesh.jpg'
+    name: 'Type 5',
+    url: './assets/images/d5.jpg'
+  },
+  {
+    name: 'Type 6',
+    url: './assets/images/d6.jpg'
   }
 ]
 
 function Simple () {
-  const characters = db
+  const characters = breads
   const [lastDirection, setLastDirection] = useState()
 
   const swiped = (direction, nameToDelete) => {
