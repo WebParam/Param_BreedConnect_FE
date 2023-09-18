@@ -2,7 +2,7 @@ import React, { useState, useMemo, useRef } from 'react'
 import TinderCard from 'react-tinder-card'
 import { RequestToPurchase } from "../../api/endpoints";
 
-
+import { ToastContainer, toast } from 'react-toastify';
 
 
 
@@ -39,16 +39,45 @@ function Advanced(props) {
   const [lastDirection, setLastDirection] = useState();
 
   const [products, setProducts] = useState(props.products);
-  const [currentIndex, setCurrentIndex] = useState(products.length - 1)
+  const [currentIndex, setCurrentIndex] = useState(products.length - 1);
+  const [status, setStatus]  =useState(0)
 
 
 
-  const request = async (product) => {
-    const response = await RequestToPurchase(product);
-    if(response!=null && response.status ==200){
-      console.log("success");
-    }
+  const requestToPurchase=async(id)=>{
+
+    const _id = toast.loading("Please wait...", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
+    const payload = {
+      ProductId: id       
+     }
+     const response = await RequestToPurchase(payload);
+     if(response!=null && response.status == 200){
+      toast.dismiss(_id);
+      setStatus(1);
+     }
+     else{
+      toast.update(_id, {
+        autoClose:2000,
+        render: "Request not sent, please try again",
+        type: "error",
+        isLoading: false,
+        
+      });
+      
+     }
+   
   }
+  
   // used for outOfFrame closure
   const currentIndexRef = useRef(currentIndex)
 
@@ -84,11 +113,16 @@ function Advanced(props) {
     // during latest swipes. Only the last outOfFrame event should be considered valid
   }
 
-  const swipe = async (dir, selectedProduct) => {
-    console.log("selected", selectedProduct)
+  const swipe = async (dir) => {
     if (canSwipe && currentIndex < products.length) {
       await childRefs[currentIndex].current.swipe(dir) // Swipe the card!
-      
+      console.log("Selected Product", products[currentIndex])
+      if(products[currentIndex].status !== 3){
+        requestToPurchase(products[currentIndex].id)
+      }
+      else{
+        console.log("Product ")
+      }
     }
   }
 
