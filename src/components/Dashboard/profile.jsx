@@ -63,7 +63,7 @@ window.location.href="/"
                 {/* End Sherah Breadcrumb */}
             
 
-                <div className="w-full bg-white px-10 py-9">
+                <div className="w-full bg-white px-10 py-9" style={{borderRadius: "15px"}}>
               <div className="title-area w-full flex justify-between items-center">
                <div className="flex space-x-3 items-center font-bold text-qblack">
                           {/* <span>

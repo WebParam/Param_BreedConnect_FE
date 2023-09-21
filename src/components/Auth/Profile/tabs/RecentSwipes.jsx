@@ -36,7 +36,7 @@ function RecentSwipes({  }) {
           <div className='col-md-4'>
            <img src={`${process.env.PUBLIC_URL}/assets/images/default.png`} x className="client-avatar" /> 
            </div>
-          <div className="client-info col-md-6" >
+          <div className="client-info col-md-6" style={{alignItems:"flex-start"}} >
             {/* <img src={message.client.avatar} alt={message.sender} className="client-avatar" /> */}
            <h4>Client name</h4>
             <div className="client-name">10 mins ago</div>
