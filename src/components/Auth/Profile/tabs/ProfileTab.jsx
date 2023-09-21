@@ -4,7 +4,7 @@ import Tabs from '../tabs/ProfileTabs';
 import MessageList from "./MessagesList";
 import './stylesheets/Profile.css'
 import RecentOrders from "./RecentOrders";
-
+import RecentSwipes from "./RecentSwipes";
 import CoverProfile from '../../../../media/cover.png';
 
 export default function ProfileTab() {
@@ -55,14 +55,14 @@ export default function ProfileTab() {
 
   function ProfileHeader() {
     return (
-      <div className="profile">
-      <div className="cover-photo">
+      <div className="profile" style={{maxWidth:"100%"}}>
+      <div className="cover-photo" style={{width:"100%"}}>
       <img src={`${process.env.PUBLIC_URL}/assets/images/cover.png`} alt="Cover" />
       </div>
-      <div>
+      <div style={{width:"50%"}}>
       <img src={`${process.env.PUBLIC_URL}/assets/images/default.png`}  alt="Profile" className="profile-picture" />
       </div>
-      <div className="user">Jane Doe</div>
+      <div className="user" style={{width:"40%"}}>Jane Doe</div>
         
     </div>
     );
@@ -73,82 +73,11 @@ export default function ProfileTab() {
     
       <div className="flex space-x-8">
        
-        <div className="w-[570px] ">
+        <div className="col-md-9">
         <ProfileHeader/>
           <div className="input-item flex space-x-2.5 mb-8">
             <Tabs/>
-            {/* <div className="w-1/2 h-full">
-              <InputCom
-                label="First Name*"
-                placeholder="Demo Name"
-                type="text"
-                inputClasses="h-[50px]"
-              />
-            </div>
-            <div className="w-1/2 h-full">
-              <InputCom
-                label="Last Name*"
-                placeholder="Demo Name"
-                type="text"
-                inputClasses="h-[50px]"
-              />
-            </div>
-          </div>
-          <div className="input-item flex space-x-2.5 mb-8">
-            <div className="w-1/2 h-full">
-              <InputCom
-                label="Email*"
-                placeholder="demoemial@gmail.com"
-                type="email"
-                inputClasses="h-[50px]"
-              />
-            </div>
-            <div className="w-1/2 h-full">
-              <InputCom
-                label="Phone Number*"
-                placeholder="012 3  *******"
-                type="text"
-                inputClasses="h-[50px]"
-              />
-            </div>
-          </div>
-          <div className="input-item mb-8">
-            <div className="w-full">
-              <InputCom
-                label="Country*"
-                placeholder="country"
-                type="text"
-                inputClasses="h-[50px]"
-              />
-            </div>
-          </div>
-          <div className="input-item mb-8">
-            <div className="w-full">
-              <InputCom
-                label="Address*"
-                placeholder="your address here"
-                type="text"
-                inputClasses="h-[50px]"
-              />
-            </div>
-          </div>
-          <div className="input-item flex space-x-2.5 mb-8">
-            <div className="w-1/2 h-full">
-              <InputCom
-                label="Town / City*"
-                placeholder=""
-                type="text"
-                inputClasses="h-[50px]"
-              />
-            </div>
-            <div className="w-1/2 h-full">
-              <InputCom
-                label="Postcode / ZIP*"
-                placeholder=""
-                type="text"
-                inputClasses="h-[50px]"
-              />
-            </div>*/}
+ 
           </div> 
         </div>
         <div className="flex-1">
@@ -160,6 +89,16 @@ export default function ProfileTab() {
               <MessageList  nessages={messages}/>
             </p>
       </div>
+
+      <div className="update-logo w-full mb-9">
+            <h1 className="text-xl tracking-wide font-bold text-qblack flex items-center mb-2">
+              Recent swipes
+            </h1>
+            <p className="text-sm text-qgraytwo mb-5 ">
+              <RecentSwipes  nessages={messages}/>
+            </p>
+      </div>
+
       <div className="update-logo w-full mb-9">
             <h1 className="text-xl tracking-wide font-bold text-qblack flex items-center mb-2">
               Orders

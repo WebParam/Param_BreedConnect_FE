@@ -26,7 +26,7 @@ class RecentOrders extends Component {
         <div className="recent-orders">
         <ul className="order-list">
           {recentOrders.map((order) => (
-            <li key={order.id} className="order-item">
+            <li key={order.id} className="order-item" style={{borderRadius:"20px"}}>
               <div className="order-details">
               <img src={`${process.env.PUBLIC_URL}/assets/images/default.png`}  alt="Profile" className="breeder-profile" />
                 <span className="customer-name">{order.customer}</span>

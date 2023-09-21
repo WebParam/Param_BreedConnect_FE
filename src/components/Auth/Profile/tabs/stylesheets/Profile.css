@@ -86,7 +86,8 @@ html, body{
   
   button.active {
     color: #000;
-    border-bottom: 1px solid #FFB336;
+    border-bottom: 2px solid #FFB336;
+    background-color: transparent;
   }
   
   .tab-content {
