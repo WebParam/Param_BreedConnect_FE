@@ -11,6 +11,7 @@ import Dashboard from "./tabs/Dashboard";
 import OrderTab from "./tabs/OrderTab";
 import ProductsTab from './tabs/ProductsTab';
 import SwipesTab from "./tabs/SwipesTab";
+import Calender from "./tabs/Calender"
 
 
 export default function Customers() {
@@ -80,6 +81,18 @@ export default function Customers() {
                       </Link>
                     </div>
                     <div className="item group">
+                      <Link to="/customer#calender">
+                        <div className="flex space-x-3 items-center text-qgray hover:text-qblack">
+                          <span>
+                          <IcoOrders/>
+                          </span>
+                          <span className=" font-normal text-base">
+                            Messaging
+                          </span>
+                        </div>
+                      </Link>
+                    </div>
+                    <div className="item group">
                       <Link to="/customer#orders">
                         <div className="flex space-x-3 items-center text-qgray hover:text-qblack">
                           <span>
@@ -119,6 +132,11 @@ export default function Customers() {
                     : active === "swipes" ? (
                       <>
                         <SwipesTab />
+                      </>
+                    )
+                    : active === "calender" ? (
+                      <>
+                        <Calender />
                       </>
                     )
                     : active === "orders" ? (
