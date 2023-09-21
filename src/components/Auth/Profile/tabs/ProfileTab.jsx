@@ -55,14 +55,14 @@ export default function ProfileTab() {
 
   function ProfileHeader() {
     return (
-      <div className="profile">
-      <div className="cover-photo">
+      <div className="profile" style={{maxWidth:"100%"}}>
+      <div className="cover-photo" style={{width:"100%"}}>
       <img src={`${process.env.PUBLIC_URL}/assets/images/cover.png`} alt="Cover" />
       </div>
-      <div>
+      <div style={{width:"50%"}}>
       <img src={`${process.env.PUBLIC_URL}/assets/images/default.png`}  alt="Profile" className="profile-picture" />
       </div>
-      <div className="user">Jane Doe</div>
+      <div className="user" style={{width:"40%"}}>Jane Doe</div>
         
     </div>
     );
@@ -73,7 +73,7 @@ export default function ProfileTab() {
     
       <div className="flex space-x-8">
        
-        <div className="w-[570px] ">
+        <div className="col-md-9">
         <ProfileHeader/>
           <div className="input-item flex space-x-2.5 mb-8">
             <Tabs/>
