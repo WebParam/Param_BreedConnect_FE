@@ -87,7 +87,19 @@ export default function Customers() {
                           <IcoOrders/>
                           </span>
                           <span className=" font-normal text-base">
-                            Messaging
+                            Calender
+                          </span>
+                        </div>
+                      </Link>
+                    </div>
+                    <div className="item group">
+                      <Link to="/customer#messaging">
+                        <div className="flex space-x-3 items-center text-qgray hover:text-qblack">
+                          <span>
+                          <IcoOrders/>
+                          </span>
+                          <span className=" font-normal text-base">
+                           Messaging
                           </span>
                         </div>
                       </Link>
