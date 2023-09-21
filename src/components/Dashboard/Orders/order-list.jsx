@@ -97,27 +97,39 @@ async function Message(id){
                   <div className="col-12 sherah-flex-between">
                     {/* Sherah Breadcrumb */}
                     <div className="sherah-breadcrumb">
-                      <h2 className="sherah-breadcrumb__title">Order list</h2>
+                      {/* <h2 className="sherah-breadcrumb__title">Order list</h2> */}
                       <ul className="sherah-breadcrumb__list"> 
-                        <li><a href="#">Home</a></li>
-                        <li className="active"><a href="order-list.html">Order List</a></li>
+                        {/* <li><a href="#">Home</a></li> */}
+                        {/* <li className="active"><a href="order-list.html">Order List</a></li> */}
                       </ul>
                     </div>
                     {/* End Sherah Breadcrumb */}
-                    <a href="order-details" className="sherah-btn sherah-gbcolor">Add New Vendor</a>
+                    {/* <a href="order-details" className="sherah-btn sherah-gbcolor">Add New Vendor</a> */}
                   </div>
                 </div>
-                <div className="sherah-table sherah-page-inner sherah-border sherah-default-bg mg-top-25">
+                <div className="sherah-table col-md-10 sherah-page-inner sherah-border sherah-default-bg mg-top-25">
+        
+
                   <table id="sherah-table__vendor" className="sherah-table__main sherah-table__main-v3">
                     {/* sherah Table Head */}
                     <thead className="sherah-table__head">
-                      <tr>
-                        <th className="sherah-table__column-1 sherah-table__h1">Request ID</th>
+                      {/* <tr> */}
+                        {/* <th className="sherah-table__column-1 sherah-table__h1">Request ID</th>
                         <th className="sherah-table__column-2 sherah-table__h2">Customer Name</th>
                         <th className="sherah-table__column-3 sherah-table__h3">Date</th>
                         <th className="sherah-table__column-4 sherah-table__h4">Status</th>
                         <th className="sherah-table__column-5 sherah-table__h5">Order Total</th>
-                        <th className="sherah-table__column-8 sherah-table__h8">Action</th>
+                        <th className="sherah-table__column-8 sherah-table__h8">Action</th> */}
+                          <tr className="text-base text-qgray whitespace-nowrap px-2 border-b default-border-bottom ">
+               
+                      <td className="py-4 pl-5 whitespace-nowrap table-header">Name</td>
+                      <td className="py-4 whitespace-nowrap table-header">Interested in</td>
+                      <td className="py-4 whitespace-nowrap table-header">Date</td>
+                      <td className="py-4 whitespace-nowrap table-header">Accept</td>
+                      <td className="py-4 whitespace-nowrap table-header">Reject</td>
+              
+                      <td className="py-4 whitespace-nowrap table-header"></td>
+                    {/* </tr> */}
                       </tr>
                     </thead>
                     <tbody className="sherah-table__body">
@@ -126,58 +138,77 @@ async function Message(id){
                        
                        productRequests.map(x=> {return(
                         <>
-                         <tr>
-                          <td className="sherah-table__column-1 sherah-table__data-1">
-                            <div className="sherah-language-form__input">
-                              <input className="sherah-language-form__check" id="checkbox" name="checkbox" type="checkbox" />
-                              <p className="crany-table__product--number"><a href="#" className="sherah-color1">{x.id}</a></p>
-                            </div>
-                          </td>
-                          <td className="sherah-table__column-2 sherah-table__data-2">
-                            <div className="sherah-table__product-content">
-                              <p className="sherah-table__product-desc">{x.customer.firstname} {x.customer.lastname}</p>
-                            </div>
-                          </td>
-                          <td className="sherah-table__column-3 sherah-table__data-3">
-                            <p className="sherah-table__product-desc">{x.date} <span className="sherah-table__time">04:26 PM</span></p>
-                          </td>
-                          <td className="sherah-table__column-4 sherah-table__data-4">
-                            <div className="sherah-table__product-content">
-                              <div className="sherah-table__status sherah-color2 sherah-color2__bg--opactity">{x.status}</div>
-                            </div>
-                          </td>
-                          <td className="sherah-table__column-5 sherah-table__data-5">
-                            <div className="sherah-table__product-content">
-                              <p className="sherah-table__product-desc">R{x.product.price}</p>
-                            </div>
-                          </td>
-                          <td className="sherah-table__column-8 sherah-table__data-8">
-                            {x.status ==1 &&<>
-                              <div className="sherah-table__status__group">
-                              <a onClick={()=>{AcceptProductRequest(x.id)}} className="sherah-table__action sherah-color2 sherah-color3__bg--opactity">
-                              <FaCheckCircle/>
-                              </a>
-                              <a onClick={()=>{RejectProductPurchase(x.id)}} className="sherah-table__action sherah-color2 sherah-color2__bg--offset">
-                              <FaTimesCircle/>
-                              </a>
-                            </div>
-                            </>
-                            }
-                            {x.status ==2 &&<>
-                              <div className="sherah-table__status__group">
-                              <a onClick={()=>{Message(x.id)}} className="sherah-table__action sherah-color2 sherah-color3__bg--opactity">
-                              <FaEnvelope/>
-                              </a>
-                              <a onClick={()=>{CancelProductPurchase(x.id)}} className="sherah-table__action sherah-color2 sherah-color2__bg--offset">
-                              <FaTimesCircle/>
-                              </a>
-                            </div>
-                            </>
-                            }
-                            
+                          <tr className=" border-b hover:bg-gray-50">
+                      <td className="py-1">
+                        <span>
+                        <img src={`${process.env.PUBLIC_URL}/assets/images/d2.jpg`}  alt="breeder" className="customer"/>
+                        </span>
+                      
+                     
+                        <span className="text-lg text-qgray font-medium">{x.customer.firstname} {x.customer.lastname}</span>
+                      </td>
+                      <td className="text-center py-1 px-2">
+                        <span className="text-qblack px-2 ">
                           
-                          </td>
-                         </tr>
+                        <img src={`${process.env.PUBLIC_URL}/assets/images/d1.jpg`}  alt="breed" className="product-picture" />
+                        
+                        </span>
+                      </td>
+                      <td className="px-1">
+                        <span className="text-lg text-qgray font-medium">
+                        {x.date}
+                        </span>
+                      </td>
+                      {x.status ==1 &&<>
+                      <td className="px-1">
+                        <span className="">
+                          <button>
+                          <img src={`${process.env.PUBLIC_URL}/assets/images/accept.svg`} onClick={()=>{AcceptProductRequest(x.id)}} alt="accept" className="accept-picture" />
+                          </button>
+                        
+                        </span>
+                      </td>
+                      <td className="py-1">
+                      <span className="">
+                          <button>
+                          <img src={`${process.env.PUBLIC_URL}/assets/images/reject.svg`} onClick={()=>{RejectProductPurchase(x.id)}} alt="reject" className="reject-picture" />
+                          </button>
+                        
+                        </span>
+                      </td>
+                      </>
+                      }
+                       {x.status !=1 &&<>
+                        <td className="px-1">
+                        <span className="">
+                          <button>
+                          <img src={`${process.env.PUBLIC_URL}/assets/images/accept.svg`} onClick={()=>{AcceptProductRequest(x.id)}} alt="accept" className="accept-picture" />
+                          </button>
+                        
+                        </span>
+                      </td>
+                      <td className="py-1">
+                      <span className="">
+                          <button>
+                          <img src={`${process.env.PUBLIC_URL}/assets/images/reject.svg`} onClick={()=>{CancelProductPurchase(x.id)}}alt="reject" className="reject-picture" />
+                          </button>
+                        
+                        </span>
+                      </td>
+                       </>
+                       }
+                    
+                      <td className="text-center py-1 px-2">
+                      
+                        <span className="text-qblack px-2 ">
+                          
+                        <button>Details</button>
+                        
+                        </span>
+                      </td>
+                    </tr>
+
+                        
                         </>
                         )})
                       }
