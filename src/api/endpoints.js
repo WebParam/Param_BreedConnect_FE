@@ -244,7 +244,7 @@ export const CreatePaymentLink = async (purchaseRequestId) => {
   const payload={
     PurchaseRequestId: purchaseRequestId
   }
-  const requestResult = await POST(`purchaserequest/createPaymentLink`,payload);
+  const requestResult = await POST(`payment/createPaymentLink`,payload);
 
     return requestResult
 
@@ -253,7 +253,7 @@ export const CreatePaymentLink = async (purchaseRequestId) => {
 
 export const GenerateLink = async (paymentLinkId) => {
 
-  const requestResult = await GET(`/generateLink/${paymentLinkId}`);
+  const requestResult = await GET(`payment/generateLink/${paymentLinkId}`);
 
     return requestResult
 

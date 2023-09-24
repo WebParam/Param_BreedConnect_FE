@@ -16,16 +16,16 @@ export default function Messages() {
 
 async function payWithPaystack(purchaseRequestId) {
 
-  const res = await CreatePaymentLink(purchaseRequestId);
+  const res = await CreatePaymentLink("6510a0095f348ffddab88748");
   debugger;
 
 }
 
 async function pay(paymentLinkId){
-  const res = await GenerateLink(paymentLinkId);
+  const res = await GenerateLink("6510a3bc6404f47b14274a70");
   debugger;
-  const url = res.data.authorization_url;
-
+  const url = res.data.data.authorization_url;
+  window.location.href = url;
 
 }
 
