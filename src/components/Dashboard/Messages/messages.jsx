@@ -1,13 +1,34 @@
 import React, { useEffect, useState } from "react";
 import DashboardLayout from "../../Partials/DashboardLayout";
 import { Link, useLocation } from "react-router-dom";
-import { getProduct, updateProduct, uploadProduct } from "../../../api/endpoints";
+import { CreatePaymentLink,GenerateLink } from "../../../api/endpoints";
 import { ToastContainer, toast } from 'react-toastify';
 import {getBreederPurchaseRequests, AcceptRequestToPurchase,RejectRequestToPurchase} from "../../../api/endpoints"
 import { FaCheckCircle, FaTimesCircle,FaEnvelope } from "react-icons/fa";
 
 export default function Messages() {
-  
+
+  const [paymentLink, setPaymentLink] = useState("");
+
+
+// const paymentForm = document.getElementById('paymentForm');
+// paymentForm.addEventListener("submit", payWithPaystack, false);
+
+async function payWithPaystack(purchaseRequestId) {
+
+  const res = await CreatePaymentLink(purchaseRequestId);
+  debugger;
+
+}
+
+async function pay(paymentLinkId){
+  const res = await GenerateLink(paymentLinkId);
+  debugger;
+  const url = res.data.authorization_url;
+
+
+}
+
 
 
 
@@ -34,6 +55,10 @@ export default function Messages() {
             </ul>
           </div>
           <div className="sherah-chatbox__main">
+            
+          <button type="submit" onClick={()=>payWithPaystack()}> Requestpayment </button>
+          <button type="submit" onClick={()=>pay()}> Pay </button>
+
             {/* End All Notification Heading */}
             <div className="sherah-chatbox">
               <div className="row">
@@ -653,6 +678,7 @@ export default function Messages() {
                 </div>
               </div>
             </div>
+
           </div>
         </div>
         {/* End Dashboard Inner */}
@@ -660,7 +686,7 @@ export default function Messages() {
     </div>
   </div>
 </div>
-
+{/* <script src=""></script> */}
 </>
 </DashboardLayout>
    </>

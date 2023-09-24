@@ -240,6 +240,26 @@ export const RejectRequestToPurchase = async (purchaseRequestId) => {
 }
 
 
+export const CreatePaymentLink = async (purchaseRequestId) => {
+  const payload={
+    PurchaseRequestId: purchaseRequestId
+  }
+  const requestResult = await POST(`purchaserequest/createPaymentLink`,payload);
+
+    return requestResult
+
+}
+
+
+export const GenerateLink = async (paymentLinkId) => {
+
+  const requestResult = await GET(`/generateLink/${paymentLinkId}`);
+
+    return requestResult
+
+}
+
+
 
 
 export const LoginGoogle = async (
