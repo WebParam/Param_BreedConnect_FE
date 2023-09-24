@@ -19,6 +19,7 @@ export default function SignupBreeder() {
   const [city, setCity] = useState("");
   const [postcode, setCode] = useState("");
 
+  const [submitted, setIsSubmitted] = useState(false);
 
   const [confirmSecret, setConfirmSecret] = useState("");
 
@@ -32,38 +33,53 @@ export default function SignupBreeder() {
   };
 
   const  registerUser = async(event)=>{
-    const payload ={
-      username: email,
-      secret: secret,
-      firstname: name,
-      lastname: lname,
-      email: email,
-      secret:secret,
-      cellphone: phone,
-      address:address,
-      country:country,
-      postcode:postcode,
-      city:city
+    setIsSubmitted(true);
+
+    if(name.length!= 0 &&
+      secret.length!=0 && 
+      phone.length!=0 &&
+      lname.length !=0 && 
+      email.length !=0 &&
+      secret.length !=0 &&
+      phone.length!=0 &&
+      address.length!=0 &&
+      country.length!=0 &&
+      postcode.length!=0 &&
+      confirmSecret==secret&&
+      city.length!=0 ){
+
+        const payload ={
+          username: email,
+          secret: secret,
+          firstname: name,
+          lastname: lname,
+          email: email,
+          secret:secret,
+          cellphone: phone,
+          address:address,
+          country:country,
+          postcode:postcode,
+          city:city
+        }
+        axios
+        .post(
+          "https://localhost:7061/user/register/breeder",
+          payload
+        )
+        .then((response) => {
+          console.log("response", response);
+          alert("Succefully registered")
+        })
+        .catch((error) => 
+          alert("error...")
+      )
+    }else{
+
     }
-    axios
-    .post(
-      "https://localhost:7061/user/register/breeder",
-      payload
-    )
-    .then((response) => {
-      console.log("response", response);
-      alert("Succefully registered")
-    })
-    .catch((error) => 
-      alert("error...")
-  )
 
- // const response = await RegisterCustomer(payload);
-
-//   console.log("response", response);
 event.preventDefault()
   }
-  
+    
 
   return (
     <LoginLayout childrenClasses="pt-0 pb-0">
@@ -109,6 +125,7 @@ event.preventDefault()
                         value={name}
                         inputHandler={(e) => setName(e.target.value)}
                         required={true}
+                        submitted={submitted}
                         
                       />
 
@@ -123,6 +140,7 @@ event.preventDefault()
                         inputClasses="h-[50px]"
                         inputHandler={(e) => setlName(e.target.value)}
                         required={true}
+                        submitted={submitted}
                       />
                     </div>
 
@@ -136,6 +154,7 @@ event.preventDefault()
                         type="email"
                         inputClasses="h-[50px]"
                         value={email}
+                        submitted={submitted}
                         inputHandler={(e) => setEmail(e.target.value)}
                         required={true}
                       />
@@ -151,6 +170,7 @@ event.preventDefault()
                         inputClasses="h-[50px]"
                         inputHandler={(e) => setPhone(e.target.value)}
                         required={true}
+                        submitted={submitted}
                       />
                     </div>
                     
@@ -163,6 +183,7 @@ event.preventDefault()
                         name="secret"
                         type="password"
                         value={secret}
+                        submitted={submitted}
                         inputClasses="h-[50px]"
                         inputHandler={(e) => setSecret(e.target.value)}
                         customInputValArray={[
@@ -188,6 +209,7 @@ event.preventDefault()
                         name="confirmSecret"
                         type="password"
                         inputClasses="h-[50px]"
+                        submitted={submitted}
                         value={confirmSecret}
                         inputHandler={(e) => setConfirmSecret(e.target.value)}
                         required={true}
@@ -236,6 +258,7 @@ event.preventDefault()
                         name="address"
                         type="text"
                         inputClasses="h-[50px]"
+                        submitted={submitted}
                         
                         value={address}
                         inputHandler={(e) => setaddress(e.target.value)}
@@ -280,6 +303,7 @@ event.preventDefault()
                             value={postcode}
                             inputHandler={(e) => setCode(e.target.value)}
                              required={true}
+                             submitted={submitted}
                           />
                         </div>
                       </div>
