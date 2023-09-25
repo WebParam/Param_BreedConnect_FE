@@ -2,7 +2,7 @@
 import axios from "axios"
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
-const user = JSON.stringify(cookies.get("bc-user"));
+const user = JSON.stringify(cookies.get("bcon-user"));
 
 const header =  {
      //  "Authorization": `Anonymous`,

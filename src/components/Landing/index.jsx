@@ -47,7 +47,7 @@ export default function Landing() {
             Lorem Ipsum
            <div>  
                 <Link to="/login">
-                    <div className="">
+                    <div className="mt-3">
                     <center><span className="create-btn">Create Account</span></center>
                     </div>
                 </Link>

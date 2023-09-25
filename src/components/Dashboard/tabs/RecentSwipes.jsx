@@ -2,7 +2,7 @@
 
 import Message from './Message'; 
 import './stylesheets/MessagesList.css';
-import {getBreederPurchaseRequests} from "../../../../api/endpoints";
+import {getBreederPurchaseRequests} from "../../../api/endpoints";
 import React, { useEffect, useState } from "react";
 import moment from 'moment'
 

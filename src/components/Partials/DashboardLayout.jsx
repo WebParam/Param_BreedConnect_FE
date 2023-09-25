@@ -1,5 +1,5 @@
-import { useState } from "react";
 
+import React, { useEffect, useState } from "react";
 import "../../bootstrap.min.css"
 // import "../../font-awesome-all.min.css"
 import "../../charts.min.css"
@@ -8,6 +8,11 @@ import "../../jvector-map.css"
 import "../../slickslider.min.css"
 import "../../jquery-ui.css"
 import "../../reset.css"
+import { toast } from 'react-toastify';
+import {GetNotifications} from "../../api/endpoints";
+
+import { useNavigate  } from "react-router-dom";
+
 import "../../style.css"
 // import "../../style.css"
 import Cookies from "universal-cookie";
@@ -21,8 +26,25 @@ function logout(){
   window.location.href="/"
   }
 
+
+
 export default function DashboardLayout({ children, childrenClasses }) {
  
+  const [notifications, setNotifications] = useState([]);
+
+  
+  async function _GetNotifications(){
+    const response = await GetNotifications();
+    setNotifications(response?.data);
+   
+  };
+  
+  useEffect(()=>{
+    _GetNotifications();
+  }, [])
+
+  
+
   return (
     <>
 <div className="sherah-body-area">
@@ -87,7 +109,7 @@ export default function DashboardLayout({ children, childrenClasses }) {
               </li>
                    
               <li>
-                <a href="chat-messages.html" className="collapsed">
+                <a   className={currentUrl.includes("breeder-messages")?"":"collapsed"}  href="/breeder-messages">
                   <span className="menu-bar__text">
                     <span className="sherah-menu-icon sherah-svg-icon__v1">
                       <svg

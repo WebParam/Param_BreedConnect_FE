@@ -1,27 +1,30 @@
 import DashboardLayout from "../Partials/DashboardLayout";
 import QuestionnaireComponent from "../Questionnaires/questionaire-component"
-import IcoDashboard from "./../Auth/Profile/icons/IcoDashboard";
-import IcoLogout from "./../Auth/Profile/icons/IcoLogout";
-import IcoPeople from "./../Auth/Profile/icons/IcoPeople";
-import Dashboard from "./../Auth/Profile/tabs/Dashboard";
-import OrderTab from "./../Auth/Profile/tabs/OrderTab";
-import PasswordTab from "./../Auth/Profile/tabs/PasswordTab";
-import Payment from "./../Auth/Profile/tabs/Payment";
-import ProfileTab from "./../Auth/Profile/tabs/ProfileTab";
-import ReviewTab from "./../Auth/Profile/tabs/ReviewTab";
-import SupportTab from "./../Auth/Profile/tabs/SupportTab";
-import WishlistTab from "./../Auth/Profile/tabs/WishlistTab";
-import SwipesTab from "./../Auth/Profile/tabs/SwipesTab";
-import Cookies from "universal-cookie";
+import IcoDashboard from "./icons/IcoDashboard";
+import IcoLogout from "./icons/IcoLogout";
+import IcoPeople from "./icons/IcoPeople";
+import Dashboard from "./tabs/Dashboard";
+import OrderTab from "./tabs/OrderTab";
+import PasswordTab from "./tabs/PasswordTab";
+import Payment from "./tabs/Payment";
+import ProfileTab from "./tabs/ProfileTab";
+import ReviewTab from "./tabs/ReviewTab";
+import SupportTab from "./tabs/SupportTab";
+import WishlistTab from "./tabs/WishlistTab";
+import SwipesTab from "./tabs/SwipesTab";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import datas from "../../data/products.json";
+import {getBreederPurchaseRequests, AcceptRequestToPurchase,RejectRequestToPurchase} from "../../api/endpoints"
 // import BreadcrumbCom from "../../BreadcrumbCom";
 
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
 export default function BreederProfile() {
   const [switchDashboard, setSwitchDashboard] = useState(false);
   const location = useLocation();
+
   const getHashContent = location.hash.split("#");
   const [active, setActive] = useState("profile");
   useEffect(() => {
@@ -32,7 +35,7 @@ export default function BreederProfile() {
     );
   }, [getHashContent]);
 
-  const cookies = new Cookies();
+
 
 function logout(){
 

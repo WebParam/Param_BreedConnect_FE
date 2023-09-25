@@ -84,6 +84,24 @@ export const getAllProducts = async () => {
   }
 };
 
+export const getUserProfile = async () => {
+  try {
+    const getAllProductsResult = await GET(`profile/getProfile`);
+
+    if (getAllProductsResult != null && getAllProductsResult.status === 200) {
+      return getAllProductsResult; 
+    } else {
+     
+      console.error('Error: Unable to fetch products');
+      return null; // Return null or another appropriate value
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    return null; // Return null or another appropriate value
+  }
+};
+
+
 
 export const getAllProductsByCustomer = async () => {
   try {
@@ -240,6 +258,7 @@ export const RejectRequestToPurchase = async (purchaseRequestId) => {
 }
 
 
+
 export const CreatePaymentLink = async (purchaseRequestId) => {
   const payload={
     PurchaseRequestId: purchaseRequestId
@@ -259,6 +278,13 @@ export const GenerateLink = async (paymentLinkId) => {
 
 }
 
+export const GetNotifications = async () => {
+
+  const requestResult = await GET(`notifications`);
+
+    return requestResult
+
+}
 
 
 

@@ -112,7 +112,7 @@ body{
   .section{
     font-weight: 500;
     width: 515px;
-    height: 255px;
+    /* height: 255px; */
     font-size: 70px;
     line-height: 84.7px;
   }

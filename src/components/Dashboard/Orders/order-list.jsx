@@ -5,6 +5,7 @@ import { getProduct, updateProduct, uploadProduct } from "../../../api/endpoints
 import { ToastContainer, toast } from 'react-toastify';
 import {getBreederPurchaseRequests, AcceptRequestToPurchase,RejectRequestToPurchase} from "../../../api/endpoints"
 import { FaCheckCircle, FaTimesCircle,FaEnvelope } from "react-icons/fa";
+import moment from 'moment'
 
 export default function OrderList() {
   
@@ -141,22 +142,23 @@ async function Message(id){
                           <tr className=" border-b hover:bg-gray-50">
                       <td className="py-1">
                         <span>
+                        <small className="mt-3 ml-1">{x.customer.firstname} {x.customer.lastname}</small>
                         <img src={`${process.env.PUBLIC_URL}/assets/images/d2.jpg`}  alt="breeder" className="customer"/>
+                       
                         </span>
                       
                      
-                        <span className="text-lg text-qgray font-medium">{x.customer.firstname} {x.customer.lastname}</span>
                       </td>
                       <td className="text-center py-1 px-2">
                         <span className="text-qblack px-2 ">
                           
-                        <img src={`${process.env.PUBLIC_URL}/assets/images/d1.jpg`}  alt="breed" className="product-picture" />
+                        <img src={`${process.env.PUBLIC_URL}/assets/images/d1.jpg`}  alt="breed" style={{width:"50px", height:"50px"}} className="product-picture" />
                         
                         </span>
                       </td>
                       <td className="px-1">
                         <span className="text-lg text-qgray font-medium">
-                        {x.date}
+                        {moment(x.date).fromNow()}
                         </span>
                       </td>
                       {x.status ==1 &&<>
@@ -168,9 +170,9 @@ async function Message(id){
                         
                         </span>
                       </td>
-                      <td className="py-1">
+                      <td className="py-1" style={{paddingLeft:"0px"}}>
                       <span className="">
-                          <button>
+                          <button style={{padding:"0px"}}>
                           <img src={`${process.env.PUBLIC_URL}/assets/images/reject.svg`} onClick={()=>{RejectProductPurchase(x.id)}} alt="reject" className="reject-picture" />
                           </button>
                         
@@ -179,18 +181,18 @@ async function Message(id){
                       </>
                       }
                        {x.status !=1 &&<>
-                        <td className="px-1">
+                        <td className="px-1" >
                         <span className="">
-                          <button>
-                          <img src={`${process.env.PUBLIC_URL}/assets/images/accept.svg`} onClick={()=>{AcceptProductRequest(x.id)}} alt="accept" className="accept-picture" />
+                          <button disabled={true}>
+                          <img  src={`${process.env.PUBLIC_URL}/assets/images/accept.svg`} onClick={()=>{AcceptProductRequest(x.id)}} alt="accept" className="accept-picture" />
                           </button>
                         
                         </span>
                       </td>
-                      <td className="py-1">
+                      <td className="py-1" style={{paddingLeft:"0px"}}>
                       <span className="">
-                          <button>
-                          <img src={`${process.env.PUBLIC_URL}/assets/images/reject.svg`} onClick={()=>{CancelProductPurchase(x.id)}}alt="reject" className="reject-picture" />
+                          <button style={{padding:"0px"}}>
+                          <img  src={`${process.env.PUBLIC_URL}/assets/images/reject.svg`} onClick={()=>{CancelProductPurchase(x.id)}}alt="reject" className="reject-picture" />
                           </button>
                         
                         </span>

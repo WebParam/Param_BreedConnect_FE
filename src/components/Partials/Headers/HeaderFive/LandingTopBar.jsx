@@ -18,41 +18,40 @@ export default function LandingTopBar({ className }) {
             <div className="topbar-nav">
            
               <ul className="flex space-x-6">
-               <li>
+               {/* <li  style={{marginTop:"7%", fontSize:"1.5em"}}>
                 <a href="/">
                       <img className="logoHeader"
-                          width="200"
-                          height="50"
+                        
                           // src={`${process.env.PUBLIC_URL}/assets/images/logo.svg`}
                           src={Logo}
                           alt="logo"
                       />
                   </a>
-               </li>
-                <li style={{marginTop:"7%"}}>
+               </li> */}
+                <li style={{marginTop:"7%", fontSize:"1.5em"}}>
                   <Link to="/">
-                    <span className="">
+                    <span style={{fontSize:"1.5em"}} >
                       About Us
                     </span>
                   </Link>
                 </li>
-                <li style={{marginTop:"7%"}}>
+                <li style={{marginTop:"7%",fontSize:"1.5em"}}>
                   <Link to="/tracking-order">
-                    <span >
+                    <span style={{fontSize:"1.5em"}} >
                       Safety
                     </span>
                   </Link>
                 </li>
-                <li style={{marginTop:"7%"}}>
+                <li style={{marginTop:"7%", fontSize:"1.5em"}}>
                   <Link to="/faq">
-                    <span >
+                    <span style={{fontSize:"1.5em"}} >
                       Community
                     </span>
                   </Link>
                 </li>
               </ul>
             </div>
-            <div className="topbar-dropdowns sm:block hidden">
+            <div className="topbar-dropdowns sm:block hidden" style={{marginTop:"7%"}}>
               <div className="flex space-x-6">
                 <div className="country-select flex space-x-1 items-center">
                   {/* <div>
@@ -74,7 +73,7 @@ export default function LandingTopBar({ className }) {
                 </div>
                 <div>
                 <Link to="/Login">
-                <div className="">
+                <div className="mt-3">
                     <center><span className="login-btn">Log In</span></center>
                   </div>
                   </Link>

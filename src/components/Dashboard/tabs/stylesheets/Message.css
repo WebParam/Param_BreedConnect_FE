@@ -1,0 +1,24 @@
+.message {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+  
+  .message.sent {
+    justify-content: flex-start;
+  }
+  
+  .message-bubble {
+    background-color: rgba(255, 179, 54, 0.24);
+    color: #000;
+    padding: 3px;
+    border-radius: 10px;
+    max-width: 70%;
+    margin: 4px;
+  }
+  
+  .message.received .message-bubble {
+    background-color: rgba(255, 179, 54, 0.24);
+    color: #000;
+  }

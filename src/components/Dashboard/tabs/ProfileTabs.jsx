@@ -1,7 +1,7 @@
 
-import InputCom from "../../../Helpers/InputCom";
+import InputCom from "../../Helpers/InputCom";
 
-import {getUserProfile} from "../../../../api/endpoints";
+import {getUserProfile} from "../../../api/endpoints";
 import React, { useEffect, useState } from "react";
 
 

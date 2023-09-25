@@ -1,11 +1,11 @@
 import { useRef, useState } from "react";
-import InputCom from "../../../Helpers/InputCom";
+import InputCom from "../../Helpers/InputCom";
 import Tabs from '../tabs/ProfileTabs';
 import MessageList from "./MessagesList";
 import './stylesheets/Profile.css'
 import RecentOrders from "./RecentOrders";
 import RecentSwipes from "./RecentSwipes";
-import CoverProfile from '../../../../media/cover.png';
+// import CoverProfile from '../../media/cover.png';
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 const user = cookies.get("bcon-user");
