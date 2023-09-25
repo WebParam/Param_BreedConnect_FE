@@ -203,6 +203,40 @@ export const AllProducts = async () => {
 //return productsResult;
 }
 
+export const AllMeetingsScheduled = async () => {
+  const meetingsResult = await GET('appointment/schedule/all')
+
+  if(meetingsResult!=null && meetingsResult.status==200){
+    return meetingsResult
+  }else{
+    alert("failed to fetch meetings")
+  }
+
+//return meetingsResult;
+}
+export const AllMeetingsScheduledById = async (id) => {
+  const meetingsResult = await GET(`appointment/schedule/${id}`)
+
+  if(meetingsResult!=null && meetingsResult.status==200){
+    return meetingsResult
+  }else{
+    alert("failed to fetch meetings")
+  }
+
+//return meetingsResult;
+}
+export const AddMeetingSchedule = async (id) => {
+  const meetingsResult = await POST(`appointment/schedule/new`)
+
+  if(meetingsResult!=null && meetingsResult.status==200){
+    return meetingsResult
+  }else{
+    alert("failed to post meeting")
+  }
+
+//return meetingsResult;
+}
+
 export const GetCustomerProducts = async () => {
   const productsResult = await GET('products/customer');
   if(productsResult!=null && productsResult.status==200){
