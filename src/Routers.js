@@ -31,6 +31,7 @@ import Tinder from "./components/Tinder";
 import Landing from "./components/Landing"
 import BreederDashboard from "./components/Dashboard";
 import BreederProfile from "./components/Dashboard/profile";
+import BreederProducts from "./components/Dashboard/Products/products";
 import AddProduct from "./components/Dashboard/add-product";
 
 import AddProductS1 from "./components/Dashboard/AddProduct/add-product-s1";
@@ -40,6 +41,7 @@ import EditProduct from "./components/Dashboard/AddProduct/edit-product";
 import OrderList from "./components/Dashboard/Orders/order-list";
 import Customers from './components/Customer'
 import Messages from './components/Dashboard/Messages/messages'
+import Products from './components/Dashboard/Products/products'
 export default function Routers() {
   return (
     <Routes>
@@ -49,10 +51,12 @@ export default function Routers() {
       <Route exact path="/signup" element={<Signup />} />
       <Route exact path="/signupbreeder" element={<SignupBreeder />} /> 
       <Route exact path="/breeder-profile" element={<BreederProfile />} />
+      {/* <Route exact path="/breeder-products" element={<BreederProfile />} /> */}
       {/* <Route exact path="/all-products" element={<AllProductPage />} /> */}
       <Route exact path="/profile" element={<Profile />} />
       <Route exact path="/view-product-list" element={<ViewProductList />} /> 
       <Route exact path="/messages-breeder" element={<Messages />} />
+      <Route exact path="/breeder-products" element={<Products />} />
       {/* <Route exact path="/home-two" element={<HomeTwo />} />
       <Route exact path="/home-three" element={<HomeThree />} />
       <Route exact path="/home-four" element={<HomeFour />} />

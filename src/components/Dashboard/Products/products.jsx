@@ -5,7 +5,7 @@ import { getProduct, updateProduct, uploadProduct } from "../../../api/endpoints
 import { ToastContainer, toast } from 'react-toastify';
 import {getBreederPurchaseRequests, AcceptRequestToPurchase,RejectRequestToPurchase} from "../../../api/endpoints"
 import { FaCheckCircle, FaTimesCircle,FaEnvelope } from "react-icons/fa";
-import {ProductsTab} from "../../Customer/tabs/ProductsTab";
+import ProductsTab from "../tabs/ProductsTab";
 import moment from 'moment'
 
 export default function Products() {
