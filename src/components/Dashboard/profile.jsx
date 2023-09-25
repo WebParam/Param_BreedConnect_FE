@@ -25,6 +25,7 @@ export default function BreederProfile() {
   const [switchDashboard, setSwitchDashboard] = useState(false);
   const location = useLocation();
 
+  const [breeder, setBreeder] = useState(location.state)
   const getHashContent = location.hash.split("#");
   const [active, setActive] = useState("profile");
   useEffect(() => {
@@ -85,7 +86,7 @@ window.location.href="/"
                       <Dashboard />
                     ) : active === "profile" ? (
                       <>
-                        <ProfileTab />
+                        <ProfileTab profile={breeder}/>
                       </>
                     ) : active === "messages" ? (
                       <>

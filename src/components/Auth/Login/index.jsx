@@ -64,6 +64,13 @@ export default function Login() {
                     isLoading: false,
                   });
                   LoginSuccess(response);
+                  cookies.set("bc-user", response.data,{path: '/', expires: new Date(Date.now()+2592000)});
+                  console.log("response.data",response.data)
+                  if(response.data.isDeliveryPartner){
+                    navigate('/breeder-profile', { state: response.data })
+                  }else{
+                    navigate('/profile', { state: response.data })
+                  }
                 }else{
                 toast.update(_id, {
                     autoClose:2000,
@@ -118,10 +125,11 @@ export default function Login() {
       });
       debugger;
       cookies.set("bc-user", response.data,{path: '/', expires: new Date(Date.now()+2592000)});
+      console.log("response.data",response.data)
       if(response.data.isDeliveryPartner){
-        navigate('/breeder-dash')
+        navigate('/breeder-dash', { state: response.data })
       }else{
-        navigate('/profile')
+        navigate('/profile', { state: response.data })
       }
     }else{
       toast.update(_id, {

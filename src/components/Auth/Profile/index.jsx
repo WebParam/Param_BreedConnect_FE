@@ -15,13 +15,19 @@ import Payment from "./tabs/Payment";
 import ProfileTab from "./tabs/ProfileTab";
 import ReviewTab from "./tabs/ReviewTab";
 import SupportTab from "./tabs/SupportTab";
-import WishlistTab from "./tabs/WishlistTab";
-import SwipesTab from "./tabs/SwipesTab";
+import Calender from "./tabs/Calender";
+import SwipesTinderTab from "./tabs/SwipesTinderTab";
 import Cookies from "universal-cookie";
+import IcoProducts from "./icons/IcoProducts";
+import IcoCalender from "./icons/IcoCalender";
+import IcoOrders from "./icons/IcoOrders";
+import IcoMessages from "./icons/IcoMessages";
+import IcoSwipes from "./icons/IcoSwipes";
 
 export default function Profile() {
   const [switchDashboard, setSwitchDashboard] = useState(false);
   const location = useLocation();
+  const [profile, setProfile] = useState(location.state)
   const getHashContent = location.hash.split("#");
   const [active, setActive] = useState("profile");
   useEffect(() => {
@@ -30,6 +36,7 @@ export default function Profile() {
         ? getHashContent[1]
         : "profile"
     );
+    console.log("profile", profile)
   }, [getHashContent]);
 
   const cookies = new Cookies();
@@ -82,7 +89,7 @@ window.location.href="/"
                       <Link to="/profile#messages">
                         <div className="flex space-x-3 items-center text-qgray hover:text-qblack">
                           <span>
-                          
+                          <IcoMessages />
                           </span>
                           <span className=" font-normal text-base">
                             Messages
@@ -95,7 +102,7 @@ window.location.href="/"
                       <Link to="/profile#orders">
                         <div className="flex space-x-3 items-center text-qgray hover:text-qblack">
                           <span>
-                          
+                          <IcoOrders />
                           </span>
                           <span className=" font-normal text-base">
                             Orders
@@ -108,20 +115,31 @@ window.location.href="/"
                       <Link to="/profile#products">
                         <div className="flex space-x-3 items-center text-qgray hover:text-qblack">
                           <span>
-                          
+                          <IcoProducts />
                           </span>
-                          <span className=" font-normal text-base">
+                          <span className="font-normal text-base">
                             Products
                           </span>
                         </div>
                       </Link>
                     </div>
-
+                    <div className="item group">
+                      <Link to="/profile#calender">
+                        <div className="flex space-x-3 items-center text-qgray hover:text-qblack">
+                          <span>
+                          <IcoCalender/>
+                          </span>
+                          <span className="font-normal text-base">
+                            Calender
+                          </span>
+                        </div>
+                      </Link>
+                    </div>
                     <div className="item group">
                       <Link to="/profile#swipes">
                         <div className="flex space-x-3 items-center text-qgray hover:text-qblack">
                           <span>
-                          
+                          <IcoSwipes/>
                           </span>
                           <span className=" font-normal text-base">
                             Swipes
@@ -164,7 +182,7 @@ window.location.href="/"
                       <Dashboard />
                     ) : active === "profile" ? (
                       <>
-                        <ProfileTab />
+                        <ProfileTab  profile={profile}/>
                       </>
                     ) : active === "messages" ? (
                       <>
@@ -174,13 +192,13 @@ window.location.href="/"
                       <>
                         <OrderTab />
                       </>
-                    ) : active === "wishlist" ? (
+                    ) : active === "calender" ? (
                       <>
-                        <WishlistTab />
+                        <Calender />
                       </>
                     ) : active === "swipes" ? (
                       <>
-                        <SwipesTab />
+                        <SwipesTinderTab />
                       </>
                     ) : active === "password" ? (
                       <>
