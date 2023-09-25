@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import '../tabs/stylesheets/calender.css'
+import { AddMeetingSchedule, AllMeetingsScheduledById, AllMeetingsScheduled } from '../../../../api/endpoints'
 
 
 export default function Calender() {
@@ -42,6 +43,17 @@ export default function Calender() {
         setMeetingTime('');
       }
     };
+
+    async function GetMeetings(){
+
+      const _meeting = await AllMeetingsScheduled();
+      setMeetings(_meeting?.data);
+      debugger;
+    }
+
+    useEffect(()=>{
+      GetMeetings();
+     }, [])
   
     return (
       <div className="scheduler-container">
@@ -92,8 +104,8 @@ export default function Calender() {
           <ul>
             {meetings.map((meeting, index) => (
               <li key={index}>
-                <strong>Date:</strong> {meeting.date.toLocaleDateString()},{' '}
-                {meeting.date.toLocaleTimeString()} | <strong>Customer:</strong>{' '}
+                <strong>Date:</strong> {meeting.Date},{' '}
+                {meeting.Date} | <strong>Customer:</strong>{' '}
                 {meeting.customerName} | <strong>Breeder :</strong> {meeting.sellerName}
               </li>
             ))}
