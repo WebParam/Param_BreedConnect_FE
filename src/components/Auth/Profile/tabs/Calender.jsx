@@ -211,10 +211,10 @@ export default function Calender() {
           {customerAppointments.map((meeting, index) => (
             <>
               <li class="meeting-item">
-                  <div class="meeting-title">Meeting {index}</div>
+                  {/* <div class="meeting-title">Meeting {index}</div> */}
                   <div class="meeting-details">
                       <span class="meeting-date">Breeder:</span> {meeting?.breeder?.firstname}<br/>
-                      <span class="meeting-date">Message:</span> {meeting?.appointmentMessage}<br/>
+                      <span class="meeting-date">Subject:</span> {meeting?.appointmentMessage}<br/>
                       <span class="meeting-date">Date and Time:</span> {meeting?.date}
                   </div>
               </li>
