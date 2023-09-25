@@ -116,7 +116,7 @@ function Tabs() {
                           </div> */}
                         </div>
                       </div>
-                      <div className="col-9">
+                      {/* <div className="col-9">
                         
                         <div className="form-group mt-4 p-4">
                         <h4>Biography</h4>
@@ -135,8 +135,8 @@ function Tabs() {
                             />
                           </div>
                         </div>
-                      </div>
-                      <div className="col-5">
+                      </div> */}
+                      {/* <div className="col-5">
                         
                         <div className="form-group mt-4 p-4">
                         <h3 className='mb-2'>About Your Breeding</h3>
@@ -154,9 +154,9 @@ function Tabs() {
                             />
                           </div>
                         </div>
-                      </div>
+                      </div> */}
                     
-                      <div className="col-9">
+                      {/* <div className="col-9">
                         
                         <div className="form-group mt-2 p-4">
                         <h4>What drives your passion for breeding:</h4>
@@ -175,9 +175,9 @@ function Tabs() {
                             />
                           </div>
                         </div>
-                      </div>
+                      </div> */}
                   
-                      <div className="col-9">
+                      {/* <div className="col-9">
                         
                         <div className="form-group mt-2 p-4">
                         <h3>Breeding Practices</h3>
@@ -196,7 +196,7 @@ function Tabs() {
                             />
                           </div>
                         </div>
-                      </div>
+                      </div> */}
 
                       <div className="col-9">
                         

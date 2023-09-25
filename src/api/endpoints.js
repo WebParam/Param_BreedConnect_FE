@@ -225,8 +225,35 @@ export const AllMeetingsScheduledById = async (id) => {
 
 //return meetingsResult;
 }
-export const AddMeetingSchedule = async (id) => {
-  const meetingsResult = await POST(`appointment/schedule/new`)
+
+export const AllMeetingsScheduledByCustomer = async () => {
+  const meetingsResult = await GET(`appointment/customer`)
+
+  if(meetingsResult!=null && meetingsResult.status==200){
+    console.log("customer meetings", meetingsResult);
+    return meetingsResult
+  }else{
+    alert("failed to fetch meetings")
+  }
+
+//return meetingsResult;
+}
+
+export const AllMeetingsScheduledByBreeder = async () => {
+  const meetingsResult = await GET(`appointment/breeder`)
+
+  if(meetingsResult!=null && meetingsResult.status==200){
+    console.log("breeder meetings", meetingsResult);
+    return meetingsResult
+  }else{
+    alert("failed to fetch meetings")
+  }
+
+//return meetingsResult;
+}
+
+export const AddMeetingSchedule = async (appointment) => {
+  const meetingsResult = await POST(`appointment/schedule/new`, appointment)
 
   if(meetingsResult!=null && meetingsResult.status==200){
     return meetingsResult
@@ -318,6 +345,11 @@ export const GetNotifications = async () => {
 
     return requestResult
 
+}
+
+export const GetPurchaseRequest = async (customerId) => {
+  const requestResult = await GET(`purchaserequests/customer/${customerId}`);
+  return requestResult
 }
 
 

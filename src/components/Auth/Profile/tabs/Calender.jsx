@@ -1,16 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import '../tabs/stylesheets/calender.css'
-import { AddMeetingSchedule, AllMeetingsScheduledById, AllMeetingsScheduled } from '../../../../api/endpoints'
+import { AddMeetingSchedule, AllMeetingsScheduledById, AllMeetingsScheduled, AllMeetingsScheduledByBreeder, AllMeetingsScheduledByCustomer,GetCustomerProducts, GetPurchaseRequest } from '../../../../api/endpoints'
 
 
 export default function Calender() {
     const [date, setDate] = useState(new Date());
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [meetings, setMeetings] = useState([]);
+    const [customerAppointments, setCustomerAppointments] = useState([]);
+    const [breederAppointments, setBreederAppointments] = useState([]);
+    const [customerProducts, setCustProducts] = useState([]);
+    const [selectedProduct, setSelectedProduct] = useState();
+    const [purchaseId, setPurchaseId] = useState();
     const [customerName, setCustomerName] = useState('');
     const [sellerName, setSellerName] = useState('');
     const [meetingTime, setMeetingTime] = useState('');
+    const [BreederId, setBreederId] = useState('');
+    const [Status, setStatus] = useState('');
+    const [CustomerId, setCustomerId] = useState('');
+    const [AppointmentMessage, setAppointmentMessage] = useState('');
+    const [Purchaserequestid, setPurchaserequestid] = useState('');
+    const [ProductId, setProductId] = useState('');
+
   
     const openModal = () => {
       setIsModalOpen(true);
@@ -24,35 +36,87 @@ export default function Calender() {
       setDate(selectedDate);
       openModal();
     };
+
+    const handleSelectChange = event => {
+     // t({ selectedOption: event.target.value });
+     console.log("selcted", event.target.value)
+
+     setSelectedProduct(event.target.value)
+    };
   
-    const handleScheduleMeeting = (e) => {
+    const handleScheduleMeeting = async (e) => {
+      await getPurchaseRequest(customerAppointments[0].customerId);
       e.preventDefault();
   
-      if (customerName && sellerName && meetingTime) {
+      if (selectedProduct) {
         const newMeeting = {
-          customerName,
-          sellerName,
-          meetingTime,
-          date,
+          BreederId:customerProducts[0].creatingUser,
+          CustomerId: customerAppointments[0].customerId,
+          AppointmentMessage,
+          Purchaserequestid: purchaseId,
+          ProductId: selectedProduct,
+          Status,
+          date: meetingTime
         };
+
+        console.log("new meeting", newMeeting)
   
-        setMeetings([...meetings, newMeeting]);
-        closeModal();
-        setCustomerName('');
-        setSellerName('');
-        setMeetingTime('');
+        //setMeetings([...meetings, newMeeting]);
+        // const saveMeeting = await AddMeetingSchedule(newMeeting);
+        // if(saveMeeting){
+        //   console.log("save res", saveMeeting)
+        //   closeModal();
+        //   setCustomerName('');
+        //   setSellerName('');
+        //   setMeetingTime('');
+        // }
+
       }
     };
 
     async function GetMeetings(){
+      const _meetings = await AllMeetingsScheduled();
+      setMeetings(_meetings?.data);
+      console.log("meetings", meetings)
+ 
+    }
 
-      const _meeting = await AllMeetingsScheduled();
-      setMeetings(_meeting?.data);
+
+    async function GetCustProducts(){
+      const _products = await GetCustomerProducts();
+      setCustProducts(_products?.data);
+      console.log("_products", _products)
+    }
+
+    async function GetCustomerAppointments(){
+
+      const _meetings = await AllMeetingsScheduledByCustomer();
+      setCustomerAppointments(_meetings?.data);
       debugger;
     }
 
+    async function getPurchaseRequest(customerId){
+      const _requestRes = await GetPurchaseRequest(customerId);
+      console.log("purchaseId", _requestRes?.data)
+      setPurchaserequestid(_requestRes?.data);
+      debugger;
+    }
+
+
+    async function GetBreederAppointments(){
+
+      const _meetings = await AllMeetingsScheduledByBreeder();
+      setBreederAppointments(_meetings?.data);
+      debugger;
+    }
+
+    
+
     useEffect(()=>{
       GetMeetings();
+      GetCustomerAppointments();
+      GetBreederAppointments();
+      GetCustProducts();
      }, [])
   
     return (
@@ -66,7 +130,7 @@ export default function Calender() {
             <div className="modal-content">
               <h2>Schedule a Meeting</h2>
               <form onSubmit={handleScheduleMeeting}>
-                <div className="form-group">
+                {/* <div className="form-group">
                   <label htmlFor="customerName">Customer Name:</label>
                   <input
                     type="text"
@@ -74,14 +138,51 @@ export default function Calender() {
                     value={customerName}
                     onChange={(e) => setCustomerName(e.target.value)}
                   />
-                </div>
+                </div> */}
                 <div className="form-group">
-                  <label htmlFor="sellerName">Breeder Name:</label>
+                  <label htmlFor="productName">Select Product</label>
+                  <select
+                    id="dynamicSelect"
+                    className="form-control"
+                    value={selectedProduct}
+                    onChange={(e) => handleSelectChange(e)}
+                  >
+                    <option value="">Select an product</option>
+                    {customerProducts.map(option => (
+                      <option key={option.value} value={option.id}>
+                        {option.name}
+                      </option>
+                    ))}
+                  </select>
+                {/* <Select
+                 labelId="dropdown-label"
+                  label="Select an option"
+                  value={selectedOption}
+                  name={modalContent[index]?.question}
+                  onChange={(event) => handleSelectChange(event, modalContent[index])}
+              >
+                  {modalContent[index]?.options.map((option) => (
+                      <MenuItem key={option?.value} value={option?.value}>
+                          {option?.name}
+                      </MenuItem>
+                  ))}
+              </Select> */}
+
+                  {/* <input
+                    type="text"
+                    id="productName"
+                    value={ProductId}
+                    onChange={(e) => setProductId(e.target.value)}
+                  /> */}
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="appointmentMessage">Subject:</label>
                   <input
                     type="text"
-                    id="sellerName"
-                    value={sellerName}
-                    onChange={(e) => setSellerName(e.target.value)}
+                    id="appointmentMessage"
+                    value={AppointmentMessage}
+                    onChange={(e) => setAppointmentMessage(e.target.value)}
                   />
                 </div>
                 <div className="form-group">
@@ -102,11 +203,11 @@ export default function Calender() {
         <div className="meetings-list">
           <h2>Scheduled Meetings</h2>
           <ul>
-            {meetings.map((meeting, index) => (
+            {customerAppointments.map((meeting, index) => (
               <li key={index}>
-                <strong>Date:</strong> {meeting.Date},{' '}
-                {meeting.Date} | <strong>Customer:</strong>{' '}
-                {meeting.customerName} | <strong>Breeder :</strong> {meeting.sellerName}
+                <strong>Date:</strong> {new Date(meeting?.date).toLocaleDateString()},{' '}
+                {new Date(meeting?.date).toLocaleDateString()} | <strong>Customer:</strong>{' '}
+                {meeting?.customer?.firstname} | <strong>Breeder :</strong> {meeting?.breeder?.firstname}
               </li>
             ))}
           </ul>
