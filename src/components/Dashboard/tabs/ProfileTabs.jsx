@@ -21,7 +21,7 @@ function Tabs() {
 
     const _profile = await getUserProfile();
   
-    setProfile(_profile.data);
+    setProfile(_profile?.data);
     setBiography(_profile.profile?.biography??"")
     setPassion(_profile.profile?.passion??"")
     setYears(_profile.profile?.years??"")

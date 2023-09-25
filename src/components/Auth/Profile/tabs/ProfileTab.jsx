@@ -82,7 +82,7 @@ export default function ProfileTab() {
         <div className="col-md-8 mr-2">
         <ProfileHeader/>
           <div className="input-item flex space-x-2.5 mb-8">
-            <Tabs/>
+            <Tabs profile={user}/>
  
           </div> 
         </div>
