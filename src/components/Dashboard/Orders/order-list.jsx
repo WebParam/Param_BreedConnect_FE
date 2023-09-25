@@ -142,7 +142,7 @@ async function Message(id){
                           <tr className=" border-b hover:bg-gray-50">
                       <td className="py-1">
                         <span>
-                        <small className="mt-3 ml-1">{x.customer.firstname} {x.customer.lastname}</small>
+                        <small className="mt-3 ml-1" style={{position:"absolute",left: "4em",width: "200px"}}>{x.customer.firstname} {x.customer.lastname}</small>
                         <img src={`${process.env.PUBLIC_URL}/assets/images/d2.jpg`}  alt="breeder" className="customer"/>
                        
                         </span>
