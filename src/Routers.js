@@ -42,6 +42,7 @@ import OrderList from "./components/Dashboard/Orders/order-list";
 import Customers from './components/Customer'
 import Messages from './components/Dashboard/Messages/messages'
 import Products from './components/Dashboard/Products/products'
+import CalendarSchedule from "./components/Dashboard/calender";
 export default function Routers() {
   return (
     <Routes>
@@ -99,6 +100,7 @@ export default function Routers() {
       <Route exact path="/tinder" element={<Tinder/>}  /> 
       <Route exact path="/customer" element={<Customers/>}  />
       <Route exact path="/orders" element={<OrderList/>}  />
+      <Route exact path="/calender" element={<CalendarSchedule/>}  />
       
     </Routes>
   );
