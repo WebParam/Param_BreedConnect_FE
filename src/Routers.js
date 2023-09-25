@@ -99,6 +99,7 @@ export default function Routers() {
       <Route exact path="/tinder" element={<Tinder/>}  /> 
       <Route exact path="/customer" element={<Customers/>}  />
       <Route exact path="/orders" element={<OrderList/>}  />
+      <Route exact path="/swipes" element={<OrderList/>}  />
       
     </Routes>
   );

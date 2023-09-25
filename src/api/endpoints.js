@@ -123,7 +123,7 @@ export const getAllProductsByCustomer = async () => {
 
 export const getBreederProducts = async (breederId) => {
   try {
-    const getAllProductsResult = await GET(`products/breeder/}`);
+    const getAllProductsResult = await GET(`products/breeder`);
 
     if (getAllProductsResult != null && getAllProductsResult.status === 200) {
       return getAllProductsResult; 

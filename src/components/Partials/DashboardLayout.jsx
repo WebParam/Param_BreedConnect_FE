@@ -25,7 +25,7 @@ function logout(){
   cookies.remove("bc-user");
   window.location.href="/"
   }
-
+  const user = cookies.get("bcon-user");
 
 
 export default function DashboardLayout({ children, childrenClasses }) {
@@ -40,6 +40,9 @@ export default function DashboardLayout({ children, childrenClasses }) {
   };
   
   useEffect(()=>{
+    if(!user?.id){
+      logout();
+    }
     _GetNotifications();
   }, [])
 
@@ -214,6 +217,44 @@ export default function DashboardLayout({ children, childrenClasses }) {
               </li>
               <li>
                 <a
+                  href="/swipes"
+                  className={currentUrl.includes("swipes")?"":"collapsed"}
+                  data-bs-toggle="collapse"
+                  data-bs-target="#menu-item__orders"
+                >
+                  <span className="menu-bar__text">
+                    <span className="sherah-menu-icon sherah-svg-icon__v1">
+                      <svg
+                        className="sherah-svg-icon"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="17.092"
+                        height="17.873"
+                        viewBox="0 0 17.092 17.873"
+                      >
+                        <g id="Icon" transform="translate(-409.241 -375.497)">
+                          <path
+                            id="Path_219"
+                            data-name="Path 219"
+                            d="M413.466,380.6a15.992,15.992,0,0,1,.123-1.943,4.18,4.18,0,0,1,4.549-3.151,4.054,4.054,0,0,1,3.919,3.741c.009.436,0,.872,0,1.354h2.872c.193,0,.386,0,.579,0,.589.012.879.286.813.811-.4,3.247-.8,6.495-1.227,9.739a2.674,2.674,0,0,1-2.769,2.2q-4.543.022-9.086,0a2.681,2.681,0,0,1-2.771-2.2c-.344-2.558-.649-5.12-.97-7.68-.078-.62-.147-1.242-.234-1.861-.108-.759.125-1.011.967-1.012Zm-2.723,1.3c.062.5.119.978.177,1.452.306,2.481.606,4.963.924,7.443.114.888.642,1.293,1.628,1.294q4.32,0,8.639,0a2.279,2.279,0,0,0,.57-.059,1.428,1.428,0,0,0,1.074-1.446c.213-1.836.452-3.669.679-5.5.13-1.052.257-2.1.387-3.174h-2.742v1.215c.038.015.076.032.115.046.437.159.649.424.563.746a.73.73,0,0,1-.826.524c-.43-.008-.861.008-1.291-.006a.668.668,0,0,1-.711-.588c-.021-.423.28-.612.676-.709v-1.218h-5.655v1.221c.434.1.724.3.683.722a.613.613,0,0,1-.636.565c-.518.026-1.039.024-1.558,0-.349-.016-.627-.224-.614-.526a1.458,1.458,0,0,1,.364-.659c.051-.071.2-.084.292-.118V381.9Zm4.154-1.321h5.727c0-.514.036-1-.007-1.491a2.723,2.723,0,0,0-2.627-2.306,2.77,2.77,0,0,0-2.967,1.982A12.7,12.7,0,0,0,414.9,380.578Z"
+                            transform="translate(0 0)"
+                          />
+                          <path
+                            id="Path_220"
+                            data-name="Path 220"
+                            d="M475.527,506.525c.71-.887,1.409-1.754,2.1-2.627a.66.66,0,0,1,.828-.285.609.609,0,0,1,.258.961c-.841,1.079-1.7,2.145-2.563,3.206a.6.6,0,0,1-.858.123c-.635-.412-1.267-.829-1.89-1.259a.635.635,0,1,1,.71-1.053C474.584,505.888,475.043,506.2,475.527,506.525Z"
+                            transform="translate(-57.815 -117.848)"
+                          />
+                        </g>
+                      </svg>
+                    </span>
+                    <span className="menu-bar__name">Swipes</span>
+                  </span>
+                  <span className="sherah__toggle" />
+                </a>
+                
+              </li>
+              <li>
+                <a
                 className={currentUrl.includes("breeder-dash")?"":"collapsed"}
                   href="/breeder-dash"
                   data-bs-toggle="collapse"
@@ -261,7 +302,7 @@ export default function DashboardLayout({ children, childrenClasses }) {
               </li>
               <li>
                 <a
-                  href="#!"
+                  href="/breeder-products"
                   className="collapsed"
                   data-bs-toggle="collapse"
                   data-bs-target="#menu-item_products"
@@ -320,7 +361,7 @@ export default function DashboardLayout({ children, childrenClasses }) {
                   </ul>
                 </div>
               </li>
-              <li>
+              {/* <li>
                 <a
                   href="#!"
                   className="collapsed"
@@ -368,33 +409,10 @@ export default function DashboardLayout({ children, childrenClasses }) {
                   </span>{" "}
                   <span className="sherah__toggle" />
                 </a>
-                {/* Dropdown Menu */}
-                <div
-                  className="collapse sherah__dropdown"
-                  id="menu-item__customers"
-                  data-bs-parent="#sherahMenu"
-                >
-                  <ul className="menu-bar__one-dropdown">
-                    <li>
-                      <a href="customer-list.html">
-                        <span className="menu-bar__text">
-                          <span className="menu-bar__name">Customer List</span>
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="customers.html">
-                        <span className="menu-bar__text">
-                          <span className="menu-bar__name">Customers</span>
-                        </span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
+              </li> */}
          
          
-              <li>
+              {/* <li>
                 <a href="invoice.html" className="collapsed">
                   <span className="menu-bar__text">
                     <span className="sherah-menu-icon sherah-svg-icon__v1">
@@ -441,7 +459,7 @@ export default function DashboardLayout({ children, childrenClasses }) {
                     <span className="menu-bar__name">Invoice</span>
                   </span>
                 </a>
-              </li>
+              </li> */}
             
        
            
@@ -1072,9 +1090,9 @@ export default function DashboardLayout({ children, childrenClasses }) {
                           </div>
                           <div className="sherah-header__author--info sherah-dflex sherah-dflex__base">
                             <h4 className="sherah-header__author--title  sherah-dflex sherah-dflex__column">
-                              Anthony{" "}
+                              {user?.firstname}{" "}
                               <span className="sherah-header__author--text">
-                                USA
+                              South Africa
                               </span>
                             </h4>
                             <svg

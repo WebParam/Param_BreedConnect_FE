@@ -56,7 +56,7 @@ function RecentSwipes({  }) {
            </div>
           <div className="client-info col-md-6" style={{alignItems:"flex-start"}} >
             {/* <img src={message.client.avatar} alt={message.sender} className="client-avatar" /> */}
-           <h4>{message.customer.firstname}</h4>
+           <h4>{message?.customer?.firstname}</h4>
             <div className="client-name">{moment(message.date).fromNow()}</div>
           </div>
          

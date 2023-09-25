@@ -1,32 +1,38 @@
 import { useRef, useState, useEffect } from "react";
-import { AllProducts, RequestToPurchase } from '../../../api/endpoints';
+import { AllProducts, getBreederProducts } from '../../../api/endpoints';
 import { toast } from 'react-toastify';
 
 export default function ProductsTab() {
 
   const [products, setProducts] = useState([]);
 
-  const request = async (product) => {
-    console.log("product", product)
-    const response = await RequestToPurchase(product);
-    if(response!=null && response.status ==200){
-      console.log("success");
-    }
-  }
-
+  
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await AllProducts();
-        const data = await response.data;
-        setProducts(data);
-        console.log("products", data)
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
+   
     fetchProducts();
   }, []);
+
+  const fetchProducts = async () => {
+    try {
+      const response = await getBreederProducts();
+      const data = await response.data;
+      setProducts(data);
+      console.log("products", data)
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  function editProduct(){
+
+  }
+
+
+  function onlyUnique(value, index, array) {
+    return array.indexOf(value) === index;
+  }
+
+
 
   return (
     <>
@@ -34,15 +40,15 @@ export default function ProductsTab() {
         <div className="col-xxl-3 col-lg-4 col-12">
           {/* Product Brand Sidebar */}
           <div className="sherah-product-sidebar sherah-default-bg mg-top-30">
-            <h4 className="sherah-product-sidebar__title sherah-border-btm">
-              Breed Types
+            <h4 style={{textAlign:"center"}} className="mt-2 sherah-product-sidebar__title sherah-border-btm">
+              Product Types
             </h4>
             <ul className="sherah-product-sidebar__list">
               <li>
                 <a href="#">
                   <span>
                     <i className="fa-solid fa-chevron-right" />
-                    Pure breed
+                    Dogs & Puppies
                   </span>
                 </a>
               </li>
@@ -50,34 +56,11 @@ export default function ProductsTab() {
                 <a href="#">
                   <span>
                     <i className="fa-solid fa-chevron-right" />
-                    Affenpinscher
+                   Dog Sperm
                   </span>
                 </a>
               </li>
-              <li>
-                <a href="#">
-                  <span>
-                    <i className="fa-solid fa-chevron-right" />
-                    Afghan Hound
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span>
-                    <i className="fa-solid fa-chevron-right" />
-                    Airedale Terrier
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span>
-                    <i className="fa-solid fa-chevron-right" />
-                    Akbash
-                  </span>
-                </a>
-              </li>
+         
             </ul>
           </div>
           {/* End Product Brand Sidebar */}
@@ -87,7 +70,7 @@ export default function ProductsTab() {
             <div className="sherah-breadcrumb__right--first">
               <div className="sherah-header__form sherah-header__form--product">
                 <form className="sherah-header__form-inner" action="#">
-                  <button className="search-btn" type="submit">
+                  <button className="search-btn" type="submit" style={{margin: "0px"}}>
                     <svg
                       width={24}
                       height={25}
@@ -101,7 +84,7 @@ export default function ProductsTab() {
                   <input name="s" defaultValue="" type="text" placeholder="Search" />
                 </form>
               </div>
-              <p>Showing 1–8 of 60 results</p>
+              <p>Showing 1–{products?.length} of {products.length} results</p>
             </div>
             <div className="sherah-breadcrumb__right--second">
               <div
@@ -167,7 +150,7 @@ export default function ProductsTab() {
                             </h5>
                           </div>
                           <div className="sherah-btn default">
-                            <button onClick={() => request(product)} className="request">Request</button>
+                            <button onClick={() => editProduct(product)} className="request">Edit</button>
                           </div>
                         </div>
                       </div>
