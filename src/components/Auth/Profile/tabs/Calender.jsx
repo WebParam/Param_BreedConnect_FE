@@ -19,8 +19,8 @@ export default function Calender() {
     const [BreederId, setBreederId] = useState('');
     const [Status, setStatus] = useState('');
     const [CustomerId, setCustomerId] = useState('');
-    const [AppointmentMessage, setAppointmentMessage] = useState('');
-    const [Purchaserequestid, setPurchaserequestid] = useState('');
+    const [appointmentMessage, setAppointmentMessage] = useState('');
+    const [purchaseRequest, setPurchaseRequest] = useState();
     const [ProductId, setProductId] = useState('');
 
   
@@ -45,33 +45,8 @@ export default function Calender() {
     };
   
     const handleScheduleMeeting = async (e) => {
-      await getPurchaseRequest(customerAppointments[0].customerId);
       e.preventDefault();
-  
-      if (selectedProduct) {
-        const newMeeting = {
-          BreederId:customerProducts[0].creatingUser,
-          CustomerId: customerAppointments[0].customerId,
-          AppointmentMessage,
-          Purchaserequestid: purchaseId,
-          ProductId: selectedProduct,
-          Status,
-          date: meetingTime
-        };
-
-        console.log("new meeting", newMeeting)
-  
-        //setMeetings([...meetings, newMeeting]);
-        // const saveMeeting = await AddMeetingSchedule(newMeeting);
-        // if(saveMeeting){
-        //   console.log("save res", saveMeeting)
-        //   closeModal();
-        //   setCustomerName('');
-        //   setSellerName('');
-        //   setMeetingTime('');
-        // }
-
-      }
+      await getPurchaseRequestAndCreateAppointment(customerAppointments[0].customerId)   
     };
 
     async function GetMeetings(){
@@ -95,11 +70,30 @@ export default function Calender() {
       debugger;
     }
 
-    async function getPurchaseRequest(customerId){
+    async function getPurchaseRequestAndCreateAppointment(customerId){
       const _requestRes = await GetPurchaseRequest(customerId);
-      console.log("purchaseId", _requestRes?.data)
-      setPurchaserequestid(_requestRes?.data);
-      debugger;
+      setPurchaseRequest(_requestRes?.data[0]);
+      if(_requestRes?.data[0]){
+      const newMeeting = {
+        appointmentMessage,
+        purchaserequestid: _requestRes?.data[0].id,
+        date: meetingTime
+      };
+
+     // setMeetings([...meetings, newMeeting]);
+      const saveMeeting = await AddMeetingSchedule(newMeeting);
+      console.log("save res", saveMeeting)
+      if(saveMeeting){
+        closeModal();
+        setCustomerName('');
+        setSellerName('');
+        setMeetingTime('');
+      }
+
+      GetCustomerAppointments();
+
+        
+    }
     }
 
 
@@ -181,7 +175,7 @@ export default function Calender() {
                   <input
                     type="text"
                     id="appointmentMessage"
-                    value={AppointmentMessage}
+                    value={appointmentMessage}
                     onChange={(e) => setAppointmentMessage(e.target.value)}
                   />
                 </div>
@@ -201,14 +195,31 @@ export default function Calender() {
           </div>
         )}
         <div className="meetings-list">
-          <h2>Scheduled Meetings</h2>
+          {/* <h2>Scheduled Meetings</h2>
           <ul>
             {customerAppointments.map((meeting, index) => (
               <li key={index}>
                 <strong>Date:</strong> {new Date(meeting?.date).toLocaleDateString()},{' '}
                 {new Date(meeting?.date).toLocaleDateString()} | <strong>Customer:</strong>{' '}
-                {meeting?.customer?.firstname} | <strong>Breeder :</strong> {meeting?.breeder?.firstname}
+                {meeting?.customer?.firstname} | <strong>Breeder :</strong> {meeting?.breeder?.firstname} |
+                 <strong> Message :</strong> {meeting?.appointmentMessage}
               </li>
+            ))}
+          </ul> */}
+          <h1>Scheduled Meetings</h1>
+          <ul>
+          {customerAppointments.map((meeting, index) => (
+            <>
+              <li class="meeting-item">
+                  <div class="meeting-title">Meeting {index}</div>
+                  <div class="meeting-details">
+                      <span class="meeting-date">Breeder:</span> {meeting?.breeder?.firstname}<br/>
+                      <span class="meeting-date">Message:</span> {meeting?.appointmentMessage}<br/>
+                      <span class="meeting-date">Date and Time:</span> {meeting?.date}
+                  </div>
+              </li>
+             
+              </>
             ))}
           </ul>
         </div>

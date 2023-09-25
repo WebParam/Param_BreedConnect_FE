@@ -253,7 +253,7 @@ export const AllMeetingsScheduledByBreeder = async () => {
 }
 
 export const AddMeetingSchedule = async (appointment) => {
-  const meetingsResult = await POST(`appointment/schedule/new`, appointment)
+  const meetingsResult = await POST(`calender/schedule/new`, appointment)
 
   if(meetingsResult!=null && meetingsResult.status==200){
     return meetingsResult
