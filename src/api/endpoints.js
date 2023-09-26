@@ -254,8 +254,78 @@ export const AllProducts = async () => {
 //return productsResult;
 }
 
+export const AllMeetingsScheduled = async () => {
+  const meetingsResult = await GET('appointment/schedule/all')
+
+  if(meetingsResult!=null && meetingsResult.status==200){
+    return meetingsResult
+  }else{
+    alert("failed to fetch meetings")
+  }
+
+//return meetingsResult;
+}
+export const AllMeetingsScheduledById = async (id) => {
+  const meetingsResult = await GET(`appointment/schedule/${id}`)
+
+  if(meetingsResult!=null && meetingsResult.status==200){
+    return meetingsResult
+  }else{
+    alert("failed to fetch meetings")
+  }
+
+//return meetingsResult;
+}
+
+export const AllMeetingsScheduledByCustomer = async () => {
+  const meetingsResult = await GET(`appointment/customer`)
+
+  if(meetingsResult!=null && meetingsResult.status==200){
+    console.log("customer meetings", meetingsResult);
+    return meetingsResult
+  }else{
+    alert("failed to fetch meetings")
+  }
+
+//return meetingsResult;
+}
+
+export const AllMeetingsScheduledByBreeder = async () => {
+  const meetingsResult = await GET(`appointment/breeder`)
+
+  if(meetingsResult!=null && meetingsResult.status==200){
+    console.log("breeder meetings", meetingsResult);
+    return meetingsResult
+  }else{
+    alert("failed to fetch meetings")
+  }
+
+//return meetingsResult;
+}
+
+export const AddMeetingSchedule = async (appointment) => {
+  const meetingsResult = await POST(`calender/schedule/new`, appointment)
+
+  if(meetingsResult!=null && meetingsResult.status==200){
+    return meetingsResult
+  }else{
+    alert("failed to post meeting")
+  }
+
+//return meetingsResult;
+}
+
 export const GetCustomerProducts = async () => {
   const productsResult = await GET('products/customer');
+  if(productsResult!=null && productsResult.status==200){
+    return productsResult
+  }else{
+    alert("failed to fetch products")
+  }
+}
+
+export const GetBreederProducts = async () => {
+  const productsResult = await GET('products/breeder');
   if(productsResult!=null && productsResult.status==200){
     return productsResult
   }else{
@@ -335,6 +405,11 @@ export const GetNotifications = async () => {
 
     return requestResult
 
+}
+
+export const GetPurchaseRequest = async (customerId) => {
+  const requestResult = await GET(`purchaserequests/customer/${customerId}`);
+  return requestResult
 }
 
 

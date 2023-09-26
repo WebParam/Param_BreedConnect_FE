@@ -84,7 +84,7 @@ window.location.href="/"
                         </div>
                       </Link>
                     </div>
-
+{/* 
                     <div className="item group">
                       <Link to="/profile#messages">
                         <div className="flex space-x-3 items-center text-qgray hover:text-qblack">
@@ -96,7 +96,7 @@ window.location.href="/"
                           </span>
                         </div>
                       </Link>
-                    </div>
+                    </div> */}
 
                     <div className="item group">
                       <Link to="/profile#orders">

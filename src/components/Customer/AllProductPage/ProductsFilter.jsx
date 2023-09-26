@@ -21,14 +21,14 @@ export default function ProductsFilter({
         }  ${filterToggle ? "block" : "hidden lg:block"}`}
       >
         <div className="filter-subject-item pb-10 border-b border-qgray-border">
-          <div className="subject-title mb-[30px]">
+          <div className="subject-title">
             <h1 className="text-black text-base font-500">
               Product categories
             </h1>
           </div>
           <div className="filter-items">
             <ul>
-              <li className="item flex justify-between items-center mb-5">
+              <li className="item flex justify-between items-center mb-2">
                 <div className="flex space-x-[14px] items-center">
                   <div>
                     <Checkbox
@@ -43,11 +43,11 @@ export default function ProductsFilter({
                       htmlFor="mobileLaptop"
                       className="text-xs font-black font-400 capitalize"
                     >
-                      Mobile & Laptops
+                     Animals
                     </label>
                   </div>
                 </div>
-                <div>
+                {/* <div>
                   <span className="cursor-pointer">
                     <svg
                       width="10"
@@ -66,9 +66,9 @@ export default function ProductsFilter({
                       />
                     </svg>
                   </span>
-                </div>
+                </div> */}
               </li>
-              <li className="item flex justify-between items-center mb-5">
+              <li className="item flex justify-between items-center mb-2">
                 <div className="flex space-x-[14px] items-center">
                   <div>
                     <Checkbox
@@ -83,11 +83,11 @@ export default function ProductsFilter({
                       htmlFor="gaming"
                       className="text-xs font-black font-400 capitalize"
                     >
-                      Gaming Entertainment
+                     Sperm
                     </label>
                   </div>
                 </div>
-                <div>
+                {/* <div>
                   <span className="cursor-pointer">
                     <svg
                       width="10"
@@ -106,368 +106,10 @@ export default function ProductsFilter({
                       />
                     </svg>
                   </span>
-                </div>
+                </div> */}
               </li>
-              <li className="item flex justify-between items-center mb-5">
-                <div className="flex space-x-[14px] items-center">
-                  <div>
-                    <Checkbox
-                      id="imageVideo"
-                      name="imageVideo"
-                      handleChange={(e) => checkboxHandler(e)}
-                      checked={filters.imageVideo}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="imageVideo"
-                      className="text-xs font-black font-400 capitalize"
-                    >
-                      Image & Video
-                    </label>
-                  </div>
-                </div>
-                <div>
-                  <span className="cursor-pointer">
-                    <svg
-                      width="10"
-                      height="10"
-                      viewBox="0 0 10 10"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <rect y="4" width="10" height="2" fill="#C4C4C4" />
-                      <rect
-                        x="6"
-                        width="10"
-                        height="2"
-                        transform="rotate(90 6 0)"
-                        fill="#C4C4C4"
-                      />
-                    </svg>
-                  </span>
-                </div>
-              </li>
-              <li className="item flex justify-between items-center mb-5">
-                <div className="flex space-x-[14px] items-center">
-                  <div>
-                    <Checkbox
-                      id="vehicles"
-                      name="vehicles"
-                      handleChange={(e) => checkboxHandler(e)}
-                      checked={filters.vehicles}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="vehicles"
-                      className="text-xs font-black font-400 capitalize"
-                    >
-                      Vehicles
-                    </label>
-                  </div>
-                </div>
-                <div>
-                  <span className="cursor-pointer">
-                    <svg
-                      width="10"
-                      height="10"
-                      viewBox="0 0 10 10"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <rect y="4" width="10" height="2" fill="#C4C4C4" />
-                      <rect
-                        x="6"
-                        width="10"
-                        height="2"
-                        transform="rotate(90 6 0)"
-                        fill="#C4C4C4"
-                      />
-                    </svg>
-                  </span>
-                </div>
-              </li>
-              <li className="item flex justify-between items-center mb-5">
-                <div className="flex space-x-[14px] items-center">
-                  <div>
-                    <Checkbox
-                      id="furnitures"
-                      name="furnitures"
-                      handleChange={(e) => checkboxHandler(e)}
-                      checked={filters.furnitures}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="furnitures"
-                      className="text-xs font-black font-400 capitalize"
-                    >
-                      Furnitures
-                    </label>
-                  </div>
-                </div>
-                <div>
-                  <span className="cursor-pointer">
-                    <svg
-                      width="10"
-                      height="10"
-                      viewBox="0 0 10 10"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <rect y="4" width="10" height="2" fill="#C4C4C4" />
-                      <rect
-                        x="6"
-                        width="10"
-                        height="2"
-                        transform="rotate(90 6 0)"
-                        fill="#C4C4C4"
-                      />
-                    </svg>
-                  </span>
-                </div>
-              </li>
-              <li className="item flex justify-between items-center mb-5">
-                <div className="flex space-x-[14px] items-center">
-                  <div>
-                    <Checkbox
-                      id="sport"
-                      name="sport"
-                      handleChange={(e) => checkboxHandler(e)}
-                      checked={filters.sport}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="sport"
-                      className="text-xs font-black font-400 capitalize"
-                    >
-                      Sport
-                    </label>
-                  </div>
-                </div>
-                <div>
-                  <span className="cursor-pointer">
-                    <svg
-                      width="10"
-                      height="10"
-                      viewBox="0 0 10 10"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <rect y="4" width="10" height="2" fill="#C4C4C4" />
-                      <rect
-                        x="6"
-                        width="10"
-                        height="2"
-                        transform="rotate(90 6 0)"
-                        fill="#C4C4C4"
-                      />
-                    </svg>
-                  </span>
-                </div>
-              </li>
-              <li className="item flex justify-between items-center mb-5">
-                <div className="flex space-x-[14px] items-center">
-                  <div>
-                    <Checkbox
-                      id="foodDrinks"
-                      name="foodDrinks"
-                      handleChange={(e) => checkboxHandler(e)}
-                      checked={filters.foodDrinks}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="foodDrinks"
-                      className="text-xs font-black font-400 capitalize"
-                    >
-                      Food & Drinks
-                    </label>
-                  </div>
-                </div>
-                <div>
-                  <span className="cursor-pointer">
-                    <svg
-                      width="10"
-                      height="10"
-                      viewBox="0 0 10 10"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <rect y="4" width="10" height="2" fill="#C4C4C4" />
-                      <rect
-                        x="6"
-                        width="10"
-                        height="2"
-                        transform="rotate(90 6 0)"
-                        fill="#C4C4C4"
-                      />
-                    </svg>
-                  </span>
-                </div>
-              </li>
-              <li className="item flex justify-between items-center mb-5">
-                <div className="flex space-x-[14px] items-center">
-                  <div>
-                    <Checkbox
-                      id="fashion"
-                      name="fashion"
-                      handleChange={(e) => checkboxHandler(e)}
-                      checked={filters.fashion}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="fashion"
-                      className="text-xs font-black font-400 capitalize"
-                    >
-                      Fashion Accessories
-                    </label>
-                  </div>
-                </div>
-                <div>
-                  <span className="cursor-pointer">
-                    <svg
-                      width="10"
-                      height="10"
-                      viewBox="0 0 10 10"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <rect y="4" width="10" height="2" fill="#C4C4C4" />
-                      <rect
-                        x="6"
-                        width="10"
-                        height="2"
-                        transform="rotate(90 6 0)"
-                        fill="#C4C4C4"
-                      />
-                    </svg>
-                  </span>
-                </div>
-              </li>
-              <li className="item flex justify-between items-center mb-5">
-                <div className="flex space-x-[14px] items-center">
-                  <div>
-                    <Checkbox
-                      id="toilet"
-                      name="toilet"
-                      handleChange={(e) => checkboxHandler(e)}
-                      checked={filters.toilet}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="toilet"
-                      className="text-xs font-black font-400 capitalize"
-                    >
-                      Toilet & Sanitation
-                    </label>
-                  </div>
-                </div>
-                <div>
-                  <span className="cursor-pointer">
-                    <svg
-                      width="10"
-                      height="10"
-                      viewBox="0 0 10 10"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <rect y="4" width="10" height="2" fill="#C4C4C4" />
-                      <rect
-                        x="6"
-                        width="10"
-                        height="2"
-                        transform="rotate(90 6 0)"
-                        fill="#C4C4C4"
-                      />
-                    </svg>
-                  </span>
-                </div>
-              </li>
-              <li className="item flex justify-between items-center mb-5">
-                <div className="flex space-x-[14px] items-center">
-                  <div>
-                    <Checkbox
-                      id="makeupCorner"
-                      name="makeupCorner"
-                      handleChange={(e) => checkboxHandler(e)}
-                      checked={filters.makeupCorner}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="makeupCorner"
-                      className="text-xs font-black font-400 capitalize"
-                    >
-                      Makeup Corner
-                    </label>
-                  </div>
-                </div>
-                <div>
-                  <span className="cursor-pointer">
-                    <svg
-                      width="10"
-                      height="10"
-                      viewBox="0 0 10 10"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <rect y="4" width="10" height="2" fill="#C4C4C4" />
-                      <rect
-                        x="6"
-                        width="10"
-                        height="2"
-                        transform="rotate(90 6 0)"
-                        fill="#C4C4C4"
-                      />
-                    </svg>
-                  </span>
-                </div>
-              </li>
-              <li className="item flex justify-between items-center mb-5">
-                <div className="flex space-x-[14px] items-center">
-                  <div>
-                    <Checkbox
-                      id="babyItem"
-                      name="babyItem"
-                      handleChange={(e) => checkboxHandler(e)}
-                      checked={filters.babyItem}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="babyItem"
-                      className="text-xs font-black font-400 capitalize"
-                    >
-                      Baby Items
-                    </label>
-                  </div>
-                </div>
-                <div>
-                  <span className="cursor-pointer">
-                    <svg
-                      width="10"
-                      height="10"
-                      viewBox="0 0 10 10"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <rect y="4" width="10" height="2" fill="#C4C4C4" />
-                      <rect
-                        x="6"
-                        width="10"
-                        height="2"
-                        transform="rotate(90 6 0)"
-                        fill="#C4C4C4"
-                      />
-                    </svg>
-                  </span>
-                </div>
-              </li>
+          
+            
             </ul>
           </div>
         </div>
@@ -485,16 +127,16 @@ export default function ProductsFilter({
             />
           </div>
           <p className="text-xs text-qblack font-400">
-            Price: ${volume.min} - ${volume.max}
+            Price: R{volume.min} - R{volume.max}
           </p>
         </div>
         <div className="filter-subject-item pb-10 border-b border-qgray-border mt-10">
           <div className="subject-title mb-[30px]">
-            <h1 className="text-black text-base font-500">Brands</h1>
+            <h1 className="text-black text-base font-500">Breeds</h1>
           </div>
           <div className="filter-items">
             <ul>
-              <li className="item flex justify-between items-center mb-5">
+              <li className="item flex justify-between items-center mb-2">
                 <div className="flex space-x-[14px] items-center">
                   <div>
                     <Checkbox
@@ -509,12 +151,12 @@ export default function ProductsFilter({
                       htmlFor="apple"
                       className="text-xs font-black font-400 capitalize"
                     >
-                      apple
+                      Pitbulls
                     </label>
                   </div>
                 </div>
               </li>
-              <li className="item flex justify-between items-center mb-5">
+              <li className="item flex justify-between items-center mb-2">
                 <div className="flex space-x-[14px] items-center">
                   <div>
                     <Checkbox
@@ -529,12 +171,12 @@ export default function ProductsFilter({
                       htmlFor="samsung"
                       className="text-xs font-black font-400 capitalize"
                     >
-                      Samsung
+                      Pugs
                     </label>
                   </div>
                 </div>
               </li>
-              <li className="item flex justify-between items-center mb-5">
+              <li className="item flex justify-between items-center mb-2">
                 <div className="flex space-x-[14px] items-center">
                   <div>
                     <Checkbox
@@ -549,107 +191,7 @@ export default function ProductsFilter({
                       htmlFor="walton"
                       className="text-xs font-black font-400 capitalize"
                     >
-                      walton
-                    </label>
-                  </div>
-                </div>
-              </li>
-              <li className="item flex justify-between items-center mb-5">
-                <div className="flex space-x-[14px] items-center">
-                  <div>
-                    <Checkbox
-                      id="oneplus"
-                      name="oneplus"
-                      handleChange={(e) => checkboxHandler(e)}
-                      checked={filters.oneplus}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="oneplus"
-                      className="text-xs font-black font-400 capitalize"
-                    >
-                      oneplus
-                    </label>
-                  </div>
-                </div>
-              </li>
-              <li className="item flex justify-between items-center mb-5">
-                <div className="flex space-x-[14px] items-center">
-                  <div>
-                    <Checkbox
-                      id="vivo"
-                      name="vivo"
-                      handleChange={(e) => checkboxHandler(e)}
-                      checked={filters.vivo}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="vivo"
-                      className="text-xs font-black font-400 capitalize"
-                    >
-                      vivo
-                    </label>
-                  </div>
-                </div>
-              </li>
-              <li className="item flex justify-between items-center mb-5">
-                <div className="flex space-x-[14px] items-center">
-                  <div>
-                    <Checkbox
-                      id="oppo"
-                      name="oppo"
-                      handleChange={(e) => checkboxHandler(e)}
-                      checked={filters.oppo}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="oppo"
-                      className="text-xs font-black font-400 capitalize"
-                    >
-                      oppo
-                    </label>
-                  </div>
-                </div>
-              </li>
-              <li className="item flex justify-between items-center mb-5">
-                <div className="flex space-x-[14px] items-center">
-                  <div>
-                    <Checkbox
-                      id="xiomi"
-                      name="xiomi"
-                      handleChange={(e) => checkboxHandler(e)}
-                      checked={filters.xiomi}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="xiomi"
-                      className="text-xs font-black font-400 capitalize"
-                    >
-                      xiomi
-                    </label>
-                  </div>
-                </div>
-              </li>
-              <li className="item flex justify-between items-center mb-5">
-                <div className="flex space-x-[14px] items-center">
-                  <div>
-                    <Checkbox
-                      id="others"
-                      name="others"
-                      handleChange={(e) => checkboxHandler(e)}
-                      checked={filters.others}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="others"
-                      className="text-xs font-black font-400 capitalize"
-                    >
-                      others
+                      Sharpe
                     </label>
                   </div>
                 </div>
@@ -659,7 +201,7 @@ export default function ProductsFilter({
         </div>
         <div className="filter-subject-item pb-10 border-b border-qgray-border mt-10">
           <div className="subject-title mb-[30px]">
-            <h1 className="text-black text-base font-500">Storage</h1>
+            <h1 className="text-black text-base font-500">Animal type</h1>
           </div>
           <div className="filter-items">
             <div className="flex space-x-[5px] flex-wrap">
@@ -671,7 +213,7 @@ export default function ProductsFilter({
                     : " text-qgray "
                 }`}
               >
-                64GB
+                Dogs
               </span>
               <span
                 onClick={() => filterstorage("128GB")}
@@ -681,7 +223,7 @@ export default function ProductsFilter({
                     : " text-qgray "
                 }`}
               >
-                128GB
+                Horses
               </span>
               <span
                 onClick={() => filterstorage("256GB")}
@@ -691,7 +233,7 @@ export default function ProductsFilter({
                     : " text-qgray "
                 }`}
               >
-                256GB
+                Snakes
               </span>
               <span
                 onClick={() => filterstorage("512GB")}
@@ -701,9 +243,9 @@ export default function ProductsFilter({
                     : " text-qgray "
                 }`}
               >
-                512GB
+                Other
               </span>
-              <span
+              {/* <span
                 onClick={() => filterstorage("1024GB")}
                 className={` font-400 border border-qgray-border text-xs px-[14px] py-[6px] cursor-pointer mb-[5px] ${
                   storage === "1024GB"
@@ -712,11 +254,11 @@ export default function ProductsFilter({
                 }`}
               >
                 1024GB
-              </span>
+              </span> */}
             </div>
           </div>
         </div>
-        <div className="filter-subject-item pb-10 mt-10">
+        {/* <div className="filter-subject-item pb-10 mt-10">
           <div className="subject-title mb-[30px]">
             <h1 className="text-black text-base font-500">Sizes</h1>
           </div>
@@ -824,7 +366,7 @@ export default function ProductsFilter({
               </li>
             </ul>
           </div>
-        </div>
+        </div> */}
         <button
           onClick={filterToggleHandler}
           type="button"

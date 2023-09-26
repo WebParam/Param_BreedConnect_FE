@@ -55,7 +55,7 @@ export default function Navbar({ className }) {
                       </svg>
                     </span>
                     <span className="text-sm  text-qblacktext">
-                      All Categories
+                      All Categoriesss
                     </span>
                   </div>
                   <div>

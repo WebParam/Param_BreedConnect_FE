@@ -12,29 +12,29 @@ export default function AllProductPage() {
   const [filters, setFilter] = useState({
     mobileLaptop: false,
     gaming: false,
-    imageVideo: false,
-    vehicles: false,
-    furnitures: false,
-    sport: false,
-    foodDrinks: false,
-    fashion: false,
-    toilet: false,
-    makeupCorner: false,
-    babyItem: false,
-    apple: false,
-    samsung: false,
-    walton: false,
-    oneplus: false,
-    vivo: false,
-    oppo: false,
-    xiomi: false,
-    others: false,
-    sizeS: false,
-    sizeM: false,
-    sizeL: false,
-    sizeXL: false,
-    sizeXXL: false,
-    sizeFit: false,
+    // imageVideo: false,
+    // vehicles: false,
+    // furnitures: false,
+    // sport: false,
+    // foodDrinks: false,
+    // fashion: false,
+    // toilet: false,
+    // makeupCorner: false,
+    // babyItem: false,
+    // apple: false,
+    // samsung: false,
+    // walton: false,
+    // oneplus: false,
+    // vivo: false,
+    // oppo: false,
+    // xiomi: false,
+    // others: false,
+    // sizeS: false,
+    // sizeM: false,
+    // sizeL: false,
+    // sizeXL: false,
+    // sizeXXL: false,
+    // sizeFit: false,
   });
 
   const [products, setProducts]  =useState()
@@ -120,13 +120,13 @@ export default function AllProductPage() {
                   className="mb-[30px]"
                 />
                 {/* ads */}
-                <div className="w-full hidden lg:block h-[295px]">
+                {/* <div className="w-full hidden lg:block h-[295px]">
                   <img
                     src={`${process.env.PUBLIC_URL}/assets/images/ads-5.png`}
                     alt=""
                     className="w-full h-full object-contain"
                   />
-                </div>
+                </div> */}
               </div>
 
               <div className="flex-1">
@@ -187,13 +187,13 @@ export default function AllProductPage() {
                   </DataIteration>
                 </div>
 
-                <div className="w-full h-[164px] overflow-hidden mb-[40px]">
+                {/* <div className="w-full h-[164px] overflow-hidden mb-[40px]">
                   <img
                     src={`${process.env.PUBLIC_URL}/assets/images/ads-6.png`}
                     alt=""
                     className="w-full h-full object-contain"
                   />
-                </div>
+                </div> */}
                 {/* <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5 mb-[40px]">
                   <DataIteration
                     datas={products}

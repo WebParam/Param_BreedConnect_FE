@@ -1,18 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import '../tabs/stylesheets/calender.css'
-import { AddMeetingSchedule, AllMeetingsScheduledById, AllMeetingsScheduled, AllMeetingsScheduledByBreeder, AllMeetingsScheduledByCustomer,GetCustomerProducts, GetPurchaseRequest } from '../../../../api/endpoints'
+import { 
+  AddMeetingSchedule, 
+  AllMeetingsScheduledById, 
+  AllMeetingsScheduled, 
+  AllMeetingsScheduledByBreeder, 
+  AllMeetingsScheduledByCustomer,
+  GetBreederProducts, 
+  GetPurchaseRequest } from '../../../api/endpoints'
 
 
-export default function Calender() {
+export default function CalenderTab() {
     const [date, setDate] = useState(new Date());
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [meetings, setMeetings] = useState([]);
     const [customerAppointments, setCustomerAppointments] = useState([]);
     const [breederAppointments, setBreederAppointments] = useState([]);
-    const [customerProducts, setCustProducts] = useState([]);
+    const [breederProducts, setBreederProducts] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState();
-    const [purchaseId, setPurchaseId] = useState();
     const [customerName, setCustomerName] = useState('');
     const [sellerName, setSellerName] = useState('');
     const [meetingTime, setMeetingTime] = useState('');
@@ -45,8 +51,9 @@ export default function Calender() {
     };
   
     const handleScheduleMeeting = async (e) => {
+      console.log("breederAppointments[0].BreederId", breederAppointments[0].breederId)
       e.preventDefault();
-      await getPurchaseRequestAndCreateAppointment(customerAppointments[0].customerId)   
+      await getPurchaseRequestAndCreateAppointment(breederAppointments[0].breederId)   
     };
 
     async function GetMeetings(){
@@ -57,9 +64,11 @@ export default function Calender() {
     }
 
 
-    async function GetCustProducts(){
-      const _products = await GetCustomerProducts();
-      setCustProducts(_products?.data);
+
+
+    async function getBreederProducts(){
+      const _products = await GetBreederProducts();
+      setBreederProducts(_products?.data);
       console.log("_products", _products)
     }
 
@@ -70,8 +79,8 @@ export default function Calender() {
       debugger;
     }
 
-    async function getPurchaseRequestAndCreateAppointment(customerId){
-      const _requestRes = await GetPurchaseRequest(customerId);
+    async function getPurchaseRequestAndCreateAppointment(Id){
+      const _requestRes = await GetPurchaseRequest(Id);
       setPurchaseRequest(_requestRes?.data[0]);
       if(_requestRes?.data[0]){
       const newMeeting = {
@@ -106,11 +115,10 @@ export default function Calender() {
 
     
 
-    useEffect(()=>{
+    useEffect(() =>{
       GetMeetings();
-      GetCustomerAppointments();
       GetBreederAppointments();
-      GetCustProducts();
+      getBreederProducts();
      }, [])
   
     return (
@@ -124,15 +132,6 @@ export default function Calender() {
             <div className="modal-content">
               <h2>Schedule a Meeting</h2>
               <form onSubmit={handleScheduleMeeting}>
-                {/* <div className="form-group">
-                  <label htmlFor="customerName">Customer Name:</label>
-                  <input
-                    type="text"
-                    id="customerName"
-                    value={customerName}
-                    onChange={(e) => setCustomerName(e.target.value)}
-                  />
-                </div> */}
                 <div className="form-group">
                   <label htmlFor="productName">Select Product</label>
                   <select
@@ -142,32 +141,13 @@ export default function Calender() {
                     onChange={(e) => handleSelectChange(e)}
                   >
                     <option value="">Select an product</option>
-                    {customerProducts.map(option => (
+                    {breederProducts.map(option => (
                       <option key={option.value} value={option.id}>
                         {option.name}
                       </option>
                     ))}
                   </select>
-                {/* <Select
-                 labelId="dropdown-label"
-                  label="Select an option"
-                  value={selectedOption}
-                  name={modalContent[index]?.question}
-                  onChange={(event) => handleSelectChange(event, modalContent[index])}
-              >
-                  {modalContent[index]?.options.map((option) => (
-                      <MenuItem key={option?.value} value={option?.value}>
-                          {option?.name}
-                      </MenuItem>
-                  ))}
-              </Select> */}
-
-                  {/* <input
-                    type="text"
-                    id="productName"
-                    value={ProductId}
-                    onChange={(e) => setProductId(e.target.value)}
-                  /> */}
+        
                 </div>
 
                 <div className="form-group">
@@ -208,12 +188,12 @@ export default function Calender() {
           </ul> */}
           <h1>Scheduled Meetings</h1>
           <ul>
-          {customerAppointments.map((meeting, index) => (
+          {breederAppointments.map((meeting, index) => (
             <>
               <li class="meeting-item">
                   {/* <div class="meeting-title">Meeting {index}</div> */}
                   <div class="meeting-details">
-                      <span class="meeting-date">Breeder:</span> {meeting?.breeder?.firstname}<br/>
+                      <span class="meeting-date">Customer:</span> {meeting?.customer?.firstname}<br/>
                       <span class="meeting-date">Subject:</span> {meeting?.appointmentMessage}<br/>
                       <span class="meeting-date">Date and Time:</span> {meeting?.date}
                   </div>

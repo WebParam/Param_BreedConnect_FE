@@ -5,7 +5,7 @@ import ThinLove from "../../../Helpers/icons/ThinLove";
 import ThinPeople from "../../../Helpers/icons/ThinPeople";
 import SearchBox from "../../../Helpers/SearchBox";
 import { Link } from "react-router-dom";
-
+import Logo from "../../../../media/logo.svg"
 export default function Middlebar({ className, type }) {
   return (
     <div className={`w-full h-[86px] bg-white ${className}`}>
@@ -32,13 +32,22 @@ export default function Middlebar({ className, type }) {
                   />
                 </a>
               ) : (
-                <a href="/">
-                  <img
+                <a href="/" style={{marginTop: "30%"}}>
+                  {/* <img
                     width="152"
                     height="36"
                     src={`${process.env.PUBLIC_URL}/assets/images/logo.svg`}
                     alt="logo"
-                  />
+                  /> */}
+                
+                                <img
+                                    width="200"
+                                    height="50"
+                                    // src={`${process.env.PUBLIC_URL}/assets/images/logo.svg`}
+                                    src={Logo}
+                                    alt="logo"
+                                />
+                           
                 </a>
               )}
             </div>

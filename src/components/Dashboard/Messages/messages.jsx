@@ -58,8 +58,7 @@ async function pay(paymentLinkId){
           </div>
           <div className="sherah-chatbox__main">
             
-          <button type="submit" onClick={()=>payWithPaystack()}> Requestpayment </button>
-          <button type="submit" onClick={()=>pay()}> Pay </button>
+        
 
             {/* End All Notification Heading */}
             <div className="sherah-chatbox">
@@ -669,7 +668,10 @@ async function pay(paymentLinkId){
                                   </svg>
                                   Send
                                 </button>
+                               
                               </div>
+                              <button type="submit" onClick={()=>payWithPaystack()}> Request payment </button>
+                                <button type="submit" onClick={()=>pay()}> Pay </button>
                             </div>
                           </form>
                         </div>

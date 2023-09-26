@@ -44,6 +44,7 @@ import Messages from './components/Dashboard/Messages/messages'
 import PaymentResult from './components/Customer/PaymentResult/index'
 import Products from './components/Dashboard/Products/products'
 import PurchaseRequests from './components/Dashboard/Swipes/purchase-requests'
+import CalendarSchedule from "./components/Dashboard/calender";
 export default function Routers() {
   return (
     <Routes>
@@ -103,6 +104,7 @@ export default function Routers() {
       <Route exact path="/customer" element={<Customers/>}  />
       <Route exact path="/orders" element={<OrderList/>}  />
       <Route exact path="/swipes" element={<PurchaseRequests/>}  />
+      <Route exact path="/calender" element={<CalendarSchedule/>}  />
       
     </Routes>
   );

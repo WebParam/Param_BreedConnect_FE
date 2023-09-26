@@ -99,13 +99,13 @@ debugger
                   className="mb-[30px]"
                 />
                 {/* ads */}
-                <div className="w-full hidden lg:block h-[295px]">
+                {/* <div className="w-full hidden lg:block h-[295px]">
                   <img
                     src={`${process.env.PUBLIC_URL}/assets/images/ads-5.png`}
                     alt=""
                     className="w-full h-full object-contain"
                   />
-                </div>
+                </div> */}
               </div>
 
               <div className="flex-1">
@@ -160,13 +160,13 @@ debugger
                  Your payment was succesful
                 </div>
 
-                <div className="w-full h-[164px] overflow-hidden mb-[40px]">
+                {/* <div className="w-full h-[164px] overflow-hidden mb-[40px]">
                   <img
                     src={`${process.env.PUBLIC_URL}/assets/images/ads-6.png`}
                     alt=""
                     className="w-full h-full object-contain"
                   />
-                </div>
+                </div> */}
                 {/* <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5 mb-[40px]">
                   <DataIteration
                     datas={products}
