@@ -155,6 +155,57 @@ export const getBreederPurchaseRequests = async () => {
     return null; // Return null or another appropriate value
   }
 };
+export const verifyPayment = async (txRef,reference) => {
+  try {
+    const res = await GET(`payment/verifyPayment/${txRef}/${reference}`);
+
+    if (res != null && res.status === 200) {
+      return res; 
+    } else {
+     
+      console.error('Error: Unable to authorize payment');
+      return null; // Return null or another appropriate value
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    return null; // Return null or another appropriate value
+  }
+};
+
+export const GetBreederOrders = async () => {
+  try {
+    const getAllProductsResult = await GET(`orders/breeder/`);
+
+    if (getAllProductsResult != null && getAllProductsResult.status === 200) {
+      return getAllProductsResult; 
+    } else {
+     
+      console.error('Error: Unable to fetch products');
+      return null; // Return null or another appropriate value
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    return null; // Return null or another appropriate value
+  }
+};
+
+
+export const GetCustomerOrders = async () => {
+  try {
+    const getAllProductsResult = await GET(`orders/customer/`);
+
+    if (getAllProductsResult != null && getAllProductsResult.status === 200) {
+      return getAllProductsResult; 
+    } else {
+     
+      console.error('Error: Unable to fetch products');
+      return null; // Return null or another appropriate value
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    return null; // Return null or another appropriate value
+  }
+};
 
 
 

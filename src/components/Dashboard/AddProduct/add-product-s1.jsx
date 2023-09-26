@@ -305,13 +305,16 @@ setAvailabilityEroor(true)
           <div className="row">
             <div className="col-12">
               <div className="sherah-breadcrumb mg-top-30">
-                <h2 className="sherah-breadcrumb__title">Update Product</h2>
+                <h2 className="sherah-breadcrumb__title">Add Product</h2>
                 <ul className="sherah-breadcrumb__list">
                   <li>
-                    <a href="#">Home</a>
+                    <a href="breeder-dash">Home</a>
+                  </li>
+                  <li className="">
+                    <a href="breeder-products">Products</a>
                   </li>
                   <li className="active">
-                    <a href="profile-info.html">Update Product</a>
+                    <a href="#">Add Product</a>
                   </li>
                 </ul>
               </div>

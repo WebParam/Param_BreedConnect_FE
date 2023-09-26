@@ -82,43 +82,11 @@ window.location.href="/"
      
                 <div className="flex-1">
                   <div className="item-body dashboard-wrapper w-full">
-                    {active === "dashboard" ? (
-                      <Dashboard />
-                    ) : active === "profile" ? (
+          
                       <>
                         <ProfileTab profile={breeder}/>
                       </>
-                    ) : active === "messages" ? (
-                      <>
-                        <Payment />
-                      </>
-                    ) : active === "orders" ? (
-                      <>
-                        <OrderTab />
-                      </>
-                    ) : active === "wishlist" ? (
-                      <>
-                        <WishlistTab />
-                      </>
-                    ) : active === "swipes" ? (
-                      <>
-                        <SwipesTab />
-                      </>
-                    ) : active === "password" ? (
-                      <>
-                        <PasswordTab />
-                      </>
-                    ) : active === "support" ? (
-                      <>
-                        <SupportTab />
-                      </>
-                    ) : active === "review" ? (
-                      <>
-                        <ReviewTab products={datas.products} />
-                      </>
-                    ) : (
-                      ""
-                    )}
+                  
                   </div>
                 </div>
               </div>

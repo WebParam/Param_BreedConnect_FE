@@ -106,7 +106,7 @@ async function Message(id){
                       </ul>
                     </div>
                     {/* End Sherah Breadcrumb */}
-                    {/* <a href="order-details" className="sherah-btn sherah-gbcolor">Add New Vendor</a> */}
+                    <a href="/add-product-s1" className="sherah-btn sherah-gbcolor">Add New Product</a>
                   </div>
                 </div>
                 <ProductsTab />

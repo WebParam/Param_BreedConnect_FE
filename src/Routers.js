@@ -41,7 +41,9 @@ import EditProduct from "./components/Dashboard/AddProduct/edit-product";
 import OrderList from "./components/Dashboard/Orders/order-list";
 import Customers from './components/Customer'
 import Messages from './components/Dashboard/Messages/messages'
+import PaymentResult from './components/Customer/PaymentResult/index'
 import Products from './components/Dashboard/Products/products'
+import PurchaseRequests from './components/Dashboard/Swipes/purchase-requests'
 export default function Routers() {
   return (
     <Routes>
@@ -56,6 +58,7 @@ export default function Routers() {
       <Route exact path="/profile" element={<Profile />} />
       <Route exact path="/view-product-list" element={<ViewProductList />} /> 
       <Route exact path="/messages-breeder" element={<Messages />} />
+      <Route exact path="/transaction" element={<PaymentResult />} />
       <Route exact path="/breeder-products" element={<Products />} />
       {/* <Route exact path="/home-two" element={<HomeTwo />} />
       <Route exact path="/home-three" element={<HomeThree />} />
@@ -99,7 +102,7 @@ export default function Routers() {
       <Route exact path="/tinder" element={<Tinder/>}  /> 
       <Route exact path="/customer" element={<Customers/>}  />
       <Route exact path="/orders" element={<OrderList/>}  />
-      <Route exact path="/swipes" element={<OrderList/>}  />
+      <Route exact path="/swipes" element={<PurchaseRequests/>}  />
       
     </Routes>
   );

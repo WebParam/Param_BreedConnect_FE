@@ -330,6 +330,7 @@ Version:	1.0.0
 	height: 92%;
 	top: 4%;
 	right: 1%;
+	margin:0px;
 	border-radius: 4px;
 	border-top-left-radius: 0px;
 	border-bottom-left-radius: 0px;
@@ -7648,8 +7649,9 @@ blockquote {
 }
 
 .sherah-breadcrumb__title {
-	font-size: 28px;
+	font-size: 3em;
 	margin-bottom: 5px;
+	font-weight: 800;
 }
 .sherah-breadcrumb__list {
 	font-size: 14px;
