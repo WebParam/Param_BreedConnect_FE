@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
-import '../tabs/stylesheets/calender.css'
+import './stylesheets/calender.css';
 import { AddMeetingSchedule, AllMeetingsScheduledById, AllMeetingsScheduled, AllMeetingsScheduledByBreeder, AllMeetingsScheduledByCustomer,GetCustomerProducts, GetPurchaseRequest } from '../../../../api/endpoints'
 
 
@@ -22,6 +22,11 @@ export default function Calender() {
     const [appointmentMessage, setAppointmentMessage] = useState('');
     const [purchaseRequest, setPurchaseRequest] = useState();
     const [ProductId, setProductId] = useState('');
+
+    const tileDisabled = ({ date }) => {
+      const currentDate = new Date();
+      return date < currentDate ? 'past-date' : null;
+    };
 
   
     const openModal = () => {
@@ -59,8 +64,8 @@ export default function Calender() {
 
     async function GetCustProducts(){
       const _products = await GetCustomerProducts();
-      setCustProducts(_products?.data);
-      console.log("_products", _products)
+      setCustProducts(_products.data.filter(x => x.status === 2));
+      console.log("_products", _products,customerProducts);
     }
 
     async function GetCustomerAppointments(){
@@ -117,7 +122,7 @@ export default function Calender() {
       <div className="scheduler-container">
         <h1>Meeting Scheduler</h1>
         <div className="calendar-container">
-          <Calendar onChange={handleDateChange} value={date} />
+          <Calendar onChange={handleDateChange} value={date}  tileDisabled={tileDisabled}/>
         </div>
         {isModalOpen && (
           <div className="modal">
@@ -210,7 +215,7 @@ export default function Calender() {
           <ul>
           {customerAppointments.map((meeting, index) => (
             <>
-              <li class="meeting-item">
+              <li class="meeting-item" onClick={handleDateChange}>
                   {/* <div class="meeting-title">Meeting {index}</div> */}
                   <div class="meeting-details">
                       <span class="meeting-date">Breeder:</span> {meeting?.breeder?.firstname}<br/>

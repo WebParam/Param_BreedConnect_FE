@@ -168,7 +168,7 @@ export default function CalenderTab() {
                     onChange={(e) => setMeetingTime(e.target.value)}
                   />
                 </div>
-                <button type="submit" className='meetingBtn'>Schedule</button>
+                <button type="submit" className='meetingBtn'>Update</button>
                 <button onClick={closeModal} className='meetingBtn'>Cancel</button>
               </form>
             </div>
@@ -190,7 +190,7 @@ export default function CalenderTab() {
           <ul>
           {breederAppointments.map((meeting, index) => (
             <>
-              <li class="meeting-item">
+              <li class="meeting-item" onClick={handleDateChange}>
                   {/* <div class="meeting-title">Meeting {index}</div> */}
                   <div class="meeting-details">
                       <span class="meeting-date">Customer:</span> {meeting?.customer?.firstname}<br/>

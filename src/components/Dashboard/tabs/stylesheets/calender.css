@@ -96,6 +96,7 @@
     background-color: #f9f9f9;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
 }
 
 /* Style for the meeting title */
@@ -114,5 +115,10 @@
 /* Style for the meeting date and time */
 .meeting-date {
     color: #007bff; /* Blue color for date and time */
+}
+.past-date {
+  background-color: #f0f0f0; /* Gray background color */
+  color: #999; /* Gray text color */
+  cursor: not-allowed; /* Change cursor to 'not-allowed' */
 }
   

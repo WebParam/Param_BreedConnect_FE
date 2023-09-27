@@ -1,51 +1,26 @@
 import React, { useState, useMemo, useRef } from 'react'
 import TinderCard from 'react-tinder-card'
 import { RequestToPurchase } from "../../api/endpoints";
-
 import { ToastContainer, toast } from 'react-toastify';
+
+
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
+const user = cookies.get("bcon-user");
 
 
 
 function Advanced(props) {
 
-
-//   const products = [
-//   {
-//     name: 'Type 1',
-//     url: './assets/images/d1.jpg'
-//   },
-//   {
-//     name: 'Type 2',
-//     url: './assets/images/d2.jpg'
-//   },
-//   {
-//     name: 'Type 3',
-//     url: './assets/images/d3.jpg'
-//   },
-//   {
-//     name: 'Type 4',
-//     url: './assets/images/d4.jpg'
-//   },
-//   {
-//     name: 'Type 5',
-//     url: './assets/images/d5.jpg'
-//   },
-//   {
-//     name: 'Type 6',
-//     url: './assets/images/d6.jpg'
-//   }
-// ]
-
   const [lastDirection, setLastDirection] = useState();
 
   const [products, setProducts] = useState(props.products);
   const [currentIndex, setCurrentIndex] = useState(products.length - 1);
-  const [status, setStatus]  =useState(0)
+  const [status, setStatus]  = useState(0)
 
 
 
   const requestToPurchase=async(id)=>{
-
     const _id = toast.loading("Please wait...", {
       position: "top-center",
       autoClose: 2000,
@@ -58,12 +33,14 @@ function Advanced(props) {
     });
 
     const payload = {
-      ProductId: id       
+      ProductId: id,
+      customerId: user.id     
      }
      const response = await RequestToPurchase(payload);
      if(response!=null && response.status == 200){
       toast.dismiss(_id);
-      setStatus(1);
+      // setStatus(1);
+      props.onClick();
      }
      else{
       toast.update(_id, {
@@ -100,6 +77,7 @@ function Advanced(props) {
 
   // set last direction and decrease current index
   const swiped = (direction, nameToDelete, index) => {
+    console.log("direction", direction)
     setLastDirection(direction)
     updateCurrentIndex(index - 1)
   }
@@ -116,22 +94,28 @@ function Advanced(props) {
   const swipe = async (dir) => {
     if (canSwipe && currentIndex < products.length) {
       await childRefs[currentIndex].current.swipe(dir) // Swipe the card!
-      console.log("Selected Product", products[currentIndex])
-      if(products[currentIndex].status !== 3){
+      if(products[currentIndex].status === 0 && dir === 'right' ){
+        setStatus(1);
         requestToPurchase(products[currentIndex].id)
       }
       else{
-        console.log("Product ")
+        console.log("Product viewing")
       }
     }
   }
 
   // increase current index and show card
   const goBack = async () => {
+    props.onClick();
+    console.log("reloaded", props.products)
     if (!canGoBack) return
-    const newIndex = currentIndex + 1
-    updateCurrentIndex(newIndex)
-    await childRefs[newIndex].current.restoreCard()
+    const newIndex = currentIndex + 1;
+
+      updateCurrentIndex(newIndex);
+      await childRefs[newIndex].current.restoreCard();
+
+
+
   }
 
   return (

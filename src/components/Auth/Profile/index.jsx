@@ -23,6 +23,7 @@ import IcoCalender from "./icons/IcoCalender";
 import IcoOrders from "./icons/IcoOrders";
 import IcoMessages from "./icons/IcoMessages";
 import IcoSwipes from "./icons/IcoSwipes";
+import ProductsTab from "./tabs/ProductsTab";
 
 export default function Profile() {
   const [switchDashboard, setSwitchDashboard] = useState(false);
@@ -192,6 +193,10 @@ window.location.href="/"
                       <>
                         <OrderTab />
                       </>
+                       ) : active === "products" ? (
+                        <>
+                          <ProductsTab />
+                        </>
                     ) : active === "calender" ? (
                       <>
                         <Calender />

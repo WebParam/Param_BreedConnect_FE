@@ -8,17 +8,30 @@ export default function SwipesTinderTab() {
     const [products, setProducts] = useState([]);
     const [isLoading, setLoading] = useState(true);
 
+    const fetchProducts = async () => {
+      try {
+        const response = await GetCustomerProducts();
+        const data = await response.data.filter(x => x.status === 0);
+        setProducts(data);
+        console.log("products by customer after", data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
     useEffect(() => {
-        const fetchProducts = async () => {
-          try {
-            const response = await GetCustomerProducts();
-            const data = await response.data;
-            setProducts(data);
-            setLoading(false);
-          } catch (error) {
-            console.error('Error fetching data:', error);
-          }
-        };
+        // const fetchProducts = async () => {
+        //   try {
+        //     const response = await GetCustomerProducts();
+        //     const data = await response.data.filter(x => x.status === 0);
+        //     setProducts(data);
+        //     console.log("products by customer after", data);
+        //     setLoading(false);
+        //   } catch (error) {
+        //     console.error('Error fetching data:', error);
+        //   }
+        // };
         fetchProducts();
       }, []);
 
@@ -38,9 +51,9 @@ export default function SwipesTinderTab() {
 
   return (
     <>
-      <div className="relative w-full overflow-x-auto sm:rounded-lg orders">
+      <div className="relative w-full sm:rounded-lg orders">
         <h2>Swipes</h2>
-        <Advanced products={products}/>
+        <Advanced products={products} onClick={fetchProducts}/> 
       </div>
     </>
   );

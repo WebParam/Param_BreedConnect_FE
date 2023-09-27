@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { AllProducts, RequestToPurchase } from '../../../api/endpoints';
+import { AllProducts, getBreederProducts, getAllProductsByCustomer,RequestToPurchase } from '../../../../api/endpoints';
 import { toast } from 'react-toastify';
 
 export default function ProductsTab() {
@@ -12,19 +12,30 @@ export default function ProductsTab() {
       console.log("success");
     }
   }
-
+  
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await AllProducts();
-        const data = await response.data;
-        setProducts(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
     fetchProducts();
   }, []);
+
+  const fetchProducts = async () => {
+    try {
+      const response = await getAllProductsByCustomer();
+      const data = await response.data;
+      setProducts(data.filter(x => x.status === 1));
+      console.log("products", data)
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  function editProduct(){
+
+  }
+
+
+  function onlyUnique(value, index, array) {
+    return array.indexOf(value) === index;
+  }
 
   return (
     <>
@@ -165,7 +176,7 @@ export default function ProductsTab() {
                             </h5>
                           </div>
                           <div className="sherah-btn default">
-                            <button onClick={() => request(product)} className="request">Request</button>
+                            <button className="viewProduct">View</button>
                           </div>
                         </div>
                       </div>
