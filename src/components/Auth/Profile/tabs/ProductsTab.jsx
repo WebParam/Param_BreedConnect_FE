@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { AllProducts, getBreederProducts, getAllProductsByCustomer,RequestToPurchase } from '../../../../api/endpoints';
 import { toast } from 'react-toastify';
+import '../tabs/stylesheets/tabs.css';
 
 export default function ProductsTab() {
 
@@ -175,7 +176,7 @@ export default function ProductsTab() {
                               R{product?.price}
                             </h5>
                           </div>
-                          <div className="sherah-btn default">
+                          <div className="sherah-btn">
                             <button className="viewProduct">View</button>
                           </div>
                         </div>

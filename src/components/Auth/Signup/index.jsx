@@ -6,6 +6,7 @@ import LoginLayout from "../../Partials/LoginLayout";
 import { POST } from "../../../api/client";
 import { RegisterCustomer } from "../../../api/endpoints";
 import CustomInputVal from "../../Helpers/CustomInputVal";
+import Autocomplete from "react-google-autocomplete";
 import Logo from "../../../media/logo.png"
 import axios from "axios";
 import { toast } from 'react-toastify';
@@ -16,6 +17,12 @@ export default function Signup() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [secret, setSecret] = useState("");
+  const [country, setCountry] = useState("");
+  const [address, setaddress] = useState("");
+  const [city, setCity] = useState("");
+  const [postcode, setCode] = useState("");
+  const [gpsLatitude, setGpsLatitude] = useState("");
+  const [gpsLongitude, setGpsLongitude] = useState("");
 
   const [confirmSecret, setConfirmSecret] = useState("");
 
@@ -46,8 +53,12 @@ export default function Signup() {
       firstname: name,
       lastname: lname,
       email: email,
-      secret: secret,
-      cellphone: phone
+      cellphone: phone,
+      address:address,
+      country:country,
+      addressLatitude:  gpsLatitude,
+      addressLongitude: gpsLongitude,
+      city:city
     }
     debugger;
     const response = await RegisterCustomer(payload);
@@ -167,7 +178,42 @@ export default function Signup() {
                       required={true}
                     />
                   </div>
-
+                  <div className="input-item mb-5">
+                      {/* <InputCom
+                       inputStyle={{padding:"15px"}}
+                       inputContainerStyle={{borderRadius:"20px"}}
+                        placeholder="Your address Here"
+                        label="Address*"
+                        name="address"
+                        type="text"
+                        inputClasses="h-[50px]"
+                        submitted={submitted}
+                        
+                        value={address}
+                        inputHandler={(e) => setaddress(e.target.value)}
+                        required={true}
+                      /> */}
+                      <div class="input-label capitalize block  mb-2 text-qgray text-[13px] font-normal">Address*</div>
+                    <Autocomplete 
+                      
+                    style={{padding: "12px"}}
+                        apiKey={"AIzaSyDsGw9PT-FBFk7DvGK46BpvEURMxcfJX5k"}
+                        onPlaceSelected={(place) => {
+                          debugger;
+                          console.log(place);
+                          setCity(place.address_components[0].long_name);
+                          setCountry(place.address_components.slice(-1)[0].long_name)
+                          setaddress(place.formatted_address);
+                          setGpsLatitude(`${place.geometry.location.lat()}`)
+                          setGpsLongitude(`${place.geometry.location.lng()}`)
+                          debugger;
+                        }}
+                        options={{
+                          types: ["(cities)"],
+                          componentRestrictions: { country: "za" },
+                        }}
+                      />
+                      </div>
                   <div className="flex sm:flex-row flex-col space-y-5 sm:space-y-0 sm:space-x-5 mb-5">
                     <InputCom
                       inputStyle={{ padding: "15px" }}

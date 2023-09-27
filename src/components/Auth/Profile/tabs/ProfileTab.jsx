@@ -6,6 +6,7 @@ import './stylesheets/Profile.css'
 import RecentOrders from "./RecentOrders";
 import RecentSwipes from "./RecentSwipes";
 import CoverProfile from '../../../../media/cover.png';
+
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 const user = cookies.get("bcon-user");
@@ -160,6 +161,16 @@ export default function ProfileTab() {
             id="phone"
             name="phone"
             value={user.cellphone}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="address">Address:</label>
+          <input
+            type="text"
+            id="address"
+            name="address"
+            value={user.address}
             onChange={handleChange}
           />
         </div>
