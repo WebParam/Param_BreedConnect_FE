@@ -24,6 +24,7 @@ import IcoOrders from "./icons/IcoOrders";
 import IcoMessages from "./icons/IcoMessages";
 import IcoSwipes from "./icons/IcoSwipes";
 import ProductsTab from "./tabs/ProductsTab";
+import MessagesTab from "./tabs/MessagesTab";
 
 export default function Profile() {
   const [switchDashboard, setSwitchDashboard] = useState(false);
@@ -85,7 +86,7 @@ window.location.href="/"
                         </div>
                       </Link>
                     </div>
-{/* 
+
                     <div className="item group">
                       <Link to="/profile#messages">
                         <div className="flex space-x-3 items-center text-qgray hover:text-qblack">
@@ -93,11 +94,11 @@ window.location.href="/"
                           <IcoMessages />
                           </span>
                           <span className=" font-normal text-base">
-                            Messages
+                            Messaging
                           </span>
                         </div>
                       </Link>
-                    </div> */}
+                    </div> 
 
                     <div className="item group">
                       <Link to="/profile#orders">
@@ -187,7 +188,7 @@ window.location.href="/"
                       </>
                     ) : active === "messages" ? (
                       <>
-                        <Payment />
+                        <MessagesTab />
                       </>
                     ) : active === "orders" ? (
                       <>
