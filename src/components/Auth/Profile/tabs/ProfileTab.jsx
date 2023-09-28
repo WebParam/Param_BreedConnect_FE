@@ -16,6 +16,15 @@ export default function ProfileTab() {
   const [profileInfo, setProfileInfo] = useState({});
 
   const [profile, setProfile] = useState(user);
+  const [values, setValues] = useState({
+    firstname: '',
+    lastname: '',
+    cellphone: '',
+    email: '',
+    address: '',
+    profilePicture:''
+  });
+
 
   
 
@@ -34,21 +43,34 @@ export default function ProfileTab() {
     }
   };
 
-  const handleChange = (e) => {
-    const { name, value, type } = e.target;
-    if (type === 'file') {
-      // If the input type is 'file', update the 'image' property with the selected file
-      setProfile({ ...profile, [name]: e.target.files[0] });
-    } else {
-    setProfile({ ...profile, [name]: value });
+//   const handleChange = (e) => {
+//     const { name, value, type } = e.target;
+//     if (type === 'file') {
+//       // If the input type is 'file', update the 'image' property with the selected file
+//       setProfile({ ...profile, [name]: e.target.files[0] });
+//     } else {
+//     setProfile({ ...profile, [name]: value });
 
-    console.log("profile", profile)
-  };
-}
+//     console.log("profile", profile)
+//   };
+// }
+
+
+const handleChange = (event) => {
+  console.log("eve", event.target)
+  const { name, value } = event.target;
+  setValues((prevProfile) => ({
+    ...prevProfile,
+    [name]: value,
+  }));
+};
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
     //console.log('Profile updated:', profile);
+  //  const { firstname, lastname, cellphone, email, address, profilePicture} = values;
+    //const userBody = { firstname, lastname, cellphone, email, address, profilePicture };
   };
 
 
@@ -114,23 +136,23 @@ export default function ProfileTab() {
           <div>
           <h1>Update Profile</h1>
       <form onSubmit={handleSubmit}>
-      <div className="form-group">
+      {/* <div className="form-group">
           <label htmlFor="profilePicture">Upload Image:</label>
           <input
             type="file"
             id="image"
             name="image"
             accept="image/*" // Allow only image files
-            onChange={handleChange}
+            defaultValue={user.profilePicture !== undefined ? user.profilePicture : ''}
+            onChange={handleChange('profilePicture')}
           />
-        </div>
-        <div className="form-group">
-          <label htmlFor="firstName">First Name:</label>
+        </div> */}
+        <div>
+          <label>First Name:</label>
           <input
             type="text"
-            id="firstName"
-            name="firstName"
-            value={user.firstname}
+            name="firstname"
+            value={values.firstname}
             onChange={handleChange}
           />
         </div>

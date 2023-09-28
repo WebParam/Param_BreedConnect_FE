@@ -415,7 +415,7 @@ export const GetNotifications = async () => {
 export const GetPurchaseRequest = async (customerId) => {
   console.log("my requests payload", customerId)
   const requestResult = await GET(`purchaserequests/customer/${customerId}`);
-  console.log("my requests", requestResult)
+  console.log("my response", requestResult)
   return requestResult
 }
 

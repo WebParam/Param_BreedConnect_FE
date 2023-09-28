@@ -9,14 +9,25 @@ const user = cookies.get("bcon-user");
 
 function RecentSwipes() {
   const [recentSwipes, setRecentSwipes] = useState([]);
+  const [custRequest, setCustRequest] = useState([]);
   async function GetCustomerRecentSwipes(){
   const products = await GetCustomerProducts();
-  console.log("products", products.data.filter(x => x.status === 1))
-    setRecentSwipes(products.data.filter(x => x.status === 1));
+  //const swipes = await GetPurchaseRequest(user.id)
+  const custProducts = products.data.filter(x => x.status === 1)
+  setRecentSwipes(custProducts);
+  console.log("rerere", recentSwipes)
   }
+
+  async function GetRequests(){
+    const swipes = await GetPurchaseRequest(user.id)
+    const requests = swipes.data
+    setCustRequest(requests);
+    console.log("rerere2", recentSwipes)
+    }
 
   useEffect(()=>{
     GetCustomerRecentSwipes();
+   // GetRequests();
   }, [])
 
   
