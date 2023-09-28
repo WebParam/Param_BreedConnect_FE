@@ -49,7 +49,7 @@ export default function OrderTab() {
           </td>
           <td className="text-center py-4 px-1">
             <span className="text-sm rounded text-green-500 bg-green-100 p-2 status completed">
-              {order?.Status === 0 ? 'Pending' : 'Completed'}
+              {order?.status === 0 ? 'Pending' : order?.status === 1 ? 'Completed' : 'Failed'}
             </span>
           </td>
           <td className="text-center py-1 px-2">
