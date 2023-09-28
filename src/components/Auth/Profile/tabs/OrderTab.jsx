@@ -3,6 +3,7 @@ import './stylesheets/tabs.css'
 import InputCom from "../../../Helpers/InputCom";
 import { GetCustomerOrders } from '../../../../api/endpoints';
 import moment from 'moment';
+import StatusComponent from '../../../Shared/StatusColor';
 
 export default function OrderTab() {
 
@@ -48,8 +49,9 @@ export default function OrderTab() {
             </span>
           </td>
           <td className="text-center py-4 px-1">
-            <span className="text-sm rounded text-green-500 bg-green-100 p-2 status completed">
-              {order?.status === 0 ? 'Pending' : order?.status === 1 ? 'Completed' : 'Failed'}
+            <span className="text-sm rounded text-green-500  p-2">
+              {/* {order?.status === 0 ? 'Pending' : order?.status === 1 ? 'Completed' : 'Failed'} */}
+              <StatusComponent status={order?.status === 0 ? 'Pending' : order?.status === 1 ? 'Completed' : 'Failed'}/>
             </span>
           </td>
           <td className="text-center py-1 px-2">
