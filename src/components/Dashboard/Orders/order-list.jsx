@@ -247,7 +247,7 @@ axios(`https://localhost:7061/orders/invoice/65187e91d746faf1160084d9`, {
                       <td className="py-1 mt-2" style={{paddingLeft:"0px", marginTop:""}}>
                       <span className="">
                          {/* {x.pin} */}
-                         <button onClick={()=>GetPdf()}>View Invoice </button>
+                         <button onClick={()=>GetPdf()}><small>View Invoice</small> </button>
                         
                         </span>
                       </td>
