@@ -14,7 +14,7 @@ export default function BreederDashboard() {
             <div className="sherah-body">
               {/* Dashboard Inner */}
               <div className="sherah-dsinner">
-                <div className="row mg-top-10">
+                <div className="row">
                   <div className="col-lg-3 col-md-6 col-12">
                     {/* Progress Card */}
                     <div className="sherah-progress-card sherah-border sherah-default-bg mg-top-30">

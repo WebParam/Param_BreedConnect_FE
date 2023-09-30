@@ -83,6 +83,29 @@ html, body{
     cursor: pointer;
     text-align: left;
   }
+
+  .buttonEdit{
+    background-color: #89CFF0;
+    width: 107px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 400;
+    left: 13em;
+    bottom: 5em;
+  }
+  .buttonSave{
+    background-color: #FFB336;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  .buttonClose{
+    margin-left: 1em;
+    background-color: #89CFF0;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 400;
+  }
   
   button.active {
     color: #000;
@@ -97,6 +120,18 @@ html, body{
   .text-label{
     position: relative;
     top: 1em;
+  }
+
+  .edit-popup {
+    position: relative;
+    width: 400px;
+    font-weight: 400;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   }
   
 

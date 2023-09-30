@@ -346,11 +346,16 @@ export const GetRequest = async () => {
 }
 
 export const RequestToPurchase = async (product) => {
-  console.log("product", product)
- 
-  const requestResult = await POST(`purchaserequest/create`,product)
-
+  const checkPurchaseRequest = await GET(`purchaserequests/customer/${product.customerId}`)
+  const found = checkPurchaseRequest.data.find(x => x.productId === product.ProductId);
+  console.log("found", found)
+  if(!found){
+    const requestResult = await POST(`purchaserequest/create`,product)
     return requestResult
+  }else{
+    return
+  }
+
 
 
 //return productsResult;
@@ -408,7 +413,9 @@ export const GetNotifications = async () => {
 }
 
 export const GetPurchaseRequest = async (customerId) => {
+  console.log("my requests payload", customerId)
   const requestResult = await GET(`purchaserequests/customer/${customerId}`);
+  console.log("my response", requestResult)
   return requestResult
 }
 
