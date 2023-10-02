@@ -6,8 +6,22 @@ import { ToastContainer, toast } from 'react-toastify';
 import {getBreederPurchaseRequests, AcceptRequestToPurchase,RejectRequestToPurchase} from "../../../api/endpoints"
 import { FaCheckCircle, FaTimesCircle,FaEnvelope } from "react-icons/fa";
 import moment from 'moment'
+import Modal from 'react-modal';
+import RequestModal from './RequestDetailsModal';
 
 export default function PurchaseRequests() {
+
+  const [isChildModalOpen, setChildModalOpen] = useState(false);
+
+  const openChildModal = () => {
+    setChildModalOpen(true);
+  };
+
+  const closeChildModal = () => {
+    setChildModalOpen(false);
+  };
+
+ 
   
 
 const _location = useLocation();
@@ -204,10 +218,11 @@ async function Message(id){
                       <td className="text-center py-1 px-2">
                       
                         <span className="text-qblack px-2 ">
-                          
-                        <button>Details</button>
-                        
-                        </span>
+                        <button onClick={openChildModal}>Details</button>
+                        {isChildModalOpen && (
+                            <RequestModal isOpen={isChildModalOpen} onClose={closeChildModal} productRequests={x}/>
+                          )}
+                      </span>
                       </td>
                     </tr>
 
