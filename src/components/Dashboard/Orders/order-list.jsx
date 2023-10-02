@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import DashboardLayout from "../../Partials/DashboardLayout";
 import { Link, useLocation } from "react-router-dom";
-import { GetBreederOrders, updateProduct, uploadProduct } from "../../../api/endpoints";
+import { GetBreederOrders, GetInvoice, updateProduct, uploadProduct } from "../../../api/endpoints";
 import { ToastContainer, toast } from 'react-toastify';
 import {getBreederPurchaseRequests, AcceptRequestToPurchase,RejectRequestToPurchase} from "../../../api/endpoints"
 import { FaCheckCircle, FaTimesCircle,FaEnvelope } from "react-icons/fa";
 import moment from 'moment'
 
+import axios from "axios"
 export default function OrderList() {
   
 
@@ -22,14 +23,46 @@ async function _GetOrdersByBreeder(){
   const response = await  GetBreederOrders();
 debugger;
 console.log("RERE", response);
-  const res = response.data.map(x=>x?.data);
+  const res = response.data.map(x=>x?.data);  
 console.log("ORDER", response.data)
   setOrders(response.data);
 
 
 }
 
+async function GetPdf(){
+//   const response = await  GetInvoice("65187e91d746faf1160084d9");
+// debugger;
+// console.log("RERE", response);
+// const file = new Blob(
+//   [response.data], 
+//   {type: 'application/pdf'});
+// //Build a URL from the file
+// const fileURL = URL.createObjectURL(file);
+// console.log("ORDER", response.data)
+//   // setOrders(response.data);
 
+
+axios(`https://localhost:7061/orders/invoice/65187e91d746faf1160084d9`, {
+  method: 'GET',
+  responseType: 'blob' //Force to receive data in a Blob Format
+})
+.then(response => {
+//Create a Blob from the PDF Stream
+  const file = new Blob(
+    [response.data], 
+    {type: 'application/pdf'});
+//Build a URL from the file
+  const fileURL = URL.createObjectURL(file);
+//Open the URL on new Window
+  window.open(fileURL);
+})
+.catch(error => {
+  console.log(error);
+});
+
+
+}
 
 
   return (
@@ -155,6 +188,7 @@ console.log("ORDER", response.data)
                       <td className="py-4 whitespace-nowrap table-header">Date</td>
                       <td className="py-4 whitespace-nowrap table-header">Amount</td>
                       <td className="py-4 whitespace-nowrap table-header">Code</td>
+                      <td className="py-4 whitespace-nowrap table-header">Action</td>
              
                     {/* </tr> */}
                       </tr>
@@ -206,6 +240,14 @@ console.log("ORDER", response.data)
                       <span className="">
                          {/* {x.pin} */}
                          <input style={{width: "150px", height: "auto"}} type="text" />
+                        
+                        </span>
+                      </td>
+                      
+                      <td className="py-1 mt-2" style={{paddingLeft:"0px", marginTop:""}}>
+                      <span className="">
+                         {/* {x.pin} */}
+                         <button onClick={()=>GetPdf()}><small>View Invoice</small> </button>
                         
                         </span>
                       </td>

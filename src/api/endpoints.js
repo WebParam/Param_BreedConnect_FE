@@ -190,6 +190,25 @@ export const GetBreederOrders = async () => {
 };
 
 
+export const GetInvoice = async (orderId) => {
+  try {
+    const getPdfResult = await GET(`orders/invoice/${orderId}`);
+
+    if (getPdfResult != null && getPdfResult.status === 200) {
+      return getPdfResult; 
+    } else {
+     
+      console.error('Error: Unable to fetch products');
+      return null; // Return null or another appropriate value
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    return null; // Return null or another appropriate value
+  }
+};
+
+
+
 export const GetCustomerOrders = async () => {
   try {
     const getAllProductsResult = await GET(`orders/customer/`);

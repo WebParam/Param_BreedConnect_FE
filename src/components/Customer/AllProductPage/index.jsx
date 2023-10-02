@@ -54,10 +54,14 @@ export default function AllProductPage() {
   };
   const [filterToggle, setToggle] = useState(false);
 
+ 
+
+  const [filteredProducts, setFilteredProducts] = useState([]);
+
  // const { products } = productDatas;
 
 
-  
+
   useEffect(() => {
   
     getAllProduct()
@@ -84,6 +88,7 @@ export default function AllProductPage() {
     const response = await  getAllProductsByCustomer();
     if(response!=null && response.status ==200){
       setProducts(response.data)
+      setFilteredProducts(response.data)
       console.log(response.data)
       toast.dismiss(_id)
     }else{
@@ -97,6 +102,8 @@ export default function AllProductPage() {
     }
   
   }
+
+  
 
 
   return (
@@ -118,6 +125,8 @@ export default function AllProductPage() {
                   storage={storage}
                   filterstorage={filterStorage}
                   className="mb-[30px]"
+                  setFilteredProducts={setFilteredProducts}
+                  products={products}
                 />
                 {/* ads */}
                 {/* <div className="w-full hidden lg:block h-[295px]">
@@ -178,7 +187,7 @@ export default function AllProductPage() {
                   </button>
                 </div>
                 <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1  xl:gap-[30px] gap-5 mb-[40px]">
-                  <DataIteration datas={products} >
+                  <DataIteration datas={filteredProducts} >
                     {({ datas }) => (
                       <div data-aos="fade-up" key={datas.id}>
                         <ProductCardStyleOne datas={datas} />

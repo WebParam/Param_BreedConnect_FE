@@ -179,8 +179,8 @@ async function Message(id){
                       {x.status ==1 &&<>
                       <td className="px-1">
                         <span className="">
-                          <button>
-                          <img src={`${process.env.PUBLIC_URL}/assets/images/accept.svg`} onClick={()=>{AcceptProductRequest(x.id)}} alt="accept" className="accept-picture" />
+                          <button onClick={()=>{AcceptProductRequest(x.id)}}>
+                          <img src={`${process.env.PUBLIC_URL}/assets/images/accept.svg`}  alt="accept" className="accept-picture" />
                           </button>
                         
                         </span>

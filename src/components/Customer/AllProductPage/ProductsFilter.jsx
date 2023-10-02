@@ -1,6 +1,7 @@
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
 import Checkbox from "../../Helpers/Checkbox";
+import { useEffect, useState } from "react";
 
 export default function ProductsFilter({
   filters,
@@ -12,7 +13,142 @@ export default function ProductsFilter({
   className,
   filterToggle,
   filterToggleHandler,
+  products,
+  setFilteredProducts
 }) {
+
+   
+  const [activeFilters, setActiveFilters] = useState({
+    category: [1,2],
+    animal: ["1","2"],
+    breed: ["1","2"],
+    sex: ["1","2"],
+    priceMin: 0,
+    priceMax: 3000,
+  });
+
+  const priceChange = (e) => {
+  
+    debugger;
+
+    const newFilters ={
+      ...activeFilters,
+      priceMin:e.min,
+      priceMax:e.max
+
+    }
+
+    setActiveFilters(newFilters);
+    _filter(newFilters);
+  };
+
+  const categoryCheckbox = (e) => {
+  
+    const newCategories = activeFilters.category.includes(e)?
+          activeFilters.category.filter(x=>x!= e):
+          [...activeFilters.category, e];
+
+    const newFilters ={
+      ...activeFilters,
+      category:newCategories
+    }
+
+    setActiveFilters(newFilters);
+    _filter(newFilters);
+  };
+
+  // const animalCheckbox = (e) => {
+  // debugger;
+  //   const _newCategories = activeFilters.category.includes(e)?
+  //         activeFilters.category.filter(x=>x!= e):
+  //         [activeFilters.category, e];
+
+  //   const newFilters ={
+  //     ...activeFilters,
+  //     animal:_newCategories
+  //   }
+
+  //   setActiveFilters(newFilters);
+  //   debugger;
+  //   _filter(newFilters);
+  // };
+
+  // const sexCheckbox = (e) => {
+
+  //   const newCategories = activeFilters.category.includes(e.target.value)?
+  //         newCategories.filter(x=>x!= e.target.value):
+  //         [activeFilters.category, e.target.value];
+
+  //   const newFilters ={
+  //     ...activeFilters,
+  //     sex:newCategories
+  //   }
+
+  //   setActiveFilters(newFilters);
+  //   _filter();
+  // };
+
+  // const breedCheckbox = (e) => {
+  
+  //   const newCategories = activeFilters.category.includes(e.target.value)?
+  //         newCategories.filter(x=>x!= e.target.value):
+  //         [activeFilters.category, e.target.value];
+
+  //   const newFilters ={
+  //     ...activeFilters,
+  //     breed:newCategories
+  //   }
+
+  //   setActiveFilters(newFilters);
+  //   _filter();
+  // };
+
+  // const spermCheckbox = (e) => {
+  
+  //   const newCategories = activeFilters.category.includes(e.target.value)?
+  //         newCategories.filter(x=>x!= e.target.value):
+  //         [activeFilters.category, e.target.value];
+
+  //   const newFilters ={
+  //     ...activeFilters,
+  //     breed:newCategories
+  //   }
+
+  //   setActiveFilters(newFilters);
+  //   _filter(newFilters);
+  // };
+
+
+
+  function _filter(filters){
+
+    const filteredProducts = products.filter(product=>{
+  debugger;
+
+        if(
+          !filters.category.includes(product.category) ||
+          filters.priceMin>product.price ||
+          filters.priceMax< product.price 
+
+
+        ){
+          return false;        
+        }else{
+          return true;
+        }
+
+   
+
+        
+  
+    });
+  
+    setFilteredProducts(filteredProducts);
+  
+  }
+  
+
+
   return (
     <>
       <div
@@ -32,10 +168,10 @@ export default function ProductsFilter({
                 <div className="flex space-x-[14px] items-center">
                   <div>
                     <Checkbox
-                      id="mobileLaptop"
-                      name="mobileLaptop"
-                      handleChange={(e) => checkboxHandler(e)}
-                      checked={filters.mobileLaptop}
+                      id="animal"
+                      name="animal"
+                      handleChange={(e) => categoryCheckbox(1)}
+                      checked={activeFilters.category.includes(1)}
                     />
                   </div>
                   <div>
@@ -74,8 +210,9 @@ export default function ProductsFilter({
                     <Checkbox
                       id="gaming"
                       name="gaming"
-                      handleChange={(e) => checkboxHandler(e)}
-                      checked={filters.gaming}
+                      handleChange={(e) => categoryCheckbox(2)}
+                    
+                      checked={activeFilters.category.includes(2)}
                     />
                   </div>
                   <div>
@@ -120,14 +257,14 @@ export default function ProductsFilter({
           <div className="price-range mb-5">
             <InputRange
               draggableTrack
-              maxValue={1000}
+              maxValue={10000}
               minValue={0}
-              value={volume}
-              onChange={volumeHandler}
+              value={{min:activeFilters.priceMin, max:activeFilters.priceMax}}
+              onChange={(e)=>priceChange(e)}
             />
           </div>
           <p className="text-xs text-qblack font-400">
-            Price: R{volume.min} - R{volume.max}
+            Price: R{activeFilters.priceMin} - R{activeFilters.priceMax}
           </p>
         </div>
         <div className="filter-subject-item pb-10 border-b border-qgray-border mt-10">
