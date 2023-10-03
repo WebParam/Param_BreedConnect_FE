@@ -1,13 +1,53 @@
+import { useEffect, useState } from "react";
 import DashboardLayout from "../Partials/DashboardLayout";
+import OrderList from "./Orders/order-list";
+import { GetBreederProducts, GetBreederOrders, getBreederPurchaseRequests, AllMeetingsScheduledByBreeder} from '../../api/endpoints';
+import BreederCharts from "./Charts"; 
 
 export default function BreederDashboard() {
+  const [products, setProducts] = useState([]);
+  const [orders, setOrders] = useState([]);
+  const [requests,setProductRequests] = useState([]);
+  const [meetings, setMeetings] = useState([]);
+
+  const breederProducts = async () => {
+    const result = await GetBreederProducts();
+    setProducts(result.data);
+  } 
+
+  const breederOrders = async () => {
+    const result = await GetBreederOrders();
+    setOrders(result.data);
+  } 
 
 
-  return (
+  async function GetMeetings(){
+    const _meetings = await AllMeetingsScheduledByBreeder();
+    setMeetings(_meetings?.data);
+  }
+
+
+async function GetPurchaseRequestsByBreeder(){
+const response = await  getBreederPurchaseRequests();
+const res = response.data.map(x=>x.data);
+  setProductRequests(res);
+}
+
+
+
+  useEffect(()=>{
+    breederProducts();
+    breederOrders();
+    GetPurchaseRequestsByBreeder();
+    GetMeetings();
+  }, [])
+
+
+return (
    <>
 <DashboardLayout>
 <>
- 
+
       <div className="container">
         <div className="row">
           <div className="col-12 sherah-main__column">
@@ -54,9 +94,9 @@ export default function BreederDashboard() {
                       </div>
                       <div className="sherah-progress-card__content">
                         <div className="sherah-progress-card__heading">
-                          <span className="sherah-pcolor">Total Sells</span>
+                          <span className="sherah-pcolor">Animals</span>
                           <h4 className="sherah-progress-card__title">
-                            <b className="count-animate">$654.66k</b>
+                            <b className="count-animate">{products?.length}</b>
                           </h4>
                         </div>
                         <div className="sherah-progress-card__button">
@@ -83,8 +123,8 @@ export default function BreederDashboard() {
                             </svg>
                             +16.24 %
                           </p>
-                          <a href="#" className="sherah-see-all">
-                            View net earnings
+                          <a href="breeder-products" className="sherah-see-all">
+                            View all
                           </a>
                         </div>
                       </div>
@@ -125,7 +165,7 @@ export default function BreederDashboard() {
                         <div className="sherah-progress-card__heading">
                           <span className="sherah-pcolor">Total Orders</span>
                           <h4 className="sherah-progress-card__title">
-                            <b className="count-animate">$854.66k</b>
+                            <b className="count-animate">{orders?.length}</b>
                           </h4>
                         </div>
                         <div className="sherah-progress-card__button">
@@ -152,8 +192,8 @@ export default function BreederDashboard() {
                             </svg>
                             +80.00 %
                           </p>
-                          <a href="#" className="sherah-see-all">
-                            View all orders
+                          <a href="orders" className="sherah-see-all">
+                            View all
                           </a>
                         </div>
                       </div>
@@ -205,9 +245,9 @@ export default function BreederDashboard() {
                       </div>
                       <div className="sherah-progress-card__content">
                         <div className="sherah-progress-card__heading">
-                          <span className="sherah-pcolor">Daily Visitors</span>
+                          <span className="sherah-pcolor">Swipes Requests</span>
                           <h4 className="sherah-progress-card__title">
-                            <b className="count-animate">$987.21M</b>
+                            <b className="count-animate">{requests?.length}</b>
                           </h4>
                         </div>
                         <div className="sherah-progress-card__button">
@@ -234,8 +274,8 @@ export default function BreederDashboard() {
                             </svg>
                             +80.00 %
                           </p>
-                          <a href="#" className="sherah-see-all">
-                            See details
+                          <a href="swipes" className="sherah-see-all">
+                            View all
                           </a>
                         </div>
                       </div>
@@ -287,9 +327,9 @@ export default function BreederDashboard() {
                       </div>
                       <div className="sherah-progress-card__content">
                         <div className="sherah-progress-card__heading">
-                          <span className="sherah-pcolor">Daily Visitors</span>
+                          <span className="sherah-pcolor">Meet up Appointments</span>
                           <h4 className="sherah-progress-card__title">
-                            <b className="count-animate">$987.21M</b>
+                            <b className="count-animate">{meetings.length}</b>
                           </h4>
                         </div>
                         <div className="sherah-progress-card__button">
@@ -316,8 +356,8 @@ export default function BreederDashboard() {
                             </svg>
                             +80.00 %
                           </p>
-                          <a href="#" className="sherah-see-all">
-                            See details
+                          <a href="calender" className="sherah-see-all">
+                            View all
                           </a>
                         </div>
                       </div>
@@ -367,16 +407,7 @@ export default function BreederDashboard() {
                         {/* End Topbar */}
                       </div>
                       <div className="tab-content" id="nav-tabContent">
-                        <div
-                          className="tab-pane fade show active"
-                          id="sherah_tab1"
-                          role="tabpanel"
-                          aria-labelledby="sherah_tab1"
-                        >
-                          <div className="sherah-chart__inside sherah-chart__total--sales">
-                            <canvas id="myChart_Total_Sales_Home" />
-                          </div>
-                        </div>
+                       <BreederCharts />
                       </div>
                     </div>
                     {/* End Charts Two */}
@@ -546,525 +577,7 @@ export default function BreederDashboard() {
                 <div className="row">
                   <div className="col-12">
                     <div className="sherah-table sherah-default-bg sherah-border mg-top-30">
-                      <div className="sherah-table__heading">
-                        <h3 className="sherah-heading__title mb-0">
-                          Recent Orders
-                        </h3>
-                      </div>
-                      {/* sherah Table */}
-                      <table
-                        id="sherah-table__main"
-                        className="sherah-table__main sherah-table__main--front sherah-table__main-v1"
-                      >
-                        {/* sherah Table Head */}
-                        <thead className="sherah-table__head">
-                          <tr>
-                            <th className="sherah-table__column-1 sherah-table__h1">
-                              Order Id
-                            </th>
-                            <th className="sherah-table__column-2 sherah-table__h2">
-                              Customer
-                            </th>
-                            <th className="sherah-table__column-3 sherah-table__h3">
-                              Prodcut
-                            </th>
-                            <th className="sherah-table__column-4 sherah-table__h4">
-                              Amount
-                            </th>
-                            <th className="sherah-table__column-5 sherah-table__h5">
-                              Vendor
-                            </th>
-                            <th className="sherah-table__column-7 sherah-table__h7">
-                              Status
-                            </th>
-                          </tr>
-                        </thead>
-                        {/* sherah Table Body */}
-                        <tbody className="sherah-table__body">
-                          <tr>
-                            <td className="sherah-table__column-1 sherah-table__data-1">
-                              <div className="sherah-table__product--id">
-                                <p className="crany-table__product--number">
-                                  <a href="#">#Kz025417</a>
-                                </p>
-                              </div>
-                            </td>
-                            <td className="sherah-table__column-2 sherah-table__data-2">
-                              <div className="sherah-table__product">
-                                <div className="sherah-table__product-img">
-                                  <img src="img/customer-1.png" alt="#" />
-                                </div>
-                                <div className="sherah-table__product-content">
-                                  <p className="sherah-table__product-desc">
-                                    Alshan
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td className="sherah-table__column-3 sherah-table__data-3">
-                              <div className="sherah-table__product">
-                                <div className="sherah-table__product-img">
-                                  <img src="img/product-1.png" alt="#" />
-                                </div>
-                                <div className="sherah-table__product-content">
-                                  <p className="sherah-table__product-desc">
-                                    Leather bag
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td className="sherah-table__column-4 sherah-table__data-4">
-                              <h5 className="sherah-table__inner--title">
-                                $55.00
-                              </h5>
-                            </td>
-                            <td className="sherah-table__column-5 sherah-table__data-5">
-                              <h5 className="sherah-table__inner--title">
-                                Garikokar Fashion
-                              </h5>
-                            </td>
-                            <td className="sherah-table__column-7 sherah-table__data-7">
-                              <div className="sherah-table__status sherah-color2 sherah-color2__bg--opactity">
-                                Paid
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td className="sherah-table__column-1 sherah-table__data-1">
-                              <div className="sherah-table__product--id">
-                                <p className="crany-table__product--number">
-                                  <a href="#">#Kz025418</a>
-                                </p>
-                              </div>
-                            </td>
-                            <td className="sherah-table__column-2 sherah-table__data-2">
-                              <div className="sherah-table__product">
-                                <div className="sherah-table__product-img">
-                                  <img src="img/customer-2.png" alt="#" />
-                                </div>
-                                <div className="sherah-table__product-content">
-                                  <p className="sherah-table__product-desc">
-                                    Gogdukh
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td className="sherah-table__column-3 sherah-table__data-3">
-                              <div className="sherah-table__product">
-                                <div className="sherah-table__product-img">
-                                  <img src="img/customer-2.png" alt="#" />
-                                </div>
-                                <div className="sherah-table__product-content">
-                                  <p className="sherah-table__product-desc">
-                                    Fashion jeket
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td className="sherah-table__column-4 sherah-table__data-4">
-                              <h5 className="sherah-table__inner--title">
-                                $98.00
-                              </h5>
-                            </td>
-                            <td className="sherah-table__column-5 sherah-table__data-5">
-                              <h5 className="sherah-table__inner--title">
-                                Hamasto Fashion
-                              </h5>
-                            </td>
-                            <td className="sherah-table__column-7 sherah-table__data-7">
-                              <div className="sherah-table__status sherah-color3 sherah-color3__bg--opactity">
-                                Pending
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td className="sherah-table__column-1 sherah-table__data-1">
-                              <div className="sherah-table__product--id">
-                                <p className="crany-table__product--number">
-                                  <a href="#">#Kz025419</a>
-                                </p>
-                              </div>
-                            </td>
-                            <td className="sherah-table__column-2 sherah-table__data-2">
-                              <div className="sherah-table__product">
-                                <div className="sherah-table__product-img">
-                                  <img src="img/customer-3.png" alt="#" />
-                                </div>
-                                <div className="sherah-table__product-content">
-                                  <p className="sherah-table__product-desc">
-                                    Nichara Jhon
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td className="sherah-table__column-3 sherah-table__data-3">
-                              <div className="sherah-table__product">
-                                <div className="sherah-table__product-img">
-                                  <img src="img/product-3.png" alt="#" />
-                                </div>
-                                <div className="sherah-table__product-content">
-                                  <p className="sherah-table__product-desc">
-                                    Cotton tops
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td className="sherah-table__column-4 sherah-table__data-4">
-                              <h5 className="sherah-table__inner--title">
-                                $60.00
-                              </h5>
-                            </td>
-                            <td className="sherah-table__column-5 sherah-table__data-5">
-                              <h5 className="sherah-table__inner--title">
-                                Technologies
-                              </h5>
-                            </td>
-                            <td className="sherah-table__column-7 sherah-table__data-7">
-                              <div className="sherah-table__status sherah-color1 sherah-color1__bg--opactity">
-                                Unpaid
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td className="sherah-table__column-1 sherah-table__data-1">
-                              <div className="sherah-table__product--id">
-                                <p className="crany-table__product--number">
-                                  <a href="#">#Kz025420</a>
-                                </p>
-                              </div>
-                            </td>
-                            <td className="sherah-table__column-2 sherah-table__data-2">
-                              <div className="sherah-table__product">
-                                <div className="sherah-table__product-img">
-                                  <img src="img/customer-4.png" alt="#" />
-                                </div>
-                                <div className="sherah-table__product-content">
-                                  <p className="sherah-table__product-desc">
-                                    Aslihan Jaga
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td className="sherah-table__column-3 sherah-table__data-3">
-                              <div className="sherah-table__product">
-                                <div className="sherah-table__product-img">
-                                  <img src="img/product-4.png" alt="#" />
-                                </div>
-                                <div className="sherah-table__product-content">
-                                  <p className="sherah-table__product-desc">
-                                    Black half shirt
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td className="sherah-table__column-4 sherah-table__data-4">
-                              <h5 className="sherah-table__inner--title">
-                                $50.00
-                              </h5>
-                            </td>
-                            <td className="sherah-table__column-5 sherah-table__data-5">
-                              <h5 className="sherah-table__inner--title">
-                                Design Fashion{" "}
-                              </h5>
-                            </td>
-                            <td className="sherah-table__column-7 sherah-table__data-7">
-                              <div className="sherah-table__status sherah-color3 sherah-color3__bg--opactity">
-                                Pending
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td className="sherah-table__column-1 sherah-table__data-1">
-                              <div className="sherah-table__product--id">
-                                <p className="crany-table__product--number">
-                                  <a href="#">#Kz025421</a>
-                                </p>
-                              </div>
-                            </td>
-                            <td className="sherah-table__column-2 sherah-table__data-2">
-                              <div className="sherah-table__product">
-                                <div className="sherah-table__product-img">
-                                  <img src="img/customer-5.png" alt="#" />
-                                </div>
-                                <div className="sherah-table__product-content">
-                                  <p className="sherah-table__product-desc">
-                                    Nishachor
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td className="sherah-table__column-3 sherah-table__data-3">
-                              <div className="sherah-table__product">
-                                <div className="sherah-table__product-img">
-                                  <img src="img/product-5.png" alt="#" />
-                                </div>
-                                <div className="sherah-table__product-content">
-                                  <p className="sherah-table__product-desc">
-                                    Leather shoe
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td className="sherah-table__column-4 sherah-table__data-4">
-                              <h5 className="sherah-table__inner--title">
-                                $85.00
-                              </h5>
-                            </td>
-                            <td className="sherah-table__column-5 sherah-table__data-5">
-                              <h5 className="sherah-table__inner--title">
-                                Nihari Shoes
-                              </h5>
-                            </td>
-                            <td className="sherah-table__column-7 sherah-table__data-7">
-                              <div className="sherah-table__status sherah-color1 sherah-color1__bg--opactity">
-                                Unpaid
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td className="sherah-table__column-1 sherah-table__data-1">
-                              <div className="sherah-table__product--id">
-                                <p className="crany-table__product--number">
-                                  <a href="#">#Kz025417</a>
-                                </p>
-                              </div>
-                            </td>
-                            <td className="sherah-table__column-2 sherah-table__data-2">
-                              <div className="sherah-table__product">
-                                <div className="sherah-table__product-img">
-                                  <img src="img/customer-1.png" alt="#" />
-                                </div>
-                                <div className="sherah-table__product-content">
-                                  <p className="sherah-table__product-desc">
-                                    Alshan
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td className="sherah-table__column-3 sherah-table__data-3">
-                              <div className="sherah-table__product">
-                                <div className="sherah-table__product-img">
-                                  <img src="img/product-1.png" alt="#" />
-                                </div>
-                                <div className="sherah-table__product-content">
-                                  <p className="sherah-table__product-desc">
-                                    Leather bag
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td className="sherah-table__column-4 sherah-table__data-4">
-                              <h5 className="sherah-table__inner--title">
-                                $55.00
-                              </h5>
-                            </td>
-                            <td className="sherah-table__column-5 sherah-table__data-5">
-                              <h5 className="sherah-table__inner--title">
-                                Garikokar Fashion
-                              </h5>
-                            </td>
-                            <td className="sherah-table__column-7 sherah-table__data-7">
-                              <div className="sherah-table__status sherah-color2 sherah-color2__bg--opactity">
-                                Paid
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td className="sherah-table__column-1 sherah-table__data-1">
-                              <div className="sherah-table__product--id">
-                                <p className="crany-table__product--number">
-                                  <a href="#">#Kz025418</a>
-                                </p>
-                              </div>
-                            </td>
-                            <td className="sherah-table__column-2 sherah-table__data-2">
-                              <div className="sherah-table__product">
-                                <div className="sherah-table__product-img">
-                                  <img src="img/customer-2.png" alt="#" />
-                                </div>
-                                <div className="sherah-table__product-content">
-                                  <p className="sherah-table__product-desc">
-                                    Gogdukh
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td className="sherah-table__column-3 sherah-table__data-3">
-                              <div className="sherah-table__product">
-                                <div className="sherah-table__product-img">
-                                  <img src="img/customer-2.png" alt="#" />
-                                </div>
-                                <div className="sherah-table__product-content">
-                                  <p className="sherah-table__product-desc">
-                                    Fashion jeket
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td className="sherah-table__column-4 sherah-table__data-4">
-                              <h5 className="sherah-table__inner--title">
-                                $98.00
-                              </h5>
-                            </td>
-                            <td className="sherah-table__column-5 sherah-table__data-5">
-                              <h5 className="sherah-table__inner--title">
-                                Hamasto Fashion
-                              </h5>
-                            </td>
-                            <td className="sherah-table__column-7 sherah-table__data-7">
-                              <div className="sherah-table__status sherah-color3 sherah-color3__bg--opactity">
-                                Pending
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td className="sherah-table__column-1 sherah-table__data-1">
-                              <div className="sherah-table__product--id">
-                                <p className="crany-table__product--number">
-                                  <a href="#">#Kz025419</a>
-                                </p>
-                              </div>
-                            </td>
-                            <td className="sherah-table__column-2 sherah-table__data-2">
-                              <div className="sherah-table__product">
-                                <div className="sherah-table__product-img">
-                                  <img src="img/customer-3.png" alt="#" />
-                                </div>
-                                <div className="sherah-table__product-content">
-                                  <p className="sherah-table__product-desc">
-                                    Nichara Jhon
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td className="sherah-table__column-3 sherah-table__data-3">
-                              <div className="sherah-table__product">
-                                <div className="sherah-table__product-img">
-                                  <img src="img/product-3.png" alt="#" />
-                                </div>
-                                <div className="sherah-table__product-content">
-                                  <p className="sherah-table__product-desc">
-                                    Cotton tops
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td className="sherah-table__column-4 sherah-table__data-4">
-                              <h5 className="sherah-table__inner--title">
-                                $60.00
-                              </h5>
-                            </td>
-                            <td className="sherah-table__column-5 sherah-table__data-5">
-                              <h5 className="sherah-table__inner--title">
-                                Technologies
-                              </h5>
-                            </td>
-                            <td className="sherah-table__column-7 sherah-table__data-7">
-                              <div className="sherah-table__status sherah-color1 sherah-color1__bg--opactity">
-                                Unpaid
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td className="sherah-table__column-1 sherah-table__data-1">
-                              <div className="sherah-table__product--id">
-                                <p className="crany-table__product--number">
-                                  <a href="#">#Kz025420</a>
-                                </p>
-                              </div>
-                            </td>
-                            <td className="sherah-table__column-2 sherah-table__data-2">
-                              <div className="sherah-table__product">
-                                <div className="sherah-table__product-img">
-                                  <img src="img/customer-4.png" alt="#" />
-                                </div>
-                                <div className="sherah-table__product-content">
-                                  <p className="sherah-table__product-desc">
-                                    Aslihan Jaga
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td className="sherah-table__column-3 sherah-table__data-3">
-                              <div className="sherah-table__product">
-                                <div className="sherah-table__product-img">
-                                  <img src="img/product-4.png" alt="#" />
-                                </div>
-                                <div className="sherah-table__product-content">
-                                  <p className="sherah-table__product-desc">
-                                    Black half shirt
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td className="sherah-table__column-4 sherah-table__data-4">
-                              <h5 className="sherah-table__inner--title">
-                                $50.00
-                              </h5>
-                            </td>
-                            <td className="sherah-table__column-5 sherah-table__data-5">
-                              <h5 className="sherah-table__inner--title">
-                                Design Fashion{" "}
-                              </h5>
-                            </td>
-                            <td className="sherah-table__column-7 sherah-table__data-7">
-                              <div className="sherah-table__status sherah-color3 sherah-color3__bg--opactity">
-                                Pending
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td className="sherah-table__column-1 sherah-table__data-1">
-                              <div className="sherah-table__product--id">
-                                <p className="crany-table__product--number">
-                                  <a href="#">#Kz025421</a>
-                                </p>
-                              </div>
-                            </td>
-                            <td className="sherah-table__column-2 sherah-table__data-2">
-                              <div className="sherah-table__product">
-                                <div className="sherah-table__product-img">
-                                  <img src="img/customer-5.png" alt="#" />
-                                </div>
-                                <div className="sherah-table__product-content">
-                                  <p className="sherah-table__product-desc">
-                                    Nishachor
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td className="sherah-table__column-3 sherah-table__data-3">
-                              <div className="sherah-table__product">
-                                <div className="sherah-table__product-img">
-                                  <img src="img/product-5.png" alt="#" />
-                                </div>
-                                <div className="sherah-table__product-content">
-                                  <p className="sherah-table__product-desc">
-                                    Leather shoe
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td className="sherah-table__column-4 sherah-table__data-4">
-                              <h5 className="sherah-table__inner--title">
-                                $85.00
-                              </h5>
-                            </td>
-                            <td className="sherah-table__column-5 sherah-table__data-5">
-                              <h5 className="sherah-table__inner--title">
-                                Nihari Shoes
-                              </h5>
-                            </td>
-                            <td className="sherah-table__column-7 sherah-table__data-7">
-                              <div className="sherah-table__status sherah-color1 sherah-color1__bg--opactity">
-                                Unpaid
-                              </div>
-                            </td>
-                          </tr>
-                        </tbody>
-                        {/* End sherah Table Body */}
-                      </table>
-                      {/* End sherah Table */}
+                    
                     </div>
                   </div>
                 </div>
