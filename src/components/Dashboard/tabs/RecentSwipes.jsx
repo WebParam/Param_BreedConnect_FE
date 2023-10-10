@@ -6,7 +6,7 @@ import moment from 'moment'
 function RecentSwipes({  }) {
   const [productRequests, setProductRequests] = useState([]);
   async function GetPurchaseRequestsByBreeder(){
-    const response = await  getBreederPurchaseRequests();
+  const response = await  getBreederPurchaseRequests();
   const res = response.data.map(x=>x.data);
   
     setProductRequests(res);

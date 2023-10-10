@@ -8,7 +8,8 @@ import {
   AllMeetingsScheduledByBreeder, 
   AllMeetingsScheduledByCustomer,
   GetBreederProducts, 
-  GetPurchaseRequest } from '../../../api/endpoints'
+  GetPurchaseRequest,
+  getBreederPurchaseRequests } from '../../../api/endpoints'
 
 
 export default function CalenderTab() {
@@ -19,7 +20,9 @@ export default function CalenderTab() {
     const [breederAppointments, setBreederAppointments] = useState([]);
     const [breederProducts, setBreederProducts] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState();
-    const [customerName, setCustomerName] = useState('');
+    const [selectedCustomer, setSelectedCustomer] = useState();
+    const [selectedCustomerId, setSelectedCustomerId] = useState();
+    const [customer, setCustomer] = useState([]);
     const [sellerName, setSellerName] = useState('');
     const [meetingTime, setMeetingTime] = useState('');
     const [BreederId, setBreederId] = useState('');
@@ -27,6 +30,7 @@ export default function CalenderTab() {
     const [CustomerId, setCustomerId] = useState('');
     const [appointmentMessage, setAppointmentMessage] = useState('');
     const [purchaseRequest, setPurchaseRequest] = useState();
+    const [productWithUsers, setProductWithUsers] = useState();
     const [ProductId, setProductId] = useState('');
 
   
@@ -44,32 +48,40 @@ export default function CalenderTab() {
     };
 
     const handleSelectChange = event => {
-     // t({ selectedOption: event.target.value });
-     console.log("selcted", event.target.value)
-
      setSelectedProduct(event.target.value)
+    };
+
+     const handleSelectCustomerChange = (event) => {
+      
+     setSelectedCustomer(event.target.value)
+      //console.log(productWithUsers.filter(x => x.data?.customer?.firstname === selectedCustomer))
+      const customer = productWithUsers.filter(x => x.data?.customer?.firstname === selectedCustomer)
+      setCustomer(customer)
     };
   
     const handleScheduleMeeting = async (e) => {
-      console.log("breederAppointments[0].BreederId", breederAppointments[0].breederId)
       e.preventDefault();
-      await getPurchaseRequestAndCreateAppointment(breederAppointments[0].breederId)   
+      console.log("---",customer[0].data.customerId)
+      await getPurchaseRequestAndCreateAppointment()   
     };
 
     async function GetMeetings(){
       const _meetings = await AllMeetingsScheduled();
       setMeetings(_meetings?.data);
-      console.log("meetings", meetings)
  
     }
 
+    const getBreederRequests = async () => {
+      const res = await getBreederPurchaseRequests();
+      setProductWithUsers(res.data)
+      // console.log("Purchase Requests", productWithUsers)
+    }
 
 
 
     async function getBreederProducts(){
       const _products = await GetBreederProducts();
       setBreederProducts(_products?.data);
-      console.log("_products", _products)
     }
 
     async function GetCustomerAppointments(){
@@ -79,13 +91,14 @@ export default function CalenderTab() {
       debugger;
     }
 
-    async function getPurchaseRequestAndCreateAppointment(Id){
-      const _requestRes = await GetPurchaseRequest(Id);
-      setPurchaseRequest(_requestRes?.data[0]);
-      if(_requestRes?.data[0]){
+    async function getPurchaseRequestAndCreateAppointment(){
+     // const _requestRes = await GetPurchaseRequest(Id);
+      //setPurchaseRequest(_requestRes?.data[0]);
+      const data = productWithUsers.filter(x => x.data?.customer?.firstname === selectedCustomer)
+      if(data[0].data.purchase.id){
       const newMeeting = {
         appointmentMessage,
-        purchaserequestid: _requestRes?.data[0].id,
+        purchaserequestid: data[0].data.purchase.id,
         date: meetingTime
       };
 
@@ -94,14 +107,12 @@ export default function CalenderTab() {
       console.log("save res", saveMeeting)
       if(saveMeeting){
         closeModal();
-        setCustomerName('');
+        //setCustomerName('');
         setSellerName('');
         setMeetingTime('');
       }
 
       GetCustomerAppointments();
-
-        
     }
     }
 
@@ -119,6 +130,7 @@ export default function CalenderTab() {
       GetMeetings();
       GetBreederAppointments();
       getBreederProducts();
+      getBreederRequests();
      }, [])
   
     return (
@@ -149,7 +161,23 @@ export default function CalenderTab() {
                   </select>
         
                 </div>
-
+                <div className="form-group">
+                  <label htmlFor="customer">Select Customer</label>
+                  <select
+                    id="dynamicSelect"
+                    className="form-control"
+                    value={selectedCustomer}
+                    onChange={(e) => handleSelectCustomerChange(e, )}
+                  >
+                    <option value="">Select an customer</option>
+                    {productWithUsers.map(option => (
+                      <option key={option.data.value} value={option.id}>
+                        {option.data.customer.firstname}
+                      </option>
+                    ))}
+                  </select>
+        
+                </div>
                 <div className="form-group">
                   <label htmlFor="appointmentMessage">Subject:</label>
                   <input
@@ -168,24 +196,13 @@ export default function CalenderTab() {
                     onChange={(e) => setMeetingTime(e.target.value)}
                   />
                 </div>
-                <button type="submit" className='meetingBtn'>Update</button>
+                <button type="submit" className='meetingBtn'>Schedule</button>
                 <button onClick={closeModal} className='meetingBtn'>Cancel</button>
               </form>
             </div>
           </div>
         )}
         <div className="meetings-list">
-          {/* <h2>Scheduled Meetings</h2>
-          <ul>
-            {customerAppointments.map((meeting, index) => (
-              <li key={index}>
-                <strong>Date:</strong> {new Date(meeting?.date).toLocaleDateString()},{' '}
-                {new Date(meeting?.date).toLocaleDateString()} | <strong>Customer:</strong>{' '}
-                {meeting?.customer?.firstname} | <strong>Breeder :</strong> {meeting?.breeder?.firstname} |
-                 <strong> Message :</strong> {meeting?.appointmentMessage}
-              </li>
-            ))}
-          </ul> */}
           <h1>Scheduled Meetings</h1>
           <ul>
           {breederAppointments.map((meeting, index) => (
