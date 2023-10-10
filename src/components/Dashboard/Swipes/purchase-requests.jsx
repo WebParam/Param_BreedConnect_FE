@@ -109,7 +109,7 @@ async function Message(id){
                   </div>
                 </div>
                 <div className="sherah-table col-md-10 sherah-page-inner sherah-border sherah-default-bg mg-top-25">
-        
+                <h3 className="mb-5">New requests</h3>
 
                   <table id="sherah-table__vendor" className="sherah-table__main sherah-table__main-v3">
                     {/* sherah Table Head */}
@@ -143,8 +143,8 @@ async function Message(id){
                       <td className="py-1">
                         <span>
                       
-                        <img style={{float:"left"}} src={`${process.env.PUBLIC_URL}/assets/images/d2.jpg`}  alt="breeder" className="customer"/>
-                        <small style={{float:"left"}}  className="mt-3 ml-1">{x?.customer?.firstname} {x?.customer?.lastname}</small>
+                        <img style={{float:"left", cursor:"pointer"}}  src={`${process.env.PUBLIC_URL}/assets/images/d2.jpg`}  alt="breeder" className="customer"/>
+                       <a style={{cursor:"pointer"}} href=""> <small style={{float:"left"}}  className="mt-3 ml-1">{x?.customer?.firstname} {x?.customer?.lastname}</small></a>
                        
                         </span>
                       
@@ -153,7 +153,7 @@ async function Message(id){
                       <td className="text-center py-1 px-2">
                         <span className="text-qblack px-2 ">
                           
-                        <img src={`${process.env.PUBLIC_URL}/assets/images/d1.jpg`}  alt="breed" style={{width:"50px", height:"50px"}} className="product-picture" />
+                       <a style={{float:"left",cursor:"pointer"}} href=""> <img src={`${process.env.PUBLIC_URL}/assets/images/d1.jpg`}  alt="breed" style={{width:"50px", height:"50px"}} className="product-picture" /></a>
                         
                         </span>
                       </td>
@@ -165,17 +165,17 @@ async function Message(id){
                       {x.status ==1 &&<>
                       <td className="px-1">
                         <span className="">
-                          <button onClick={()=>{AcceptProductRequest(x.id)}}>
+                          <a style={{cursor:"pointer"}} onClick={()=>{AcceptProductRequest(x.id)}}>
                           <img src={`${process.env.PUBLIC_URL}/assets/images/accept.svg`}  alt="accept" className="accept-picture" />
-                          </button>
+                          </a>
                         
                         </span>
                       </td>
                       <td className="py-1" style={{paddingLeft:"0px"}}>
                       <span className="">
-                          <button style={{padding:"0px"}}>
+                          <a style={{padding:"0px",cursor:"pointer"}}>
                           <img src={`${process.env.PUBLIC_URL}/assets/images/reject.svg`} onClick={()=>{RejectProductPurchase(x.id)}} alt="reject" className="reject-picture" />
-                          </button>
+                          </a>
                         
                         </span>
                       </td>
@@ -192,7 +192,7 @@ async function Message(id){
                       </td>
                       <td className="py-1" style={{paddingLeft:"0px"}}>
                       <span className="">
-                          <button style={{padding:"0px"}}>
+                          <button style={{padding:"0px",cursor:"pointer"}}>
                           <img  src={`${process.env.PUBLIC_URL}/assets/images/reject.svg`} onClick={()=>{CancelProductPurchase(x.id)}}alt="reject" className="reject-picture" />
                           </button>
                         
@@ -219,6 +219,186 @@ async function Message(id){
                     </tbody>
                   </table>
                 </div>
+
+
+        <div style={{marginTop:"10%", float:"left"}} className="col-md-6  mg-top-25">
+        
+<h3 className="mb-5">Archive</h3>
+        <table id="sherah-table__vendor" className="sherah-table__main sherah-table__main-v3">
+          {/* sherah Table Head */}
+          <thead className="sherah-table__head">
+            {/* <tr> */}
+              {/* <th className="sherah-table__column-1 sherah-table__h1">Request ID</th>
+              <th className="sherah-table__column-2 sherah-table__h2">Customer Name</th>
+              <th className="sherah-table__column-3 sherah-table__h3">Date</th>
+              <th className="sherah-table__column-4 sherah-table__h4">Status</th>
+              <th className="sherah-table__column-5 sherah-table__h5">Order Total</th>
+              <th className="sherah-table__column-8 sherah-table__h8">Action</th> */}
+                <tr className="text-base text-qgray whitespace-nowrap px-2 border-b default-border-bottom ">
+     
+            <td className="py-4 pl-5 whitespace-nowrap table-header">Name</td>
+            <td className="py-4 whitespace-nowrap table-header">Interested in</td>
+            <td className="py-4 whitespace-nowrap table-header">Date</td>
+            <td className="py-4 whitespace-nowrap table-header">Status</td>
+            <td className="py-4 whitespace-nowrap table-header">Actions</td>
+    
+            <td className="py-4 whitespace-nowrap table-header"></td>
+          {/* </tr> */}
+            </tr>
+          </thead>
+          <tbody className="sherah-table__body">
+
+            {
+             
+             productRequests.map(x=> {return(
+              <>
+                <tr className=" border-b hover:bg-gray-50">
+            <td className="py-1">
+              <a href="">
+              <span>
+            
+              {/* <img style={{float:"left"}} src={`${process.env.PUBLIC_URL}/assets/images/d2.jpg`}  alt="breeder" className="customer"/> */}
+              <small style={{float:"left"}}  className="mt-3 ml-1">{x?.customer?.firstname} {x?.customer?.lastname}</small>
+             
+              </span>
+            
+              </a>
+            </td>
+            <td className="text-center py-1 px-2">
+              <span className="text-qblack px-2 ">
+                {x.product.name}
+              {/* <img src={`${process.env.PUBLIC_URL}/assets/images/d1.jpg`}  alt="breed" style={{width:"50px", height:"50px"}} className="product-picture" /> */}
+              
+              </span>
+            </td>
+            <td className="px-1">
+              <span className="text-lg text-qgray font-medium">
+              <small>{moment(x.date).fromNow()}</small>
+              </span>
+            </td>
+            {/* {x.status ==1 &&<> */}
+            <td className="px-1">
+            <div class="sherah-table__status sherah-color3 sherah-color3__bg--opactity">Accepted</div>
+                 
+            </td>
+            <td className="py-1" style={{paddingLeft:"0px"}}>
+            <span className="">
+                {/* <button style={{padding:"0px"}}>
+                <img src={`${process.env.PUBLIC_URL}/assets/images/reject.svg`} onClick={()=>{RejectProductPurchase(x.id)}} alt="reject" className="reject-picture" />
+                </button> */}
+                 <a href="" ><small>View </small> </a>
+                 <a href="" ><small>Cancel </small> </a>
+              
+              </span>
+            </td>
+            {/* </>
+            } */}
+            
+{/*           
+            <td className="text-center py-1 px-2">
+            
+              <span className="text-qblack px-2 ">
+                
+              <button>View</button>
+              
+              </span>
+            </td> */}
+          </tr>
+
+              
+              </>
+              )})
+            }
+
+          </tbody>
+        </table>
+      </div>
+
+
+
+
+
+      <div style={{marginTop:"10%",float:"left"}} className="col-md-4 ml-5 mg-top-25">
+        
+        <h3 className="mb-5">Popular pets</h3>
+                <table id="sherah-table__vendor" className="sherah-table__main sherah-table__main-v3">
+                  {/* sherah Table Head */}
+                  <thead className="sherah-table__head">
+                    {/* <tr> */}
+                      {/* <th className="sherah-table__column-1 sherah-table__h1">Request ID</th>
+                      <th className="sherah-table__column-2 sherah-table__h2">Customer Name</th>
+                      <th className="sherah-table__column-3 sherah-table__h3">Date</th>
+                      <th className="sherah-table__column-4 sherah-table__h4">Status</th>
+                      <th className="sherah-table__column-5 sherah-table__h5">Order Total</th>
+                      <th className="sherah-table__column-8 sherah-table__h8">Action</th> */}
+                        <tr className="text-base text-qgray whitespace-nowrap px-2 border-b default-border-bottom ">
+             
+                    <td className="py-4 pl-5 whitespace-nowrap table-header">Name</td>
+                    <td className="py-4 whitespace-nowrap table-header">Date</td>
+                    <td className="py-4 whitespace-nowrap table-header">View count</td>
+                    <td className="py-4 whitespace-nowrap table-header">Actions</td>
+                  {/* </tr> */}
+                    </tr>
+                  </thead>
+                  <tbody className="sherah-table__body">
+        
+                    {
+                     
+                     productRequests.map(x=> {return(
+                      <>
+                        <tr className=" border-b hover:bg-gray-50">
+                    <td className="py-1">
+                      <span>
+                    
+                      {/* <img style={{float:"left"}} src={`${process.env.PUBLIC_URL}/assets/images/d2.jpg`}  alt="breeder" className="customer"/> */}
+                      <small style={{float:"left"}}  className="mt-3 ml-1">{x?.customer?.firstname} {x?.customer?.lastname}</small>
+                     
+                      </span>
+                    
+                   
+                    </td>
+                  
+                    <td className="px-1">
+                      <span className="text-lg text-qgray font-medium">
+                      <small>{moment(x.date).fromNow()}</small>
+                      </span>
+                    </td>
+                    {/* {x.status ==1 &&<> */}
+                    <td className="px-1">
+                    <div class="sherah-table__status sherah-color3 sherah-color3__bg--opactity">12</div>
+                         
+                    </td>
+                    <td className="py-1" style={{paddingLeft:"0px"}}>
+                    <span className="">
+                      {/* <button style={{padding:"0px"}}>
+                      <img src={`${process.env.PUBLIC_URL}/assets/images/reject.svg`} onClick={()=>{RejectProductPurchase(x.id)}} alt="reject" className="reject-picture" />
+                      </button> */}
+                      <a href=""><small>View </small> </a>
+                    
+                    </span>
+                    </td>
+                    {/* </>
+                    } */}
+                    
+        {/*           
+                    <td className="text-center py-1 px-2">
+                    
+                      <span className="text-qblack px-2 ">
+                        
+                      <button>View</button>
+                      
+                      </span>
+                    </td> */}
+                  </tr>
+        
+                      
+                      </>
+                      )})
+                    }
+        
+                  </tbody>
+                </table>
+              </div>
               </div>
               {/* End Dashboard Inner */}
             </div>

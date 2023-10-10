@@ -155,6 +155,25 @@ export const getBreederPurchaseRequests = async () => {
     return null; // Return null or another appropriate value
   }
 };
+
+export const getBreederReviews = async () => {
+  try {
+    const getAllProductsResult = await GET(`reviews/breeder`);
+
+    if (getAllProductsResult != null && getAllProductsResult.status === 200) {
+      return getAllProductsResult; 
+    } else {
+     
+      console.error('Error: Unable to fetch products');
+      return null; // Return null or another appropriate value
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    return null; // Return null or another appropriate value
+  }
+};
+
+
 export const verifyPayment = async (txRef,reference) => {
   try {
     const res = await GET(`payment/verifyPayment/${txRef}/${reference}`);
@@ -256,6 +275,14 @@ export const RegisterBreeder = async (
   }else{
     alert("register failed")
   }
+
+return registerResult;
+}
+
+export const CompleteOrder = async (payload )=>{
+  const registerResult = await POST(`order/complete`, 
+  payload);
+
 
 return registerResult;
 }
@@ -413,6 +440,15 @@ export const CreatePaymentLink = async (purchaseRequestId) => {
     return requestResult
 
 }
+
+export const GetProduct = async (productId) => {
+
+  const requestResult = await GET(`product/${productId}`);
+
+    return requestResult
+
+}
+
 
 
 export const GenerateLink = async (paymentLinkId) => {

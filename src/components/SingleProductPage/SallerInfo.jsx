@@ -2,7 +2,7 @@ import ProductCardStyleOne from "../Helpers/Cards/ProductCardStyleOne";
 import DataIteration from "../Helpers/DataIteration";
 import Star from "../Helpers/icons/Star";
 
-export default function SallerInfo({ products }) {
+export default function SallerInfo({ products, seller }) {
   return (
     <div className="saller-info-wrapper w-full">
       <div className="saller-info sm:flex justify-between items-center pb-[30px] border-b border-[#E8E8E8]">
@@ -16,10 +16,10 @@ export default function SallerInfo({ products }) {
           </div>
           <div>
             <h6 className="text-[18px] font-medium leading-[30px]">
-              Ridoy Rock
+             {seller.firstname} {seller.lastname}
             </h6>
             <p className="text-[13px] font-normal text-qgray leading-[30px]">
-              London,United Kingdom
+              {seller.address}
             </p>
             <div className="flex items-center mt-4">
               <div className="flex">
@@ -38,21 +38,21 @@ export default function SallerInfo({ products }) {
             <ul>
               <li className="text-qgray leading-[30px]">
                 <span className="text-[15px] font-normal text-qblack">
-                  Products
+                Bio
                 </span>
-                : 120
+                : This is the bio
               </li>
               <li className="text-qgray leading-[30px]">
                 <span className="text-[15px] font-normal text-qblack">
-                  Category
+                  Years of breeding
                 </span>
-                : Mobile Phone, Sports, Gaming, Electronics
+                : 5
               </li>
               <li className="text-qgray leading-[30px]">
                 <span className="text-[15px] font-normal text-qblack">
-                  Tags
+                  Breeds
                 </span>
-                : Beer, Foamer
+                : Pitbull, Staffy
               </li>
             </ul>
           </div>
@@ -60,15 +60,15 @@ export default function SallerInfo({ products }) {
             <ul>
               <li className="text-qgray leading-[30px]">
                 <span className="text-[15px] font-normal text-qblack">
-                  Products
+                  What drives passion for breeding
                 </span>
-                : 120
+                : Some more info
               </li>
               <li className="text-qgray leading-[30px]">
                 <span className="text-[15px] font-normal text-qblack">
-                  Category
+                  Breeding practices
                 </span>
-                : Mobile Phone, Sports, Gaming, Electronics
+                : Some breeding practices
               </li>
               <li className="text-qgray leading-[30px]">
                 <span className="text-[15px] font-normal text-qblack">
@@ -81,7 +81,7 @@ export default function SallerInfo({ products }) {
         </div>
       </div>
       <div className="saller-product w-full mt-[30px]">
-        <h1 className="text-[18px] font-medium mb-5">Product from Shop</h1>
+        <h1 className="text-[18px] font-medium mb-5">Products from {seller?.firstname}</h1>
         <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5">
           <DataIteration
             datas={products}

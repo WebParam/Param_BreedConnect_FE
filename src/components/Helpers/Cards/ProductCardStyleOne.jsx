@@ -9,13 +9,12 @@ import { ToastContainer, toast } from 'react-toastify';
 
 export default function ProductCardStyleOne({ datas,type }) {
   const [status, setStatus]  =useState(0)
-debugger;
   const available =
     (datas.cam_product_sale /
       (datas.cam_product_available + datas.cam_product_sale)) *
     100;
  const handleClick = async (id) => {
-     
+     window.location.href=`product?productId=${id}`;
     };
 
     const requestToPurchase=async(id)=>{
@@ -102,6 +101,7 @@ debugger;
           </div>
         )}
       </div>
+
       <div className="product-card-details px-[30px] pb-[30px] relative">
         {/* add to card button */}
         <div className="absolute w-full h-10 px-[30px] left-0 top-40 group-hover:top-[85px] transition-all duration-300 ease-in-out">

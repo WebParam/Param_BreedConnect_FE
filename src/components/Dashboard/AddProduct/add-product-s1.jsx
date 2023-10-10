@@ -18,6 +18,7 @@ export default function EditProduct() {
   const [dateOfBirthEroor , setDateOfBirthEroor] = useState(false);
   const [sexEroor, setSexEroor] = useState(false);
   const [colorMarkingsEroor , setColorMarkingsEroor] = useState(false);
+  const [descriptionError , setDescriptionError] = useState(false);
   
   const [healthRecordsEroor , setHealthRecordsEroor] = useState(false);
   const [geneticTestsEroor, setGeneticTestsEroor]= useState(false);
@@ -37,6 +38,7 @@ const [breed, setBreed] = useState(0);
 const [dateOfBirth , setDateOfBirth] = useState("");
 const [sex , setSex] = useState(0);
 const [colorMarkings , setColorMarkings] = useState("");
+const [description , setDescription] = useState("");
 
 const [healthRecords , setHealthRecords] = useState("");
 const [geneticTests, setGeneticTests]= useState([]);
@@ -236,6 +238,7 @@ if(availability.length > 0 && price.length > 0 && location !== "" ){
 
  const payload = new FormData();
  payload.append("category", category)
+ payload.append("description", description)
  payload.append("animal", animal)
  payload.append("name", name)
  payload.append("breed", breed)
@@ -488,9 +491,33 @@ setAvailabilityEroor(true)
                                 </div>
                               </div>
                             
+                            
                               <div className="col-12">
                                 <div className="form-group">
-                                  <label className="sherah-wc__form-label">Color / Markings <span style = {{marginLeft:"3px", fontWeight:"500px", color:"red"}}>{colorMarkingsEroor && "select Color / Markings "}</span> </label>
+                                  <label className="sherah-wc__form-label">Description <span style = {{marginLeft:"3px", fontWeight:"500px", color:"red"}}>
+                                    {descriptionError && "Enter description "}</span> </label>
+                                  <div className="form-group__input">
+                                    <textarea  disabled={disableInputs}
+                                      onChange={(e)=>{setDescription(e.target.value)
+                                        if(e.target.value == ""){
+                                          setDescriptionError(false)
+                                        }
+                                      }}
+                                      className="sherah-wc__form-input"
+                                      placeholder="Enter description"
+                                      type="text"
+                                      name="p_title"
+                                      value={description}
+                                    
+                                      // value={colorMarkings}
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div className="col-12">
+                                <div className="form-group">
+                                  <label className="sherah-wc__form-label">Color / Markings <span style = {{marginLeft:"3px", fontWeight:"500px", color:"red"}}>{colorMarkingsEroor && "Enter Color / Markings "}</span> </label>
                                   <div className="form-group__input">
                                     <textarea  disabled={disableInputs}
                                       onChange={(e)=>{setColorMarkings(e.target.value)

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DashboardLayout from "../../Partials/DashboardLayout";
 import { Link, useLocation } from "react-router-dom";
-import { GetBreederOrders, GetInvoice, updateProduct, uploadProduct } from "../../../api/endpoints";
+import { GetBreederOrders,CompleteOrder, GetInvoice, updateProduct, uploadProduct } from "../../../api/endpoints";
 import { ToastContainer, toast } from 'react-toastify';
 import {getBreederPurchaseRequests, AcceptRequestToPurchase,RejectRequestToPurchase} from "../../../api/endpoints"
 import { FaCheckCircle, FaTimesCircle,FaEnvelope } from "react-icons/fa";
@@ -13,6 +13,7 @@ export default function OrderList() {
 
 const _location = useLocation();
 const [orders, setOrders] = useState([]);
+const [pin, setPin] = useState("");
 
 
 useEffect(()=>{
@@ -62,6 +63,44 @@ axios(`https://localhost:7061/orders/invoice/65187e91d746faf1160084d9`, {
 });
 
 
+}
+
+async function FinalizeOrder(id){
+  const _id = toast.loading("Completing order..", {
+    position: "top-center",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+
+   const req = {pin:pin, orderId:id }
+
+  const res = await CompleteOrder(req);
+  debugger;
+  if(res.status==200){
+
+    toast.update(_id, {
+      autoClose:2000,
+      render: `Order has been completed`,
+      type: "success",
+      isLoading: false,
+    });
+
+
+  }else{
+    toast.update(_id, {
+      autoClose:2000,
+      render: "Error completing order",
+      type: "error",
+      isLoading: false,
+      
+    });
+
+  }
 }
 
 
@@ -202,7 +241,7 @@ axios(`https://localhost:7061/orders/invoice/65187e91d746faf1160084d9`, {
                           <tr className=" border-b hover:bg-gray-50">
                       <td className="py-1">
                         <span style={{float:"left"}}>
-                          {x?.id}
+                          {x?.id.substring(0,5)}
                         {/* <img src={`${process.env.PUBLIC_URL}/assets/images/d2.jpg`}  alt="breeder" className="customer"/> */}
                        
                         </span>
@@ -239,7 +278,7 @@ axios(`https://localhost:7061/orders/invoice/65187e91d746faf1160084d9`, {
                       <td className="py-1 mt-2" style={{paddingLeft:"0px", marginTop:"", float:"left"}}>
                       <span className="">
                          {/* {x.pin} */}
-                         <input style={{width: "150px", height: "auto"}} type="text" />
+                         <input onChange={(e)=>{setPin(e.target.value); e.preventDefault()}} style={{width: "150px", height: "auto"}} className="mt-2" type="text" />
                         
                         </span>
                       </td>
@@ -247,7 +286,9 @@ axios(`https://localhost:7061/orders/invoice/65187e91d746faf1160084d9`, {
                       <td className="py-1 mt-2" style={{paddingLeft:"0px", marginTop:""}}>
                       <span className="">
                          {/* {x.pin} */}
-                         <button onClick={()=>GetPdf()}><small>View Invoice</small> </button>
+                         <a style={{}} onClick={(e)=>{ FinalizeOrder(x.id);}}><small>Complete order </small> </a> 
+                         {x.status==3 && <a style={{}} href="" onClick={()=>GetPdf()}><small>Invoice </small> </a> }
+                         {x.status!=3 && <a style={{}} href=""  onClick={()=>GetPdf()}><small>Cancel </small> </a>}
                         
                         </span>
                       </td>

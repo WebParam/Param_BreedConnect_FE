@@ -394,7 +394,7 @@ export default function DashboardLayout({ children, childrenClasses }) {
               </li>
               <li>
                 <a
-                  href="/breeder-products"
+                  href="/breeder-reviews"
                   className="collapsed"
                   data-bs-toggle="collapse"
                   data-bs-target="#menu-item_products"

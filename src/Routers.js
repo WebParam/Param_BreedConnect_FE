@@ -20,7 +20,7 @@ import PrivacyPolicy from "./components/PrivacyPolicy";
 import ProductsCompaire from "./components/ProductsCompaire/index";
 import SallerPage from "./components/SallerPage";
 import Sallers from "./components/Sellers";
-import SingleProductPage from "./components/SingleProductPage";
+// import SingleProductPage from "./components/SingleProductPage";
 import TermsCondition from "./components/TermsCondition/index";
 import TrackingOrder from "./components/TrackingOrder";
 import Wishlist from "./components/Wishlist";
@@ -33,6 +33,8 @@ import BreederDashboard from "./components/Dashboard";
 import BreederProfile from "./components/Dashboard/profile";
 import BreederProducts from "./components/Dashboard/Products/products";
 import AddProduct from "./components/Dashboard/add-product";
+import Reviews from "./components/Dashboard/Reviews/reviews";
+import SingleProductPage from "./components/Customer/SingleProduct/index";
 
 import AddProductS1 from "./components/Dashboard/AddProduct/add-product-s1";
 import Questionnaires from "./components/Questionnaires/questionnaires";
@@ -61,6 +63,8 @@ export default function Routers() {
       <Route exact path="/messages-breeder" element={<Messages />} />
       <Route exact path="/transaction" element={<PaymentResult />} />
       <Route exact path="/breeder-products" element={<Products />} />
+      <Route exact path="/breeder-reviews" element={<Reviews />} /> 
+      <Route exact path="/product" element={<SingleProductPage />} />
       {/* <Route exact path="/home-two" element={<HomeTwo />} />
       <Route exact path="/home-three" element={<HomeThree />} />
       <Route exact path="/home-four" element={<HomeFour />} />

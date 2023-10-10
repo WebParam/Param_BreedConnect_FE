@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 export default function ProductsTab() {
 
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
   
   useEffect(() => {
@@ -17,20 +18,23 @@ export default function ProductsTab() {
       const response = await getBreederProducts();
       const data = await response.data;
       setProducts(data);
+      setFilteredProducts(data);
       console.log("products", data)
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   };
 
-  function editProduct(){
-
+  function editProduct(id){
+    window.location.href=`/edit-product/${id}`
   }
 
 
   function onlyUnique(value, index, array) {
     return array.indexOf(value) === index;
   }
+
+
 
 
 
@@ -128,7 +132,8 @@ export default function ProductsTab() {
             >
               <div className="row">
 
-                {products.map((product, index) => (
+                {filteredProducts.map((product, index) => (
+                  <>
                   <div className="col-xxl-4 col-lg-6 col-md-6 col-12" key={index}>
                     {/* Single Product */}
                     <div className="sherah-product-card sherah-product-card__v2  sherah-default-bg sherah-border mg-top-30">
@@ -150,13 +155,210 @@ export default function ProductsTab() {
                             </h5>
                           </div>
                           <div className="sherah-btn default">
-                            <button onClick={() => editProduct(product)} className="request">Edit</button>
+                            <button onClick={() => editProduct(product.id)} className="request">Edit</button>
                           </div>
                         </div>
                       </div>
                     </div>
                     {/* End Single Product */}
                   </div>
+                   <div className="col-xxl-4 col-lg-6 col-md-6 col-12" key={index}>
+                   {/* Single Product */}
+                   <div className="sherah-product-card sherah-product-card__v2  sherah-default-bg sherah-border mg-top-30">
+                     {/* Card Image */}
+                     <div className="sherah-product-card__img">
+                       <img src={`${process.env.PUBLIC_URL}/assets/images/d1.jpg`} />
+                     </div>
+                     {/* Card Content */}
+                     <div className="sherah-product-card__content sherah-dflex-column sherah-flex-gap-5">
+                       <h4 className="sherah-product-card__title">
+                         <a href="product-detail.html" className="sherah-pcolor">
+                           {product?.name}
+                         </a>
+                       </h4>
+                       <div className="sherah-product__bottom">
+                         <div className="sherah-product__bottom--single">
+                           <h5 className="sherah-product-card__price">
+                             R{product?.price}
+                           </h5>
+                         </div>
+                         <div className="sherah-btn default">
+                           <button onClick={() => editProduct(product)} className="request">Edit</button>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+                   {/* End Single Product */}
+                 </div>
+                  <div className="col-xxl-4 col-lg-6 col-md-6 col-12" key={index}>
+                  {/* Single Product */}
+                  <div className="sherah-product-card sherah-product-card__v2  sherah-default-bg sherah-border mg-top-30">
+                    {/* Card Image */}
+                    <div className="sherah-product-card__img">
+                      <img src={`${process.env.PUBLIC_URL}/assets/images/d1.jpg`} />
+                    </div>
+                    {/* Card Content */}
+                    <div className="sherah-product-card__content sherah-dflex-column sherah-flex-gap-5">
+                      <h4 className="sherah-product-card__title">
+                        <a href="product-detail.html" className="sherah-pcolor">
+                          {product?.name}
+                        </a>
+                      </h4>
+                      <div className="sherah-product__bottom">
+                        <div className="sherah-product__bottom--single">
+                          <h5 className="sherah-product-card__price">
+                            R{product?.price}
+                          </h5>
+                        </div>
+                        <div className="sherah-btn default">
+                          <button onClick={() => editProduct(product)} className="request">Edit</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {/* End Single Product */}
+                </div>
+                 <div className="col-xxl-4 col-lg-6 col-md-6 col-12" key={index}>
+                 {/* Single Product */}
+                 <div className="sherah-product-card sherah-product-card__v2  sherah-default-bg sherah-border mg-top-30">
+                   {/* Card Image */}
+                   <div className="sherah-product-card__img">
+                     <img src={`${process.env.PUBLIC_URL}/assets/images/d1.jpg`} />
+                   </div>
+                   {/* Card Content */}
+                   <div className="sherah-product-card__content sherah-dflex-column sherah-flex-gap-5">
+                     <h4 className="sherah-product-card__title">
+                       <a href="product-detail.html" className="sherah-pcolor">
+                         {product?.name}
+                       </a>
+                     </h4>
+                     <div className="sherah-product__bottom">
+                       <div className="sherah-product__bottom--single">
+                         <h5 className="sherah-product-card__price">
+                           R{product?.price}
+                         </h5>
+                       </div>
+                       <div className="sherah-btn default">
+                         <button onClick={() => editProduct(product)} className="request">Edit</button>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+                 {/* End Single Product */}
+               </div>
+                <div className="col-xxl-4 col-lg-6 col-md-6 col-12" key={index}>
+                {/* Single Product */}
+                <div className="sherah-product-card sherah-product-card__v2  sherah-default-bg sherah-border mg-top-30">
+                  {/* Card Image */}
+                  <div className="sherah-product-card__img">
+                    <img src={`${process.env.PUBLIC_URL}/assets/images/d1.jpg`} />
+                  </div>
+                  {/* Card Content */}
+                  <div className="sherah-product-card__content sherah-dflex-column sherah-flex-gap-5">
+                    <h4 className="sherah-product-card__title">
+                      <a href="product-detail.html" className="sherah-pcolor">
+                        {product?.name}
+                      </a>
+                    </h4>
+                    <div className="sherah-product__bottom">
+                      <div className="sherah-product__bottom--single">
+                        <h5 className="sherah-product-card__price">
+                          R{product?.price}
+                        </h5>
+                      </div>
+                      <div className="sherah-btn default">
+                        <button onClick={() => editProduct(product)} className="request">Edit</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/* End Single Product */}
+              </div>
+               <div className="col-xxl-4 col-lg-6 col-md-6 col-12" key={index}>
+               {/* Single Product */}
+               <div className="sherah-product-card sherah-product-card__v2  sherah-default-bg sherah-border mg-top-30">
+                 {/* Card Image */}
+                 <div className="sherah-product-card__img">
+                   <img src={`${process.env.PUBLIC_URL}/assets/images/d1.jpg`} />
+                 </div>
+                 {/* Card Content */}
+                 <div className="sherah-product-card__content sherah-dflex-column sherah-flex-gap-5">
+                   <h4 className="sherah-product-card__title">
+                     <a href="product-detail.html" className="sherah-pcolor">
+                       {product?.name}
+                     </a>
+                   </h4>
+                   <div className="sherah-product__bottom">
+                     <div className="sherah-product__bottom--single">
+                       <h5 className="sherah-product-card__price">
+                         R{product?.price}
+                       </h5>
+                     </div>
+                     <div className="sherah-btn default">
+                       <button onClick={() => editProduct(product)} className="request">Edit</button>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+               {/* End Single Product */}
+             </div>
+              <div className="col-xxl-4 col-lg-6 col-md-6 col-12" key={index}>
+              {/* Single Product */}
+              <div className="sherah-product-card sherah-product-card__v2  sherah-default-bg sherah-border mg-top-30">
+                {/* Card Image */}
+                <div className="sherah-product-card__img">
+                  <img src={`${process.env.PUBLIC_URL}/assets/images/d1.jpg`} />
+                </div>
+                {/* Card Content */}
+                <div className="sherah-product-card__content sherah-dflex-column sherah-flex-gap-5">
+                  <h4 className="sherah-product-card__title">
+                    <a href="product-detail.html" className="sherah-pcolor">
+                      {product?.name}
+                    </a>
+                  </h4>
+                  <div className="sherah-product__bottom">
+                    <div className="sherah-product__bottom--single">
+                      <h5 className="sherah-product-card__price">
+                        R{product?.price}
+                      </h5>
+                    </div>
+                    <div className="sherah-btn default">
+                      <button onClick={() => editProduct(product)} className="request">Edit</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* End Single Product */}
+            </div>
+             <div className="col-xxl-4 col-lg-6 col-md-6 col-12" key={index}>
+             {/* Single Product */}
+             <div className="sherah-product-card sherah-product-card__v2  sherah-default-bg sherah-border mg-top-30">
+               {/* Card Image */}
+               <div className="sherah-product-card__img">
+                 <img src={`${process.env.PUBLIC_URL}/assets/images/d1.jpg`} />
+               </div>
+               {/* Card Content */}
+               <div className="sherah-product-card__content sherah-dflex-column sherah-flex-gap-5">
+                 <h4 className="sherah-product-card__title">
+                   <a href="product-detail.html" className="sherah-pcolor">
+                     {product?.name}
+                   </a>
+                 </h4>
+                 <div className="sherah-product__bottom">
+                   <div className="sherah-product__bottom--single">
+                     <h5 className="sherah-product-card__price">
+                       R{product?.price}
+                     </h5>
+                   </div>
+                   <div className="sherah-btn default">
+                     <button onClick={() => editProduct(product)} className="request">Edit</button>
+                   </div>
+                 </div>
+               </div>
+             </div>
+             {/* End Single Product */}
+           </div>
+           </>
                 ))}
 
 
