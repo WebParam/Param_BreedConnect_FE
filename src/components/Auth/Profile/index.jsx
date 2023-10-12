@@ -25,6 +25,7 @@ import IcoMessages from "./icons/IcoMessages";
 import IcoSwipes from "./icons/IcoSwipes";
 import ProductsTab from "./tabs/ProductsTab";
 import MessagesTab from "./tabs/MessagesTab";
+import ContactUs from "./tabs/ContactUs";
 
 export default function Profile() {
   const [switchDashboard, setSwitchDashboard] = useState(false);
@@ -151,6 +152,19 @@ window.location.href="/"
                     </div>
 
                     <div className="item group">
+                      <Link to="/profile#contactus">
+                        <div className="flex space-x-3 items-center text-qgray hover:text-qblack">
+                          <span>
+                          <IcoSwipes/>
+                          </span>
+                          <span className=" font-normal text-base">
+                            Contact Us
+                          </span>
+                        </div>
+                      </Link>
+                    </div>
+
+                    <div className="item group">
                       <Link to="/profile#settings">
                         <div className="flex space-x-3 items-center text-qgray hover:text-qblack">
                           <span>
@@ -162,6 +176,8 @@ window.location.href="/"
                         </div>
                       </Link>
                     </div>
+
+                
 
                     
                     <div className="item group">
@@ -206,7 +222,15 @@ window.location.href="/"
                       <>
                         <SwipesTinderTab />
                       </>
-                    ) : active === "password" ? (
+                      
+                    )
+                     : active === "contactus" ? (
+                      <>
+                        <ContactUs />
+                      </>
+                      
+                    )
+                    : active === "password" ? (
                       <>
                         <PasswordTab />
                       </>
