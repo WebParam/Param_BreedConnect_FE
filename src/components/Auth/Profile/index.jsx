@@ -25,7 +25,7 @@ import IcoMessages from "./icons/IcoMessages";
 import IcoSwipes from "./icons/IcoSwipes";
 import ProductsTab from "./tabs/ProductsTab";
 import MessagesTab from "./tabs/MessagesTab";
-import ContactUs from "./tabs/ContactUs";
+import Contact from "../../Contact";
 
 export default function Profile() {
   const [switchDashboard, setSwitchDashboard] = useState(false);
@@ -226,7 +226,7 @@ window.location.href="/"
                     )
                      : active === "contactus" ? (
                       <>
-                        <ContactUs />
+                        <Contact />
                       </>
                       
                     )
