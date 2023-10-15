@@ -62,7 +62,8 @@ export default function ProductCardStyleOne({ datas,type }) {
       <div  onClick={() => handleClick(datas.id)}
         className="product-card-img w-full h-[300px]"
         style={{
-          background: `url(${datas?.images!=null && datas?.images.length>0 && datas?.images[0]?.url}) no-repeat center`,
+          background: `url(${datas?.images!=null && datas?.images.length>0 && datas?.images[0]?.url})`,
+          backgroundSize:"cover", backgroundPosition:"center"
         }}
       >
         {/* product available progress */}
