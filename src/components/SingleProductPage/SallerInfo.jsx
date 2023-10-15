@@ -46,7 +46,7 @@ export default function SallerInfo({ products, seller }) {
                 <span className="text-[15px] font-normal text-qblack">
                   Years of breeding
                 </span>
-                : 5
+                : {seller.profile.yearsOfBreeding}
               </li>
               <li className="text-qgray leading-[30px]">
                 <span className="text-[15px] font-normal text-qblack">
@@ -62,20 +62,20 @@ export default function SallerInfo({ products, seller }) {
                 <span className="text-[15px] font-normal text-qblack">
                   What drives passion for breeding
                 </span>
-                : Some more info
+                : {seller.profile.passionForBreeding}
               </li>
               <li className="text-qgray leading-[30px]">
                 <span className="text-[15px] font-normal text-qblack">
                   Breeding practices
                 </span>
-                : Some breeding practices
+                : {seller.profile.bestPractices}
               </li>
-              <li className="text-qgray leading-[30px]">
+              {/* <li className="text-qgray leading-[30px]">
                 <span className="text-[15px] font-normal text-qblack">
                   Tags
                 </span>
                 : Beer, Foamer
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>

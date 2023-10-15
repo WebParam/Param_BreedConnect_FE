@@ -295,9 +295,9 @@ export default function ProductView({ className, reportHandler, product}) {
             <p className="text-[13px] text-qgray leading-7">
               <span className="text-qblack">Category :</span> {GetCategory(product?.category)}
             </p>
-            <p className="text-[13px] text-qgray leading-7">
+            {/* <p className="text-[13px] text-qgray leading-7">
               <span className="text-qblack">Tags :</span> Beer, Foamer
-            </p>
+            </p> */}
             <p className="text-[13px] text-qgray leading-7">
               <span className="text-qblack">SKU:</span> {product?.id?.substring(0,5)}
             </p>
