@@ -187,7 +187,7 @@ window.location.href="/"
                             <IcoLogout />
                           </span>
                           <span className=" font-normal text-base">
-                            Logoout
+                            Log out
                           </span>
                         </div>
                       </a>

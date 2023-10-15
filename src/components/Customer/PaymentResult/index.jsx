@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import "react-input-range/lib/css/index.css";
 import productDatas from "../../../data/products.json";
 import BreadcrumbCom from "../../BreadcrumbCom";
@@ -9,8 +9,11 @@ import Layout from "../../Partials/Layout";
 import ProductsFilter from "./ProductsFilter";
 import { verifyPayment } from "../../../api/endpoints";
 import { ToastContainer, toast } from 'react-toastify';
+
 import './payment.css';
 export default function PaymentResult() {
+  const navigate = useNavigate();
+
   const [filters, setFilter] = useState({
     mobileLaptop: false,
     gaming: false,
@@ -39,6 +42,8 @@ export default function PaymentResult() {
     sizeFit: false,
   });
 
+  const [status, setStatus] = useState('Redirecting to home in few seconds...');
+
   const [searchParams] = useSearchParams();
 
 
@@ -62,36 +67,33 @@ export default function PaymentResult() {
 
   
   useEffect(() => {
-  
     Init()
   }, [])
   
 
 
   async function Init(event){
-debugger
     var ref = searchParams.get("trxref");
     var reference = searchParams.get("reference");
     var res = await verifyPayment(ref,reference);
-    debugger;
 
+    setTimeout(() => {
+      navigate('/profile');
+    }, 8000)
   
   }
 
 
   return (
     <>
-     
-
               <div className="flex-1">
                 <div className="payment-success-card">
                       <div className="icon">&#10004;</div>
                       <h2>Payment Successful</h2>
                       <p>Your payment has been successfully processed.</p>
-                      <button className="button">Continue Shopping</button>
+                      <button className="button">{status}</button>
                     </div>
               </div>
-          
     </>
   );
 }
