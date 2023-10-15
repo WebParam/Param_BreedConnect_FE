@@ -173,6 +173,23 @@ export const getBreederReviews = async () => {
   }
 };
 
+export const addReview = async (payload)=>{
+  try{
+
+    const registerResult = await POST(`reviews`, 
+    payload);
+
+    if(registerResult!=null && registerResult.status==200){
+    debugger;
+      return registerResult;
+    }else{
+     return registerResult;
+    }
+
+  }catch(e){
+    console.error('Error:', e);
+  }
+}
 
 export const verifyPayment = async (txRef,reference) => {
   try {

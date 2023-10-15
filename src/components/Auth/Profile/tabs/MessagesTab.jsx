@@ -21,7 +21,7 @@ async function payWithPaystack(purchaseRequestId) {
 }
 
 async function pay(paymentLinkId){
-  const res = await GenerateLink("65154e74ad38fb6e62d3f6bc"
+  const res = await GenerateLink("652c09b6a305326f2ecd89a4"
   
   );
   debugger;
@@ -543,7 +543,7 @@ async function pay(paymentLinkId){
                                
                               </div>
                               {/* <button type="submit" onClick={()=>payWithPaystack()}> Request payment </button> */}
-                              <button type="submit" onClick={()=>pay()}> Pay </button>
+                              <button type="submit" onClick={(e)=>{e.preventDefault(); pay()}}> Pay </button>
                             </div>
                           </form>
                         </div>

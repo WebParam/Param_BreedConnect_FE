@@ -28,30 +28,30 @@ export default function LandingTopBar({ className }) {
                       />
                   </a>
                </li> */}
-                <li style={{marginTop:"7%", fontSize:"1.5em"}}>
+                <li style={{marginTop:"7%", fontSize:"1em"}}>
                   <Link to="/">
-                    <span style={{fontSize:"1.5em"}} >
+                    <span style={{fontSize:"1em"}} >
                       About Us
                     </span>
                   </Link>
                 </li>
-                <li style={{marginTop:"7%",fontSize:"1.5em"}}>
+                <li style={{marginTop:"7%",fontSize:"1em"}}>
                   <Link to="/tracking-order">
-                    <span style={{fontSize:"1.5em"}} >
+                    <span style={{fontSize:"1em"}} >
                       Safety
                     </span>
                   </Link>
                 </li>
-                <li style={{marginTop:"7%", fontSize:"1.5em"}}>
+                <li style={{marginTop:"7%", fontSize:"1em"}}>
                   <Link to="/faq">
-                    <span style={{fontSize:"1.5em"}} >
+                    <span style={{fontSize:"1em"}} >
                       Community
                     </span>
                   </Link>
                 </li>
               </ul>
             </div>
-            <div className="topbar-dropdowns sm:block hidden" style={{marginTop:"7%"}}>
+            <div className="topbar-dropdowns sm:block hidden" style={{marginTop:"2%"}}>
               <div className="flex space-x-6">
                 <div className="country-select flex space-x-1 items-center">
                   {/* <div>
