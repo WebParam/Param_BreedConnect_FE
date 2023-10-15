@@ -53,14 +53,14 @@ window.location.href="/"
   return (
     <Layout childrenClasses="pt-0 pb-0">
       <div className="profile-page-wrapper w-full">
-        <div className="container-x mx-auto">
+        <div className="" style={{marginLeft:"5%", marginRight:"5%"}}>
           <div className="w-full my-10">
-            <BreadcrumbCom
+            {/* <BreadcrumbCom
               paths={[
                 { name: "home", path: "/" },
                 { name: "profile", path: "/profile" },
               ]}
-            />
+            /> */}
             <div className="w-full bg-white px-10 py-9">
               <div className="title-area w-full flex justify-between items-center">
                <div className="flex space-x-3 items-center font-bold text-qblack">

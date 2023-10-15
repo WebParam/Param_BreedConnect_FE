@@ -263,6 +263,36 @@ export const getProduct = async (productId) => {
   }
 };
 
+export const UploadProfilePic = async (
+  payload
+  )=>{
+  const registerResult = await POST(`user/uploadprofile`, 
+  payload);
+
+  if(registerResult!=null && registerResult.status==200){
+   return registerResult.data;
+  }else{
+    alert("register failed")
+  }
+
+return registerResult;
+}
+
+export const UpdateProfileBreeder = async (
+  payload
+  )=>{
+  const registerResult = await POST(`profile/updatebreeder`, 
+  payload);
+
+  if(registerResult!=null && registerResult.status==200){
+   return registerResult.data;
+  }else{
+    alert("register failed")
+  }
+
+return registerResult;
+}
+
 
 export const RegisterBreeder = async (
   payload

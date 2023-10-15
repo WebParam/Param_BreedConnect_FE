@@ -10,6 +10,7 @@ import Reviews from "../../SingleProductPage/Reviews";
 import SallerInfo from "../../SingleProductPage/SallerInfo";
 import { useSearchParams } from 'react-router-dom';
 import {getProduct} from "../../../api/endpoints";
+import moment from "moment";
 export default function SingleProductPage() {
   const [searchParams] = useSearchParams();
 
@@ -185,7 +186,7 @@ export default function SingleProductPage() {
                       Introduction
                     </h6>
                     <p className="text-[15px] text-qgray text-normal mb-10">
-                      Lorem Ipsum is simply dummy text of the printing and
+                    {product?.description ??`  Lorem Ipsum is simply dummy text of the printing and
                       typesetting industry. Lorem Ipsum has been the industry's
                       standard dummy text ever since the 1500s, when an unknown
                       printer took a galley of type and scrambled it to make a
@@ -196,27 +197,26 @@ export default function SingleProductPage() {
                       sheets containing Lorem Ipsum passages, andei more
                       recently with desktop publishing software like Aldus
                       PageMaker including versions of Lorem Ipsum to make a type
-                      specimen book.
+                      specimen book.`}
                     </p>
                     <div>
-                      <h6 className="text-[18px] text-medium mb-4">
-                        Features :
+                      <h6 className="text-[18px]">
+                       Additional information:
                       </h6>
                       <ul className="list-disc ml-[15px]">
-                        <li className="font-normal text-qgray leading-9">
-                          slim body with metal cover
+                        <li className="font-normal text-qgray leading-9 ">
+                          Location: {product?.location}
                         </li>
                         <li className="font-normal text-qgray leading-9">
-                          latest Intel Core i5-1135G7 processor (4 cores / 8
-                          threads)
+                          Created: {moment(product?.createdDateTime).fromNow()}
                         </li>
-                        <li className="font-normal text-qgray leading-9">
+                        {/* <li className="font-normal text-qgray leading-9">
                           8GB DDR4 RAM and fast 512GB PCIe SSD
                         </li>
                         <li className="font-normal text-qgray leading-9">
                           NVIDIA GeForce MX350 2GB GDDR5 graphics card backlit
                           keyboard, touchpad with gesture support
-                        </li>
+                        </li> */}
                       </ul>
                     </div>
                   </div>

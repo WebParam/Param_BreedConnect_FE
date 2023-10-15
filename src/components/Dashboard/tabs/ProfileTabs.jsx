@@ -1,7 +1,7 @@
 
 import InputCom from "../../Helpers/InputCom";
 
-import {getUserProfile} from "../../../api/endpoints";
+import {getUserProfile, UpdateProfileBreeder} from "../../../api/endpoints";
 import React, { useEffect, useState } from "react";
 
 
@@ -20,12 +20,12 @@ function Tabs() {
   async function GetUser(){
 
     const _profile = await getUserProfile();
-  
+  debugger;
     setProfile(_profile?.data);
-    setBiography(_profile.profile?.biography??"")
-    setPassion(_profile.profile?.passion??"")
-    setYears(_profile.profile?.years??"")
-    setPractices(_profile.profile?.bestPractices??"")
+    setBiography(_profile.data.profile?.biography??"")
+    setPassion(_profile.data.profile?.passionForBreeding??"")
+    setYears(_profile.data.profile?.yearsOfBreeding??"")
+    setPractices(_profile.data.profile?.bestPractices??"")
 
     
     debugger;
@@ -37,13 +37,26 @@ function Tabs() {
    GetUser();
   }, [])
 
+  async function UpdateProfile(){
+
+    const payload = {
+      biography:biography,
+      yearsOfBreeding: years,
+      passionForBreeding: passion,
+      bestPractices: practices,
+    }
+debugger;
+    const res = await UpdateProfileBreeder(payload);
+
+  }
+
 
 
   const tabs = [
     {
       title: 'Personal Information',
       content: <div>
-           <form className="sherah-wc__form-main" action="#">
+           <form className="sherah-wc__form-main" >
         <div className="row">
                       <div className="col-12">
                         <div className="form-group">
@@ -376,6 +389,7 @@ function Tabs() {
                         </div>
                         <div className='col-md-12'>
                         <button
+                        onClick={(e)=>{e.preventDefault(); UpdateProfile()}}
                          className="btn-create"
                         variant="contained"
                         color="primary"

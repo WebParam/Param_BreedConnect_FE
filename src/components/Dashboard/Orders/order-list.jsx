@@ -14,6 +14,7 @@ export default function OrderList() {
 const _location = useLocation();
 const [orders, setOrders] = useState([]);
 const [pin, setPin] = useState("");
+const [latestOrders, setLatestOrders]= useState([]);
 
 
 useEffect(()=>{
@@ -27,22 +28,11 @@ console.log("RERE", response);
   const res = response.data.map(x=>x?.data);  
 console.log("ORDER", response.data)
   setOrders(response.data);
-
+setLatestOrders(response.data.slice(-3))
 
 }
 
 async function GetPdf(){
-//   const response = await  GetInvoice("65187e91d746faf1160084d9");
-// debugger;
-// console.log("RERE", response);
-// const file = new Blob(
-//   [response.data], 
-//   {type: 'application/pdf'});
-// //Build a URL from the file
-// const fileURL = URL.createObjectURL(file);
-// console.log("ORDER", response.data)
-//   // setOrders(response.data);
-
 
 axios(`https://localhost:7061/orders/invoice/65187e91d746faf1160084d9`, {
   method: 'GET',
@@ -56,9 +46,11 @@ axios(`https://localhost:7061/orders/invoice/65187e91d746faf1160084d9`, {
 //Build a URL from the file
   const fileURL = URL.createObjectURL(file);
 //Open the URL on new Window
+debugger
   window.open(fileURL);
 })
 .catch(error => {
+  
   console.log(error);
 });
 
@@ -134,77 +126,55 @@ async function FinalizeOrder(id){
                 <h4 style={{fontSize:"1.5em", fontWeight:"600"}} className=" mt-6">Recent orders</h4>
 
 {/* <div className="col-md-12"> */}
-                <div style={{float: "left", marginRight: "1%",  paddingTop: "2%", paddingBottom: "2%", borderRadius:"15px"}} className="products-sorting col-md-4 bg-white md:h-[70px] flex md:flex-row flex-col md:space-y-0 space-y-5 md:justify-between md:items-center p-[30px] mt-[40px]">
+
+
+             
+ {
+                   latestOrders.map((x,i)=>{ return <>
+                  
+                  {i==0 ? <div style={{float: "left", marginRight: "1%",  paddingTop: "2%", paddingBottom: "2%", borderRadius:"15px"}} className="products-sorting col-md-4 bg-white md:h-[70px] flex md:flex-row flex-col md:space-y-0 space-y-5 md:justify-between md:items-center p-[30px] mt-[40px]">
               
-                <img style={{maxHeight:"60px"}} src={`${process.env.PUBLIC_URL}/assets/images/default.png`}  alt="Profile"  />
+                <img style={{maxHeight:"60px"}} src={x.customer.profilePicture ?? `${process.env.PUBLIC_URL}/assets/images/default.png`}  alt="Profile"  />
                   <div>
                   
                   <p className="font-400 text-[13px]">
-                    <span className="text-qgray">Jane Doe </span> <br/>December 30 2023
+                    <span className="text-qgray">{x.customer.firstname} </span> <br/>{moment(x.purchaseRequest?.date).fromNow()} 
                   </p>
                 </div>
                   <div className="flex space-x-3 items-center">
                   <p className="font-400 text-[13px]">
-                    <span className="text-qgray">R4000</span>
+                    <span className="text-qgray">R {x.product.price}</span>
                   </p>
-                    {/* <span className="font-400 text-[13px]">Sort by:</span>
-                    <div className="flex space-x-3 items-center border-b border-b-qgray">
-                      <span className="font-400 text-[13px] text-qgray">
-                        Default
-                      </span>
-                      <span>
-                        <svg
-                          width="10"
-                          height="6"
-                          viewBox="0 0 10 6"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d="M1 1L5 5L9 1" stroke="#9A9A9A" />
-                        </svg>
-                      </span> */}
-                    {/* </div> */}
+                   
                   </div>
                   <div>
                   <div class="sherah-table__status sherah-color3 sherah-color3__bg--opactity">Pending</div>
                   </div>
                
                 </div>
-                <div style={{ paddingTop: "2%", paddingBottom: "2%", borderRadius:"15px"}} className="products-sorting col-md-4 bg-white md:h-[70px] flex md:flex-row flex-col md:space-y-0 space-y-5 md:justify-between md:items-center p-[30px] mt-[40px]">
-                <img style={{maxHeight:"60px"}} src={`${process.env.PUBLIC_URL}/assets/images/default.png`}  alt="Profile"  />
+
+                : <div style={{ paddingTop: "2%", paddingBottom: "2%", borderRadius:"15px"}} className="products-sorting col-md-4 bg-white md:h-[70px] flex md:flex-row flex-col md:space-y-0 space-y-5 md:justify-between md:items-center p-[30px] mt-[40px]">
+                <img style={{maxHeight:"60px"}}  src={x.customer.profilePicture ?? `${process.env.PUBLIC_URL}/assets/images/default.png`} alt="Profile"  />
                   <div>
                   
                   <p className="font-400 text-[13px]">
-                    <span className="text-qgray">Jane Doe </span> <br/>December 30 2023
+                  <span className="text-qgray">{x.customer.firstname} </span> <br/>{moment(x.purchaseRequest?.date).fromNow()} 
                   </p>
                 </div>
                   <div className="flex space-x-3 items-center">
                   <p className="font-400 text-[13px]">
-                    <span className="text-qgray">R4000</span>
+                  <span className="text-qgray">R {x.product.price}</span>
                   </p>
-                    {/* <span className="font-400 text-[13px]">Sort by:</span>
-                    <div className="flex space-x-3 items-center border-b border-b-qgray">
-                      <span className="font-400 text-[13px] text-qgray">
-                        Default
-                      </span>
-                      <span>
-                        <svg
-                          width="10"
-                          height="6"
-                          viewBox="0 0 10 6"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d="M1 1L5 5L9 1" stroke="#9A9A9A" />
-                        </svg>
-                      </span> */}
-                    {/* </div> */}
+                   
                   </div>
                   <div>
                   <div class="sherah-table__status sherah-color3 sherah-color3__bg--opactity">Pending</div>
                   </div>
                
                 </div>
+                   }
+                </>
+                   })}
                 {/* </div> */}
                 <div className="sherah-table col-md-10 sherah-page-inner sherah-border sherah-default-bg mg-top-25">
         
@@ -286,9 +256,11 @@ async function FinalizeOrder(id){
                       <td className="py-1 mt-2" style={{paddingLeft:"0px", marginTop:""}}>
                       <span className="">
                          {/* {x.pin} */}
-                         <a style={{}} onClick={(e)=>{ FinalizeOrder(x.id);}}><small>Complete order </small> </a> 
-                         {x.status==3 && <a style={{}} href="" onClick={()=>GetPdf()}><small>Invoice </small> </a> }
-                         {x.status!=3 && <a style={{}} href=""  onClick={()=>GetPdf()}><small>Cancel </small> </a>}
+                         <a style={{}} onClick={(e)=>{ FinalizeOrder(x.id);}}><small>Complete </small> </a> 
+                         <br/>
+                         {x.status==3 && <a style={{ cursor:"pointer"}} href="" onClick={(e)=>{e.preventDefault(); GetPdf()}}><small>Invoice </small> </a> }
+                         <br/>
+                         {x.status!=3 && <a style={{cursor:"pointer"}} href=""  onClick={(e)=>{e.preventDefault(); GetPdf()}}><small>Cancel </small> </a>}
                         
                         </span>
                       </td>
