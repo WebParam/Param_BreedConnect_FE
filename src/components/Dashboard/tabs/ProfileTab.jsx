@@ -1,10 +1,11 @@
-import { useRef, useState } from "react";
+import { useRef, useState,useEffect } from "react";
 import InputCom from "../../Helpers/InputCom";
 import Tabs from '../tabs/ProfileTabs';
 import MessageList from "./MessagesList";
 import './stylesheets/Profile.css'
 import RecentOrders from "./RecentOrders";
 import RecentSwipes from "./RecentSwipes";
+import {UploadProfilePic, getUserProfile} from "../../../api/endpoints"
 // import CoverProfile from '../../media/cover.png';
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
@@ -13,6 +14,19 @@ const user = cookies.get("bcon-user");
 export default function ProfileTab() {
   const [profileImg, setprofileImg] = useState(null);
   const [profileInfo, setProfileInfo] = useState({});
+
+  async function GetUser(){
+
+    const _profile = await getUserProfile();
+  
+    setprofileImg(_profile?.data?.profilePicture?? `${process.env.PUBLIC_URL}/assets/images/default.png`);
+
+  }
+
+  useEffect(()=>{
+   GetUser();
+  }, []);
+
   const profileImgInput = useRef(null);
   const browseprofileImg = () => {
     profileImgInput.current.click();
@@ -28,6 +42,34 @@ export default function ProfileTab() {
   };
 
 
+  const hiddenInput = useRef(null);
+
+  const saveProfilePic = async (e) => {
+    const pp = e.target.files[0];
+    // updateProfilePic();
+    const profilePicUpload = new FormData();
+
+    // if(pp){
+      profilePicUpload.append("file", pp);
+       const profilePicDoc = await UploadProfilePic(profilePicUpload); 
+       debugger;
+       setprofileImg(profilePicDoc);
+      // console.log("profres", profilePicDoc);
+      // const newImage = profilePicDoc.data.data.Location
+      // const newUser = {...loggedInUser, profilePicture:newImage};
+      // cookies.remove("viconet-user", { path: '/' });
+
+      // setCurrentProfilePic(newImage);
+      
+      // cookies.set("viconet-user", newUser , { path: "/" });
+    // }
+  };
+
+  const handleClick = (event) => {
+    if (hiddenInput !== null && hiddenInput.current!=null) {
+      hiddenInput?.current.click();
+    }
+  };
 
 
   const messages = [
@@ -65,7 +107,18 @@ export default function ProfileTab() {
       <img src={`${process.env.PUBLIC_URL}/assets/images/cover.png`} alt="Cover" />
       </div>
       <div style={{width:"50%"}}>
-      <img src={`${process.env.PUBLIC_URL}/assets/images/default.png`}  alt="Profile" className="profile-picture" />
+      <input
+           ref={hiddenInput}
+            // style={{ marginBottom: "2%" }}
+            className="form-control inputfile ml-5"
+            type="file"
+            id="profilePic"
+            name="profilePic"
+            style={{ display: "none" }}
+            onChange={saveProfilePic}
+            
+          />
+      <img src={profileImg}  onClick={()=>handleClick()} alt="Profile" className="profile-picture" />
       </div>
       <div className="user" style={{width:"40%"}}>{user.firstname} {user.lastname}</div>
       <div className="user" style={{width:"40%"}}>{user.address}</div>
