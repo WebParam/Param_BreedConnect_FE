@@ -3,12 +3,20 @@ import './stylesheets/tabs.css'
 import InputCom from "../../../Helpers/InputCom";
 import { GetCustomerOrders } from '../../../../api/endpoints';
 import moment from 'moment';
+import Star from "../../../Helpers/icons/Star";
 import StatusComponent from '../../../Shared/StatusColor';
 import axios from "axios";
+import StarRating from "../../../Helpers/StarRating";
+import {addReview} from "../../../../api/endpoints"
 
 export default function OrderTab() {
 
   const [orders, setOrders] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [orderId, setOrderId] = useState("");
+  const [message, setMessage] = useState("");
+  const [rating, setRating] = useState(0);
+  const [hover, setHover] = useState(0);
 
   const getOrders = async () => {
     const ordersRes =  await GetCustomerOrders();
@@ -46,6 +54,33 @@ export default function OrderTab() {
     getOrders();
   }, [])
 
+ async function CreateReview(id){
+  const payload = {
+    PurchaseRequestId:orderId,
+    Message:message,
+    Rating:rating
+  }
+  const res = await addReview(payload);
+
+  setRating(0);
+  setMessage("");
+  setOrderId("");
+
+
+
+  }
+
+  function openModal(id){
+    setIsOpen(true);
+    setOrderId(id);
+  }
+
+  function closeModal(){
+    setIsOpen(false); 
+    setRating(0);
+    setMessage("");
+    setOrderId("");
+  }
   return (
     <>
       <div className="relative w-full overflow-x-auto sm:rounded-lg orders">
@@ -282,6 +317,49 @@ export default function OrderTab() {
         }
 
       </div>
+      <div>
+       
+       {isOpen && (
+         <div className="edit-popup" style={{width:"80%"}}>
+           <div>
+           <h1>Add a review</h1>
+           <form >
+
+        <div className="flex space-x-1 items-center mb-[30px]">
+          <StarRating
+      
+            hoverHandler={setHover}
+            rating={rating}
+            hoverRating={hover}
+            ratingHandler={setRating}
+          />
+          <span className="text-qblack text-[15px] font-normal mt-1">
+            ({rating}.0)
+          </span>
+        </div>
+
+
+        <div className="form-group">
+          <label htmlFor="lastName">Message</label>
+          <textarea
+          rows={5}
+          style={{height:"150px", padding:"15px"}}
+           onChange={(e)=>setMessage(e.target.value)}
+          value={message}
+            id="message"
+            name="message"
+            // value={user.lastname}
+            // onChange={handleChange}
+          />
+        </div>
+
+        <button className="buttonSave" onClick={(e)=>{e.preventDefault(); CreateReview()}} type="submit">Submit review</button>
+        <button className="buttonClose" type="submit" onClick={()=>closeModal()}>Close</button>
+      </form>
+           </div>
+         </div>
+       )}
+       </div>
     </>
   );
 }

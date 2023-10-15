@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { getProduct, updateProduct, uploadProduct } from "../../../api/endpoints";
 import { ToastContainer, toast } from 'react-toastify';
 import ReviewTab from "../tabs/ReviewTab"
-import {getBreederPurchaseRequests, AcceptRequestToPurchase,RejectRequestToPurchase} from "../../../api/endpoints"
+import {getBreederReviews, AcceptRequestToPurchase,RejectRequestToPurchase} from "../../../api/endpoints"
 import { FaCheckCircle, FaTimesCircle,FaEnvelope } from "react-icons/fa";
 import moment from 'moment'
 import datas from "../../../data/products.json"
@@ -20,10 +20,10 @@ useEffect(()=>{
 }, [])
 
 async function GetReviewsByBreeder(){
-  const response = await  getBreederPurchaseRequests();
-  const res = response.data.map(x=>x.data);
-
-  setReviews(res);
+  const response = await  getBreederReviews();
+  
+debugger;
+  setReviews(response.data);
 
 
 }
