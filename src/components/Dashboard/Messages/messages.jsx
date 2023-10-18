@@ -14,13 +14,16 @@ function App() {
   const [messages, setMessages] = useState([]);
   const [breeders, setBreeders] = useState([]);
   const [customers, setCustomers] = useState([]);
+
+  /////////////////////////////////////////////////////////////////
+
   useEffect(() => {
     axios.get('/messages/sync').then(response => {
       setMessages(response.data);
     });
-    breedAxios.get('/chats/breeder/651162283325879f3e81868d').then(response => {
-      setBreeders(response.data);
-    });
+    // breedAxios.get('/chats/breeder/651162283325879f3e81868d').then(response => {
+    //   setBreeders(response.data);
+    // });
     breedAxios.get('/chats/customer/65109f1b5f348ffddab88745').then(response => {
       setCustomers(response.data);
     });
@@ -44,10 +47,6 @@ function App() {
     }
   }, [messages])
 
-  console.log(messages);
-  console.log('breeders ', breeders);
-  console.log('customers ', customers);
-
   const [paymentLink, setPaymentLink] = useState("");
 
 
@@ -66,12 +65,9 @@ function App() {
     debugger;
     const url = res.data.data.authorization_url;
     window.location.href = url;
-  
   }
   
-
-  return (
-
+  return ( 
     <>
     <DashboardLayout>
     <>

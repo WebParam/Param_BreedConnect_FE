@@ -57,9 +57,6 @@ async function pay(paymentLinkId){
 
 }
 
-
-
-
   return (
    <>
 <DashboardLayout>

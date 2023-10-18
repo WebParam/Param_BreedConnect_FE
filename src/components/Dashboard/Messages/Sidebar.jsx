@@ -2,20 +2,60 @@ import { useEffect, useState } from 'react';
 import { Chat, DonutLarge, MoreVert, Search, SearchOutlined } from '@mui/icons-material';
 import { Avatar, IconButton } from '@mui/material';
 import SidebarChat from './SidebarChat';
-import breedAxios from './axios-breed';
+import axios from './axios';
 
 function Sidebar() {
 
   const [customers, setCustomers] = useState([]);
   const [breeders, setBreeders] = useState([]);
+  const [recipientDetails, setRecipientDetails] = useState([
+    {
+        _id: '',
+        users: [{
+            fullName: '',
+            email: '',
+            photoUrl: '',
+            lastMessage: '',
+            lastMessageTimestamp: ''
+        }]
+    }]);
+
+    let loggedInUser =          {
+      fullName: 'Njinu Kimani',
+      email: 'njinu@webparam.org',
+      photoUrl: 'Photo Url',
+      lastMessage: 'Last Message',
+      lastMessageTimestamp: 'Last Message Timestamp'
+  }
+
+//   let loggedInUser =          {
+//     fullName: 'Lenard M',
+//     email: 'lenardm@webparam.org',
+//     photoUrl: 'Photo Url',
+//     lastMessage: 'Last Message',
+//     lastMessageTimestamp: 'Last Message Timestamp'
+// }
 
   useEffect(() => {
-    breedAxios.get('/chats/breeder/651162283325879f3e81868d').then(response => {
-      setBreeders(response.data);
+    // breedAxios.get('/chats/customer/65109f1b5f348ffddab88745').then(response => {
+    //   setBreeders(response.data);
+    // });
+    // breedAxios.get('/chats/customer/65109f1b5f348ffddab88745').then(response => {
+    //   setCustomers(response.data);
+    // });
+    axios.get('/chat-user-email')
+    .then((response) => {
+      // Handle the successful response here
+      //setMatchingUsers(response.data);
+
+      console.log('response ', response);
+      setRecipientDetails(response.data)
+    })
+    .catch((error) => {
+      // Handle any errors here
+      console.error('Error:', error);
     });
-    breedAxios.get('/chats/customer/65109f1b5f348ffddab88745').then(response => {
-      setCustomers(response.data);
-    });
+
   }, [])
   return (
  
@@ -30,7 +70,7 @@ function Sidebar() {
             </div>
             <div className="sherah-chatbox__author-content">
               <h4 className="sherah-chatbox__author-title">
-              {breeders[0].data.breeder.firstname} {' '} {breeders[0].data.breeder.lastname}
+               {loggedInUser.fullName}
               </h4>
               <p className="sherah-chatbox__author-desc">
                 Available
@@ -65,8 +105,8 @@ function Sidebar() {
       <ul className="sherah-chatbox__list">
         {/* Single List */}
 
-        {breeders.map(user => ( 
-          <SidebarChat key={user.data.customer.id} id={user.data.customer.id} firstName={user.data.customer.firstname} lastName={user.data.customer.lastname} />
+        {recipientDetails.map(chat => ( 
+          <SidebarChat key={chat._id} id={chat._id} users={chat.users} userLoggedInDetails={loggedInUser} />
         ))}
         {/* End Single List */}
       </ul>

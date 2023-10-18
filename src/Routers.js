@@ -41,6 +41,7 @@ import EditProduct from "./components/Dashboard/AddProduct/edit-product";
 import OrderList from "./components/Dashboard/Orders/order-list";
 import Customers from './components/Customer'
 import Messages from './components/Dashboard/Messages/messages'
+import Chat from './components/Dashboard/Messages/Chat'
 import Products from './components/Dashboard/Products/products'
 export default function Routers() {
   return (
@@ -55,7 +56,13 @@ export default function Routers() {
       {/* <Route exact path="/all-products" element={<AllProductPage />} /> */}
       <Route exact path="/profile" element={<Profile />} />
       <Route exact path="/view-product-list" element={<ViewProductList />} /> 
+
+
       <Route exact path="/messages-breeder" element={<Messages />} />
+      <Route path="/chat/:chatId/:name" element={<Messages />} />
+      {/* <Route path="/chat" element={<Chat />} /> */}
+
+
       <Route exact path="/breeder-products" element={<Products />} />
       {/* <Route exact path="/home-two" element={<HomeTwo />} />
       <Route exact path="/home-three" element={<HomeThree />} />

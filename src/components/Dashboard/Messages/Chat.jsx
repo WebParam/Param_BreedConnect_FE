@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Avatar, IconButton } from "@mui/material";
 import {
   AttachFile,
@@ -8,18 +8,143 @@ import {
   SearchOutlined,
 } from "@mui/icons-material";
 import axios from "./axios";
+import { useParams } from 'react-router-dom';
+import Sidebar from './Sidebar';
+import Pusher from 'pusher-js';
 
-function ChatC({ messages }) {
+function Chat() {
   const [input, setInput] = useState("");
+  const { chatId, name } = useParams();
+
+  console.log('chatId ' + chatId + ' name ' + name);
+
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+
+    var pusher = new Pusher('349866ddbfc4a5071728', {
+      cluster: 'eu'
+    });
+    // Make an Axios call to the backend to retrieve messages by chatId
+    axios.get(`/messages/${chatId}`)
+      .then((response) => {
+        setMessages(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching messages:', error);
+      });
+  }, [chatId]);
+
+  useEffect(() => {
+  
+    var pusher = new Pusher('349866ddbfc4a5071728', {
+      cluster: 'eu'
+    });
+
+    var channel = pusher.subscribe('messages');
+    channel.bind('inserted', function(newMessage) {
+      // alert(JSON.stringify(newMessage));
+      setMessages([...messages ,newMessage]);
+    });
+
+    return () => {
+      channel.unbind_all();
+      channel.unsubscribe();
+    }
+  }, [messages])
 
   const sendMessage = async (e) => {
     e.preventDefault();
+
+    const users0 = [
+      {
+          fullName: 'Njinu Kimani',
+          email: 'njinu@webparam.org',
+          photoUrl: 'Photo Url',
+          lastMessage: 'Last Message',
+          lastMessageTimestamp: 'Last Message Timestamp'
+      },
+      {
+          fullName: 'Kimani NJ',
+          email: 'njinukimani@gmail.com',
+          photoUrl: 'Photo Url',
+          lastMessage: 'Last Message',
+          lastMessageTimestamp: 'Last Message Timestamp'
+      }]
+
+      const users00 = [
+        {
+            fullName: 'Njinu Kimani',
+            email: 'njinu@webparam.org',
+            photoUrl: 'Photo Url',
+            lastMessage: 'Last Message',
+            lastMessageTimestamp: 'Last Message Timestamp'
+        },
+        {
+            fullName: 'Kimani NJ',
+            email: 'njinu@webparam.org',
+            photoUrl: 'Photo Url',
+            lastMessage: 'Last Message',
+            lastMessageTimestamp: 'Last Message Timestamp'
+        }]
+
+        const users000 = [
+          {
+              fullName: 'Njinu Kimani',
+              email: 'njinu@webparam.org',
+              photoUrl: 'Photo Url',
+              lastMessage: 'Last Message',
+              lastMessageTimestamp: 'Last Message Timestamp'
+          },
+          {
+              fullName: 'Lenard M',
+              email: 'lenardm@webparam.org',
+              photoUrl: 'Photo Url',
+              lastMessage: 'Last Message',
+              lastMessageTimestamp: 'Last Message Timestamp'
+          }]
+
+        const users = [
+          {
+              fullName: 'Njinu Kimani',
+              email: 'njinu@webparam.org',
+              photoUrl: 'Photo Url',
+              lastMessage: 'Last Message',
+              lastMessageTimestamp: 'Last Message Timestamp'
+          },
+          {
+              fullName: 'Lancest M',
+              email: 'lancest.uj@gmail.com',
+              photoUrl: 'Photo Url',
+              lastMessage: 'Last Message',
+              lastMessageTimestamp: 'Last Message Timestamp'
+          }]
+
+    // const response = await axios.post('/createChat', {
+    //   users,
+    // });
 
     await axios.post("/messages/new", {
       message: input,
       name: "Remember Mabunda",
       timestamp: "Just now",
       received: false,
+      chatId: chatId,
+      email: "rememberMabunda@gmail.com",
+      lastSeen: "1 minute ago",
+      photoURL: "photoURL"
+    });
+
+    await axios.get('/chat-user-email')
+    .then((response) => {
+      // Handle the successful response here
+      //setMatchingUsers(response.data);
+
+      console.log('response ', response);
+    })
+    .catch((error) => {
+      // Handle any errors here
+      console.error('Error:', error);
     });
 
     setInput("");
@@ -34,7 +159,7 @@ function ChatC({ messages }) {
             <span className="sherah-chatbox__author-online" />
           </div>
           <div className="sherah-chatbox__heading">
-            <h4 className="sherah-chatbox__heading--title">Hastamjaian</h4>
+            <h4 className="sherah-chatbox__heading--title">{name}</h4>
             <p className="sherah-chatbox__heading--text sherah-pcolor">
               Available
             </p>
@@ -43,34 +168,34 @@ function ChatC({ messages }) {
       </div>
       <div className="sherah-chatbox__explore sherah-default-bg sherah-border">
         <div className="sherah-chatbox__explore-body">
-          {messages.map((message) => (
-            <div
-              className={`sherah-chatbox__incoming ${
-                message.received && "sherah-chatbox__outgoing"
-              }`}
-            >
-              <ul className="sherah-chatbox__incoming-list">
+           {messages.map((message) => ( 
+             <div 
+               className={`sherah-chatbox__incoming ${ 
+                  message.received && "sherah-chatbox__outgoing" 
+                }`} 
+             > 
+               <ul className="sherah-chatbox__incoming-list"> 
                 {/* Single Incoming */}
-                <li>
-                  <div className="sherah-chatbox__chat">
-                    <div className="sherah-chatbox__author-img sherah-chatbox__author-img-sticky">
-                      {/* <img src="img/chat-author10.png" alt="#" /> */}
-                      <Avatar />
-                      <span className="sherah-chatbox__author-online" />
-                    </div>
-                    <div className="sherah-chatbox__main-content">
-                      <div className="sherah-chatbox__incoming-chat">
-                        <p className="sherah-chatbox__incoming-text">
-                          {message.message}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </li>
+                 <li> 
+                   <div className="sherah-chatbox__chat"> 
+                     <div className="sherah-chatbox__author-img sherah-chatbox__author-img-sticky"> 
+                       {/* <img src="img/chat-author10.png" alt="#" />  */}
+                       <Avatar /> 
+                       <span className="sherah-chatbox__author-online" /> 
+                     </div> 
+                     <div className="sherah-chatbox__main-content"> 
+                       <div className="sherah-chatbox__incoming-chat"> 
+                         <p className="sherah-chatbox__incoming-text"> 
+                           {message.message} 
+                         </p> 
+                       </div> 
+                     </div> 
+                   </div> 
+                 </li> 
                 {/* End Single Incoming */}
-              </ul>
-            </div>
-          ))}
+               </ul> 
+             </div> 
+           ))} 
           {/* End Outgoing List */}
           {/* Sherah Message Box  */}
 
@@ -81,7 +206,9 @@ function ChatC({ messages }) {
         <div className="sherah-chatbox__form">
           <form className="sherah-chatbox__form-inner" action="#">
             <input
+            value={input} 
               name="s"
+              onChange={e => setInput(e.target.value)} 
               defaultValue=""
               type="text"
               placeholder="Type your message...."
@@ -89,7 +216,10 @@ function ChatC({ messages }) {
             <div className="sherah-chatbox__button">
               <div className="sherah-chatbox__button-inline"></div>
               <div className="sherah-chatbox__submit">
-                <button className="sherah-chatbox__submit-btn" type="submit">
+                <button 
+                  className="sherah-chatbox__submit-btn" 
+                  type="submit" 
+                  onClick={sendMessage}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="18.695"
@@ -117,4 +247,4 @@ function ChatC({ messages }) {
   );
 }
 
-export default ChatC;
+export default Chat;
