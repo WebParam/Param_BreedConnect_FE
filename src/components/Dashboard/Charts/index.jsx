@@ -21,7 +21,8 @@ import {
   )
 
 
-const BreederCharts = () => {
+const BreederCharts = (props) => {
+    console.log("props", props.data)
     const data = {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
         datasets: [
@@ -38,7 +39,7 @@ const BreederCharts = () => {
         scales: {
           x: {
             type: 'category', // Use 'category' for the x-axis
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'], // Specify your category labels here
+            labels: props?.data?.labels, // Specify your category labels here
           },
           y: {
             beginAtZero: true, // You can customize the y-axis options here
@@ -48,7 +49,7 @@ const BreederCharts = () => {
     
       return (
         <div>
-          <Line data={data} options={options} />
+          <Line data={props?.data} options={options} />
         </div>
       );
 };
