@@ -20,7 +20,7 @@ export default function OrderTab() {
 
   const getOrders = async () => {
     const ordersRes =  await GetCustomerOrders();
-    if(ordersRes.data.length){
+    if(ordersRes?.data?.length){
       setOrders(ordersRes.data);
     }
   }
