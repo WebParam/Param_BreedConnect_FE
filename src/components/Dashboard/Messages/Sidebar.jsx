@@ -3,6 +3,7 @@ import { Chat, DonutLarge, MoreVert, Search, SearchOutlined } from '@mui/icons-m
 import { Avatar, IconButton } from '@mui/material';
 import SidebarChat from './SidebarChat';
 import axios from './axios';
+import Cookies from "universal-cookie";
 
 function Sidebar() {
 
@@ -20,21 +21,17 @@ function Sidebar() {
         }]
     }]);
 
+    const cookies = new Cookies();
+    const user = cookies.get("bcon-user");
+
+    console.log('Logged in user: ', user)
     let loggedInUser =          {
-      fullName: 'Njinu Kimani',
-      email: 'njinu@webparam.org',
-      photoUrl: 'Photo Url',
-      lastMessage: 'Last Message',
+      fullName: user.firstname + ' ' + user.lastname,
+      email: user.email,
+      photoUrl: user?.profilePicture,
+      lastMessage: '',
       lastMessageTimestamp: 'Last Message Timestamp'
   }
-
-//   let loggedInUser =          {
-//     fullName: 'Lenard M',
-//     email: 'lenardm@webparam.org',
-//     photoUrl: 'Photo Url',
-//     lastMessage: 'Last Message',
-//     lastMessageTimestamp: 'Last Message Timestamp'
-// }
 
   useEffect(() => {
     // breedAxios.get('/chats/customer/65109f1b5f348ffddab88745').then(response => {
@@ -78,7 +75,7 @@ function Sidebar() {
             </div>
           </div>
         </div>
-        <form className="sherah-chatbox-form" action="#">
+        {/* <form className="sherah-chatbox-form" action="#">
           <input
             name="s"
             defaultValue=""
@@ -97,7 +94,7 @@ function Sidebar() {
               <path d="M15.6888 18.2542C10.5721 22.0645 4.46185 20.044 1.80873 16.2993C-0.984169 12.3585 -0.508523 7.01726 2.99926 3.64497C6.41228 0.362739 11.833 0.112279 15.5865 3.01273C19.3683 5.93475 20.8252 11.8651 17.3212 16.5826C17.431 16.6998 17.5417 16.8246 17.6599 16.9437C19.6263 18.9117 21.5973 20.8751 23.56 22.8468C24.3105 23.601 24.0666 24.7033 23.104 24.9575C22.573 25.0972 22.1724 24.8646 21.8075 24.4988C19.9218 22.6048 18.0276 20.7194 16.1429 18.8245C15.9674 18.65 15.8314 18.4361 15.6888 18.2542ZM2.39508 10.6363C2.38758 14.6352 5.61109 17.8742 9.62079 17.8977C13.6502 17.9212 16.9018 14.6914 16.9093 10.6597C16.9169 6.64673 13.7046 3.41609 9.69115 3.39921C5.66457 3.38232 2.40259 6.61672 2.39508 10.6363Z" />
             </svg>
           </button>
-        </form>
+        </form> */}
       </div>
     <div className="sherah-chatbox__sidebar sherah-default-bg sherah-border">
       

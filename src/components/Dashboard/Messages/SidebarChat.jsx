@@ -19,7 +19,7 @@ function SidebarChat({ id, users, userLoggedInDetails }) {
 
   return (
     <li>
-    <Link to={`api/chat/${id}/${recipientName}`}>
+    <Link to={`/chat/${id}/${recipientName}`}>
     <div className="sherah-chatbox__inner">
       <div className="sherah-chatbox__author">
         <div className="sherah-chatbox__author-img">

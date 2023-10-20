@@ -11,6 +11,7 @@ import axios from "./axios";
 import { useParams } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Pusher from 'pusher-js';
+import Cookies from "universal-cookie";
 
 function Chat() {
   const [input, setInput] = useState("");
@@ -44,6 +45,7 @@ function Chat() {
     var channel = pusher.subscribe('messages');
     channel.bind('inserted', function(newMessage) {
       // alert(JSON.stringify(newMessage));
+      console.log('Message inserted ', newMessage);
       setMessages([...messages ,newMessage]);
     });
 
@@ -56,21 +58,26 @@ function Chat() {
   const sendMessage = async (e) => {
     e.preventDefault();
 
-    const users0 = [
+
+    const cookies = new Cookies();
+    const user = cookies.get("bcon-user");
+
+    const users = [
       {
-          fullName: 'Njinu Kimani',
+        fullName: user.firstname + ' ' + user.lastname,
+        email: user.email,
+        photoUrl: user?.profilePicture,
+        lastMessage: '',
+        lastMessageTimestamp: ''
+     },
+      {
+          fullName: 'RBreeder Mabunda',
           email: 'njinu@webparam.org',
-          photoUrl: 'Photo Url',
-          lastMessage: 'Last Message',
-          lastMessageTimestamp: 'Last Message Timestamp'
-      },
-      {
-          fullName: 'Kimani NJ',
-          email: 'njinukimani@gmail.com',
-          photoUrl: 'Photo Url',
-          lastMessage: 'Last Message',
-          lastMessageTimestamp: 'Last Message Timestamp'
-      }]
+          photoUrl: 'https://param-hr-resources.s3.af-south-1.amazonaws.com/65dd25d1-0e41-4cef-b243-a9fdea65fb95',
+          lastMessage: '',
+          lastMessageTimestamp: ''
+      }
+     ]
 
       const users00 = [
         {
@@ -104,7 +111,7 @@ function Chat() {
               lastMessageTimestamp: 'Last Message Timestamp'
           }]
 
-        const users = [
+        const users0 = [
           {
               fullName: 'Njinu Kimani',
               email: 'njinu@webparam.org',
@@ -120,51 +127,64 @@ function Chat() {
               lastMessageTimestamp: 'Last Message Timestamp'
           }]
 
-    // const response = await axios.post('/createChat', {
+    // const response = await axios.post('api/createChat', {
     //   users,
     // });
 
     await axios.post("api/messages/new", {
       message: input,
-      name: "Remember Mabunda",
-      timestamp: "Just now",
+      name: user.firstname + ' ' + user.lastname,
+      timestamp: "",
       received: false,
       chatId: chatId,
-      email: "rememberMabunda@gmail.com",
-      lastSeen: "1 minute ago",
-      photoURL: "photoURL"
+      email: user.email,
+      lastSeen: "",
+      photoURL: ""
     });
 
-    await axios.get('api/chat-user-email')
-    .then((response) => {
-      // Handle the successful response here
-      //setMatchingUsers(response.data);
+    setMessages([...messages ,{
+      message: input,
+      name: user.firstname + ' ' + user.lastname,
+      timestamp: "",
+      received: false,
+      chatId: chatId,
+      email: user.email,
+      lastSeen: "",
+      photoURL: ""
+  }]);
 
-      console.log('response ', response);
-    })
-    .catch((error) => {
-      // Handle any errors here
-      console.error('Error:', error);
-    });
+    // await axios.get('api/chat-user-email')
+    // .then((response) => {
+    //   // Handle the successful response here
+    //   //setMatchingUsers(response.data);
+
+    //   console.log('response ', response);
+    // })
+    // .catch((error) => {
+    //   // Handle any errors here
+    //   console.error('Error:', error);
+    // });
 
     setInput("");
   };
   return (
     <div className="col-lg-8 col-md-8 col-12  sherah-chatbox__two mg-top-30">
       <div className="sherah-chatbox__explore-head sherah-border-btm">
-        <div className="sherah-chatbox__author">
-          <div className="sherah-chatbox__author-img sherah-chatbox__author-img-sticky">
-            {/* <img src="img/chat-top-ms.png" alt="#" /> */}
-            <Avatar />
-            <span className="sherah-chatbox__author-online" />
-          </div>
-          <div className="sherah-chatbox__heading">
-            <h4 className="sherah-chatbox__heading--title">{name}</h4>
-            <p className="sherah-chatbox__heading--text sherah-pcolor">
-              Available
-            </p>
-          </div>
-        </div>
+      {chatId ? (
+    <div className="sherah-chatbox__author">
+      <div className="sherah-chatbox__author-img sherah-chatbox__author-img-sticky">
+        {/* <img src="img/chat-top-ms.png" alt="#" /> */}
+        <Avatar />
+        <span className="sherah-chatbox__author-online" />
+      </div>
+      <div className="sherah-chatbox__heading">
+        <h4 className="sherah-chatbox__heading--title">{name}</h4>
+        <p className="sherah-chatbox__heading--text sherah-pcolor">
+          Available
+        </p>
+      </div>
+    </div>
+  ) : null}
       </div>
       <div className="sherah-chatbox__explore sherah-default-bg sherah-border">
         <div className="sherah-chatbox__explore-body">
@@ -207,6 +227,7 @@ function Chat() {
           <form className="sherah-chatbox__form-inner" action="#">
             <input
             value={input} 
+            disabled={chatId === null || chatId === undefined}
               name="s"
               onChange={e => setInput(e.target.value)} 
               defaultValue=""
@@ -219,7 +240,9 @@ function Chat() {
                 <button 
                   className="sherah-chatbox__submit-btn" 
                   type="submit" 
-                  onClick={sendMessage}>
+                  onClick={sendMessage}
+                  // disabled={chatId === null || chatId === undefined}
+                  >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="18.695"

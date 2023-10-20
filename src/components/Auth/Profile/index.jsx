@@ -91,7 +91,8 @@ window.location.href="/"
                     </div>
 
                     <div className="item group">
-                      <Link to="/profile#messages">
+                      {/* <Link to="/profile#messages"> */}
+                      <Link to="/messages-breeder">
                         <div className="flex space-x-3 items-center text-qgray hover:text-qblack">
                           <span>
                           <IcoMessages />
