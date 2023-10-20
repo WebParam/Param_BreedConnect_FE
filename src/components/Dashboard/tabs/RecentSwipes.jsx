@@ -23,7 +23,7 @@ function RecentSwipes({  }) {
     <div className="message-list">
       {productRequests.map((message, index) => (
         <div key={index} className=' row mt-3'>
-          <div className='col-md-4'>
+          <div className='col-md-2'>
            <img src={`${process.env.PUBLIC_URL}/assets/images/default.png`} x className="client-avatar" /> 
            </div>
           <div className="client-info col-md-6" style={{alignItems:"flex-start"}} >

@@ -6,6 +6,7 @@ export default function TopBar({ className }) {
   return (
     <>
       <div
+      style={{border:"0px"}}
         className={`w-full bg-white h-10 border-b border-qgray-border ${
           className || ""
         }`}

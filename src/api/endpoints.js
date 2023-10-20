@@ -497,7 +497,6 @@ export const GetProduct = async (productId) => {
 }
 
 
-
 export const GenerateLink = async (paymentLinkId) => {
 
   const requestResult = await GET(`payment/generateLink/${paymentLinkId}`);

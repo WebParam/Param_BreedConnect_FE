@@ -3,7 +3,7 @@ import DashboardLayout from "../../Partials/DashboardLayout";
 import { Link, useLocation } from "react-router-dom";
 import { getProduct, updateProduct, uploadProduct } from "../../../api/endpoints";
 import { ToastContainer, toast } from 'react-toastify';
-
+import "react-toastify/dist/ReactToastify.css";
 
 export default function EditProduct() {
   

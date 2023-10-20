@@ -45,7 +45,7 @@ debugger;
                   <div className="col-12 sherah-flex-between">
                     {/* Sherah Breadcrumb */}
                     <div className="sherah-breadcrumb">
-                      <h2 className="sherah-breadcrumb__title">Reviews</h2>
+                      <h2 className="sherah-breadcrumb__title">Your product reviews</h2>
                       <ul className="sherah-breadcrumb__list"> 
                         <li><a href="#">Home</a></li>
                         <li className="active"><a href="order-list.html">Reviews</a></li>
@@ -55,7 +55,10 @@ debugger;
                     {/* <a href="order-details" className="sherah-btn sherah-gbcolor">Add New Vendor</a> */}
                   </div>
                 </div>
+                {reviews.length > 0 ?
                 <ReviewTab products={reviews}/>
+                :<> No product reviews yet..</>
+                }
               </div>
               {/* End Dashboard Inner */}
             </div>

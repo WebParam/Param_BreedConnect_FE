@@ -22,6 +22,17 @@ useEffect(()=>{
 }, [])
 
 async function _GetOrdersByBreeder(){
+  const _id = toast.loading("Please wait...", {
+    position: "top-center",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+
   const response = await  GetBreederOrders();
 debugger;
 console.log("RERE", response);
@@ -29,10 +40,21 @@ console.log("RERE", response);
 console.log("ORDER", response.data)
   setOrders(response.data);
 setLatestOrders(response.data.slice(-3))
+toast.dismiss(_id);
 
 }
 
 async function GetPdf(){
+  const _id = toast.loading("Please wait...", {
+    position: "top-center",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
 
 axios(`https://localhost:7061/orders/invoice/65187e91d746faf1160084d9`, {
   method: 'GET',
@@ -48,10 +70,12 @@ axios(`https://localhost:7061/orders/invoice/65187e91d746faf1160084d9`, {
 //Open the URL on new Window
 debugger
   window.open(fileURL);
+  toast.dismiss(_id);
 })
 .catch(error => {
   
   console.log(error);
+  toast.dismiss(_id);
 });
 
 
@@ -176,106 +200,111 @@ async function FinalizeOrder(id){
                 </>
                    })}
                 {/* </div> */}
-                <div className="sherah-table col-md-10 sherah-page-inner sherah-border sherah-default-bg mg-top-25">
+                {
+                  orders.length>0?<>
+                   <div className="sherah-table col-md-10 sherah-page-inner sherah-border sherah-default-bg mg-top-25">
         
 
-                  <table id="sherah-table__vendor" className="sherah-table__main sherah-table__main-v3">
-                    {/* sherah Table Head */}
-                    <thead className="sherah-table__head">
-                      {/* <tr> */}
-                        {/* <th className="sherah-table__column-1 sherah-table__h1">Request ID</th>
-                        <th className="sherah-table__column-2 sherah-table__h2">Customer Name</th>
-                        <th className="sherah-table__column-3 sherah-table__h3">Date</th>
-                        <th className="sherah-table__column-4 sherah-table__h4">Status</th>
-                        <th className="sherah-table__column-5 sherah-table__h5">Order Total</th>
-                        <th className="sherah-table__column-8 sherah-table__h8">Action</th> */}
-                          <tr className="text-base text-qgray whitespace-nowrap px-2 border-b default-border-bottom ">
-               
-                      <td className="py-4 pl-5 whitespace-nowrap table-header">Id</td>
-                      <td className="py-4 whitespace-nowrap table-header">Name</td>
-                      <td className="py-4 whitespace-nowrap table-header">Status</td>
-                      <td className="py-4 whitespace-nowrap table-header">Date</td>
-                      <td className="py-4 whitespace-nowrap table-header">Amount</td>
-                      <td className="py-4 whitespace-nowrap table-header">Code</td>
-                      <td className="py-4 whitespace-nowrap table-header">Action</td>
-             
-                    {/* </tr> */}
-                      </tr>
-                    </thead>
-                    <tbody className="sherah-table__body">
-
-                      {
-                       
-                       orders.map((x,i)=> {return(
-                        <>
-                          <tr className=" border-b hover:bg-gray-50">
-                      <td className="py-1">
-                        <span style={{float:"left"}}>
-                          {x?.id.substring(0,5)}
-                        {/* <img src={`${process.env.PUBLIC_URL}/assets/images/d2.jpg`}  alt="breeder" className="customer"/> */}
-                       
-                        </span>
-                      
-                     
-                      </td>
-                      <td className="text-center py-1 px-2">
-                        <span className="text-qblack px-2 " style={{float:"left"}}>
-                          
-                          {x?.customer?.firstname} {x?.customer?.lastname}
-                        </span>
-                      </td>
-                      <td className="text-center py-1 px-2">
-                        <span className="text-qblack px-2 " style={{float:"left"}}>
-                          
-                          {x?.status}
-                        </span>
-                      </td>
-                      <td className="px-1">
-                        <span className="text-lg text-qgray font-medium" style={{float:"left"}}>
-                        {moment(x?.dateCreated).fromNow()}
-                        </span>
-                      </td>
-                     
-                      <td className="px-1">
-                        <span className="">
-                        <span className="text-qblack px-2 ">
-                          
-                          {x?.product?.price}
-                          </span>
-                        
-                        </span>
-                      </td>
-                      <td className="py-1 mt-2" style={{paddingLeft:"0px", marginTop:"", float:"left"}}>
-                      <span className="">
-                         {/* {x.pin} */}
-                         <input onChange={(e)=>{setPin(e.target.value); e.preventDefault()}} style={{width: "150px", height: "auto"}} className="mt-2" type="text" />
-                        
-                        </span>
-                      </td>
-                      
-                      <td className="py-1 mt-2" style={{paddingLeft:"0px", marginTop:""}}>
-                      <span className="">
-                         {/* {x.pin} */}
-                         <a style={{}} onClick={(e)=>{ FinalizeOrder(x.id);}}><small>Complete </small> </a> 
-                         <br/>
-                         {x.status==3 && <a style={{ cursor:"pointer"}} href="" onClick={(e)=>{e.preventDefault(); GetPdf()}}><small>Invoice </small> </a> }
-                         <br/>
-                         {x.status!=3 && <a style={{cursor:"pointer"}} href=""  onClick={(e)=>{e.preventDefault(); GetPdf()}}><small>Cancel </small> </a>}
-                        
-                        </span>
-                      </td>
-                      
-                  
-                    </tr>
-
-                        
-                        </>
-                        )})
-                      }
+        <table id="sherah-table__vendor" className="sherah-table__main sherah-table__main-v3">
+          {/* sherah Table Head */}
+          <thead className="sherah-table__head">
+            {/* <tr> */}
+              {/* <th className="sherah-table__column-1 sherah-table__h1">Request ID</th>
+              <th className="sherah-table__column-2 sherah-table__h2">Customer Name</th>
+              <th className="sherah-table__column-3 sherah-table__h3">Date</th>
+              <th className="sherah-table__column-4 sherah-table__h4">Status</th>
+              <th className="sherah-table__column-5 sherah-table__h5">Order Total</th>
+              <th className="sherah-table__column-8 sherah-table__h8">Action</th> */}
+                <tr className="text-base text-qgray whitespace-nowrap px-2 border-b default-border-bottom ">
      
-                    </tbody>
-                  </table>
-                </div>
+            <td className="py-4 pl-5 whitespace-nowrap table-header">Id</td>
+            <td className="py-4 whitespace-nowrap table-header">Name</td>
+            <td className="py-4 whitespace-nowrap table-header">Status</td>
+            <td className="py-4 whitespace-nowrap table-header">Date</td>
+            <td className="py-4 whitespace-nowrap table-header">Amount</td>
+            <td className="py-4 whitespace-nowrap table-header">Code</td>
+            <td className="py-4 whitespace-nowrap table-header">Action</td>
+   
+          {/* </tr> */}
+            </tr>
+          </thead>
+          <tbody className="sherah-table__body">
+
+            {
+             
+             orders.map((x,i)=> {return(
+              <>
+                <tr className=" border-b hover:bg-gray-50"  data-aos="fade-up">
+            <td className="py-1">
+              <span style={{float:"left"}}>
+                {x?.id.substring(0,5)}
+              {/* <img src={`${process.env.PUBLIC_URL}/assets/images/d2.jpg`}  alt="breeder" className="customer"/> */}
+             
+              </span>
+            
+           
+            </td>
+            <td className="text-center py-1 px-2">
+              <span className="text-qblack px-2 " style={{float:"left"}}>
+                
+                {x?.customer?.firstname} {x?.customer?.lastname}
+              </span>
+            </td>
+            <td className="text-center py-1 px-2">
+              <span className="text-qblack px-2 " style={{float:"left"}}>
+                
+                {x?.status}
+              </span>
+            </td>
+            <td className="px-1">
+              <span className="text-lg text-qgray font-medium" style={{float:"left"}}>
+              {moment(x?.dateCreated).fromNow()}
+              </span>
+            </td>
+           
+            <td className="px-1">
+              <span className="">
+              <span className="text-qblack px-2 ">
+                
+                {x?.product?.price}
+                </span>
+              
+              </span>
+            </td>
+            <td className="py-1 mt-2" style={{paddingLeft:"0px", marginTop:"", float:"left"}}>
+            <span className="">
+               {/* {x.pin} */}
+               <input onChange={(e)=>{setPin(e.target.value); e.preventDefault()}} style={{width: "150px", height: "auto"}} className="mt-2" type="text" />
+              
+              </span>
+            </td>
+            
+            <td className="py-1 mt-2" style={{paddingLeft:"0px", marginTop:""}}>
+            <span className="">
+               {/* {x.pin} */}
+               <a style={{}} onClick={(e)=>{ FinalizeOrder(x.id);}}><small>Complete </small> </a> 
+               <br/>
+               {x.status==3 && <a style={{ cursor:"pointer"}} href="" onClick={(e)=>{e.preventDefault(); GetPdf()}}><small>Invoice </small> </a> }
+               <br/>
+               {x.status!=3 && <a style={{cursor:"pointer"}} href=""  onClick={(e)=>{e.preventDefault(); GetPdf()}}><small>Cancel </small> </a>}
+              
+              </span>
+            </td>
+            
+        
+          </tr>
+
+              
+              </>
+              )})
+            }
+
+          </tbody>
+        </table>
+      </div>
+      </>:<></>
+                }
+               
               </div>
               {/* End Dashboard Inner */}
             </div>

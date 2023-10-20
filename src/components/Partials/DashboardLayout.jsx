@@ -16,6 +16,7 @@ import { useNavigate  } from "react-router-dom";
 import "../../style.css"
 // import "../../style.css"
 import Cookies from "universal-cookie";
+import moment from "moment";
 const cookies = new Cookies();
 
 const currentUrl = window.location.href;
@@ -36,7 +37,6 @@ export default function DashboardLayout({ children, childrenClasses }) {
   async function _GetNotifications(){
     const response = await GetNotifications();
     setNotifications(response?.data);
-   
   };
   
   useEffect(()=>{
@@ -912,7 +912,125 @@ export default function DashboardLayout({ children, childrenClasses }) {
                             </h3>
                             {/* sherah Balance List */}
                             <ul className="sherah-dropdown-card_list">
-                              <li>
+                              { notifications.length>0 && notifications.filter(x=>x.status==0).map((notification, index) => { 
+                                if(index<5) return <>
+                                  
+                                    <li>
+                                    <div className="sherah-paymentm__name">
+                                      <div className="sherah-paymentm__icon sherah-paymentm__icon--notify ntfmax__bgc--5">
+                                        <svg
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          width={48}
+                                          height={48}
+                                          viewBox="0 0 48 48"
+                                        >
+                                          <g
+                                            id="Icon"
+                                            transform="translate(14.293 11.5)"
+                                          >
+                                            <circle
+                                              id="Ellipse_34"
+                                              data-name="Ellipse 34"
+                                              cx={24}
+                                              cy={24}
+                                              r={24}
+                                              transform="translate(-14.293 -11.5)"
+                                              fill="#6176fe"
+                                            />
+                                            <g
+                                              id="Group_55"
+                                              data-name="Group 55"
+                                              transform="translate(-0.611 1.038)"
+                                            >
+                                              <g
+                                                id="Group_54"
+                                                data-name="Group 54"
+                                                transform="translate(0 0)"
+                                              >
+                                                <path
+                                                  id="Path_188"
+                                                  data-name="Path 188"
+                                                  d="M31.225,11.945a.694.694,0,0,1,0-.6l.852-1.777a2.041,2.041,0,0,0-.856-2.685l-1.714-.927a.682.682,0,0,1-.348-.488l-.335-1.948a1.989,1.989,0,0,0-2.24-1.659l-1.921.277a.662.662,0,0,1-.563-.186L22.7.572a1.956,1.956,0,0,0-2.769,0L18.541,1.948a.662.662,0,0,1-.563.186l-1.921-.277a1.988,1.988,0,0,0-2.24,1.659l-.335,1.948a.682.682,0,0,1-.348.488L11.42,6.88a2.041,2.041,0,0,0-.856,2.685l.852,1.777a.694.694,0,0,1,0,.6l-.852,1.777a2.041,2.041,0,0,0,.856,2.685l1.714.927a.682.682,0,0,1,.348.488l.335,1.948a1.979,1.979,0,0,0,2.24,1.659l1.921-.277a.661.661,0,0,1,.563.186l1.395,1.375a1.956,1.956,0,0,0,2.769,0L24.1,21.338a.662.662,0,0,1,.563-.186l1.921.277a1.988,1.988,0,0,0,2.24-1.659l.335-1.948a.682.682,0,0,1,.348-.488l1.714-.927a2.041,2.041,0,0,0,.856-2.685ZM30.6,15.22l-1.714.927a2.015,2.015,0,0,0-1.028,1.443l-.335,1.948a.673.673,0,0,1-.758.561l-1.921-.277a1.955,1.955,0,0,0-1.664.551l-1.395,1.375a.662.662,0,0,1-.937,0l-1.395-1.375a1.957,1.957,0,0,0-1.38-.571,1.985,1.985,0,0,0-.284.02l-1.921.277a.673.673,0,0,1-.758-.561l-.335-1.948a2.015,2.015,0,0,0-1.028-1.442l-1.714-.927a.69.69,0,0,1-.29-.908l.852-1.777a2.052,2.052,0,0,0,0-1.783l-.852-1.777a.69.69,0,0,1,.29-.908l1.714-.927A2.015,2.015,0,0,0,14.779,5.7l.335-1.948a.673.673,0,0,1,.758-.561l1.921.277a1.955,1.955,0,0,0,1.664-.551l1.395-1.375a.662.662,0,0,1,.937,0l1.395,1.375a1.955,1.955,0,0,0,1.664.551l1.921-.277a.673.673,0,0,1,.758.561L27.861,5.7a2.015,2.015,0,0,0,1.028,1.442l1.714.927a.69.69,0,0,1,.29.908l-.852,1.777a2.052,2.052,0,0,0,0,1.783l.852,1.777A.691.691,0,0,1,30.6,15.22Z"
+                                                  transform="translate(-10.359 0.002)"
+                                                  fill="#fff"
+                                                  stroke="#fff"
+                                                  strokeWidth="0.2"
+                                                />
+                                              </g>
+                                            </g>
+                                            <g
+                                              id="Group_57"
+                                              data-name="Group 57"
+                                              transform="translate(5.343 7.675)"
+                                            >
+                                              <g id="Group_56" data-name="Group 56">
+                                                <path
+                                                  id="Path_189"
+                                                  data-name="Path 189"
+                                                  d="M153.613,143.984a.659.659,0,0,0-.932,0l-8.7,8.7a.659.659,0,1,0,.932.932l8.7-8.7A.659.659,0,0,0,153.613,143.984Z"
+                                                  transform="translate(-143.792 -143.792)"
+                                                  fill="#fff"
+                                                  stroke="#fff"
+                                                  strokeWidth="0.2"
+                                                />
+                                              </g>
+                                            </g>
+                                            <g
+                                              id="Group_59"
+                                              data-name="Group 59"
+                                              transform="translate(5.299 6.666)"
+                                            >
+                                              <g
+                                                id="Group_58"
+                                                data-name="Group 58"
+                                                transform="translate(0)"
+                                              >
+                                                <path
+                                                  id="Path_190"
+                                                  data-name="Path 190"
+                                                  d="M145.218,123.116a2.416,2.416,0,1,0,2.416,2.416A2.419,2.419,0,0,0,145.218,123.116Zm0,3.514a1.1,1.1,0,1,1,1.1-1.1A1.1,1.1,0,0,1,145.218,126.63Z"
+                                                  transform="translate(-142.802 -123.116)"
+                                                  fill="#fff"
+                                                  stroke="#fff"
+                                                  strokeWidth="0.2"
+                                                />
+                                              </g>
+                                            </g>
+                                            <g
+                                              id="Group_61"
+                                              data-name="Group 61"
+                                              transform="translate(10.569 13.867)"
+                                            >
+                                              <g id="Group_60" data-name="Group 60">
+                                                <path
+                                                  id="Path_191"
+                                                  data-name="Path 191"
+                                                  d="M263.338,280.61a2.416,2.416,0,1,0,2.416,2.416A2.419,2.419,0,0,0,263.338,280.61Zm0,3.514a1.1,1.1,0,1,1,1.1-1.1A1.1,1.1,0,0,1,263.338,284.124Z"
+                                                  transform="translate(-260.922 -280.61)"
+                                                  fill="#fff"
+                                                  stroke="#fff"
+                                                  strokeWidth="0.2"
+                                                />
+                                              </g>
+                                            </g>
+                                          </g>
+                                        </svg>
+                                      </div>
+                                      <div className="sherah-paymentm__content">
+                                        <h4 className="sherah-notifications__title">
+                                          {notification.message}
+                                          {/* <span>successfully done</span> */}
+                                        </h4>
+                                        <p className="sherah-paymentm__text sherah-paymentm__text--notify">
+                                          {moment(notification.date).fromNow()}
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </li>
+                              
+                              </>})}
+
+                              {/* <li>
                                 <div className="sherah-paymentm__name">
                                   <div className="sherah-paymentm__icon sherah-paymentm__icon--notify ntfmax__bgc--5">
                                     <svg
@@ -1132,7 +1250,7 @@ export default function DashboardLayout({ children, childrenClasses }) {
                                     </p>
                                   </div>
                                 </div>
-                              </li>
+                              </li> */}
                             </ul>
                             {/* sherah Balance Button */}
                             <div className="sherah-dropdown-card__button">
