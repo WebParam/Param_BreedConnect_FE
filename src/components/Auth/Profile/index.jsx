@@ -164,7 +164,9 @@ window.location.href="/"
                     <div className="item group">
                       <Link to="/profile#settings">
                         <div className="flex space-x-3 items-center text-qgray hover:text-qblack">
-                          <span></span>
+                        <span>
+                            <IcoLogout />
+                          </span>
                           <span className=" font-normal text-base">
                             Settings
                           </span>

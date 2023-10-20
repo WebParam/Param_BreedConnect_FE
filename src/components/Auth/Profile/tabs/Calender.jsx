@@ -77,6 +77,7 @@ export default function Calender() {
 
     async function getPurchaseRequestAndCreateAppointment(customerId){
       const _requestRes = await GetPurchaseRequest(customerId);
+      console.log("purchase request", _requestRes);
       setPurchaseRequest(_requestRes?.data[0]);
 
       if(_requestRes?.data[0]){

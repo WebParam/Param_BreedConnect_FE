@@ -127,8 +127,8 @@ const handleChange = (event) => {
       <div style={{width:"50%"}}>
       <img src={`${process.env.PUBLIC_URL}/assets/images/default.png`}  alt="Profile" className="profile-picture" />
       </div>
-      <div className="user" style={{width:"40%"}}>{user.firstname} {user.lastname}</div>
-      <div className="user" style={{width:"40%"}}>{user.address}</div>
+      <div className="user" style={{width:"40%"}}>{user?.firstname} {user?.lastname}</div>
+      <div className="user" style={{width:"40%"}}>{user?.address}</div>
       <div>
         <button  className="buttonEdit" onClick={openPopup}>Edit Profile</button>
       {isOpen && (

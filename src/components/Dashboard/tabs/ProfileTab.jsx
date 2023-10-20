@@ -120,8 +120,8 @@ export default function ProfileTab() {
           />
       <img src={profileImg}  onClick={()=>handleClick()} alt="Profile" className="profile-picture" />
       </div>
-      <div className="user" style={{width:"40%"}}>{user.firstname} {user.lastname}</div>
-      <div className="user" style={{width:"40%"}}>{user.address}</div>
+      <div className="user" style={{width:"40%"}}>{user?.firstname} {user?.lastname}</div>
+      <div className="user" style={{width:"40%"}}>{user?.address}</div>
         
     </div>
     );

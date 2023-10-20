@@ -49,7 +49,7 @@ export default function ProductsTab() {
             </h4>
             <ul className="sherah-product-sidebar__list">
               <li>
-                <a href="#">
+                <a href="">
                   <span>
                     <i className="fa-solid fa-chevron-right" />
                     Pure breed
@@ -57,7 +57,7 @@ export default function ProductsTab() {
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="">
                   <span>
                     <i className="fa-solid fa-chevron-right" />
                     Affenpinscher
@@ -65,7 +65,7 @@ export default function ProductsTab() {
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="">
                   <span>
                     <i className="fa-solid fa-chevron-right" />
                     Afghan Hound
@@ -73,7 +73,7 @@ export default function ProductsTab() {
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="">
                   <span>
                     <i className="fa-solid fa-chevron-right" />
                     Airedale Terrier
@@ -81,7 +81,7 @@ export default function ProductsTab() {
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="">
                   <span>
                     <i className="fa-solid fa-chevron-right" />
                     Akbash
@@ -160,8 +160,8 @@ export default function ProductsTab() {
                     {/* Single Product */}
                     <div className="sherah-product-card sherah-product-card__v2  sherah-default-bg sherah-border mg-top-30">
                       {/* Card Image */}
-                      <div className="sherah-product-card__img">
-                        <img src={`${process.env.PUBLIC_URL}/assets/images/d1.jpg`} />
+                      <div className="sherah-product-card__img" >
+                        <img src={`${product?.images[0].url}`} style={{height:"14em"}}/>
                       </div>
                       {/* Card Content */}
                       <div className="sherah-product-card__content sherah-dflex-column sherah-flex-gap-5">

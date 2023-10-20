@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { FaCheckCircle, FaTimesCircle,FaEnvelope } from "react-icons/fa";
 import ProductsTab from "../tabs/ProductsTab";
 import moment from 'moment'
+import Cookies from "universal-cookie";
 
 export default function Settings() {
     const [activeTab, setActiveTab] = useState('id1');
@@ -19,7 +20,6 @@ export default function Settings() {
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
-    console.log("selected tab", activeTab)
   };
 
 const _location = useLocation();
@@ -27,16 +27,15 @@ const _location = useLocation();
 async function GetUser(){
 
     const _profile = await getUserProfile();
-  
-    setProfile(_profile?.data);
-    setBiography(_profile.profile?.biography??"")
-    setPassion(_profile.profile?.passion??"")
-    setYears(_profile.profile?.years??"")
-    setPractices(_profile.profile?.bestPractices??"")
-    console.log("profile", profile)
+    if(_profile){
+        setProfile(_profile?.data);
+        setBiography(_profile.profile?.biography??"")
+        setPassion(_profile.profile?.passion??"")
+        setYears(_profile.profile?.years??"")
+        setPractices(_profile.profile?.bestPractices??"")
+        console.log("profile", profile);
+    }
 
-    
-    debugger;
 
 
   }
@@ -44,16 +43,21 @@ async function GetUser(){
 
 useEffect(()=>{
     GetUser();
-    setTimeout(() => {
-        const storedLoginActivities = JSON.parse(localStorage.getItem('loginActivities')) || [];
-        if(storedLoginActivities){
-            const loginInUserActivity = storedLoginActivities.filter(x => x?.username.toLowerCase() === profile?.email.toLowerCase());
-            console.log("activity", loginInUserActivity, storedLoginActivities)
-            setLoginActivities(loginInUserActivity);
-            setLoading(false); // Set loading to false once data is available
+    const cookies = new Cookies();
+    const user = cookies.get("bcon-user");
+    const fetchData = async () => {
+        try {
+            const storedLoginActivities = await JSON.parse(localStorage.getItem('loginActivities')) || [];
+            if(storedLoginActivities){
+                const loginInUserActivity = storedLoginActivities.filter(x => x?.username.toLowerCase() === user?.email.toLowerCase());
+                setLoginActivities(loginInUserActivity);
+                setLoading(false); // Set loading to false once data is available
+            }
+        } catch (error) {
+          console.error('Error fetching user profile:', error);
         }
-
-      }, 5000); 
+      };
+fetchData();
 }, [])
 
 
