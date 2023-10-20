@@ -46,10 +46,13 @@ useEffect(()=>{
     GetUser();
     setTimeout(() => {
         const storedLoginActivities = JSON.parse(localStorage.getItem('loginActivities')) || [];
-        const loginInUserActivity = storedLoginActivities.filter(x => x.username === profile?.email);
-        console.log("activity", loginInUserActivity)
-        setLoginActivities(loginInUserActivity);
-        setLoading(false); // Set loading to false once data is available
+        if(storedLoginActivities){
+            const loginInUserActivity = storedLoginActivities.filter(x => x?.username.toLowerCase() === profile?.email.toLowerCase());
+            console.log("activity", loginInUserActivity, storedLoginActivities)
+            setLoginActivities(loginInUserActivity);
+            setLoading(false); // Set loading to false once data is available
+        }
+
       }, 5000); 
 }, [])
 
@@ -226,7 +229,7 @@ useEffect(()=>{
             <span className="sherah-psidebar__title">Login Activity</span>
           </a>
           <a
-             className={`list-group-item ${activeTab === 'id5' ? "active" : ''}`}
+            className={`list-group-item ${activeTab === 'id5' ? "active" : ''}`}
             data-bs-toggle="list"
             href="#settings#id5"
             aria-selected={activeTab === 'id5' ? 'true' : 'false'}

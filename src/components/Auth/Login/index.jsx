@@ -149,6 +149,7 @@ export default function Login() {
       setLoginActivities(loginActivities.push(loginData))
       localStorage.setItem('loginActivities', JSON.stringify(loginActivities));
       console.log("Login activities", loginActivities)
+      debugger
       if(response.data.isDeliveryPartner){
         navigate('/breeder-dash', { state: response.data })
       }else{
