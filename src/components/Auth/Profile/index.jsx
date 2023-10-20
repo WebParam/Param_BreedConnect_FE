@@ -26,6 +26,8 @@ import IcoSwipes from "./icons/IcoSwipes";
 import ProductsTab from "./tabs/ProductsTab";
 import MessagesTab from "./tabs/MessagesTab";
 import Contact from "../../Contact";
+import Settings from "./tabs/Settings";
+import PersonalInfo from "./tabs/Settings/PersonalInfo";
 
 export default function Profile() {
   const [switchDashboard, setSwitchDashboard] = useState(false);
@@ -187,7 +189,7 @@ window.location.href="/"
                             <IcoLogout />
                           </span>
                           <span className=" font-normal text-base">
-                            Logoout
+                            Log out
                           </span>
                         </div>
                       </a>
@@ -242,7 +244,19 @@ window.location.href="/"
                       <>
                         <ReviewTab products={datas.products} />
                       </>
-                    ) : (
+                    )
+                    
+                    : active === "settings" ? (
+                      <>
+                        <Settings />
+                      </>
+                    )
+                    : active === "personalInfo" ? (
+                      <>
+                        <PersonalInfo />
+                      </>
+                    )
+                    : (
                       ""
                     )}
                   </div>
