@@ -24,13 +24,12 @@ function Sidebar() {
     const cookies = new Cookies();
     const user = cookies.get("bcon-user");
 
-    console.log('Logged in user: ', user)
     let loggedInUser =          {
       fullName: user.firstname + ' ' + user.lastname,
       email: user.email,
       photoUrl: user?.profilePicture,
       lastMessage: '',
-      lastMessageTimestamp: 'Last Message Timestamp'
+      lastMessageTimestamp: ''
   }
 
   useEffect(() => {

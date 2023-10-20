@@ -55,7 +55,7 @@ window.location.href="/"
   return (
     <Layout childrenClasses="pt-0 pb-0">
       <div className="profile-page-wrapper w-full">
-        <div className="" style={{marginLeft:"5%", marginRight:"5%"}}>
+        <div className="" style={{ marginLeft: "5%", marginRight: "5%" }}>
           <div className="w-full my-10">
             {/* <BreadcrumbCom
               paths={[
@@ -65,14 +65,12 @@ window.location.href="/"
             /> */}
             <div className="w-full bg-white px-10 py-9">
               <div className="title-area w-full flex justify-between items-center">
-               <div className="flex space-x-3 items-center font-bold text-qblack">
-                          <span>
-                            <IcoDashboard />
-                          </span>
-                          <span className=" font-normal text-base">
-                            Your Dashbaord
-                          </span>
-                        </div>
+                <div className="flex space-x-3 items-center font-bold text-qblack">
+                  <span>
+                    <IcoDashboard />
+                  </span>
+                  <span className=" font-normal text-base">Your Dashbaord</span>
+                </div>
               </div>
               <div className="profile-wrapper w-full mt-8 flex space-x-10">
                 <div className="w-[236px] min-h-[600px] border-r border-[rgba(0, 0, 0, 0.1)]">
@@ -91,28 +89,26 @@ window.location.href="/"
                     </div>
 
                     <div className="item group">
-                      {/* <Link to="/profile#messages"> */}
-                      <Link to="/messages-breeder">
+                      <Link to="/profile#messages">
+                      {/* <Link to="/messages-breeder"> */}
                         <div className="flex space-x-3 items-center text-qgray hover:text-qblack">
                           <span>
-                          <IcoMessages />
+                            <IcoMessages />
                           </span>
                           <span className=" font-normal text-base">
                             Messaging
                           </span>
                         </div>
                       </Link>
-                    </div> 
+                    </div>
 
                     <div className="item group">
                       <Link to="/profile#orders">
                         <div className="flex space-x-3 items-center text-qgray hover:text-qblack">
                           <span>
-                          <IcoOrders />
+                            <IcoOrders />
                           </span>
-                          <span className=" font-normal text-base">
-                            Orders
-                          </span>
+                          <span className=" font-normal text-base">Orders</span>
                         </div>
                       </Link>
                     </div>
@@ -121,7 +117,7 @@ window.location.href="/"
                       <Link to="/profile#products">
                         <div className="flex space-x-3 items-center text-qgray hover:text-qblack">
                           <span>
-                          <IcoProducts />
+                            <IcoProducts />
                           </span>
                           <span className="font-normal text-base">
                             Products
@@ -133,7 +129,7 @@ window.location.href="/"
                       <Link to="/profile#calender">
                         <div className="flex space-x-3 items-center text-qgray hover:text-qblack">
                           <span>
-                          <IcoCalender/>
+                            <IcoCalender />
                           </span>
                           <span className="font-normal text-base">
                             Calender
@@ -145,11 +141,9 @@ window.location.href="/"
                       <Link to="/profile#swipes">
                         <div className="flex space-x-3 items-center text-qgray hover:text-qblack">
                           <span>
-                          <IcoSwipes/>
+                            <IcoSwipes />
                           </span>
-                          <span className=" font-normal text-base">
-                            Swipes
-                          </span>
+                          <span className=" font-normal text-base">Swipes</span>
                         </div>
                       </Link>
                     </div>
@@ -158,7 +152,7 @@ window.location.href="/"
                       <Link to="/profile#contactus">
                         <div className="flex space-x-3 items-center text-qgray hover:text-qblack">
                           <span>
-                          <IcoSwipes/>
+                            <IcoSwipes />
                           </span>
                           <span className=" font-normal text-base">
                             Contact Us
@@ -170,9 +164,7 @@ window.location.href="/"
                     <div className="item group">
                       <Link to="/profile#settings">
                         <div className="flex space-x-3 items-center text-qgray hover:text-qblack">
-                          <span>
-                          
-                          </span>
+                          <span></span>
                           <span className=" font-normal text-base">
                             Settings
                           </span>
@@ -180,11 +172,12 @@ window.location.href="/"
                       </Link>
                     </div>
 
-                
-
-                    
                     <div className="item group">
-                      <a onClick={()=>{logout()}}>
+                      <a
+                        onClick={() => {
+                          logout();
+                        }}
+                      >
                         <div className="flex space-x-3 items-center text-qgray hover:text-qblack">
                           <span>
                             <IcoLogout />
@@ -203,7 +196,7 @@ window.location.href="/"
                       <Dashboard />
                     ) : active === "profile" ? (
                       <>
-                        <ProfileTab  profile={profile}/>
+                        <ProfileTab profile={profile} />
                       </>
                     ) : active === "messages" ? (
                       <>
@@ -213,10 +206,10 @@ window.location.href="/"
                       <>
                         <OrderTab />
                       </>
-                       ) : active === "products" ? (
-                        <>
-                          <ProductsTab />
-                        </>
+                    ) : active === "products" ? (
+                      <>
+                        <ProductsTab />
+                      </>
                     ) : active === "calender" ? (
                       <>
                         <Calender />
@@ -225,15 +218,11 @@ window.location.href="/"
                       <>
                         <SwipesTinderTab />
                       </>
-                      
-                    )
-                     : active === "contactus" ? (
+                    ) : active === "contactus" ? (
                       <>
                         <Contact />
                       </>
-                      
-                    )
-                    : active === "password" ? (
+                    ) : active === "password" ? (
                       <>
                         <PasswordTab />
                       </>
@@ -245,19 +234,15 @@ window.location.href="/"
                       <>
                         <ReviewTab products={datas.products} />
                       </>
-                    )
-                    
-                    : active === "settings" ? (
+                    ) : active === "settings" ? (
                       <>
                         <Settings />
                       </>
-                    )
-                    : active === "personalInfo" ? (
+                    ) : active === "personalInfo" ? (
                       <>
                         <PersonalInfo />
                       </>
-                    )
-                    : (
+                    ) : (
                       ""
                     )}
                   </div>
