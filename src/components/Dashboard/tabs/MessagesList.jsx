@@ -33,12 +33,12 @@ function MessageList({  }) {
     <div className="message-list">
       {messages.map((message, index) => (
         <div key={index} className="message-bubble">
-          <div className="client-info">
+          <div className="client-info" style={{flexDirection:"row"}}>
             {/* <img src={message.client.avatar} alt={message.sender} className="client-avatar" /> */}
-            <img src={`${process.env.PUBLIC_URL}/assets/images/default.png`}className="client-avatar" /> 
-            <div className="client-name">{message.content}</div>
+            <img style={{marginLeft:"2%"}} src={`${process.env.PUBLIC_URL}/assets/images/default.png`}className="client-avatar" /> 
+            <div className="client-name" style={{margin:"5%"}}>{message.content.substring(0,40)} {message.content.length>40 && "..."}</div>
           </div>
-          <Message text={message.text} isReceived={message.isReceived} />
+          {/* <Message text={message.text} isReceived={message.isReceived} /> */}
         </div>
       ))}
     </div>

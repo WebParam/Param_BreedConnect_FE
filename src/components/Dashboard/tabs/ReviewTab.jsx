@@ -25,7 +25,7 @@ export default function ReviewTab({ className, products }) {
                         className="w-full h-full object-contain"
                       />
                     </div>
-                    <div className="flex-1 flex flex-col justify-center h-full">
+                    <div className="flex-1 flex flex-col justify-center h-full"  data-aos="fade-up">
                       <div>
                         <span className="text-qgray text-sm mb-1.5 block">
                         {moment(datas?.createdDate).fromNow()}

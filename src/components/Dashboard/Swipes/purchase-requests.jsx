@@ -8,6 +8,7 @@ import { FaCheckCircle, FaTimesCircle,FaEnvelope } from "react-icons/fa";
 import moment from 'moment'
 import Modal from 'react-modal';
 import RequestModal from './RequestDetailsModal';
+import "react-toastify/dist/ReactToastify.css";
 
 export default function PurchaseRequests() {
 
@@ -33,12 +34,24 @@ useEffect(()=>{
 }, [])
 
 async function GetPurchaseRequestsByBreeder(){
+  const _id = toast.loading("Please wait...", {
+    position: "top-center",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+
   const response = await  getBreederPurchaseRequests();
   debugger;
 const res = response.data.map(x=>x.data);
 
   setProductRequests(res);
 
+  toast.dismiss(_id);
 
 }
 
@@ -122,10 +135,15 @@ async function Message(id){
                     {/* <a href="order-details" className="sherah-btn sherah-gbcolor">Add New Vendor</a> */}
                   </div>
                 </div>
+                {productRequests.length >0 && 
                 <div className="sherah-table col-md-10 sherah-page-inner sherah-border sherah-default-bg mg-top-25">
+                
+                <>
                 <h3 className="mb-5">New requests</h3>
 
-                  <table id="sherah-table__vendor" className="sherah-table__main sherah-table__main-v3">
+                    
+                    
+                      <table id="sherah-table__vendor"  data-aos="fade-up" className="sherah-table__main sherah-table__main-v3">
                     {/* sherah Table Head */}
                     <thead className="sherah-table__head">
                       {/* <tr> */}
@@ -147,7 +165,7 @@ async function Message(id){
                     {/* </tr> */}
                       </tr>
                     </thead>
-                    <tbody className="sherah-table__body">
+                    <tbody className="sherah-table__body" >
 
                       {
                        
@@ -233,110 +251,118 @@ async function Message(id){
      
                     </tbody>
                   </table>
-                </div>
-
-
-        <div style={{marginTop:"10%", float:"left"}} className="col-md-6  mg-top-25">
-        
-<h3 className="mb-5">Archive</h3>
-        <table id="sherah-table__vendor" className="sherah-table__main sherah-table__main-v3">
-          {/* sherah Table Head */}
-          <thead className="sherah-table__head">
-            {/* <tr> */}
-              {/* <th className="sherah-table__column-1 sherah-table__h1">Request ID</th>
-              <th className="sherah-table__column-2 sherah-table__h2">Customer Name</th>
-              <th className="sherah-table__column-3 sherah-table__h3">Date</th>
-              <th className="sherah-table__column-4 sherah-table__h4">Status</th>
-              <th className="sherah-table__column-5 sherah-table__h5">Order Total</th>
-              <th className="sherah-table__column-8 sherah-table__h8">Action</th> */}
-                <tr className="text-base text-qgray whitespace-nowrap px-2 border-b default-border-bottom ">
-     
-            <td className="py-4 pl-5 whitespace-nowrap table-header">Name</td>
-            <td className="py-4 whitespace-nowrap table-header">Interested in</td>
-            <td className="py-4 whitespace-nowrap table-header">Date</td>
-            <td className="py-4 whitespace-nowrap table-header">Status</td>
-            <td className="py-4 whitespace-nowrap table-header">Actions</td>
-    
-            <td className="py-4 whitespace-nowrap table-header"></td>
-          {/* </tr> */}
-            </tr>
-          </thead>
-          <tbody className="sherah-table__body">
-
-            {
-             
-             productRequests.map(x=> {return(
-              <>
-                <tr className=" border-b hover:bg-gray-50">
-            <td className="py-1">
-              <a href="">
-              <span>
-            
-              {/* <img style={{float:"left"}} src={`${process.env.PUBLIC_URL}/assets/images/d2.jpg`}  alt="breeder" className="customer"/> */}
-              <small style={{float:"left"}}  className="mt-3 ml-1">{x?.customer?.firstname} {x?.customer?.lastname}</small>
-             
-              </span>
-            
-              </a>
-            </td>
-            <td className="text-center py-1 px-2">
-              <span className="text-qblack px-2 ">
-                {x.product.name}
-              {/* <img src={`${process.env.PUBLIC_URL}/assets/images/d1.jpg`}  alt="breed" style={{width:"50px", height:"50px"}} className="product-picture" /> */}
-              
-              </span>
-            </td>
-            <td className="px-1">
-              <span className="text-lg text-qgray font-medium">
-              <small>{moment(x.date).fromNow()}</small>
-              </span>
-            </td>
-            {/* {x.status ==1 &&<> */}
-            <td className="px-1">
-            <div class="sherah-table__status sherah-color3 sherah-color3__bg--opactity">Accepted</div>
-                 
-            </td>
-            <td className="py-1" style={{paddingLeft:"0px"}}>
-            <span className="">
-                {/* <button style={{padding:"0px"}}>
-                <img src={`${process.env.PUBLIC_URL}/assets/images/reject.svg`} onClick={()=>{RejectProductPurchase(x.id)}} alt="reject" className="reject-picture" />
-                </button> */}
-                 <a href="" ><small>View </small> </a>
-                 <a href="" ><small>Cancel </small> </a>
-              
-              </span>
-            </td>
-            {/* </>
-            } */}
-            
-{/*           
-            <td className="text-center py-1 px-2">
-            
-              <span className="text-qblack px-2 ">
+                  </>
                 
-              <button>View</button>
-              
-              </span>
-            </td> */}
-          </tr>
+                 
+                </div>
+               }
 
-              
-              </>
-              )})
-            }
 
-          </tbody>
-        </table>
+       
+      {productRequests.length >0 &&
+          <div data-aos="fade-right" style={{marginTop:"10%", float:"left"}} className="col-md-6  mg-top-25">
+            <h3 className="mb-5">Archive</h3>
+              <table id="sherah-table__vendor"  data-aos="fade-up" className="sherah-table__main sherah-table__main-v3">
+                {/* sherah Table Head */}
+                <thead className="sherah-table__head">
+                  {/* <tr> */}
+                    {/* <th className="sherah-table__column-1 sherah-table__h1">Request ID</th>
+                    <th className="sherah-table__column-2 sherah-table__h2">Customer Name</th>
+                    <th className="sherah-table__column-3 sherah-table__h3">Date</th>
+                    <th className="sherah-table__column-4 sherah-table__h4">Status</th>
+                    <th className="sherah-table__column-5 sherah-table__h5">Order Total</th>
+                    <th className="sherah-table__column-8 sherah-table__h8">Action</th> */}
+                      <tr className="text-base text-qgray whitespace-nowrap px-2 border-b default-border-bottom ">
+          
+                  <td className="py-4 pl-5 whitespace-nowrap table-header">Name</td>
+                  <td className="py-4 whitespace-nowrap table-header">Interested in</td>
+                  <td className="py-4 whitespace-nowrap table-header">Date</td>
+                  <td className="py-4 whitespace-nowrap table-header">Status</td>
+                  <td className="py-4 whitespace-nowrap table-header">Actions</td>
+          
+                  <td className="py-4 whitespace-nowrap table-header"></td>
+                {/* </tr> */}
+                  </tr>
+                </thead>
+                <tbody className="sherah-table__body">
+
+                  {
+                  
+                  productRequests.map(x=> {return(
+                    <>
+                      <tr className=" border-b hover:bg-gray-50">
+                  <td className="py-1">
+                    <a href="">
+                    <span>
+                  
+                    {/* <img style={{float:"left"}} src={`${process.env.PUBLIC_URL}/assets/images/d2.jpg`}  alt="breeder" className="customer"/> */}
+                    <small style={{float:"left"}}  className="mt-3 ml-1">{x?.customer?.firstname} {x?.customer?.lastname}</small>
+                  
+                    </span>
+                  
+                    </a>
+                  </td>
+                  <td className="text-center py-1 px-2">
+                    <span className="text-qblack px-2 ">
+                      {x.product.name}
+                    {/* <img src={`${process.env.PUBLIC_URL}/assets/images/d1.jpg`}  alt="breed" style={{width:"50px", height:"50px"}} className="product-picture" /> */}
+                    
+                    </span>
+                  </td>
+                  <td className="px-1">
+                    <span className="text-lg text-qgray font-medium">
+                    <small>{moment(x.date).fromNow()}</small>
+                    </span>
+                  </td>
+                  {/* {x.status ==1 &&<> */}
+                  <td className="px-1">
+                  <div class="sherah-table__status sherah-color3 sherah-color3__bg--opactity">Accepted</div>
+                      
+                  </td>
+                  <td className="py-1" style={{paddingLeft:"0px"}}>
+                  <span className="">
+                      {/* <button style={{padding:"0px"}}>
+                      <img src={`${process.env.PUBLIC_URL}/assets/images/reject.svg`} onClick={()=>{RejectProductPurchase(x.id)}} alt="reject" className="reject-picture" />
+                      </button> */}
+                      <a href="" ><small>View </small> </a>
+                      <a href="" ><small>Cancel </small> </a>
+                    
+                    </span>
+                  </td>
+                  {/* </>
+                  } */}
+                  
+      {/*           
+                  <td className="text-center py-1 px-2">
+                  
+                    <span className="text-qblack px-2 ">
+                      
+                    <button>View</button>
+                    
+                    </span>
+                  </td> */}
+                </tr>
+
+                    
+                    </>
+                    )})
+                  }
+
+                </tbody>
+              </table>
+          </div>
+        }
       </div>
 
 
 
 
 
-      <div style={{marginTop:"10%",float:"left"}} className="col-md-4 ml-5 mg-top-25">
-        
-        <h3 className="mb-5">Popular pets</h3>
-                <table id="sherah-table__vendor" className="sherah-table__main sherah-table__main-v3">
+    
+      {productRequests.length >0 &&   <div  data-aos="fade-right" style={{marginTop:"10%",float:"left"}} className="col-md-4 ml-5 mg-top-25">
+
+        <h3 className="mb-5"  data-aos="fade-right">Popular pets</h3>
+                <table id="sherah-table__vendor"  data-aos="fade-up" className="sherah-table__main sherah-table__main-v3">
                   {/* sherah Table Head */}
                   <thead className="sherah-table__head">
                     {/* <tr> */}
@@ -413,13 +439,15 @@ async function Message(id){
         
                   </tbody>
                 </table>
-              </div>
+                </div>
+                }
+              
               </div>
               {/* End Dashboard Inner */}
             </div>
           </div>
         </div>	
-      </div>
+   
 
 </>
 </DashboardLayout>

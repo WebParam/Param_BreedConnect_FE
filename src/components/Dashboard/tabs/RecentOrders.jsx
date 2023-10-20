@@ -29,6 +29,7 @@ class RecentOrders extends Component {
             <li key={order.id} className="order-item" style={{borderRadius:"20px"}}>
               <div className="order-details">
               <img src={`${process.env.PUBLIC_URL}/assets/images/default.png`}  alt="Profile" className="breeder-profile" />
+                
                 <span className="customer-name">{order.customer}</span>
                 
                 <span className="order-date">{order.date}</span>
