@@ -21,6 +21,9 @@ function Chat() {
 
   const [messages, setMessages] = useState([]);
 
+  const cookies = new Cookies();
+  const user = cookies.get("bcon-user");
+
   useEffect(() => {
 
     var pusher = new Pusher('349866ddbfc4a5071728', {
@@ -57,10 +60,6 @@ function Chat() {
 
   const sendMessage = async (e) => {
     e.preventDefault();
-
-
-    const cookies = new Cookies();
-    const user = cookies.get("bcon-user");
 
     const users = [
       {
@@ -191,10 +190,11 @@ function Chat() {
            {messages.map((message) => ( 
              <div 
                className={`sherah-chatbox__incoming ${ 
-                  message.received && "sherah-chatbox__outgoing" 
+                  message.email == user.email  ? "sherah-chatbox__outgoing" : null
                 }`} 
              > 
                <ul className="sherah-chatbox__incoming-list"> 
+            
                 {/* Single Incoming */}
                  <li> 
                    <div className="sherah-chatbox__chat"> 
