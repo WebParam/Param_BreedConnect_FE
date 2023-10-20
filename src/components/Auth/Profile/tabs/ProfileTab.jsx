@@ -152,7 +152,7 @@ const handleChange = (event) => {
           <input
             type="text"
             name="firstname"
-            value={values.firstname}
+            value={user?.firstname}
             onChange={handleChange}
           />
         </div>
@@ -162,7 +162,7 @@ const handleChange = (event) => {
             type="text"
             id="lastName"
             name="lastName"
-            value={user.lastname}
+            value={user?.lastname}
             onChange={handleChange}
           />
         </div>
@@ -172,7 +172,7 @@ const handleChange = (event) => {
             type="email"
             id="email"
             name="email"
-            value={user.email}
+            value={user?.email}
             onChange={handleChange}
           />
         </div>
@@ -182,7 +182,7 @@ const handleChange = (event) => {
             type="number"
             id="phone"
             name="phone"
-            value={user.cellphone}
+            value={user?.cellphone}
             onChange={handleChange}
           />
         </div>
@@ -192,7 +192,7 @@ const handleChange = (event) => {
             type="text"
             id="address"
             name="address"
-            value={user.address}
+            value={user?.address}
             onChange={handleChange}
           />
         </div>
