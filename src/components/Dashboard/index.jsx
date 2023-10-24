@@ -3,7 +3,9 @@ import DashboardLayout from "../Partials/DashboardLayout";
 import OrderList from "./Orders/order-list";
 import { GetBreederProducts, GetBreederOrders, getBreederPurchaseRequests, AllMeetingsScheduledByBreeder, ge} from '../../api/endpoints';
 import BreederCharts from "./Charts"; 
-import moment from 'moment'
+import Cookies from "universal-cookie";
+import moment from "moment";
+const cookies = new Cookies();
 
 export default function BreederDashboard() {
   const [products, setProducts] = useState([]);
@@ -16,6 +18,7 @@ export default function BreederDashboard() {
   const [timePeriod, setTimePeriod] = useState('7days'); // Initial time period
   const [filteredData, setFilteredData] = useState([]);
 
+  const user = cookies.get("bcon-user");
 
   const filterData = (activeTab) => {
     const currentDate = new Date();
@@ -35,7 +38,7 @@ export default function BreederDashboard() {
 
   }
     // Filter the data based on the date range
-    const filtered = requests.filter((item) => {
+    const filtered = data.filter((item) => {
       const itemDate = new Date(item.date); 
       return itemDate >= startDate && itemDate <= currentDate;
     });
@@ -45,11 +48,11 @@ export default function BreederDashboard() {
 
 
 const chartData = {
-  labels: filteredData.map(item => moment(item.date).format("MMM-DD")), // Assuming 'timestamp' is your x-axis data
+  labels: data.map(item => item.name), // Assuming 'timestamp' is your x-axis data
   datasets: [
     {
-      label: 'Total Sales',
-      data: filteredData.map(item => item.purchase?.amount), // Assuming 'value' is your y-axis data
+      label: 'Visits Count',
+      data: data.map(item => item?.count), // Assuming 'value' is your y-axis data
       borderColor: 'rgb(75, 192, 192)', // Line color
       backgroundColor: 'rgba(75, 192, 192, 0.2)', // Fill color
       fill: true, // Fill the area under the line
@@ -59,6 +62,7 @@ const chartData = {
 
   const breederProducts = async () => {
     const result = await GetBreederProducts();
+    console.log("breeder products",result.data)
     setProducts(result.data);
   } 
 
@@ -78,7 +82,6 @@ const chartData = {
     setMeetings(_meetings?.data);
   }
 
-
 async function GetPurchaseRequestsByBreeder(){
 const response = await  getBreederPurchaseRequests();
 const res = response.data.map(x=>x.data);
@@ -97,6 +100,9 @@ const handleTabClick = (tab) => {
 
 
   useEffect(()=>{
+    const storedData = localStorage.getItem('productsWithCount');
+    console.log("Products with count", JSON.parse(storedData), user);
+    setData(JSON.parse(storedData).filter(x => x.creatingUser === user.id));
     breederProducts();
     breederOrders();
     GetPurchaseRequestsByBreeder();

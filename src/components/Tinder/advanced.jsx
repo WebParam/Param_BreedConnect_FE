@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef } from 'react'
+import React, { useState, useMemo, useRef, useEffect } from 'react'
 import TinderCard from 'react-tinder-card'
 import { RequestToPurchase } from "../../api/endpoints";
 import { ToastContainer, toast } from 'react-toastify';
@@ -14,9 +14,11 @@ function Advanced(props) {
 
   const [lastDirection, setLastDirection] = useState();
 
-  const [products, setProducts] = useState(props.products);
+  const [products, setProducts] = useState(props?.products);
   const [currentIndex, setCurrentIndex] = useState(products.length - 1);
-  const [status, setStatus]  = useState(0)
+  const [status, setStatus]  = useState(0);
+  const [visitCount, setVisitCount] = useState(0);
+  const [productCount, setProductCount] = useState([]);
 
 
 
@@ -99,7 +101,8 @@ function Advanced(props) {
         requestToPurchase(products[currentIndex].id)
       }
       else{
-        console.log("Product viewing")
+        console.log("Product viewing");
+        handleSliderChange()
       }
     }
   }
@@ -110,13 +113,40 @@ function Advanced(props) {
     console.log("reloaded", props.products)
     if (!canGoBack) return
     const newIndex = currentIndex + 1;
-
       updateCurrentIndex(newIndex);
       await childRefs[newIndex].current.restoreCard();
+  }
 
-
+  const handleSliderChange = () => {
+    const storedData = localStorage.getItem('productsWithCount');
+    console.log("Stored data", storedData)
+    setVisitCount(visitCount + 1);
+  // Use the `map` method to create a new array with the "count" variable appended to each object
+    const newArray = JSON.parse(storedData).map((obj, index) => {
+      if(obj.id === products[currentIndex].id){
+        obj.count = obj.count + 1;
+        return obj;
+      }else{
+        return obj
+      }
+    });
+    console.log("product counts", newArray);
+    localStorage.setItem('productsWithCount', JSON.stringify(newArray));
+    setProducts(newArray)
 
   }
+
+
+  useEffect(() => {
+    const storedData = localStorage.getItem('productsWithCount');
+    if (storedData) {
+      //setProducts(storedData);
+      console.log("stored", JSON.parse(storedData))
+    }
+  }, []);
+
+
+
 
   return (
  
