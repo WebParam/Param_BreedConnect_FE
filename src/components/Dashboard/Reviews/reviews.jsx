@@ -23,7 +23,7 @@ async function GetReviewsByBreeder(){
   const response = await  getBreederReviews();
   
 debugger;
-  setReviews(response.data);
+  setReviews(response?.data??[]);
 
 
 }
@@ -45,7 +45,7 @@ debugger;
                   <div className="col-12 sherah-flex-between">
                     {/* Sherah Breadcrumb */}
                     <div className="sherah-breadcrumb">
-                      <h2 className="sherah-breadcrumb__title">Your product reviews</h2>
+                      <h2 className="sherah-breadcrumb__title" style={{textAlign:"center"}}>Your product reviews</h2>
                       <ul className="sherah-breadcrumb__list"> 
                         <li><a href="#">Home</a></li>
                         <li className="active"><a href="order-list.html">Reviews</a></li>
@@ -57,7 +57,7 @@ debugger;
                 </div>
                 {reviews.length > 0 ?
                 <ReviewTab products={reviews}/>
-                :<> No product reviews yet..</>
+                :<> <p style={{textAlign:"center"}}>No product reviews yet..</p></>
                 }
               </div>
               {/* End Dashboard Inner */}

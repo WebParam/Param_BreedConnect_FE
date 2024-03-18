@@ -753,102 +753,16 @@ export default function DashboardLayout({ children, childrenClasses }) {
                                     </div>
                                     <div className="sherah-chatbox__author-content">
                                       <h4 className="sherah-chatbox__author-title">
-                                        Jamen Oliver
+                                        Njinu Kimani
                                       </h4>
                                       <p className="sherah-chatbox__author-desc">
-                                        Hey! You forgot your keys....
+                                       Hi there, I would like to setup a meeting to view...
                                       </p>
                                     </div>
                                   </div>
                                 </div>
                               </li>
-                              {/* End Single List */}
-                              {/* Single List */}
-                              <li>
-                                <div className="sherah-chatbox__inner">
-                                  <div className="sherah-chatbox__author">
-                                    <div className="sherah-chatbox__author-img">
-                                      <img src="img/chat-author2.png" alt="#" />
-                                      <span className="sherah-chatbox__author-online author-not-online" />
-                                    </div>
-                                    <div className="sherah-chatbox__author-content">
-                                      <h4 className="sherah-chatbox__author-title">
-                                        Orian Heho
-                                      </h4>
-                                      <p className="sherah-chatbox__author-desc">
-                                        How are you?
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div className="sherah-chatbox__right">
-                                    <span className="sherah-chatbox__unread sherah-color1__bg">
-                                      5
-                                    </span>
-                                  </div>
-                                </div>
-                              </li>
-                              {/* End Single List */}
-                              {/* Single List */}
-                              <li>
-                                <div className="sherah-chatbox__inner">
-                                  <div className="sherah-chatbox__author">
-                                    <div className="sherah-chatbox__author-img">
-                                      <img src="img/chat-author3.png" alt="#" />
-                                      <span className="sherah-chatbox__author-online author-not-online" />
-                                    </div>
-                                    <div className="sherah-chatbox__author-content">
-                                      <h4 className="sherah-chatbox__author-title">
-                                        Brotherhood
-                                      </h4>
-                                    </div>
-                                  </div>
-                                </div>
-                              </li>
-                              {/* End Single List */}
-                              {/* Single List */}
-                              <li>
-                                <div className="sherah-chatbox__inner">
-                                  <div className="sherah-chatbox__author">
-                                    <div className="sherah-chatbox__author-img">
-                                      <img src="img/chat-author4.png" alt="#" />
-                                      <span className="sherah-chatbox__author-online" />
-                                    </div>
-                                    <div className="sherah-chatbox__author-content">
-                                      <h4 className="sherah-chatbox__author-title">
-                                        Rose Rovert
-                                      </h4>
-                                      <p className="sherah-chatbox__author-desc">
-                                        Of course I work the finaly done ....
-                                      </p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </li>
-                              {/* End Single List */}
-                              {/* Single List */}
-                              <li>
-                                <div className="sherah-chatbox__inner">
-                                  <div className="sherah-chatbox__author">
-                                    <div className="sherah-chatbox__author-img">
-                                      <img src="img/chat-author5.png" alt="#" />
-                                      <span className="sherah-chatbox__author-online author-is-busy" />
-                                    </div>
-                                    <div className="sherah-chatbox__author-content">
-                                      <h4 className="sherah-chatbox__author-title">
-                                        Mahstai
-                                      </h4>
-                                      <p className="sherah-chatbox__author-desc">
-                                        Any plan for today?
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div className="sherah-chatbox__right">
-                                    <span className="sherah-chatbox__unread sherah-color1__bg">
-                                      7
-                                    </span>
-                                  </div>
-                                </div>
-                              </li>
+                          
                               {/* End Single List */}
                             </ul>
                             {/* sherah Balance Button */}
@@ -857,7 +771,7 @@ export default function DashboardLayout({ children, childrenClasses }) {
                                 href="chat-messages.html"
                                 className="sherah-dropdown-card__sell-all"
                               >
-                                See all Notification
+                                See all messages
                               </a>
                             </div>
                           </div>

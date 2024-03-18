@@ -52,41 +52,7 @@ export default function LandingTopBar({ className }) {
               </ul>
             </div>
             <div className="topbar-dropdowns sm:block hidden" style={{marginTop:"2%"}}>
-              <div className="flex space-x-6">
-                <div className="country-select flex space-x-1 items-center">
-                  {/* <div>
-                    <img
-                      src={`${process.env.PUBLIC_URL}/assets/images/country-logo-16x16.png`}
-                      width="16"
-                      height="16"
-                      alt="country logo"
-                      className="overflow-hidden rounded-full"
-                    />
-                  </div> */}
-                  <Selectbox
-                    className="w-fit"
-                    datas={["South Africa", "United State", "India"]}
-                  />
-                  <div>
-                    <Arrow className="fill-current qblack" />
-                  </div>
-                </div>
-                <div>
-                <Link to="/Login">
-                <div className="mt-3">
-                    <center><span className="login-btn">Log In</span></center>
-                  </div>
-                  </Link>
-                </div>
-                {/* <div className="currency-select flex space-x-1 items-center">
-                  <Selectbox className="w-fit" datas={["USD", "BDT"]} />
-                  <Arrow className="fill-current qblack" />
-                </div>
-                <div className="language-select flex space-x-1 items-center">
-                  <Selectbox className="w-fit" datas={["Bangla", "english"]} />
-                  <Arrow className="fill-current qblack" />
-                </div> */}
-              </div>
+             
             </div>
           </div>
         </div>

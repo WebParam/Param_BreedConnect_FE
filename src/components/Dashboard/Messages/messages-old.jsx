@@ -44,13 +44,13 @@ useEffect(() => {
 
 async function payWithPaystack(purchaseRequestId) {
 
-  const res = await CreatePaymentLink("6510a0095f348ffddab88748");
+  const res = await CreatePaymentLink(purchaseRequestId);
   debugger;
 
 }
 
 async function pay(paymentLinkId){
-  const res = await GenerateLink("6510a3bc6404f47b14274a70");
+  const res = await GenerateLink("65f13e3e64410b9515af359e");
   debugger;
   const url = res.data.data.authorization_url;
   window.location.href = url;

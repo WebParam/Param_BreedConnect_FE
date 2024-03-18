@@ -21,7 +21,7 @@ async function payWithPaystack(purchaseRequestId) {
 }
 
 async function pay(paymentLinkId){
-  const res = await GenerateLink("652c09b6a305326f2ecd89a4"
+  const res = await GenerateLink("653267f3b6096cb92a3f8852"
   
   );
   debugger;

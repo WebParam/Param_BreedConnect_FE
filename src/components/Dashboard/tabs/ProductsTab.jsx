@@ -77,7 +77,7 @@ export default function ProductsTab() {
                 <a href="#">
                   <span>
                     <i className="fa-solid fa-chevron-right" />
-                   Dog Sperm
+                   Dog Semen
                   </span>
                 </a>
               </li>
@@ -107,7 +107,7 @@ export default function ProductsTab() {
               </div>
               <p>Showing 1–{products?.length} of {products.length} results</p>
             </div>
-            <div className="sherah-breadcrumb__right--second">
+            {/* <div className="sherah-breadcrumb__right--second">
               <div
                 className="sherah-product__nav list-group "
                 id="list-tab"
@@ -138,7 +138,7 @@ export default function ProductsTab() {
                   <span>Newest</span>
                 </a>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="tab-content" id="nav-tabContent">
             <div

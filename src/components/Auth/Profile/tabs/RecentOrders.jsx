@@ -11,9 +11,9 @@ class RecentOrders extends Component {
     // Fetch recent orders data from an API or a local data source.
     // For demonstration purposes, we'll use a static array.
     const recentOrdersData = [
-      { id: 1, customer: 'Customer 1', status: "Pending" },
-      { id: 2, customer: 'Customer 2', status: "Pending"},
-      { id: 3, customer: 'Customer 3', status: "Pending" },
+      // { id: 1, customer: 'Customer 1', status: "Pending" },
+      // { id: 2, customer: 'Customer 2', status: "Pending"},
+      // { id: 3, customer: 'Customer 3', status: "Pending" },
     ];
 
     this.setState({ recentOrders: recentOrdersData });
@@ -25,6 +25,7 @@ class RecentOrders extends Component {
     return (
         <div className="recent-orders">
         <ul className="order-list">
+          {recentOrders.length === 0 && <div>No recent orders</div>}
           {recentOrders.map((order) => (
             <li key={order.id} className="order-item" style={{borderRadius:"20px"}}>
               <div className="order-details">

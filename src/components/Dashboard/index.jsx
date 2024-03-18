@@ -101,8 +101,8 @@ const handleTabClick = (tab) => {
 
   useEffect(()=>{
     const storedData = localStorage.getItem('productsWithCount');
-    console.log("Products with count", JSON.parse(storedData), user);
-    setData(JSON.parse(storedData).filter(x => x.creatingUser === user.id));
+    // console.log("Products with count", JSON.parse(storedData), user);
+    // setData(JSON.parse(storedData).filter(x => x.creatingUser === user.id));
     breederProducts();
     breederOrders();
     GetPurchaseRequestsByBreeder();

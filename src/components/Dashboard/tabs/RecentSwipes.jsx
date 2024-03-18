@@ -21,7 +21,7 @@ function RecentSwipes({  }) {
   
   return (
     <div className="message-list">
-      {productRequests.map((message, index) => (
+      {productRequests.slice(-3).map((message, index) => (
         <div key={index} className=' row mt-3'>
           <div className='col-md-2'>
            <img src={`${process.env.PUBLIC_URL}/assets/images/default.png`} x className="client-avatar" /> 

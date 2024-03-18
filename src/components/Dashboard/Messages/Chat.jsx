@@ -13,6 +13,9 @@ import Sidebar from './Sidebar';
 import Pusher from 'pusher-js';
 import Cookies from "universal-cookie";
 
+import { CreatePaymentLink,GenerateLink } from "../../../api/endpoints";
+
+
 function Chat() {
   const [input, setInput] = useState("");
   const { chatId, name } = useParams();
@@ -58,6 +61,20 @@ function Chat() {
     }
   }, [messages])
 
+  async function payWithPaystack(purchaseRequestId) {
+  
+    const res = await CreatePaymentLink("653266d0b6096cb92a3f884d");
+    debugger;
+  
+  }
+  
+  async function pay(paymentLinkId){
+    const res = await GenerateLink("653266d0b6096cb92a3f884d");
+    debugger;
+    const url = res.data.data.authorization_url;
+    window.location.href = url;
+  }
+  
   const sendMessage = async (e) => {
     e.preventDefault();
 
@@ -166,6 +183,7 @@ function Chat() {
 
     setInput("");
   };
+
   return (
     <div className="col-lg-8 col-md-8 col-12  sherah-chatbox__two mg-top-30">
       <div className="sherah-chatbox__explore-head sherah-border-btm">
@@ -185,7 +203,7 @@ function Chat() {
     </div>
   ) : null}
       </div>
-      <div className="sherah-chatbox__explore sherah-default-bg sherah-border">
+      <div className="sherah-chatbox__explore sherah-default-bg sherah-border" style={{ overflowX: "hidden; margin-bottom: 10px;" }}>
         <div className="sherah-chatbox__explore-body">
            {messages.map((message) => ( 
              <div 
@@ -236,7 +254,7 @@ function Chat() {
             />
             <div className="sherah-chatbox__button">
               <div className="sherah-chatbox__button-inline"></div>
-              <div className="sherah-chatbox__submit">
+              < div className="sherah-chatbox__submit">
                 <button 
                   className="sherah-chatbox__submit-btn" 
                   type="submit" 
@@ -260,9 +278,20 @@ function Chat() {
                     </g>
                   </svg>
                   Send
-                </button>
+                </button>          
+         
               </div>
             </div>
+            <button 
+                  className="sherah-chatbox__submit-btn" 
+                  style={{padding:"3%"}}
+                  type="submit" 
+                  onClick={payWithPaystack}
+                  // disabled={chatId === null || chatId === undefined}
+                  >
+          
+                  Request payment
+                </button>
           </form>
         </div>
       </div>

@@ -6,7 +6,7 @@ import LoginLayout from "../../Partials/LoginLayout";
 import { POST } from "../../../api/client";
 import { RegisterCustomer } from "../../../api/endpoints";
 import CustomInputVal from "../../Helpers/CustomInputVal";
-import Autocomplete from "react-google-autocomplete";
+import AutoComplete from "react-google-autocomplete";
 import Logo from "../../../media/logo.png"
 import axios from "axios";
 import { toast } from 'react-toastify';
@@ -193,11 +193,11 @@ export default function Signup() {
                         inputHandler={(e) => setaddress(e.target.value)}
                         required={true}
                       /> */}
-                      <div class="input-label capitalize block  mb-2 text-qgray text-[13px] font-normal">Address*</div>
-                    <Autocomplete 
+                      <div class="input-label capitalize block  mb-2 text-qgray text-[13px] font-normal">Addresssssssssssssssssss*</div>
+                    <AutoComplete 
                       
                     style={{padding: "12px"}}
-                        apiKey={"AIzaSyDsGw9PT-FBFk7DvGK46BpvEURMxcfJX5k"}
+                    apiKey={"AIzaSyDsGw9PT-FBFk7DvGK46BpvEURMxcfJX5k"}
                         onPlaceSelected={(place) => {
                           debugger;
                           console.log(place);
@@ -213,6 +213,8 @@ export default function Signup() {
                           componentRestrictions: { country: "za" },
                         }}
                       />
+
+
                       </div>
                   <div className="flex sm:flex-row flex-col space-y-5 sm:space-y-0 sm:space-x-5 mb-5">
                     <InputCom

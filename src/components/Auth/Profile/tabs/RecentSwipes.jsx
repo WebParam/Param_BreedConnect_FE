@@ -33,7 +33,8 @@ function RecentSwipes() {
   
   return (
     <div className="message-list">
-      {recentSwipes.map((swipe, index) => (
+      {recentSwipes.length === 0 && <div>No recent swipes</div>}
+      {recentSwipes.slice(-5).map((swipe, index) => (
         <div key={index} className=' row mt-3'>
           <div className='col-md-4'>
            <img src={swipe.images[0].url}  className="client-avatar" /> 

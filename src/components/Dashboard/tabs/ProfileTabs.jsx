@@ -129,7 +129,7 @@ debugger;
                           </div> */}
                         </div>
                       </div>
-                      <div className="col-9">
+                      <div className="col-12">
                         
                         <div className="form-group mt-4 p-4">
                         <h4>Biography</h4>
@@ -138,7 +138,7 @@ debugger;
                           </label>
                           <div className="form-group__input">
                             <textarea
-                            rows="8"
+                            rows="4"
                               className="sherah-wc__form-input"
                               placeholder=""
                               type="text"
@@ -151,8 +151,8 @@ debugger;
                       </div>
                       <div className="col-5">
                         
-                        <div className="form-group mt-4 p-4">
-                        <h3 className='mb-2'>About Your Breeding</h3>
+                        <div className="form-group p-4">
+                       
                           <label className="sherah-wc__form-label">
                            Years of breeding
                           </label>
@@ -169,7 +169,7 @@ debugger;
                         </div>
                       </div>
                     
-                      <div className="col-9">
+                      <div className="col-12">
                         
                         <div className="form-group mt-2 p-4">
                         <h4>What drives your passion for breeding:</h4>
@@ -178,7 +178,7 @@ debugger;
                           </label>
                           <div className="form-group__input">
                             <textarea
-                            rows="8"
+                            rows="4"
                               className="sherah-wc__form-input"
                               placeholder=""
                               type="text"
@@ -190,7 +190,7 @@ debugger;
                         </div>
                       </div>
                   
-                      <div className="col-9">
+                      <div className="col-12">
                         
                         <div className="form-group mt-2 p-4">
                         <h3>Breeding Practices</h3>
@@ -199,7 +199,7 @@ debugger;
                           </label>
                           <div className="form-group__input">
                             <textarea
-                            rows="8"
+                            rows="4"
                               className="sherah-wc__form-input"
                               placeholder=""
                               type="text"
@@ -211,7 +211,7 @@ debugger;
                         </div>
                       </div>
 
-                      <div className="col-9">
+                      <div className="col-12">
                         
                         <div className="form-group mt-2 p-4">
                         <h3>Photos & Media</h3>

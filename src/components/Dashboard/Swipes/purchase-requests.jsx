@@ -71,6 +71,7 @@ async function AcceptProductRequest(id){
   debugger;
   if(response!=null && response.status ==200){
       let target = productRequests.filter(x=>x.id==id)[0];
+      debugger;
   const newList= productRequests.filter(x=>x.id!=id);
   target.status=2;
   const _ = [...newList,target];
@@ -135,7 +136,9 @@ async function Message(id){
                     {/* <a href="order-details" className="sherah-btn sherah-gbcolor">Add New Vendor</a> */}
                   </div>
                 </div>
-                {productRequests.length >0 && 
+                {productRequests.filter(x=>x.status ==1).length ==0 && <>
+               <p style={{textAlign:"center"}}>  No new requests ..</p></>}
+                {productRequests.filter(x=>x.status ==1).length >0 && 
                 <div className="sherah-table col-md-10 sherah-page-inner sherah-border sherah-default-bg mg-top-25">
                 
                 <>
@@ -169,13 +172,13 @@ async function Message(id){
 
                       {
                        
-                       productRequests.map(x=> {return(
+                       productRequests.filter(x=>x.status ==1).map(x=> {return(
                         <>
                           <tr className=" border-b hover:bg-gray-50">
                       <td className="py-1">
                         <span>
                       
-                        <img style={{float:"left", cursor:"pointer"}}  src={`${process.env.PUBLIC_URL}/assets/images/d2.jpg`}  alt="breeder" className="customer"/>
+                        {/* <img style={{float:"left", cursor:"pointer"}}  src={`${process.env.PUBLIC_URL}/assets/images/d2.jpg`}  alt="breeder" className="customer"/> */}
                        <a style={{cursor:"pointer"}} href=""> <small style={{float:"left"}}  className="mt-3 ml-1">{x?.customer?.firstname} {x?.customer?.lastname}</small></a>
                        
                         </span>
@@ -185,7 +188,7 @@ async function Message(id){
                       <td className="text-center py-1 px-2">
                         <span className="text-qblack px-2 ">
                           
-                       <a style={{float:"left",cursor:"pointer"}} href=""> <img src={`${process.env.PUBLIC_URL}/assets/images/d1.jpg`}  alt="breed" style={{width:"50px", height:"50px"}} className="product-picture" /></a>
+                       <a style={{float:"left",cursor:"pointer"}} href=""> <img src={x.product?.images[0]?.url}  alt="breed" style={{width:"50px", height:"50px"}} className="product-picture" /></a>
                         
                         </span>
                       </td>
@@ -288,7 +291,7 @@ async function Message(id){
 
                   {
                   
-                  productRequests.map(x=> {return(
+                  productRequests.slice(-5).map(x=> {return(
                     <>
                       <tr className=" border-b hover:bg-gray-50">
                   <td className="py-1">
@@ -385,7 +388,7 @@ async function Message(id){
         
                     {
                      
-                     productRequests.map(x=> {return(
+                     productRequests.slice(-3).map(x=> {return(
                       <>
                         <tr className=" border-b hover:bg-gray-50">
                     <td className="py-1">

@@ -21,7 +21,7 @@ export default function Footer() {
               </a>
             </div>
             <div>
-              <ul className="flex flex-col space-y-5 ">
+              {/* <ul className="flex flex-col space-y-5 ">
                 <li>
                   <Link to="/">
                     <span className="text-[#9A9A9A] text-[15px] hover:text-qblack border-b border-transparent hover:border-qblack">
@@ -43,7 +43,7 @@ export default function Footer() {
                     </span>
                   </Link>
                 </li>
-              </ul>
+              </ul> */}
             </div>
           </div>
           <div className="lg:w-2/10 w-full mb-10 lg:mb-0">

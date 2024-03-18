@@ -13,5 +13,6 @@ export default function ThinPeople({ className }) {
         fill="black"
       />
     </svg>
+     
   );
 }

@@ -7,30 +7,31 @@ function MessageList({  }) {
 
 
  const messages = [
-  {
-      "sender": "Alice",
-      "content": "Hello, how are you?",
-      "timestamp": "2023-09-09 10:00:00"
-  },
-  {
-      "sender": "Bob",
-      "content": "I'm doing well, thanks! How about you?",
-      "timestamp": "2023-09-09 10:05:00"
-  },
-  {
-      "sender": "Alice",
-      "content": "I'm good too. What have you been up to?",
-      "timestamp": "2023-09-09 10:10:00"
-  },
-  {
-      "sender": "Bob",
-      "content": "Just working on a project. How about we meet later for coffee?",
-      "timestamp": "2023-09-09 10:15:00"
-  },
+  // {
+  //     "sender": "Alice",
+  //     "content": "Hello, how are you?",
+  //     "timestamp": "2023-09-09 10:00:00"
+  // },
+  // {
+  //     "sender": "Bob",
+  //     "content": "I'm doing well, thanks! How about you?",
+  //     "timestamp": "2023-09-09 10:05:00"
+  // },
+  // {
+  //     "sender": "Alice",
+  //     "content": "I'm good too. What have you been up to?",
+  //     "timestamp": "2023-09-09 10:10:00"
+  // },
+  // {
+  //     "sender": "Bob",
+  //     "content": "Just working on a project. How about we meet later for coffee?",
+  //     "timestamp": "2023-09-09 10:15:00"
+  // },
 ]
   
   return (
     <div className="message-list">
+      {messages.length === 0 && <div className="no-messages">No messages yet</div>}
       {messages.map((message, index) => (
         <div key={index} className="message-bubble">
           <div className="client-info" style={{flexDirection:"row"}}>

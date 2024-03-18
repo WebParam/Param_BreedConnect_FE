@@ -38,6 +38,7 @@ debugger;
 console.log("RERE", response);
   const res = response.data.map(x=>x?.data);  
 console.log("ORDER", response.data)
+debugger;
   setOrders(response.data);
 setLatestOrders(response.data.slice(-3))
 toast.dismiss(_id);

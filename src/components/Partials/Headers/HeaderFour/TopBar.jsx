@@ -13,7 +13,7 @@ export default function TopBar({ className }) {
         <div className="container-x mx-auto h-full">
           <div className="flex justify-between items-center h-full">
             <div className="topbar-nav">
-              <ul className="flex space-x-6">
+              {/* <ul className="flex space-x-6">
                 <li>
                   <Link to="/">
                     <span className="text-xs leading-6 text-qblack font-500">
@@ -35,10 +35,10 @@ export default function TopBar({ className }) {
                     </span>
                   </Link>
                 </li>
-              </ul>
+              </ul> */}
             </div>
             <div className="topbar-dropdowns sm:block hidden">
-              <div className="flex space-x-6">
+              {/* <div className="flex space-x-6">
                 <div className="country-select flex space-x-1 items-center">
                   <div>
                     <img
@@ -65,7 +65,7 @@ export default function TopBar({ className }) {
                   <Selectbox className="w-fit" datas={["English"]} />
                   <Arrow className="fill-current qblack" />
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
