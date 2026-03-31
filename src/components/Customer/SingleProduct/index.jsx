@@ -97,7 +97,7 @@ export default function SingleProductPage() {
 
     var ref = searchParams.get("productId");
     debugger
-    if(ref!=undefined){
+    if (ref !== undefined && ref !== null) {
       var res = await getProduct(ref);
       setProduct(res)
       debugger;

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import datas from "../../data/products.json";
 import BreadcrumbCom from "../BreadcrumbCom";
 import Layout from "../Partials/Layout";
 import IcoDashboard from "./icons/IcoDashboard";
@@ -15,7 +14,6 @@ import Calender from "./tabs/Calender"
 
 
 export default function Customers() {
-  const [switchDashboard, setSwitchDashboard] = useState(false);
   const location = useLocation();
   const getHashContent = location.hash.split("#");
   const [active, setActive] = useState("orders");

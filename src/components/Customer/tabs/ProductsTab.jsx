@@ -1,6 +1,5 @@
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { AllProducts, RequestToPurchase } from '../../../api/endpoints';
-import { toast } from 'react-toastify';
 
 export default function ProductsTab() {
 
@@ -8,7 +7,7 @@ export default function ProductsTab() {
 
   const request = async (product) => {
     const response = await RequestToPurchase(product);
-    if(response!=null && response.status ==200){
+    if (response !== null && response.status === 200) {
       console.log("success");
     }
   }
@@ -37,44 +36,44 @@ export default function ProductsTab() {
             </h4>
             <ul className="sherah-product-sidebar__list">
               <li>
-                <a href="#">
+                <button type="button">
                   <span>
                     <i className="fa-solid fa-chevron-right" />
                     Pure breed
                   </span>
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#">
+                <button type="button">
                   <span>
                     <i className="fa-solid fa-chevron-right" />
                     Affenpinscher
                   </span>
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#">
+                <button type="button">
                   <span>
                     <i className="fa-solid fa-chevron-right" />
                     Afghan Hound
                   </span>
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#">
+                <button type="button">
                   <span>
                     <i className="fa-solid fa-chevron-right" />
                     Airedale Terrier
                   </span>
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#">
+                <button type="button">
                   <span>
                     <i className="fa-solid fa-chevron-right" />
                     Akbash
                   </span>
-                </a>
+                </button>
               </li>
             </ul>
           </div>
@@ -180,20 +179,20 @@ export default function ProductsTab() {
                 <div className="sherah-pagination">
                   <ul className="sherah-pagination__list">
                     <li className="sherah-pagination__button">
-                      <a href="#">
+                      <button type="button">
                         <i className="fas fa-angle-left" />
-                      </a>
+                      </button>
                     </li>
                     <li>
-                      <a href="#">01</a>
+                      <button type="button">01</button>
                     </li>
                     <li className="active">
-                      <a href="#">02</a>
+                      <button type="button">02</button>
                     </li>
                     <li className="sherah-pagination__button">
-                      <a href="#">
+                      <button type="button">
                         <i className="fas fa-angle-right" />
-                      </a>
+                      </button>
                     </li>
                   </ul>
                 </div>
