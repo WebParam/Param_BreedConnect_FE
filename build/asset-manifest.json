@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/static/css/main.a3fafcef.css",
+    "main.js": "/static/js/main.a6ae9f6a.js",
+    "static/media/home-back.png": "/static/media/home-back.209779f3ef90691097be.png",
+    "static/media/BreedConnect.svg": "/static/media/BreedConnect.fe2ae3113f4cc8a5b5751792a2f88c0c.svg",
+    "static/media/Fredoka_Expanded-SemiBold.ttf": "/static/media/Fredoka_Expanded-SemiBold.6a0b76fbc234d29daaf0.ttf",
+    "static/media/Fredoka_Expanded-Bold.ttf": "/static/media/Fredoka_Expanded-Bold.f21c17e52565918e349a.ttf",
+    "static/media/Fredoka-Medium.ttf": "/static/media/Fredoka-Medium.df3a9eac7eeab07cf635.ttf",
+    "static/media/Fredoka-Light.ttf": "/static/media/Fredoka-Light.882f556fca2461cfc9bc.ttf",
+    "static/media/Fredoka-Bold.ttf": "/static/media/Fredoka-Bold.631654abab154262f71b.ttf",
+    "static/media/breeders.png": "/static/media/breeders.6c9b6c4cb93b70d78d49.png",
+    "static/media/logo.svg": "/static/media/logo.bb62539d7e5618b486ffa5ef71a81153.svg",
+    "static/media/Rectangle.png": "/static/media/Rectangle.6164759c45e2a5b4e07b.png",
+    "static/media/profile.png": "/static/media/profile.b58ab6261353a775eb3a.png",
+    "static/media/react-spring_web.production.min.cjs": "/static/media/react-spring_web.production.min.3e2dca1352bf2de89b5e.cjs",
+    "static/media/slick.svg": "/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/index.html",
+    "main.a3fafcef.css.map": "/static/css/main.a3fafcef.css.map",
+    "main.a6ae9f6a.js.map": "/static/js/main.a6ae9f6a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a3fafcef.css",
+    "static/js/main.a6ae9f6a.js"
+  ]
+}
