@@ -171,14 +171,14 @@ export default function Footer({type}) {
                             </a>
                         </div>
                         <span className="sm:text-base text-[10px] text-qgray font-300">
-              ©2022
+              ©2023
               <a
-                  href="https://quomodosoft.com/"
+                  href="https://breedconnect.co.za/"
                   target="_blank"
                   rel="noreferrer"
                   className="font-500 text-qblack mx-1"
               >
-                Quomodosoft
+                Breed Connect
               </a>
               All rights reserved
             </span>

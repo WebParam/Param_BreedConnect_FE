@@ -1,7 +1,10 @@
 [{
     "order": 1,
     "name": "Breeder",
-    "description": "What breed(s) do you breed?",
+    "question": "What breed(s) do you breed?",
+    "type":"checkbox",
+    "questionType": 3,
+    "image":"",
     "options": [{
             "name": "Pure breed",
             "value": "Pure_breed"
@@ -27,7 +30,10 @@
 {
     "order": 2,
     "name": "Breeder",
-    "description": "On average, how many litters do your female breeding dogs have before they retire?",
+    "question": "On average, how many litters do your female breeding dogs have before they retire?",
+    "type":"dropdown",
+    "questionType": 2,
+    "image":"",
     "options": [{
             "name": "5-7",
             "value": "5-7"
@@ -50,7 +56,10 @@
 {
     "order": 3,
     "name": "Breeder",
-    "description": "how old are your female Affenpinschers when you start breeding them?",
+    "question": "how old are your female Affenpinschers when you start breeding them?",
+    "type":"dropdown",
+    "questionType": 2,
+    "image":"",
     "options": [{
             "name": "Under 12 months",
             "value": "Under_12_months"
@@ -72,7 +81,10 @@
 {
     "order": 4,
     "name": "Breeder",
-    "description": "how old are you female Affenpinschers when they retire?",
+    "question": "how old are you female Affenpinschers when they retire?",
+    "type":"dropdown",
+    "questionType": 2,
+    "image":"",
     "options": [{
             "name": "3",
             "value": "3"
@@ -94,7 +106,10 @@
 {
     "order": 5,
     "name": "Breeder",
-    "description": "Do your b reeding dogs receive a general wellness exam at least once a year?",
+    "question": "Do your breeding dogs receive a general wellness exam at least once a year?",
+    "image":"puppy",
+    "type":"select",
+    "questionType": 0,
     "options": [{
             "name": "Yes",
             "value": "yes"
@@ -108,7 +123,10 @@
 {
     "order": 6,
     "name": "Breeder",
-    "description": "Where do your breeding dogs live?",
+    "question": "Where do your breeding dogs live?",
+    "type":"checkbox",
+    "questionType": 2,
+    "image":"",
     "options": [{
             "name": "My Home",
             "value": "My home"
@@ -130,7 +148,10 @@
 {
     "order": 7,
     "name": "Breeder",
-    "description": "What size is each dogs crate/pen?",
+    "question": "What size is each dogs crate/pen?",
+    "type":"input",
+    "questionType": 0,
+    "image":"",
     "options": [{
             "name": "Length",
             "value": "length"
@@ -144,7 +165,10 @@
 {
     "order": 8,
     "name": "Breeder",
-    "description": "You almost there just one last step",
+    "question": "You almost there just one last step",
+    "type":"attachment",
+    "questionType": 1,
+    "image":"",
     "options": [{
         "name": "attachment",
         "value": "attachment"

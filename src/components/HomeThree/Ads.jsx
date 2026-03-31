@@ -24,12 +24,11 @@ export default function Ads({ handler }) {
                 />
               </a>
             </div>
-            <p className="md:text-[22px] text-sm text-qblack mb-2">
+            {/* <p className="md:text-[22px] text-sm text-qblack mb-2">
               by Subscribe our Newsletter
-            </p>
+            </p> */}
             <h1 className="md:text-[30px] text-xl font-bold text-qblack mb-1">
-              Get <span className="mx-1 text-[#EB5757]">20% Off</span> Discount
-              Coupon
+              Join our <span className="mx-1 text-[#EB5757]">community</span>
             </h1>
             <p className="text-qgray">
               Get has been the industry's standard dummy text ever since <br />

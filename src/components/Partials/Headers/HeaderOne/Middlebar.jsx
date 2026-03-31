@@ -5,7 +5,7 @@ import ThinLove from "../../../Helpers/icons/ThinLove";
 import ThinPeople from "../../../Helpers/icons/ThinPeople";
 import SearchBox from "../../../Helpers/SearchBox";
 import { Link } from "react-router-dom";
-
+import Logo from "../../../../media/logo.svg"
 export default function Middlebar({ className, type }) {
   return (
     <div className={`w-full h-[86px] bg-white ${className}`}>
@@ -32,13 +32,22 @@ export default function Middlebar({ className, type }) {
                   />
                 </a>
               ) : (
-                <a href="/">
-                  <img
+                <a href="/" style={{marginTop: "30%"}}>
+                  {/* <img
                     width="152"
                     height="36"
                     src={`${process.env.PUBLIC_URL}/assets/images/logo.svg`}
                     alt="logo"
-                  />
+                  /> */}
+                
+                                <img
+                                    width="200"
+                                    height="50"
+                                    // src={`${process.env.PUBLIC_URL}/assets/images/logo.svg`}
+                                    src={Logo}
+                                    alt="logo"
+                                />
+                           
                 </a>
               )}
             </div>
@@ -46,7 +55,7 @@ export default function Middlebar({ className, type }) {
               <SearchBox type={type} className="search-com" />
             </div>
             <div className="flex space-x-6 items-center">
-              <div className="compaire relative">
+              {/* <div className="compaire relative">
                 <a href="/products-compaire">
                   <span>
                     <Compair />
@@ -59,8 +68,8 @@ export default function Middlebar({ className, type }) {
                 >
                   2
                 </span>
-              </div>
-              <div className="favorite relative">
+              </div> */}
+              {/* <div className="favorite relative">
                 <a href="/wishlist">
                   <span>
                     <ThinLove />
@@ -73,8 +82,8 @@ export default function Middlebar({ className, type }) {
                 >
                   1
                 </span>
-              </div>
-              <div className="cart-wrapper group relative py-4">
+              </div> */}
+              {/* <div className="cart-wrapper group relative py-4">
                 <div className="cart relative cursor-pointer">
                   <a href="/cart">
                     <span>
@@ -89,13 +98,12 @@ export default function Middlebar({ className, type }) {
                     15
                   </span>
                 </div>
-                {/* <div className="fixed left-0 top-0 w-full h-full z-40"></div> */}
-                {/* hidden group-hover:block" */}
+               
                 <Cart
                   type={type}
                   className="absolute -right-[45px] top-11 z-50 hidden group-hover:block"
                 />
-              </div>
+              </div> */}
               <div>
                 <Link to="/profile">
                   <span>

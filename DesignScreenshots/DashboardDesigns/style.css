@@ -3408,6 +3408,7 @@ Version:	1.0.0
 .sherah-chatbox__sidebar {
 	padding-top: 30px;
 	border-radius: 5px;
+	overflow: scroll;
 }
 .sherah-chatbox__first-group {
 	display: flex;

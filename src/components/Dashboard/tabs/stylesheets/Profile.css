@@ -1,0 +1,103 @@
+/* Profile.css */
+html, body{
+    font-family: Quicksand;
+}
+.profile {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .cover-photo img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+  }
+  
+  .profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -80px; 
+    position: relative;
+    background-color: #fff;
+    padding: 0px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .profile-picture {
+    width: 122px;
+    height: 122px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #fff;
+    margin-bottom: -75px; 
+    position: relative;
+    top: -3em;
+    right: 11em;
+  }
+  .user{
+    right: 4.5em;
+    bottom: 2.5em;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin: 10px 0;
+  }
+  
+  .user-posts {
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .post {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+
+  /* tabs */
+  /* Example CSS */
+.tabs {
+    display: flex;
+    flex-direction: column;
+    min-width: 100%;
+    font-family: Quicksand;
+  }
+  
+  .tab-buttons {
+    display: flex;
+  }
+  
+  button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+  }
+  
+  button.active {
+    color: #000;
+    border-bottom: 2px solid #FFB336;
+    background-color: transparent;
+  }
+  
+  .tab-content {
+    padding: 10px;
+    border-top: none;
+  }
+  .text-label{
+    position: relative;
+    top: 1em;
+  }
+  
+
+  

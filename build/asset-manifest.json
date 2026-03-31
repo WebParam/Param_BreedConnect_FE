@@ -1,7 +1,12 @@
 {
   "files": {
+<<<<<<< HEAD
     "main.css": "/static/css/main.32c5074a.css",
     "main.js": "/static/js/main.87e03765.js",
+=======
+    "main.css": "/static/css/main.a3fafcef.css",
+    "main.js": "/static/js/main.cdec3a59.js",
+>>>>>>> develop
     "static/media/home-back.png": "/static/media/home-back.209779f3ef90691097be.png",
     "static/media/BreedConnect.svg": "/static/media/BreedConnect.fe2ae3113f4cc8a5b5751792a2f88c0c.svg",
     "static/media/Fredoka_Expanded-SemiBold.ttf": "/static/media/Fredoka_Expanded-SemiBold.6a0b76fbc234d29daaf0.ttf",
@@ -13,16 +18,29 @@
     "static/media/logo.svg": "/static/media/logo.bb62539d7e5618b486ffa5ef71a81153.svg",
     "static/media/Rectangle.png": "/static/media/Rectangle.6164759c45e2a5b4e07b.png",
     "static/media/profile.png": "/static/media/profile.b58ab6261353a775eb3a.png",
+<<<<<<< HEAD
+=======
+    "static/media/react-spring_web.production.min.cjs": "/static/media/react-spring_web.production.min.3e2dca1352bf2de89b5e.cjs",
+>>>>>>> develop
     "static/media/slick.svg": "/static/media/slick.2630a3e3eab21c607e21.svg",
     "static/media/slick.eot": "/static/media/slick.a4e97f5a2a64f0ab1323.eot",
     "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/index.html",
+<<<<<<< HEAD
     "main.32c5074a.css.map": "/static/css/main.32c5074a.css.map",
     "main.87e03765.js.map": "/static/js/main.87e03765.js.map"
   },
   "entrypoints": [
     "static/css/main.32c5074a.css",
     "static/js/main.87e03765.js"
+=======
+    "main.a3fafcef.css.map": "/static/css/main.a3fafcef.css.map",
+    "main.cdec3a59.js.map": "/static/js/main.cdec3a59.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a3fafcef.css",
+    "static/js/main.cdec3a59.js"
+>>>>>>> develop
   ]
 }

@@ -6,6 +6,7 @@ export default function TopBar({ className }) {
   return (
     <>
       <div
+      style={{border:"0px"}}
         className={`w-full bg-white h-10 border-b border-qgray-border ${
           className || ""
         }`}
@@ -13,7 +14,7 @@ export default function TopBar({ className }) {
         <div className="container-x mx-auto h-full">
           <div className="flex justify-between items-center h-full">
             <div className="topbar-nav">
-              <ul className="flex space-x-6">
+              {/* <ul className="flex space-x-6">
                 <li>
                   <Link to="/">
                     <span className="text-xs leading-6 text-qblack font-500">
@@ -35,10 +36,10 @@ export default function TopBar({ className }) {
                     </span>
                   </Link>
                 </li>
-              </ul>
+              </ul> */}
             </div>
             <div className="topbar-dropdowns sm:block hidden">
-              <div className="flex space-x-6">
+              {/* <div className="flex space-x-6">
                 <div className="country-select flex space-x-1 items-center">
                   <div>
                     <img
@@ -51,21 +52,21 @@ export default function TopBar({ className }) {
                   </div>
                   <Selectbox
                     className="w-fit"
-                    datas={["United State", "Bangladesh", "India"]}
+                    datas={["South Africa", "United States"]}
                   />
                   <div>
                     <Arrow className="fill-current qblack" />
                   </div>
                 </div>
                 <div className="currency-select flex space-x-1 items-center">
-                  <Selectbox className="w-fit" datas={["USD", "BDT"]} />
+                  <Selectbox className="w-fit" datas={["ZAR", "USD"]} />
                   <Arrow className="fill-current qblack" />
                 </div>
                 <div className="language-select flex space-x-1 items-center">
-                  <Selectbox className="w-fit" datas={["Bangla", "english"]} />
+                  <Selectbox className="w-fit" datas={["English"]} />
                   <Arrow className="fill-current qblack" />
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

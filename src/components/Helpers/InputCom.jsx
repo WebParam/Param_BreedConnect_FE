@@ -12,6 +12,7 @@ export default function InputCom({
   inputStyle,
   inputContainerStyle,
   required,
+  submitted,
   customInputValArray
 }) {
   return (
@@ -40,7 +41,9 @@ export default function InputCom({
       { required && (value == undefined || value?.length ==0)  && 
         <InputVal 
         value={value} 
-        required = {required}/>
+        required = {required}
+        submitted={submitted}
+        />
       }
       {customInputValArray!=undefined &&  customInputValArray.length>0 && customInputValArray.map(x=>{return x})}
      

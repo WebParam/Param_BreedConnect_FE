@@ -7,6 +7,7 @@ import { POST } from "../../../api/client";
 import {RegisterBreeder} from "../../../api/endpoints";
 import CustomInputVal from "../../Helpers/CustomInputVal";
 import Logo from "../../../media/logo.png"
+import Autocomplete from "react-google-autocomplete";
 import axios from "axios";
 export default function SignupBreeder() {
   const [name, setName] = useState("");
@@ -18,7 +19,10 @@ export default function SignupBreeder() {
   const [secret, setSecret] = useState("");
   const [city, setCity] = useState("");
   const [postcode, setCode] = useState("");
+  const [gpsLatitude, setGpsLatitude] = useState("");
+  const [gpsLongitude, setGpsLongitude] = useState("");
 
+  const [submitted, setIsSubmitted] = useState(false);
 
   const [confirmSecret, setConfirmSecret] = useState("");
 
@@ -32,38 +36,55 @@ export default function SignupBreeder() {
   };
 
   const  registerUser = async(event)=>{
-    const payload ={
-      username: email,
-      secret: secret,
-      firstname: name,
-      lastname: lname,
-      email: email,
-      secret:secret,
-      cellphone: phone,
-      address:address,
-      country:country,
-      postcode:postcode,
-      city:city
+    setIsSubmitted(true);
+
+    if(name.length!= 0 &&
+      secret.length!=0 && 
+      phone.length!=0 &&
+      lname.length !=0 && 
+      email.length !=0 &&
+      secret.length !=0 &&
+      phone.length!=0 &&
+      address.length!=0 &&
+      country.length!=0 &&
+      gpsLatitude.length!=0&& 
+      gpsLongitude.length!=0&&
+      confirmSecret==secret&&
+      city.length!=0 ){
+
+        const payload ={
+          username: email,
+          secret: secret,
+          firstname: name,
+          lastname: lname,
+          email: email,
+          secret:secret,
+          cellphone: phone,
+          address:address,
+          country:country,
+          addressLatitude:  gpsLatitude,
+          addressLongitude: gpsLongitude,
+          city:city
+        }
+        axios
+        .post(
+          "https://localhost:7061/user/register/breeder",
+          payload
+        )
+        .then((response) => {
+          console.log("response", response);
+          alert("Succefully registered")
+        })
+        .catch((error) => 
+          alert("error...")
+      )
+    }else{
+
     }
-    axios
-    .post(
-      "https://localhost:7061/user/register/breeder",
-      payload
-    )
-    .then((response) => {
-      console.log("response", response);
-      alert("Succefully registered")
-    })
-    .catch((error) => 
-      alert("error...")
-  )
 
- // const response = await RegisterCustomer(payload);
-
-//   console.log("response", response);
 event.preventDefault()
   }
-  
+    
 
   return (
     <LoginLayout childrenClasses="pt-0 pb-0">
@@ -109,6 +130,7 @@ event.preventDefault()
                         value={name}
                         inputHandler={(e) => setName(e.target.value)}
                         required={true}
+                        submitted={submitted}
                         
                       />
 
@@ -123,6 +145,7 @@ event.preventDefault()
                         inputClasses="h-[50px]"
                         inputHandler={(e) => setlName(e.target.value)}
                         required={true}
+                        submitted={submitted}
                       />
                     </div>
 
@@ -136,6 +159,7 @@ event.preventDefault()
                         type="email"
                         inputClasses="h-[50px]"
                         value={email}
+                        submitted={submitted}
                         inputHandler={(e) => setEmail(e.target.value)}
                         required={true}
                       />
@@ -151,6 +175,7 @@ event.preventDefault()
                         inputClasses="h-[50px]"
                         inputHandler={(e) => setPhone(e.target.value)}
                         required={true}
+                        submitted={submitted}
                       />
                     </div>
                     
@@ -163,6 +188,7 @@ event.preventDefault()
                         name="secret"
                         type="password"
                         value={secret}
+                        submitted={submitted}
                         inputClasses="h-[50px]"
                         inputHandler={(e) => setSecret(e.target.value)}
                         customInputValArray={[
@@ -188,6 +214,7 @@ event.preventDefault()
                         name="confirmSecret"
                         type="password"
                         inputClasses="h-[50px]"
+                        submitted={submitted}
                         value={confirmSecret}
                         inputHandler={(e) => setConfirmSecret(e.target.value)}
                         required={true}
@@ -200,7 +227,7 @@ event.preventDefault()
                       />
                        
                     </div>
-
+{/* 
 
                     <div className="input-item mb-5">
                       <h6 className="input-label text-qgray capitalize text-[13px] font-normal block mb-2 ">
@@ -225,10 +252,10 @@ event.preventDefault()
                           </svg>
                         </span>
                       </div>
-                    </div>
+                    </div> */}
 
                     <div className="input-item mb-5">
-                      <InputCom
+                      {/* <InputCom
                        inputStyle={{padding:"15px"}}
                        inputContainerStyle={{borderRadius:"20px"}}
                         placeholder="Your address Here"
@@ -236,14 +263,32 @@ event.preventDefault()
                         name="address"
                         type="text"
                         inputClasses="h-[50px]"
+                        submitted={submitted}
                         
                         value={address}
                         inputHandler={(e) => setaddress(e.target.value)}
                         required={true}
+                      /> */}
+                      <Autocomplete
+                        apiKey={"AIzaSyDsGw9PT-FBFk7DvGK46BpvEURMxcfJX5k"}
+                        onPlaceSelected={(place) => {
+                          debugger;
+                          console.log(place);
+                          setCity(place.address_components[0].long_name);
+                          setCountry(place.address_components.slice(-1)[0].long_name)
+                          setaddress(place.formatted_address);
+                          setGpsLatitude(`${place.geometry.location.lat()}`)
+                          setGpsLongitude(`${place.geometry.location.lng()}`)
+                          debugger;
+                        }}
+                        options={{
+                          types: ["(cities)"],
+                          componentRestrictions: { country: "za" },
+                        }}
                       />
                     </div>
 
-                    <div className="flex sm:flex-row flex-col space-y-5 sm:space-y-0 sm:space-x-5 mb-5">
+                    {/* <div className="flex sm:flex-row flex-col space-y-5 sm:space-y-0 sm:space-x-5 mb-5">
                       <div className="w-1/2">
                         <h6 className="input-label text-qgray capitalize text-[13px] font-normal block mb-2 ">
                           Town / City*
@@ -276,21 +321,23 @@ event.preventDefault()
                             label="Postcode / ZIP*"
                             inputClasses="w-full h-full"
                             type="text"
+
                             placeholder="00000"
                             value={postcode}
                             inputHandler={(e) => setCode(e.target.value)}
                              required={true}
+                             submitted={submitted}
                           />
                         </div>
                       </div>
-                    </div>
+                    </div> */}
 
                     <div className="forgot-password-area mb-7">
                       <div className="remember-checkbox flex items-center space-x-2.5">
                         <button
                           onClick={rememberMe}
                           type="button"
-                          className="w-5 h-5 text-qblack flex justify-center items-center border border-light-gray"
+                          className=" h-5 text-qblack flex justify-center items-center border border-light-gray"
                         >
                           {checked && (
                             <svg

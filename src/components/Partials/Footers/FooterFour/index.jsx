@@ -26,29 +26,29 @@ export default function FooterFour() {
               </a>
             </div>
             <div>
-              <ul className="flex flex-col space-y-5 ">
-                <li>
-                  <Link to="/">
-                    <span className="text-white text-[15px] hover:text-[#9a9a9a] hover:underline">
-                      Track Order
-                    </span>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/">
-                    <span className="text-white text-[15px] hover:text-[#9a9a9a] hover:underline">
-                      Delivery & Returns
-                    </span>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/">
-                    <span className="text-white text-[15px] hover:text-[#9a9a9a] hover:underline">
-                      Warranty
-                    </span>
-                  </Link>
-                </li>
-              </ul>
+                {/* <ul className="flex flex-col space-y-5 ">
+                  <li>
+                    <Link to="/">
+                      <span className="text-white text-[15px] hover:text-[#9a9a9a] hover:underline">
+                        Track Order
+                      </span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/">
+                      <span className="text-white text-[15px] hover:text-[#9a9a9a] hover:underline">
+                        Delivery & Returns
+                      </span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/">
+                      <span className="text-white text-[15px] hover:text-[#9a9a9a] hover:underline">
+                        Warranty
+                      </span>
+                    </Link>
+                  </li>
+                </ul> */}
             </div>
           </div>
           <div className="lg:w-2/10 w-full mb-10 lg:mb-0">

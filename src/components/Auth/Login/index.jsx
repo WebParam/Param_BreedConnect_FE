@@ -11,17 +11,19 @@ import Logo from "../../../media/logo.png"
 import './index.css'
 import { toast } from 'react-toastify';
 import {LoginEmail} from "../../../api/endpoints";
-
+import { useNavigate  } from "react-router-dom";
+import Cookies from "universal-cookie";
 
 export default function Login() {
   const [email, setEmail] = useState("");
+  const [loginActivities, setLoginActivities] = useState([]);
   const [password, setPassword] = useState("");
   const [disabled , setDisable] = useState(true)
   const [formData, setFormData] = useState({});
-
+  const navigate = useNavigate();
   const [ user, setUser ] = useState([]);
     const [ profile, setProfile ] = useState([]);
-
+    const cookies = new Cookies();
     const login = useGoogleLogin({
         onSuccess: (codeResponse) => CompleteGoogleLogin(codeResponse),
         onError: (error) => console.log('Login Failed:', error)
@@ -52,7 +54,7 @@ export default function Login() {
             .then(async (res) => {
              
               if(res.data){
-
+                const loginActivities = JSON.parse(localStorage.getItem('loginActivities')) || [];
                 const response = await LoginGoogle(res.data);
               
                 if(response!=null && response.status ==200){
@@ -63,6 +65,20 @@ export default function Login() {
                     isLoading: false,
                   });
                   LoginSuccess(response);
+                  cookies.set("bc-user", response.data,{path: '/', expires: new Date(Date.now()+2592000)});
+                  console.log("response.data",response.data)
+                  const loginData = {
+                    username: res.data.email,
+                    loginTime: new Date().toLocaleString(),
+                    status: 'Login successful',
+                  };
+                  setLoginActivities(loginActivities.push(loginData))
+                  localStorage.setItem('loginActivities', JSON.stringify(loginActivities));
+                  if(response.data.isDeliveryPartner){
+                    navigate('/breeder-profile', { state: response.data })
+                  }else{
+                    navigate('/profile', { state: response.data })
+                  }
                 }else{
                 toast.update(_id, {
                     autoClose:2000,
@@ -71,6 +87,13 @@ export default function Login() {
                     isLoading: false,
                     
                   });
+                  const loginData = {
+                    username: res.data.email,
+                    loginTime: new Date().toLocaleString(),
+                    status: 'Login successful',
+                  };
+                  setLoginActivities(loginActivities.push(loginData))
+                  localStorage.setItem('loginActivities', JSON.stringify(loginActivities));
                 }
               }
                 setProfile(res.data);
@@ -85,6 +108,7 @@ export default function Login() {
       googleLogout();
       setProfile(null);
   };
+
 
 
 
@@ -105,7 +129,7 @@ export default function Login() {
       email:email,
       secret:password
     }
-
+    const loginActivities = JSON.parse(localStorage.getItem('loginActivities')) || [];
     const response = await LoginEmail(email, password);
     if(response!=null && response.status ==200){
       toast.update(_id, {
@@ -114,6 +138,23 @@ export default function Login() {
         type: "success",
         isLoading: false,
       });
+      debugger;
+      cookies.set("bc-user", response.data,{path: '/', expires: new Date(Date.now()+2592000)});
+      console.log("response.data",response.data)
+      const loginData = {
+        username: email,
+        loginTime: new Date().toLocaleString(),
+        status: 'Login successful',
+      };
+      setLoginActivities(loginActivities.push(loginData))
+      localStorage.setItem('loginActivities', JSON.stringify(loginActivities));
+      console.log("Login activities", loginActivities)
+      debugger
+      if(response.data.isDeliveryPartner){
+        navigate('/breeder-dash', { state: response.data })
+      }else{
+        navigate('/profile', { state: response.data })
+      }
     }else{
       toast.update(_id, {
         autoClose:2000,
@@ -122,6 +163,13 @@ export default function Login() {
         isLoading: false,
         
       });
+      const loginData = {
+        username: email,
+        loginTime: new Date().toLocaleString(),
+        status: 'Login Failed',
+      };
+      setLoginActivities(loginActivities.push(loginData))
+      localStorage.setItem('loginActivity', JSON.stringify(loginActivities));
     }
   };
 

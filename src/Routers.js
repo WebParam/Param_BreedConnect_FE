@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import About from "./components/About";
-import AllProductPage from "./components/AllProductPage";
+import AllProductPage from "./components/Customer/AllProductPage";
 import Login from "./components/Auth/Login/index";
 import Profile from "./components/Auth/Profile";
 import Signup from "./components/Auth/Signup";
@@ -20,7 +20,7 @@ import PrivacyPolicy from "./components/PrivacyPolicy";
 import ProductsCompaire from "./components/ProductsCompaire/index";
 import SallerPage from "./components/SallerPage";
 import Sallers from "./components/Sellers";
-import SingleProductPage from "./components/SingleProductPage";
+// import SingleProductPage from "./components/SingleProductPage";
 import TermsCondition from "./components/TermsCondition/index";
 import TrackingOrder from "./components/TrackingOrder";
 import Wishlist from "./components/Wishlist";
@@ -30,7 +30,24 @@ import HomeFive from "./components/HomeFive";
 import Tinder from "./components/Tinder";
 import Landing from "./components/Landing"
 import BreederDashboard from "./components/Dashboard";
+import BreederProfile from "./components/Dashboard/profile";
+import BreederProducts from "./components/Dashboard/Products/products";
+import AddProduct from "./components/Dashboard/add-product";
+import Reviews from "./components/Dashboard/Reviews/reviews";
+import SingleProductPage from "./components/Customer/SingleProduct/index";
+
+import AddProductS1 from "./components/Dashboard/AddProduct/add-product-s1";
 import Questionnaires from "./components/Questionnaires/questionnaires";
+import ViewProductList from "./components/Dashboard/ViewProduct/view-product";
+import EditProduct from "./components/Dashboard/AddProduct/edit-product";
+import OrderList from "./components/Dashboard/Orders/order-list";
+import Customers from './components/Customer'
+import Messages from './components/Dashboard/Messages/messages'
+import PaymentResult from './components/Customer/PaymentResult/index'
+import Chat from './components/Dashboard/Messages/Chat'
+import Products from './components/Dashboard/Products/products'
+import PurchaseRequests from './components/Dashboard/Swipes/purchase-requests'
+import CalendarSchedule from "./components/Dashboard/calender";
 export default function Routers() {
   return (
     <Routes>
@@ -38,12 +55,29 @@ export default function Routers() {
       <Route exact path="/breeder-dash" element={<BreederDashboard />} />
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/signup" element={<Signup />} />
-      <Route exact path="/signupbreeder" element={<SignupBreeder />} />
+      <Route exact path="/signupbreeder" element={<SignupBreeder />} /> 
+      <Route exact path="/breeder-profile" element={<BreederProfile />} />
+      {/* <Route exact path="/breeder-products" element={<BreederProfile />} /> */}
+      {/* <Route exact path="/all-products" element={<AllProductPage />} /> */}
+      <Route exact path="/profile" element={<Profile />} />
+      <Route exact path="/view-product-list" element={<ViewProductList />} /> 
+
+
+      <Route exact path="/messages-breeder" element={<Messages />} />
+      <Route exact path="/transaction" element={<PaymentResult />} />
+      <Route path="/chat/:chatId/:name" element={<Messages />} />
+      {/* <Route path="/chat" element={<Chat />} /> */}
+
+
+      <Route exact path="/breeder-products" element={<Products />} />
+      <Route exact path="/breeder-reviews" element={<Reviews />} /> 
+      <Route exact path="/product" element={<SingleProductPage />} />
       {/* <Route exact path="/home-two" element={<HomeTwo />} />
       <Route exact path="/home-three" element={<HomeThree />} />
       <Route exact path="/home-four" element={<HomeFour />} />
       <Route exact path="/home-five" element={<HomeFive />} />
-      <Route exact path="/all-products" element={<AllProductPage />} />
+    
+      // <Route exact path="/all-products" element={<AllProductPage />} />
       <Route exact path="/single-product" element={<SingleProductPage />} />
       <Route exact path="/cart" element={<CardPage />} />
       <Route exact path="/checkout" element={<CheakoutPage />} />
@@ -61,14 +95,28 @@ export default function Routers() {
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/signup" element={<Signup />} />
       <Route exact path="/signupbreeder" element={<SignupBreeder />} />
-      <Route exact path="/profile" element={<Profile />} />
+      <Route exact path="/profile" element={<Profile />} 
       <Route exact path="/become-saller" element={<BecomeSaller />} />
       <Route exact path="/privacy-policy" element={<PrivacyPolicy />} />
       <Route exact path="/terms-condition" element={<TermsCondition />} />
-      <Route exact path="/tinder" element={<Tinder/>} />
+     
       <Route exact path="*" element={<FourZeroFour />} /> */}
+      {/* <Route exact path="/tinder" element={<Tinder/>} /> */}
       <Route exact path="/questionnaires" element={<Questionnaires/>} />
+      <Route exact path="/add-product" element={<AddProduct/>} />
+      <Route exact path="/add-product-s1" element={<AddProductS1/>} />
+      <Route exact path="/edit-product/:id" element={<EditProduct/>} />
       <Route exact path="*" element={<FourZeroFour />} />
+      <Route exact path="/all-products" element={<AllProductPage />} />
+      <Route exact path="/questionnaires" element={<Questionnaires/>} />
+      <Route exact path="/profile" element={<Profile />}  />
+      {/* <Route exact path="*" element={<FourZeroFour /> }/>*/}
+      <Route exact path="/tinder" element={<Tinder/>}  /> 
+      <Route exact path="/customer" element={<Customers/>}  />
+      <Route exact path="/orders" element={<OrderList/>}  />
+      <Route exact path="/swipes" element={<PurchaseRequests/>}  />
+      <Route exact path="/calender" element={<CalendarSchedule/>}  />
+      
     </Routes>
   );
 }

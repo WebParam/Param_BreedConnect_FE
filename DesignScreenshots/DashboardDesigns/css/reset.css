@@ -22,7 +22,7 @@
   }
   
 body, button, input, select, optgroup, textarea {
-	font-family: 'Roboto', sans-serif;
+	/* font-family: 'Roboto', sans-serif; */
 	font-weight: 400;
 	font-size: 16px;
 	line-height: 24px;
@@ -32,7 +32,7 @@ h1,h2,h3,h4,h5,h6 {
     margin: 0 ;
 }
 h1,h1 a,h2,h2 a,h3,h3 a,h4,h4 a,h5,h5 a,h6,h6 a {
-    font-family: 'Roboto', sans-serif;
+    /* font-family: 'Roboto', sans-serif; */
     font-weight: 700;
     line-height: 140%;
     color: #1A1A1A;
@@ -40,15 +40,15 @@ h1,h1 a,h2,h2 a,h3,h3 a,h4,h4 a,h5,h5 a,h6,h6 a {
 }
 
 .sherah-font-light{
-    font-family: 'Roboto', sans-serif;
+    /* font-family: 'Roboto', sans-serif; */
 	font-weight:300;
 }
 .sherah-font-regular{
-    font-family: 'Roboto', sans-serif;
+    /* font-family: 'Roboto', sans-serif; */
 	font-weight:400;
 }
 .sherah-font-medium{
-    font-family: 'Roboto', sans-serif;
+    /* font-family: 'Roboto', sans-serif; */
 	font-weight:500;
 }
 .sherah-lspacing{
@@ -1214,7 +1214,7 @@ object {
   color: #fff;
 }
 .section-white-style .sec-head__badge {
-  background: ;
+  /* background: ; */
   background: #F1E3FB2B;
   color: #fff;
 }

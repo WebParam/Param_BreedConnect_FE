@@ -6,24 +6,25 @@ export default function SearchBox({ className,type }) {
           className || ""
         }`}
       >
-        <div className="flex-1 bg-red-500 h-full">
-          <form action="#" className="h-full">
+        {/* <div className="flex-1 bg-red-500 h-full">
+          <form action="#" className="">
             <input
               type="text"
-              className="search-input"
+              className=""
               placeholder="Search Product..."
             />
           </form>
-        </div>
+        </div> */}
         <div className="w-[1px] h-[22px] bg-qgray-border"></div>
         <div className="flex-1 flex items-center px-4">
           <button
             type="button"
             className="w-full text-xs font-500 text-qgray flex justify-between items-center"
           >
-            <span>All Categories</span>
+            <input style={{background:"none", border:"none"}}></input>
+            {/* <span>All Categories</span>
             <span>
-              <svg
+              <svg 
                 width="10"
                 height="5"
                 viewBox="0 0 10 5"
@@ -47,7 +48,7 @@ export default function SearchBox({ className,type }) {
                   fill="#8E8E8E"
                 />
               </svg>
-            </span>
+            </span> */}
           </button>
         </div>
         <button

@@ -32,13 +32,13 @@ export default function Navbar({ className, type }) {
         <div className="w-full h-full relative">
           <div className="w-full h-full flex justify-between items-center">
             <div className="category-and-nav flex xl:space-x-7 space-x-3 items-center">
-              <div className="category w-[270px] h-[53px] bg-white px-5 rounded-t-md mt-[6px] relative">
-                <button
+              {/* <div className="category w-[270px] h-[53px] bg-white px-5 rounded-t-md mt-[6px] relative"> */}
+                {/* <button
                   onClick={handler}
                   type="button"
                   className="w-full h-full flex justify-between items-center"
-                >
-                  <div className="flex space-x-3 items-center">
+                > */}
+                  {/* <div className="flex space-x-3 items-center">
                     <span>
                       <svg
                         className="fill-current"
@@ -53,29 +53,29 @@ export default function Navbar({ className, type }) {
                         <rect y="4" width="10" height="1" />
                       </svg>
                     </span>
-                    <span className="text-sm font-600 text-qblacktext">
+                    <span className="text-sm  text-qblacktext">
                       All Categories
                     </span>
-                  </div>
-                  <div>
+                  </div> */}
+                  {/* <div>
                     <Arrow
                       width="5.78538"
                       height="1.28564"
                       className="fill-current text-qblacktext"
                     />
-                  </div>
-                </button>
-                {categoryToggle && (
+                  </div> */}
+                {/* </button> */}
+                {/* {categoryToggle && (
                   <div
                     className="fixed top-0 left-0 w-full h-full -z-10"
                     onClick={handler}
                   ></div>
-                )}
-                <div
+                )} */}
+                {/* <div
                   className="category-dropdown w-full absolute left-0 top-[53px] overflow-hidden"
                   style={{ height: `${elementsSize} ` }}
-                >
-                  <ul className="categories-list">
+                > */}
+                  {/* <ul className="categories-list">
                     <li className="category-item">
                       <a href="/all-products">
                         <div
@@ -733,14 +733,14 @@ export default function Navbar({ className, type }) {
                         </div>
                       </a>
                     </li>
-                  </ul>
-                </div>
-              </div>
+                  </ul> */}
+                {/* </div> */}
+              {/* </div> */}
               <div className="nav">
                 <ul className="nav-wrapper flex xl:space-x-10 space-x-5">
-                  <li className="relative">
+                  {/* <li className="relative">
                     <span
-                      className={`flex items-center text-sm font-600 cursor-pointer ${type === 3 ? "text-white" : "text-qblacktext"
+                      className={`flex items-center text-sm  cursor-pointer ${type === 3 ? "text-white" : "text-qblacktext"
                         }`}
                     >
                       <span>Homepage</span>
@@ -828,7 +828,7 @@ export default function Navbar({ className, type }) {
                   </li>
                   <li>
                     <span
-                      className={`flex items-center text-sm font-600 cursor-pointer ${type === 3 ? "text-white" : "text-qblacktext"
+                      className={`flex items-center text-sm  cursor-pointer ${type === 3 ? "text-white" : "text-qblacktext"
                         }`}
                     >
                       <span>Shop</span>
@@ -1050,7 +1050,7 @@ export default function Navbar({ className, type }) {
                   </li>
                   <li className="relative">
                     <span
-                      className={`flex items-center text-sm font-600 cursor-pointer ${type === 3 ? "text-white" : "text-qblacktext"
+                      className={`flex items-center text-sm  cursor-pointer ${type === 3 ? "text-white" : "text-qblacktext"
                         }`}
                     >
                       <span>Pages</span>
@@ -1135,47 +1135,57 @@ export default function Navbar({ className, type }) {
                         </div>
                       </div>
                     </div>
-                  </li>
+                  </li> */}
                   <li>
-                    <Link to="/about">
+                    <Link to="/profile">
                       <span
-                        className={`flex items-center text-sm font-600 cursor-pointer ${type === 3 ? "text-white" : "text-qblacktext"
+                        className={`flex items-center text-sm  cursor-pointer ${type === 3 ? "text-white" : "text-qblacktext"
                           }`}
                       >
-                        <span>About</span>
+                        <span>Profile</span>
                       </span>
                     </Link>
                   </li>
                   <li>
-                    <Link to="/blogs">
+                    <Link to="/all-products">
                       <span
-                        className={`flex items-center text-sm font-600 cursor-pointer ${type === 3 ? "text-white" : "text-qblacktext"
+                        className={`flex items-center text-sm  cursor-pointer ${type === 3 ? "text-white" : "text-qblacktext"
                           }`}
                       >
-                        <span>Blog</span>
+                        <span>Browse all pets</span>
+                      </span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/profile#swipes">
+                      <span
+                        className={`flex items-center text-sm  cursor-pointer ${type === 3 ? "text-white" : "text-qblacktext"
+                          }`}
+                      >
+                        <span>Swipe</span>
                       </span>
                     </Link>
                   </li>
                   <li>
                     <Link to="/contact">
                       <span
-                        className={`flex items-center text-sm font-600 cursor-pointer ${type === 3 ? "text-white" : "text-qblacktext"
+                        className={`flex items-center text-sm  cursor-pointer ${type === 3 ? "text-white" : "text-qblacktext"
                           }`}
                       >
                         <span>Contact</span>
                       </span>
                     </Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <Link to="/tinder">
                       <span
-                        className={`flex items-center text-sm font-600 cursor-pointer ${type === 3 ? "text-white" : "text-qblacktext"
+                        className={`flex items-center text-sm  cursor-pointer ${type === 3 ? "text-white" : "text-qblacktext"
                           }`}
                       >
                         <span>Tinder</span>
                       </span>
                     </Link>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </div>
@@ -1183,7 +1193,7 @@ export default function Navbar({ className, type }) {
               <Link to="/become-saller">
                 <div className="black-btn w-[161px] h-[40px] flex justify-center items-center cursor-pointer">
                   <div className="flex space-x-2 items-center">
-                    <span className="text-sm font-600">Become a Seller</span>
+                    <span className="text-sm ">Become a Seller</span>
                     <span>
                       <svg
                         className="fill-current"

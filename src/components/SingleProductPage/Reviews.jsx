@@ -114,7 +114,7 @@ export default function Reviews({
           </button>
         </div>
       </div>
-      <div className="write-review w-full">
+      {/* <div className="write-review w-full">
         <h1 className="text-2xl font-medium text-qblack mb-5">
           Write Your Reviews
         </h1>
@@ -199,7 +199,7 @@ export default function Reviews({
             </button>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -16,7 +16,7 @@
   color: white;
 }
 .topbar-dropdowns{
-  margin-bottom: 3em;
+  /* margin-bottom: 3em; */
   color: white;
 }
 .my-select-box .my-select-box-btn {
@@ -57,6 +57,6 @@
   background-color: rgba(0,0,0,0.7);
   color: white;
 }
-.active{
+/* .active{
   background-color: #1ebba3;
-}
+} */
