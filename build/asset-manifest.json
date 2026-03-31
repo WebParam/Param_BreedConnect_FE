@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.a3fafcef.css",
-    "main.js": "/static/js/main.a6ae9f6a.js",
+    "main.js": "/static/js/main.cdec3a59.js",
     "static/media/home-back.png": "/static/media/home-back.209779f3ef90691097be.png",
     "static/media/BreedConnect.svg": "/static/media/BreedConnect.fe2ae3113f4cc8a5b5751792a2f88c0c.svg",
     "static/media/Fredoka_Expanded-SemiBold.ttf": "/static/media/Fredoka_Expanded-SemiBold.6a0b76fbc234d29daaf0.ttf",
@@ -20,10 +20,10 @@
     "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/index.html",
     "main.a3fafcef.css.map": "/static/css/main.a3fafcef.css.map",
-    "main.a6ae9f6a.js.map": "/static/js/main.a6ae9f6a.js.map"
+    "main.cdec3a59.js.map": "/static/js/main.cdec3a59.js.map"
   },
   "entrypoints": [
     "static/css/main.a3fafcef.css",
-    "static/js/main.a6ae9f6a.js"
+    "static/js/main.cdec3a59.js"
   ]
 }

@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react'
-import TinderCard from 'react-tinder-card'
+import TinderCard from './SafeTinderCard'
 import { RequestToPurchase } from "../../api/endpoints";
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -11,11 +11,12 @@ const user = cookies.get("bcon-user");
 
 
 function Advanced(props) {
+  const initialProducts = Array.isArray(props?.products) ? props.products : [];
 
   const [lastDirection, setLastDirection] = useState();
 
-  const [products, setProducts] = useState(props?.products);
-  const [currentIndex, setCurrentIndex] = useState(products.length - 1);
+  const [products, setProducts] = useState(initialProducts);
+  const [currentIndex, setCurrentIndex] = useState(initialProducts.length - 1);
   const [status, setStatus]  = useState(0);
   const [visitCount, setVisitCount] = useState(0);
   const [productCount, setProductCount] = useState([]);
@@ -39,7 +40,7 @@ function Advanced(props) {
       customerId: user.id     
      }
      const response = await RequestToPurchase(payload);
-     if(response!=null && response.status == 200){
+    if (response !== null && response.status === 200) {
       toast.dismiss(_id);
       // setStatus(1);
       props.onClick();
@@ -65,7 +66,7 @@ function Advanced(props) {
       Array(products.length)
         .fill(0)
         .map((i) => React.createRef()),
-    []
+    [products.length]
   )
 
   const updateCurrentIndex = (val) => {
@@ -96,9 +97,9 @@ function Advanced(props) {
   const swipe = async (dir) => {
     if (canSwipe && currentIndex < products.length) {
       await childRefs[currentIndex].current.swipe(dir) // Swipe the card!
-      if(products[currentIndex].status === 0 && dir === 'right' ){
+      if (products[currentIndex]?.status === 0 && dir === 'right') {
         setStatus(1);
-        requestToPurchase(products[currentIndex].id)
+        requestToPurchase(products[currentIndex]?.id)
       }
       else{
         console.log("Product viewing");
@@ -119,11 +120,14 @@ function Advanced(props) {
 
   const handleSliderChange = () => {
     const storedData = localStorage.getItem('productsWithCount');
+    if (!storedData) {
+      return;
+    }
     console.log("Stored data", storedData)
     setVisitCount(visitCount + 1);
   // Use the `map` method to create a new array with the "count" variable appended to each object
     const newArray = JSON.parse(storedData).map((obj, index) => {
-      if(obj.id === products[currentIndex].id){
+      if (obj.id === products[currentIndex]?.id) {
         obj.count = obj.count + 1;
         return obj;
       }else{
@@ -161,7 +165,7 @@ function Advanced(props) {
             onCardLeftScreen={() => outOfFrame(character.name, index)}
           >
             <div
-              style={{ backgroundImage: 'url('+ character.images[0].url +')' }}
+              style={{ backgroundImage: `url(${character?.images?.[0]?.url || ''})` }}
               className='card'
             >
               <h3>{character.name}</h3>

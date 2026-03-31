@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import TinderCard from 'react-tinder-card'
+import TinderCard from './SafeTinderCard'
 
 const breads = [
   {
