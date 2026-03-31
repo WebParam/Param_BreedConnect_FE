@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import "react-input-range/lib/css/index.css";
 import productDatas from "../../../data/products.json";
 import BreadcrumbCom from "../../BreadcrumbCom";
 import ProductCardStyleOne from "../../Helpers/Cards/ProductCardStyleOne";

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "react-input-range/lib/css/index.css";
 import productDatas from "../../data/products.json";
 import ProductCardStyleOne from "../Helpers/Cards/ProductCardStyleOne";
 import DataIteration from "../Helpers/DataIteration";
