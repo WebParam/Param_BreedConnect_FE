@@ -11,8 +11,8 @@ const header =  {
       "bc-user": user??""
     }
   
-const origin = "https://localhost:7061";
-//const origin = "https://cb84-154-0-14-142.ngrok-free.app"
+// const origin = "https://localhost:7061";
+const origin = "https://breedconnectprd.azurewebsites.net"
 
 function RefreshToken(){
 
