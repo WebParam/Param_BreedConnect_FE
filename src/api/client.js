@@ -7,8 +7,7 @@ const user = JSON.stringify(cookies.get("bcon-user"));
 const header =  {
      //  "Authorization": `Anonymous`,
       "Access-Control-Allow-Origin": "*",
-      "ngrok-skip-browser-warning": "69420",
-      "bc-user": user??""
+      "bc-user": user?? ""
     }
   
 // const origin = "https://localhost:7061";
